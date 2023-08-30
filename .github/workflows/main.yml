@@ -1,4 +1,4 @@
-name: Full Stack CI/CD
+name: Frontend CI/CD
 
 on:
   push:
@@ -13,19 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         
-      - name: Install dependencies (Frontend)
-        run: cd frontend && npm install
+      - name: Install dependencies
+        run: npm install
         
       - name: Build frontend
-        run: cd frontend && npm run build
-      
-      - name: Install dependencies (Backend)
-        run: cd backend && npm install
+        run: npm run build
         
-      - name: Run backend tests
-        run: cd backend && npm test
-
       - name: Deploy to production
         run: npm run deploy
 
-      - run: npm run deploy
