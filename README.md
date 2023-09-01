@@ -48,7 +48,7 @@ When committing code, provide clear commit messages that describe your changes.
 2. Define and adhere to a testing strategy that includes unit, integration, and end-to-end testing.  
 
 ## Git Commands
-See What Branch You're On: `$ git status`
+See What Branch You're On: `$ git status`  
 Create a New Branch：`$ git checkout -b my-branch-name` (replacing my-branch-name with whatever name you want)  
 Switch to a Branch In Your Local Repo：`$ git checkout my-branch-name`  
 Push to a Branch: `$ git push -u origin my-branch-name` **or** `$ git push -u origin HEAD` (If your local branch does not exist on the remote)  
@@ -56,15 +56,15 @@ Push to a Branch: `$ git push -u origin my-branch-name` **or** `$ git push -u or
 Add files: `$ git add .`  
 Delete files:  `$ git rm filename`  
 Commit files: `$ git commit -m "Message that describes what this change does"`  
-Merge a Branch: 
+Merge a Branch:  
 1. First, Must check out the branch that you want to merge another branch into, if not in desired branch: `$ git checkout master` (Replace master with another branch name as needed)  
 2. Now you can merge another branch into the current branch: `$ git merge my-branch-name`  
-Delete Branches: 
-To delete a remote branch, run this command:
-`$ git push origin --delete my-branch-name`
-To delete a local branch, run either of these commands:
-`$ git branch -d my-branch-name` or `$ git branch -D my-branch-name`
+Delete Branches:  
+To delete a remote branch, run this command:  
+`$ git push origin --delete my-branch-name`  
+To delete a local branch, run either of these commands:  
+`$ git branch -d my-branch-name` or `$ git branch -D my-branch-name`  
 
-###########Directory Structure Description
-├── Readme.md                   // help
-├── azure-pipelines             // pipeline
+###########Directory Structure Description  
+├── Readme.md                   // help  
+├── azure-pipelines             // pipeline  
