@@ -60,10 +60,8 @@ Merge a Branch:
 1. First, Must check out the branch that you want to merge another branch into, if not in desired branch: `$ git checkout master` (Replace master with another branch name as needed)  
 2. Now you can merge another branch into the current branch: `$ git merge my-branch-name`  
 Delete Branches:  
-To delete a remote branch, run this command:  
-`$ git push origin --delete my-branch-name`  
-To delete a local branch, run either of these commands:  
-`$ git branch -d my-branch-name` or `$ git branch -D my-branch-name`  
+1. To delete a remote branch, run this command: `$ git push origin --delete my-branch-name`  
+2. To delete a local branch, run either of these commands: `$ git branch -d my-branch-name` or `$ git branch -D my-branch-name`  
 
 ## Directory Structure Description  
     ├── ReadMe.md              // help  
