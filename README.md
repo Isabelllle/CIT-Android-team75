@@ -65,6 +65,6 @@ To delete a remote branch, run this command:
 To delete a local branch, run either of these commands:  
 `$ git branch -d my-branch-name` or `$ git branch -D my-branch-name`  
 
-###########Directory Structure Description  
-├── Readme.md                   // help  
-├── azure-pipelines             // pipeline  
+## Directory Structure Description  
+    ├── ReadMe.md              // help  
+    ├── azure-pipelines.yml    // pipeline  
