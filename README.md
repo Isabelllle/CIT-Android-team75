@@ -10,11 +10,11 @@ The Collective Impact Tool (CIT) Android app focuses on two key aspects:
 
 ## Our team members  
 
-Xinyu Shi   
+Xinyu Shi     1174419
 Yijun Guo     1255197  
 Zixian Li     1240140  
-Zhiyi Wang  
-Jielong Zeng  
+Zhiyi Wang    
+Jielong Zeng  1214079
 
 ## My Status Badge of Pipeline
 [![Build Status](https://dev.azure.com/CIT-team75/CIT-Android-team75/_apis/build/status%2FIsabelllle.CIT-Android-team75?branchName=main)](https://dev.azure.com/CIT-team75/CIT-Android-team75/_build/latest?definitionId=1&branchName=main)
