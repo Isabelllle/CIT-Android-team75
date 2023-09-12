@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../Stylesheets/sign_in.css">
+</head>
+
+<body>
+   
+    <div class="container">
+            <!-- Left side -->
+            <div class="col_mid_6_left_side">
+                <img id="background_cartoon" src="../Assets/Image/sign_up_image.png" alt="sign_up_image"/>
+                <img id="background" src="../Assets/Image/sign-in background.png" alt="sign_in_background"/>
+                <img id="logo" src="../Assets/Icon/Logo.png" alt="WeConnect Logo"/>
+            </div>
+            <!-- Right side -->
+            <div class="col_mid_6_right_side">
+                <h1>Admin Sign Up</h1>
+
+                <form method="post">
+                    <div class="input_item">
+                        <!-- input first name -->
+                        <input class="input_underline" type="text" name="first_name" placeholder="First Name"/>
+
+                        <!-- input last name -->
+                        <input class="input_underline" type="text" name="last_name" placeholder="Last Name"/>
+
+
+                        <br>   <!--New Line-->
+                        <!-- input email address -->
+                        <input class="input_underline" id="email" type="email" name="email" placeholder="Email"/>
+
+
+
+                        <!-- select group -->
+                        <br>
+                        <div class="input_item" id="group_options">
+                            <label for="group">Find your group:</label>
+                            <select id="select_group">
+                                <option>Victoria Volunteer</option>
+                                <option>group2</option>
+                                <option>group3</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- sign up -->
+                <button class="btn_sign_up">
+                    Sign Up 
+                </button>
+                
+                <!-- redirection to register page -->
+                <div class="register">
+                    <span class="normal_text">Can not find your group?</span>
+                    <a href="" target="_blank">Register Here</a>
+                </div>
+
+                <!-- redirection to login page -->
+                <div class="login">
+                    <span class="normal_text">Already a member?</span>
+                    <a href="log_in.html" target="_self">Log in here</a>                   
+                </div>
+            </div>
+            <img id="contact_us_icon" src="../Assets/Icon/Contact_us.png" alt="Contact us icon">
+        </div>
+</body>
+</html>
