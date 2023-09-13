@@ -1,0 +1,212 @@
+/* Admin log in page css */
+
+/* Import font */
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../Assets/Roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url('../Assets/Roboto/Roboto-Medium.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url('../Assets/Roboto/Roboto-Regular.ttf');
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+/* Background */
+.container{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #F8F8F8;
+}
+
+#people_background{
+    position: absolute;
+    width: 280px;
+    bottom: 10px;
+    left: 10px;
+    opacity: 0.4;
+    z-index: 0;
+}
+
+#light_background{
+    position: absolute;
+    width: 100px;
+    top:0px;
+    right: 280px;
+    z-index: 0;
+}
+
+/* Logo */
+#logo{
+    display: block;
+    width: 200px;
+}
+
+/* Text */
+h1{
+    font-family: "Roboto-Bold";
+    font-size: 32px;
+}
+
+h2{
+    font-family: "Roboto-Medium";
+    font-size: 20px;
+}
+
+p{
+    color: #585151;
+    font-family: "Roboto-Regular";
+    font-size: 20px;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* Main body */
+main{
+    width: 60%;
+    height: 80%;
+    margin-left: 20%;
+    margin-top: 30px;
+    z-index: 1;
+}
+
+main h1{
+    text-align: center;
+}
+
+main p{
+    text-align: center;
+    margin-top: 100px;
+}
+
+/* Input Box */
+form{
+    z-index: 2;
+}
+
+.input_item{
+    display: block;
+    width: 380px;
+    height: 45px;
+    border-radius: 15px;
+    border-width: 1.5px;
+    border-color: #585151;
+    background-color: white;
+    font-family: "Roboto-Regular";
+    color: black;
+    font-size: 20px;
+    padding-left: 15px;
+    z-index: 4;
+}
+
+::placeholder{
+    color: #9F9D9D;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.two_buttons{
+    display: block;
+    padding: 230px 100px 0px 100px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+#cancel_button, #next_button{
+    display: block;
+    width: 150px;
+    height: 50px;
+    font-family: "Roboto-Regular";
+    color: white;
+    font-size: 24px;
+    background-color: #DE0A3F;
+    border: none;
+    border-radius: 50px;
+}
+
+/* Contact us */
+#contact_us_icon{
+    position:absolute;
+    width: 100px;
+    right: 10px;
+    bottom: 10px;
+}
+
+/* forgot_password_enter_email.html */
+.forgot_email_input{
+    width: 380px;
+    height: 45px;
+    margin: 45px auto;
+    z-index: 3;
+}
+
+/* forgot_password_email_verify.html && email_verify.html */
+.forgot_code_input{
+    margin: 45px 180px;
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#send_code_button {
+    display: block;
+    width: 100px;
+    height: 35px;
+    margin-top: 7.5px;
+    font-family: "Roboto-Regular";
+    color: #DE0A3F;
+    font-size: 16px;
+    background-color: white;
+    border-width: 1.5px;
+    border-radius: 10px;
+    border-color: #DE0A3F;
+}
+
+/* forgot_password_new_password.html */
+.forgot_password_input{
+    position:relative;
+    width: 380px;
+    height: 45px;
+    margin: 45px auto;
+    z-index: 3;
+}
+
+.forgot_password_input h2{
+    margin-bottom: 10px;
+}
+
+.forgot_password_input input{
+    margin-bottom: 30px;
+    z-index: 4;
+}
+
+/* sign_up_instruction.html */
+#back_button{
+    display: block;
+    width: 150px;
+    height: 50px;
+    font-family: "Roboto-Regular";
+    color: white;
+    font-size: 24px;
+    background-color: #DE0A3F;
+    border: none;
+    border-radius: 50px;
+    margin: 365px auto;
+}
