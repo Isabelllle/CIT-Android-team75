@@ -31,17 +31,9 @@ h1{
 
 /* Logo */
 #logo{
-    position:absolute;
-    width: 200px;
-    top: 5px;
-    left: 3px;
-}
-/* the original code
-.container #logo{
     display: block;
     width: 200px;
 }
-*/
 
 /* Log in Container */
 .container{
