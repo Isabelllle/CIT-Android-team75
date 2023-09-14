@@ -21,7 +21,7 @@ const createTables = async () => {
         await client.query(`
             CREATE TABLE IF NOT EXISTS questions (
                 id SERIAL PRIMARY KEY,
-                type ENUM('Story', 'Wellbeing', 'Employability', 'Volunteer confidence', 'Demographic Questions', 'Service') NOT NULL,
+                type VARCHAR(50) NOT NULL,
                 title VARCHAR(255) NOT NULL,
                 question TEXT NOT NULL,
                 rate_min INT,
