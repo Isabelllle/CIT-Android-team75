@@ -96,9 +96,9 @@
         android:text="@string/first_half_name"
         android:textColor="@color/red_1"
         android:textSize="48sp"
+        app:layout_constraintRight_toRightOf="@id/left_box"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintRight_toRightOf="@id/left_box"
-        tools:layout_editor_absoluteX="24dp" />
+        tools:layout_constraintRight_toRightOf="@id/left_box" />
 
     <TextView
         android:id="@+id/second_half_text"
