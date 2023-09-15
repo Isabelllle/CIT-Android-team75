@@ -1,38 +1,42 @@
 [
     {
-        "merged": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-mergeDebugResources-43:\\layout\\fragment_gallery.xml",
-        "source": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-main-46:\\layout\\fragment_gallery.xml"
-    },
-    {
-        "merged": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-mergeDebugResources-43:\\layout\\fragment_home.xml",
-        "source": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-main-46:\\layout\\fragment_home.xml"
-    },
-    {
-        "merged": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-mergeDebugResources-43:\\layout\\nav_header_main.xml",
-        "source": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-main-46:\\layout\\nav_header_main.xml"
+        "merged": "com.example.weconnectapp-mergeDebugResources-43:/layout/background.xml",
+        "source": "com.example.weconnectapp-main-46:/layout/background.xml"
     },
     {
         "merged": "com.example.weconnectapp-mergeDebugResources-43:/layout/main_page.xml",
         "source": "com.example.weconnectapp-main-46:/layout/main_page.xml"
     },
     {
-        "merged": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-mergeDebugResources-43:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-main-46:\\layout\\activity_main.xml"
+        "merged": "com.example.weconnectapp-mergeDebugResources-43:/layout/volunteer_home_page.xml",
+        "source": "com.example.weconnectapp-main-46:/layout/volunteer_home_page.xml"
     },
     {
-        "merged": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-mergeDebugResources-43:\\layout\\app_bar_main.xml",
-        "source": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-main-46:\\layout\\app_bar_main.xml"
+        "merged": "com.example.weconnectapp-mergeDebugResources-43:/layout/fragment_gallery.xml",
+        "source": "com.example.weconnectapp-main-46:/layout/fragment_gallery.xml"
     },
     {
-        "merged": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-mergeDebugResources-43:\\layout\\fragment_slideshow.xml",
-        "source": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-main-46:\\layout\\fragment_slideshow.xml"
+        "merged": "com.example.weconnectapp-mergeDebugResources-43:/layout/nav_header_main.xml",
+        "source": "com.example.weconnectapp-main-46:/layout/nav_header_main.xml"
     },
     {
-        "merged": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-mergeDebugResources-43:\\layout\\main_page.xml",
-        "source": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-main-46:\\layout\\main_page.xml"
+        "merged": "com.example.weconnectapp-mergeDebugResources-43:/layout/content_main.xml",
+        "source": "com.example.weconnectapp-main-46:/layout/content_main.xml"
     },
     {
-        "merged": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-mergeDebugResources-43:\\layout\\content_main.xml",
-        "source": "C:\\Users\\wjq20\\.gradle\\daemon\\8.3\\com.example.weconnectapp-main-46:\\layout\\content_main.xml"
+        "merged": "com.example.weconnectapp-mergeDebugResources-43:/layout/fragment_slideshow.xml",
+        "source": "com.example.weconnectapp-main-46:/layout/fragment_slideshow.xml"
+    },
+    {
+        "merged": "com.example.weconnectapp-mergeDebugResources-43:/layout/app_bar_main.xml",
+        "source": "com.example.weconnectapp-main-46:/layout/app_bar_main.xml"
+    },
+    {
+        "merged": "com.example.weconnectapp-mergeDebugResources-43:/layout/activity_main.xml",
+        "source": "com.example.weconnectapp-main-46:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.weconnectapp-mergeDebugResources-43:/layout/fragment_home.xml",
+        "source": "com.example.weconnectapp-main-46:/layout/fragment_home.xml"
     }
 ]

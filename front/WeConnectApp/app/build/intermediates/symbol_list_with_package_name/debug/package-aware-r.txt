@@ -2995,6 +2995,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
+drawable log_in_background
 drawable logo
 drawable m3_appbar_background
 drawable m3_avd_hide_password
@@ -3176,6 +3177,7 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id button4
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -3301,6 +3303,7 @@ id ignoreRequest
 id image
 id imageView
 id immediateStop
+id include
 id included
 id indeterminate
 id info
@@ -3548,6 +3551,7 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
+id textView2
 id text_gallery
 id text_home
 id text_input_end_icon
@@ -3717,6 +3721,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
 layout app_bar_main
+layout background
 layout content_main
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -3800,6 +3805,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+layout volunteer_home_page
 menu activity_main_drawer
 menu main
 mipmap ic_launcher
@@ -3984,6 +3990,7 @@ string second_half_name
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string status_bar_notification_info_overflow
+string take_survey_button
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

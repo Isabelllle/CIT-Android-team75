@@ -1,4 +1,4 @@
-#Fri Sep 15 01:26:02 AEST 2023
+#Fri Sep 15 20:20:10 AEST 2023
 base.0=C\:\\Users\\wjq20\\it_project\\CIT-Android-team75\\front\\WeConnectApp\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\wjq20\\it_project\\CIT-Android-team75\\front\\WeConnectApp\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\wjq20\\it_project\\CIT-Android-team75\\front\\WeConnectApp\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex

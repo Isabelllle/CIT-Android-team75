@@ -34,7 +34,7 @@
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <string name="action_settings">Settings</string>
-    <string name="app_name">WeConnect App</string>
+    <string name="app_name">WeConnect</string>
     <string name="first_half_name">WeCo</string>
     <string name="logo">WeConnect Logo</string>
     <string name="main_admin_button">Enter Admin Page</string>
@@ -50,17 +50,18 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="second_half_name">nnect</string>
-    <style name="Theme.WeConnectApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <string name="take_survey_button">Take the survey</string>
+    <style name="Theme.WeConnectApp" parent="Theme.MaterialComponents.DayNight.Bridge">
         
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimary">@color/red_1</item>
+        <item name="colorPrimaryVariant">@color/red_1</item>
         <item name="colorOnPrimary">@color/white</item>
         
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/purple_200</item>
         
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/pink_2</item>
         
     </style>
     <style name="Theme.WeConnectApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
