@@ -10,7 +10,7 @@ const { client, createTables } = require('./db');
 const { questionRouter, adminRouter } = require('./routes');
 
 app.use(express.json());
-app.use('/question', questionRouter);
+app.use('/questions', questionRouter);
 app.use('/admin', adminRouter);
 
 // connect to PostgreSQL database

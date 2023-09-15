@@ -8,10 +8,11 @@ const router = express.Router();
 
 // load other routing files
 const questionsRouter = require('./questions');
-const adminRouter = require('./adm');
+const adminRouter = require('./admin');
 
 // use other routers
 router.use('/questions', questionsRouter);
+router.use('/admin', adminRouter);
 
 module.exports = {
     questionsRouter,
