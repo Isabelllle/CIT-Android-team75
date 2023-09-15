@@ -7,11 +7,13 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const { client, createTables } = require('./db'); 
-const { questionRouter, adminRouter } = require('./routes');
+const { questionsRouter, adminRouter } = require('./routes');
 
 app.use(express.json());
-app.use('/questions', questionRouter);
+app.use('/questions', questionsRouter);
 app.use('/admin', adminRouter);
+app.use(express.static('Admin Website/Public'));
+
 
 // connect to PostgreSQL database
 client.connect(async err => {
