@@ -7,12 +7,18 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const { client, createTables } = require('./db'); 
-const { questionsRouter, adminRouter } = require('./routes');
+const { questionsRouter, } = require('./routes');
+
+const loginRouter = require('./routes/login');
+const signinRouter = require('./routes/signin');
+const path = require('path');
 
 app.use(express.json());
 app.use('/questions', questionsRouter);
-app.use('/admin', adminRouter);
-app.use(express.static('Admin Website/Public'));
+
+app.use(express.static(path.join(__dirname, '../front/Admin Website/Public')));
+app.use('/login',loginRouter);
+app.use('/signin',signinRouter);
 
 
 // connect to PostgreSQL database

@@ -10,7 +10,7 @@ const { client } = require('../db');
 const loginAdmin = (req, res) => {  
     const {username, password} = req.body;
 
-    client.query('SELECT * FROM admin WHERE username = $1 AND password = $2', [username, password], (error, results) => {
+    client.query('SELECT * FROM login WHERE username = $1 AND password = $2', [username, password], (error, results) => {
         if (error) {
             throw error;
         }
@@ -25,9 +25,9 @@ const loginAdmin = (req, res) => {
 
 //deal with sign up requirements
 const signupAdmin = (req, res) => {
-    const { firstName, lastName, email, question } = req.body;
+    const { firstName, lastName, email, group } = req.body;
 
-    client.query('INSERT INTO admin (first_name, last_name, email, group) VALUES ($1, $2, $3, $4)', [firstName, lastName, email, group], (error, results) => {
+    client.query('INSERT INTO admin_signup (first_name, last_name, email, group_name) VALUES ($1, $2, $3, $4)', [firstName, lastName, email, group], (error, results) => {
     if (error) {
         throw error;
     }
