@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WeConnect App</string>
+    <string name="app_name">WeConnect</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -21,5 +21,8 @@
     <string name="main_volunteer_text">Volunteer</string>
     <string name="first_half_name">WeCo</string>
     <string name="second_half_name">nnect</string>
+
+    <!--  Volunteer Home Page  -->
+    <string name="take_survey_button">Take the survey</string>
 
 </resources>
