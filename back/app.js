@@ -23,6 +23,9 @@ app.use('/emailverify', emailVerifyRouter);
 app.use('/newpassword', passwordRouter);
 app.use('/signupinstruction', signInstructRouter);
 
+app.get('/react', (req, res) => {
+    res.sendFile(path.join(__dirname, '../front/Admin Website/Public/index.html'));
+});
 
 // connect to PostgreSQL database
 client.connect(async err => {
