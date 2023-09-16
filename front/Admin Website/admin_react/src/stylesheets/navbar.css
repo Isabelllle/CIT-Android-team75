@@ -1,7 +1,13 @@
+/* Import font */
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../Assets/Roboto/Roboto-Bold.ttf');
+}
+
 /* CSS file for the navigation bar */
 .navbar {
     height: 100%;
-    width: 100px;
+    width: 120px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -9,4 +15,45 @@
     background-color: #FBFBFD;
     overflow-x: hidden;
     padding-top: 20px;
+}
+
+/* Set text */
+h1 {
+    font-family: "Roboto-Bold";
+    font-size: 14px;
+    text-align: center;
+    width: 80px;
+}
+
+/* Remove the underline and dots for all Links */
+.no-underline {
+    text-decoration: none;
+}
+
+.navbar li {
+    list-style-type: none;
+    margin-bottom: 30px;
+}
+
+/* Text for selected page */
+.selectedText {
+    color: #DE0A3F;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Text for unselected page */
+.unselectedText {
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Icon */
+.icon {
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
