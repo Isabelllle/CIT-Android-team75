@@ -15,6 +15,9 @@ const path = require('path');
 app.use(express.json());
 app.use('/questions', questionsRouter);
 
+app.use('/react', express.static(path.join(__dirname, './build')));
+app.use(express.static(path.join(__dirname, './build')));
+
 app.use(express.static(path.join(__dirname, '../../front/Admin Website/Public')));
 app.use('/',loginRouter);
 app.use('/login',loginRouter);
@@ -23,7 +26,6 @@ app.use('/enteremail', enterEmailRouter);
 app.use('/emailverify', emailVerifyRouter);
 app.use('/newpassword', passwordRouter);
 app.use('/signupinstruction', signInstructRouter);
-
 
 // connect to PostgreSQL database
 client.connect(async err => {
