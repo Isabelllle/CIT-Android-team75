@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 // Import css file
-import '../stylesheets/navbar.css'
+import styles from '../stylesheets/navbar.module.css'
 
 // Import assets
 import { ReactComponent as DashboardIcon } from '../Assets/Icon/icon_dashboard.svg';
@@ -22,46 +22,46 @@ const NavBar= () =>{
     return (
 
         // Create the list in navigation bar
-        <div className = "navbar">
+        <div className={styles.navbar}>
             <li>
-                <Link to="/dashboard" className="no-underline">
-                    <DashboardIcon className="icon" style={{ fill: location.pathname === '/dashboard' ? '#DE0A3F' : 'black' }} src={DashboardIcon} />
-                    <h1 className={location.pathname === '/dashboard' ? 'active selectedText' : 'unselectedText'}>Dashboard</h1>
+                <Link to="/dashboard" className={styles.no_underline}>
+                    <DashboardIcon className={styles.icon} style={{ fill: location.pathname === '/dashboard' ? '#DE0A3F' : 'black' }} src={DashboardIcon} />
+                    <h1 className={location.pathname === '/dashboard' ? styles.selectedText : styles.unselectedText}>Dashboard</h1>
                 </Link>
             </li>
 
             <li>
-                <Link to="/data_review" className="no-underline">
-                    <DataReviewIcon className="icon" style={{ fill: location.pathname === '/data_review' ? '#DE0A3F' : 'black' }} src={DataReviewIcon} />
-                    <h1 className={location.pathname === '/data_review' ? 'active selectedText' : 'unselectedText'}>Data Review</h1>
+                <Link to="/data_review" className={styles.no_underline}>
+                    <DataReviewIcon className={styles.icon} style={{ fill: location.pathname === '/data_review' ? '#DE0A3F' : 'black' }} src={DataReviewIcon} />
+                    <h1 className={location.pathname === '/data_review' ?  styles.selectedText : styles.unselectedText}>Data Review</h1>
                 </Link>
             </li>
 
             <li>
-                <Link to="/reminder_list" className="no-underline">
-                    <ReminderListIcon className="icon" style={{ fill: location.pathname === '/reminder_list' ? '#DE0A3F' : 'black',  stroke: location.pathname === '/reminder_list' ? '#DE0A3F' : 'black'  } } src={ReminderListIcon} />
-                    <h1 className={location.pathname === '/reminder_list' ? 'active selectedText' : 'unselectedText'}>Reminder List</h1>
+                <Link to="/reminder_list" className={styles.no_underline}>
+                    <ReminderListIcon className={styles.icon} style={{ fill: location.pathname === '/reminder_list' ? '#DE0A3F' : 'black',  stroke: location.pathname === '/reminder_list' ? '#DE0A3F' : 'black'  } } src={ReminderListIcon} />
+                    <h1 className={location.pathname === '/reminder_list' ? styles.selectedText : styles.unselectedText}>Reminder List</h1>
                 </Link>
             </li>
 
             <li>
-                <Link to="/settings" className="no-underline">
-                    <SettingsIcon className="icon" style={{ fill: location.pathname === '/settings' ? '#DE0A3F' : 'black' } } src={SettingsIcon} />
-                    <h1 className={location.pathname === '/settings' ? 'active selectedText' : 'unselectedText'}>Settings</h1>
+                <Link to="/settings" className={styles.no_underline}>
+                    <SettingsIcon className={styles.icon} style={{ fill: location.pathname === '/settings' ? '#DE0A3F' : 'black' } } src={SettingsIcon} />
+                    <h1 className={location.pathname === '/settings' ?  styles.selectedText : styles.unselectedText}>Settings</h1>
                 </Link>
             </li>
 
             <li>
-                <Link to="/admin_management" className="no-underline">
-                    <AdminManageIcon className="icon" style={{ fill: location.pathname === '/admin_management' ? '#DE0A3F' : 'black' } } src={AdminManageIcon} />
-                    <h1 className={location.pathname === '/admin_management' ? 'active selectedText' : 'unselectedText'}>Admin Management</h1>
+                <Link to="/admin_management" className={styles.no_underline}>
+                    <AdminManageIcon className={styles.icon} style={{ fill: location.pathname === '/admin_management' ? '#DE0A3F' : 'black' } } src={AdminManageIcon} />
+                    <h1 className={location.pathname === '/admin_management' ? styles.selectedText : styles.unselectedText}>Admin Management</h1>
                 </Link>
             </li>
 
             <li>
-                <Link to="/survey_management" className="no-underline">
-                    <SurveyManageIcon className="icon" style={{ fill: location.pathname === '/survey_management' ? '#DE0A3F' : 'black' } } src={SurveyManageIcon} />
-                    <h1 className={location.pathname === '/survey_management' ? 'active selectedText' : 'unselectedText'}>Survey Management</h1>
+                <Link to="/survey_management" className={styles.no_underline}>
+                    <SurveyManageIcon className={styles.icon} style={{ fill: location.pathname === '/survey_management' ? '#DE0A3F' : 'black' } } src={SurveyManageIcon} />
+                    <h1 className={location.pathname === '/survey_management' ? styles.selectedText : styles.unselectedText}>Survey Management</h1>
                 </Link>
             </li>
         </div>

@@ -13,7 +13,7 @@ import Settings from "./pages/settings";
 import AdminManagement from './pages/admin_management';
 import SurveyManagement from './pages/survey_management';
 
-import './stylesheets/react_page.css'
+import styles from './stylesheets/react_page.module.css'
 
 function App() {
 
