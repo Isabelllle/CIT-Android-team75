@@ -5,7 +5,7 @@ const adminController = require('../controllers/adminController');
 
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../front/Admin Website/Public/Views/log_in.html'));
+    res.sendFile(path.join(__dirname, '../../../front/Admin Website/Public/Views/log_in.html'));
 });
 
 // deal with admin login

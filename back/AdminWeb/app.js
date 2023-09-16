@@ -15,7 +15,8 @@ const path = require('path');
 app.use(express.json());
 app.use('/questions', questionsRouter);
 
-app.use(express.static(path.join(__dirname, '../front/Admin Website/Public')));
+app.use(express.static(path.join(__dirname, '../../front/Admin Website/Public')));
+app.use('/',loginRouter);
 app.use('/login',loginRouter);
 app.use('/signin',signinRouter);
 app.use('/enteremail', enterEmailRouter);
@@ -23,9 +24,6 @@ app.use('/emailverify', emailVerifyRouter);
 app.use('/newpassword', passwordRouter);
 app.use('/signupinstruction', signInstructRouter);
 
-app.get('/react', (req, res) => {
-    res.sendFile(path.join(__dirname, '../front/Admin Website/Public/index.html'));
-});
 
 // connect to PostgreSQL database
 client.connect(async err => {
@@ -41,4 +39,3 @@ client.connect(async err => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-
