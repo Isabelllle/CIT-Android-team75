@@ -1,0 +1,12 @@
+/* CSS file for the navigation bar */
+.navbar {
+    height: 100%;
+    width: 100px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #FBFBFD;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
