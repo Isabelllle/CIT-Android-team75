@@ -1,32 +1,68 @@
+// The navigation bar in admin website page
+
+// Import library
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../stylesheets/navbar.css'
+import { useLocation } from 'react-router-dom';
+
+// Import css file
+import styles from '../stylesheets/navbar.module.css'
+
+// Import assets
+import { ReactComponent as DashboardIcon } from '../Assets/Icon/icon_dashboard.svg';
+import { ReactComponent as DataReviewIcon } from '../Assets/Icon/icon_data_review.svg';
+import { ReactComponent as ReminderListIcon } from '../Assets/Icon/icon_reminder_list.svg';
+import { ReactComponent as SettingsIcon } from '../Assets/Icon/icon_settings.svg';
+import { ReactComponent as AdminManageIcon } from '../Assets/Icon/icon_admin_management.svg';
+import { ReactComponent as SurveyManageIcon } from '../Assets/Icon/icon_survey_management.svg';
 
 const NavBar= () =>{
+    const location = useLocation();
+
     return (
-        <div class = "navbar">
+
+        // Create the list in navigation bar
+        <div className={styles.navbar}>
             <li>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/" className={styles.no_underline}>
+                    <DashboardIcon className={styles.icon} style={{ fill: location.pathname === '/dashboard' ? '#DE0A3F' : 'black' }} src={DashboardIcon} />
+                    <h1 className={location.pathname === '/dashboard' ? styles.selectedText : styles.unselectedText}>Dashboard</h1>
+                </Link>
             </li>
 
             <li>
-                <Link to="/data_review">Data Review</Link>
+                <Link to="/data_review" className={styles.no_underline}>
+                    <DataReviewIcon className={styles.icon} style={{ fill: location.pathname === '/data_review' ? '#DE0A3F' : 'black' }} src={DataReviewIcon} />
+                    <h1 className={location.pathname === '/data_review' ?  styles.selectedText : styles.unselectedText}>Data Review</h1>
+                </Link>
             </li>
 
             <li>
-                <Link to="/reminder_list">Reminder List</Link>
+                <Link to="/reminder_list" className={styles.no_underline}>
+                    <ReminderListIcon className={styles.icon} style={{ fill: location.pathname === '/reminder_list' ? '#DE0A3F' : 'black',  stroke: location.pathname === '/reminder_list' ? '#DE0A3F' : 'black'  } } src={ReminderListIcon} />
+                    <h1 className={location.pathname === '/reminder_list' ? styles.selectedText : styles.unselectedText}>Reminder List</h1>
+                </Link>
             </li>
 
             <li>
-                <Link to="/settings">Settings</Link>
+                <Link to="/settings" className={styles.no_underline}>
+                    <SettingsIcon className={styles.icon} style={{ fill: location.pathname === '/settings' ? '#DE0A3F' : 'black' } } src={SettingsIcon} />
+                    <h1 className={location.pathname === '/settings' ?  styles.selectedText : styles.unselectedText}>Settings</h1>
+                </Link>
             </li>
 
             <li>
-                <Link to="/admin_management">Admin Management</Link>
+                <Link to="/admin_management" className={styles.no_underline}>
+                    <AdminManageIcon className={styles.icon} style={{ fill: location.pathname === '/admin_management' ? '#DE0A3F' : 'black' } } src={AdminManageIcon} />
+                    <h1 className={location.pathname === '/admin_management' ? styles.selectedText : styles.unselectedText}>Admin Management</h1>
+                </Link>
             </li>
 
             <li>
-                <Link to="/survey_management">Survey Management</Link>
+                <Link to="/survey_management" className={styles.no_underline}>
+                    <SurveyManageIcon className={styles.icon} style={{ fill: location.pathname === '/survey_management' ? '#DE0A3F' : 'black' } } src={SurveyManageIcon} />
+                    <h1 className={location.pathname === '/survey_management' ? styles.selectedText : styles.unselectedText}>Survey Management</h1>
+                </Link>
             </li>
         </div>
     );

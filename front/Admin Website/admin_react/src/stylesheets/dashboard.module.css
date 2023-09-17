@@ -1,0 +1,84 @@
+/* CSS file for dashboard page */
+
+/* Import font */
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../Assets/Roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url('../Assets/Roboto/Roboto-Regular.ttf');
+}
+
+/* Background */
+.dashboard {
+    background-image: url('../Assets/Image/dashboard_background.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    height: 95vh;
+    width: 100%;
+}
+
+/* Page Heading */
+.dashboard .page_heading {
+    margin: 0px;
+}
+
+/* Container */
+.dashboard .container {
+    margin-top: 60px;
+    padding-right: 300px;
+}
+
+/* Name Box */
+.dashboard .container .name_box {
+    height: 120px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 1px 3px 3px gray, -1px 3px 3px gray;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+}
+
+.dashboard .container .name_box #plant_one {
+    padding-left: 30px;
+    width: 40px;
+}
+
+.dashboard .container .name_box #hello_info {
+    font-family: "Roboto-Regular";
+    font-size: 24px;
+    margin: auto;
+    padding-right: 30px;
+}
+
+/* Middle Container */
+.dashboard .container #middle_container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard .container #middle_container .middle_box {
+    height: 220px;
+    width: 450px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 1px 3px 3px gray, -1px 3px 3px gray;
+}
+
+/* Bottom Container */
+.dashboard .container #bottom_container {
+    margin-top: 50px;
+}
+
+.dashboard .container #bottom_container #admin_manage_box {
+    height: 150px;
+    width: 450px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 1px 3px 3px gray, -1px 3px 3px gray;
+}
