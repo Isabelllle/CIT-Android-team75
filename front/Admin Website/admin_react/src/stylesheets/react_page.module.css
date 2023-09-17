@@ -16,6 +16,12 @@
     src: url('../Assets/Roboto/Roboto-Medium.ttf');
 }
 
+.app {
+    background-color: #F8F8F8;
+    padding: 0px;
+    margin: 0px;
+}
+
 /* Texts */
 h1 {
     font-family: "Roboto-Bold";
@@ -29,8 +35,16 @@ h2 {
     color: black;
 }
 
+h3 {
+    font-family: "Roboto-Regular";
+    font-size: 16px;
+    color: #9F9D9D;
+}
+
 main{
     margin-left: 120px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     padding: 10px 20px;
     height: 100%;
 }

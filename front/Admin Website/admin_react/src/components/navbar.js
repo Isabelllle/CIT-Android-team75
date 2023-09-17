@@ -24,7 +24,7 @@ const NavBar= () =>{
         // Create the list in navigation bar
         <div className={styles.navbar}>
             <li>
-                <Link to="/dashboard" className={styles.no_underline}>
+                <Link to="/" className={styles.no_underline}>
                     <DashboardIcon className={styles.icon} style={{ fill: location.pathname === '/dashboard' ? '#DE0A3F' : 'black' }} src={DashboardIcon} />
                     <h1 className={location.pathname === '/dashboard' ? styles.selectedText : styles.unselectedText}>Dashboard</h1>
                 </Link>
