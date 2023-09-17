@@ -9,6 +9,9 @@ const port = 3000;
 const { client, createTables } = require('./db'); 
 const { questionsRouter, loginRouter, signinRouter, enterEmailRouter, 
     emailVerifyRouter, passwordRouter, signInstructRouter, } = require('./routes/1ndex');
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+    
 
 const path = require('path');
 

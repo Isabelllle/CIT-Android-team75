@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
 });
 
 // deal with admin login
-router.post('/', adminController.loginAdmin);
+router.post('/submit', adminController.loginAdmin);
+
 
 module.exports = router;

@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../../front/Admin Website/Public/Views/sign_in.html'));
 });
 
-router.post('/', adminController.signupAdmin);
+router.post('/submit', adminController.signupAdmin);
+router.get('/getGroups', adminController.getGroups);
 
 
 module.exports = router;

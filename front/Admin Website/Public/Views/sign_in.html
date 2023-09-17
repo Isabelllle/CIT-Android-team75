@@ -22,7 +22,7 @@
             <div class="col_mid_6_right_side">
                 <h1>Admin Sign Up</h1>
 
-                <form method="post">
+                <form method="post" action = "/signin/submit">
                     <div class="input_item">
                         <!-- input first name -->
                         <input class="input_underline" type="text" name="first_name" placeholder="First Name"/>
@@ -35,27 +35,55 @@
                         <!-- input email address -->
                         <input class="input_underline" id="email" type="email" name="email" placeholder="Email"/>
 
+                        <input class="input_underline" type="password" name="password" placeholder="Password"/>
+
+                        <input class="input_underline" type="password" name="confirm_password" placeholder="Password"/>
 
 
                         <!-- select group -->
                         <br>
                         <div class="input_item" id="group_options">
                             <label for="group">Find your group:</label>
-                            <select id="select_group">
-                                <option>Victoria Volunteer</option>
-                                <option>group2</option>
-                                <option>group3</option>
-                            </select>
+                            <select id="select_group" onchange="updateSelectedGroup()"></select>
                         </div>
-                    </div>
+                        
+                        <!-- A hidden form field that stores the value of an option -->
+                        <input type="hidden" name="selected_group" id="selected_group" value="">
+                        
+                        <script>
+                            function updateSelectedGroup() {
+                                var selectedGroup = document.getElementById("select_group").value;
+                                document.getElementById("selected_group").value = selectedGroup;
+                            }
+                            
+                            document.addEventListener('DOMContentLoaded', function() {
+                                // get group data from back end
+                                fetch('/signin/getGroups') 
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        const selectGroup = document.getElementById('select_group');
+                        
+                                        // loop each data to add them in dropdown box
+                                        data.forEach(group => {
+                                            const option = document.createElement('option');
+                                            option.textContent = group;
+                                            selectGroup.appendChild(option);
+                                        });
+                                    })
+                                    .catch(error => console.error('Error fetching data:', error));
+                            });
+                        </script>
+
+
+                    <!-- sign up -->
+                    <a href="signupinstruction" target="_self">
+                        <button type="submit" class="btn_sign_up">
+                            Sign Up 
+                        </button>
+                    </a>
                 </form>
 
-                <!-- sign up -->
-                <a href="signupinstruction" target="_self">
-                    <button class="btn_sign_up">
-                        Sign Up 
-                    </button>
-                </a>
+                
                 
                 <!-- redirection to register page -->
                 <div class="register">
