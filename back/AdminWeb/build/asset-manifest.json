@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.d4988ffd.css",
-    "main.js": "/static/js/main.93b843b4.js",
+    "main.css": "/static/css/main.5a67b64d.css",
+    "main.js": "/static/js/main.090a6abc.js",
     "static/media/Roboto-Medium.ttf": "/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
     "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
     "static/media/Roboto-Bold.ttf": "/static/media/Roboto-Bold.f80816a5455d171f948d.ttf",
@@ -9,18 +9,18 @@
     "static/media/edit_exist_survey.png": "/static/media/edit_exist_survey.60f8f34500cf714e9257.png",
     "static/media/dashboard_background.png": "/static/media/dashboard_background.97f6a5ab33aee0f65706.png",
     "static/media/survey_management_background.png": "/static/media/survey_management_background.bc8efe7acbde7d4767ea.png",
-    "static/media/icon_reminder_list.svg": "/static/media/icon_reminder_list.5693d25433f1d4d2efc483ce4dd9accc.svg",
-    "static/media/icon_settings.svg": "/static/media/icon_settings.f0e26585a87740429a253682c3c3cfd4.svg",
-    "static/media/icon_data_review.svg": "/static/media/icon_data_review.60bd1d832568404b6b32b6935d5b2185.svg",
-    "static/media/icon_admin_management.svg": "/static/media/icon_admin_management.7f8a7472a156d039008a987238317d56.svg",
-    "static/media/icon_dashboard.svg": "/static/media/icon_dashboard.a44defbbd2571a538628eecfa0359b42.svg",
-    "static/media/icon_survey_management.svg": "/static/media/icon_survey_management.68d58da3f958506ac1cf01c70b0234c4.svg",
+    "static/media/icon_reminder_list.svg": "/static/media/icon_reminder_list.0e3ea9ac31fd366d0d7de0c61859cbba.svg",
+    "static/media/icon_settings.svg": "/static/media/icon_settings.548ab29491212139ba1a1e616bb0b0ac.svg",
+    "static/media/icon_data_review.svg": "/static/media/icon_data_review.b1bde15e8e2cbd94e87d3e44babb69da.svg",
+    "static/media/icon_admin_management.svg": "/static/media/icon_admin_management.e5474b5fe9e82dd8267597fdcdb2cb92.svg",
+    "static/media/icon_dashboard.svg": "/static/media/icon_dashboard.d3968d68497e258eb1c496ecc62d0252.svg",
+    "static/media/icon_survey_management.svg": "/static/media/icon_survey_management.6ad87116832aa333a383cf055059ad32.svg",
     "index.html": "/index.html",
-    "main.d4988ffd.css.map": "/static/css/main.d4988ffd.css.map",
-    "main.93b843b4.js.map": "/static/js/main.93b843b4.js.map"
+    "main.5a67b64d.css.map": "/static/css/main.5a67b64d.css.map",
+    "main.090a6abc.js.map": "/static/js/main.090a6abc.js.map"
   },
   "entrypoints": [
-    "static/css/main.d4988ffd.css",
-    "static/js/main.93b843b4.js"
+    "static/css/main.5a67b64d.css",
+    "static/js/main.090a6abc.js"
   ]
 }

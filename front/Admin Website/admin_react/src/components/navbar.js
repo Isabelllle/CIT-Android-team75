@@ -25,8 +25,8 @@ const NavBar= () =>{
         <div className={styles.navbar}>
             <li>
                 <Link to="/" className={styles.no_underline}>
-                    <DashboardIcon className={styles.icon} style={{ fill: location.pathname === '/dashboard' ? '#DE0A3F' : 'black' }} src={DashboardIcon} />
-                    <h1 className={location.pathname === '/dashboard' ? styles.selectedText : styles.unselectedText}>Dashboard</h1>
+                    <DashboardIcon className={styles.icon} style={{ fill: location.pathname === '/' ? '#DE0A3F' : 'black' }} src={DashboardIcon} />
+                    <h1 className={location.pathname === '/' ? styles.selectedText : styles.unselectedText}>Dashboard</h1>
                 </Link>
             </li>
 

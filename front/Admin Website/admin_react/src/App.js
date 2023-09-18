@@ -15,6 +15,7 @@ import SurveyManagement from './pages/survey_management';
 import SurveyMain from './pages/survey_management_main';
 import SurveyTitle from './pages/survey_manangement_title';
 import SurveyList from './pages/survey_management_list';
+import SurveyType from './pages/survey_management_type';
 
 import styles from './stylesheets/react_page.module.css'
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="" element={<SurveyMain />} />
           <Route path="title" element={<SurveyTitle />} />
           <Route path="list" element={<SurveyList />} />
+          <Route path="type" element={<SurveyType />} />
         </Route>
 
       </Routes>

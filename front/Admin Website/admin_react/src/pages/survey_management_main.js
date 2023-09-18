@@ -14,8 +14,9 @@ import EditImg from '../Assets/Image/edit_exist_survey.png'
 
 const survey_main = () =>{
     return (
-
         <div>
+
+            {/* Add empty space for the sub heading in main page */}
             <div class={styles.space}></div>
 
             {/* {Line} */}

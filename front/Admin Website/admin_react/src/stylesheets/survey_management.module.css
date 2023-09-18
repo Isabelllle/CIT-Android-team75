@@ -7,6 +7,11 @@
 }
 
 @font-face {
+    font-family: "Roboto-Medium";
+    src: url('../Assets/Roboto/Roboto-Medium.ttf');
+}
+
+@font-face {
     font-family: "Roboto-Regular";
     src: url('../Assets/Roboto/Roboto-Regular.ttf');
 }
@@ -29,7 +34,7 @@
 }
 
 /* Sub Heading */
-.survey_management .sub_heading {
+.sub_heading {
     margin: 10px 30px;
     height: 20px;
 }
@@ -39,7 +44,7 @@
     margin: 30px 30px 0px 30px;
     width: 90%; 
     height: 1px; 
-    background-color: #9F9D9D; 
+    background-color: #CCCCCC; 
 }
 
 /* Remove the underline */
@@ -48,7 +53,7 @@
 }
 
 /* Survey Main Page */
-/* body */
+/* Body */
 #survey_main {
     height:100vh;
     width: 90%;
@@ -93,4 +98,77 @@
 
 #survey_main .innerbox h2 {
     margin-top: 80px;
+}
+
+/* Survey Title Page */
+/* Body */
+#survey_title {
+    height:100vh;
+    width: 90%;
+    margin: 30px 30px 0px 30px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    padding: 0px;
+}
+
+#survey_title h2 {
+    margin-top: 30px;
+}
+
+/* Container */
+#survey_title .container {
+    margin-top: 50px;
+    width: 70%;
+    height: 50vh;
+}
+
+#survey_title .container .row_box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+#survey_title .container .row_box .button_box {
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    border-radius: 20px;
+    border-width: 0px;
+    box-shadow: 1px 3px 3px gray, -1px 3px 3px gray;
+}
+
+#survey_title .container .row_box .selectedButton {
+    width: 150px;
+    height: 150px;
+    background-color: #FFE1E1;
+    border-radius: 20px;
+    border-width: 0px;
+    box-shadow: 1px 3px 3px gray, -1px 3px 3px gray;
+}
+
+#survey_title .container .row_box img {
+    width: 40%;
+    margin-top: 20px;
+}
+
+/* Button down the bottom */
+#survey_title .button_container {
+    width: 70%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#survey_title .button_container .button{
+    width: 150px;
+    height: 40px;
+    background-color: #DE0A3F;
+    border-radius: 20px;
+    border-width: 0px;
+    color: white;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+    text-align: center;
 }
