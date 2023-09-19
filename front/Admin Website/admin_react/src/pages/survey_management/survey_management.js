@@ -6,7 +6,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 
 // Import CSS
-import styles from '../stylesheets/survey_management.module.css'
+import styles from '../../stylesheets/survey_management.module.css'
 
 const survey_management = () =>{
     return (

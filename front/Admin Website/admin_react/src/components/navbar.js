@@ -39,29 +39,29 @@ const NavBar= () =>{
 
             <li>
                 <Link to="/reminder_list" className={styles.no_underline}>
-                    <ReminderListIcon className={styles.icon} style={{ fill: location.pathname === '/reminder_list' ? '#DE0A3F' : 'black',  stroke: location.pathname === '/reminder_list' ? '#DE0A3F' : 'black'  } } src={ReminderListIcon} />
-                    <h1 className={location.pathname === '/reminder_list' ? styles.selectedText : styles.unselectedText}>Reminder List</h1>
+                    <ReminderListIcon className={styles.icon} style={{ fill: location.pathname.startsWith('/reminder_list') ? '#DE0A3F' : 'black',  stroke: location.pathname.startsWith('/reminder_list') ? '#DE0A3F' : 'black'  } } src={ReminderListIcon} />
+                    <h1 className={location.pathname.startsWith('/reminder_list') ? styles.selectedText : styles.unselectedText}>Reminder List</h1>
                 </Link>
             </li>
 
             <li>
                 <Link to="/settings" className={styles.no_underline}>
-                    <SettingsIcon className={styles.icon} style={{ fill: location.pathname === '/settings' ? '#DE0A3F' : 'black' } } src={SettingsIcon} />
-                    <h1 className={location.pathname === '/settings' ?  styles.selectedText : styles.unselectedText}>Settings</h1>
+                    <SettingsIcon className={styles.icon} style={{ fill: location.pathname.startsWith('/settings') ? '#DE0A3F' : 'black' } } src={SettingsIcon} />
+                    <h1 className={location.pathname.startsWith('/settings') ?  styles.selectedText : styles.unselectedText}>Settings</h1>
                 </Link>
             </li>
 
             <li>
                 <Link to="/admin_management" className={styles.no_underline}>
-                    <AdminManageIcon className={styles.icon} style={{ fill: location.pathname === '/admin_management' ? '#DE0A3F' : 'black' } } src={AdminManageIcon} />
-                    <h1 className={location.pathname === '/admin_management' ? styles.selectedText : styles.unselectedText}>Admin Management</h1>
+                    <AdminManageIcon className={styles.icon} style={{ fill: location.pathname.startsWith('/admin_management') ? '#DE0A3F' : 'black',  stroke: location.pathname.startsWith('/admin_management') ? '#DE0A3F' : 'black'  } } src={AdminManageIcon} />
+                    <h1 className={location.pathname.startsWith('/admin_management') ? styles.selectedText : styles.unselectedText}>Admin Management</h1>
                 </Link>
             </li>
 
             <li>
                 <Link to="/survey_management" className={styles.no_underline}>
-                    <SurveyManageIcon className={styles.icon} style={{ fill: location.pathname === '/survey_management' ? '#DE0A3F' : 'black' } } src={SurveyManageIcon} />
-                    <h1 className={location.pathname === '/survey_management' ? styles.selectedText : styles.unselectedText}>Survey Management</h1>
+                    <SurveyManageIcon className={styles.icon} style={{ fill: location.pathname.startsWith('/survey_management') ? '#DE0A3F' : 'black' } } src={SurveyManageIcon} />
+                    <h1 className={location.pathname.startsWith('/survey_management') ? styles.selectedText : styles.unselectedText}>Survey Management</h1>
                 </Link>
             </li>
         </div>

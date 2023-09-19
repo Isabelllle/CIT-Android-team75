@@ -6,13 +6,13 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 // Import CSS
-import styles from '../stylesheets/survey_management.module.css'
+import styles from '../../stylesheets/survey_management.module.css'
 
 // Import Assets
-import AddImg from '../Assets/Image/add_new_survey.png'
-import EditImg from '../Assets/Image/edit_exist_survey.png'
+import AddImg from '../../Assets/Image/add_new_survey.png'
+import EditImg from '../../Assets/Image/edit_exist_survey.png'
 
-const survey_main = () =>{
+const SurveyMain = () =>{
     return (
         <div>
 
@@ -46,4 +46,4 @@ const survey_main = () =>{
         
     );
 }
-export default survey_main;
+export default SurveyMain;

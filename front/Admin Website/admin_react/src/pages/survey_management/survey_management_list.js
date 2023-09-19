@@ -3,11 +3,11 @@
 
 import React from 'react'
 
-const survey_list = () =>{
+const SurveyList = () =>{
     return (
         <main>
             This is a survey_list page!
         </main>
     );
 }
-export default survey_list;
+export default SurveyList;

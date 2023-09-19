@@ -11,12 +11,20 @@ import DataReview from './pages/data_review';
 import ReminderList from './pages/reminder_list';
 import Settings from "./pages/settings";
 import AdminManagement from './pages/admin_management';
-import SurveyManagement from './pages/survey_management';
-import SurveyMain from './pages/survey_management_main';
-import SurveyTitle from './pages/survey_manangement_title';
-import SurveyList from './pages/survey_management_list';
-import SurveyType from './pages/survey_management_type';
+import SurveyManagement from './pages/survey_management/survey_management';
 
+// Import sub pages of SurveyManagement
+import SurveyMain from './pages/survey_management/survey_management_main';
+import SurveyTitle from './pages/survey_management/survey_manangement_title';
+import SurveyList from './pages/survey_management/survey_management_list';
+import SurveyType from './pages/survey_management/survey_management_type';
+import SurveyText from './pages/survey_management/survey_management_text';
+import SurveyNumber from './pages/survey_management/survey_management_number';
+import SurveyYesNo from './pages/survey_management/survey_management_yesno';
+import SurveyRating from './pages/survey_management/survey_management_rating';
+import SurveyDropDown from './pages/survey_management/survey_management_dropdown';
+
+// Import CSS
 import styles from './stylesheets/react_page.module.css'
 
 function App() {
@@ -39,6 +47,11 @@ function App() {
           <Route path="title" element={<SurveyTitle />} />
           <Route path="list" element={<SurveyList />} />
           <Route path="type" element={<SurveyType />} />
+          <Route path="text" element={<SurveyText />} />
+          <Route path="number" element={<SurveyNumber />} />
+          <Route path="yesno" element={<SurveyYesNo />} />
+          <Route path="rating" element={<SurveyRating />} />
+          <Route path="dropdown" element={<SurveyDropDown />} />
         </Route>
 
       </Routes>

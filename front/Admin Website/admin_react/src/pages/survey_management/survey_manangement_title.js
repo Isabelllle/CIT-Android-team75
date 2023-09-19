@@ -3,24 +3,36 @@
 
 // Import library
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Import CSS
-import styles from '../stylesheets/survey_management.module.css'
+import styles from '../../stylesheets/survey_management.module.css'
 
 // Import Assets
-import StoryIcon from '../Assets/Icon/story.png'
-import WellbeingIcon from '../Assets/Icon/wellbeing.png'
-import EmployabilityIcon from '../Assets/Icon/employability.png'
-import VolunteerConfidenceIcon from '../Assets/Icon/volunteer_confidence.png'
-import DemographicQuestionsIcon from '../Assets/Icon/demographic_questions.png'
-import ServiceIcon from '../Assets/Icon/service.png'
+import StoryIcon from '../../Assets/Icon/story.png'
+import WellbeingIcon from '../../Assets/Icon/wellbeing.png'
+import EmployabilityIcon from '../../Assets/Icon/employability.png'
+import VolunteerConfidenceIcon from '../../Assets/Icon/volunteer_confidence.png'
+import DemographicQuestionsIcon from '../../Assets/Icon/demographic_questions.png'
+import ServiceIcon from '../../Assets/Icon/service.png'
 
 const SurveyTitle = () =>{
+
+    // Selection functions
     const [selectedTitle, setSelectedTitle] = useState(null);
+    const [giveWarning, setWarning] = useState(false);
+    const navigate = useNavigate();
 
     const handleTitleSelect = (title) => {
         setSelectedTitle(title);
+    };
+
+    const handleNextClick = () => {
+        if (selectedTitle !== null) {
+            navigate('/survey_management/type'); 
+        } else {
+            setWarning(true);
+        }
     };
 
     return (
@@ -80,10 +92,11 @@ const SurveyTitle = () =>{
                         <button className={styles.button}>Back</button>
                     </Link>
 
-                    <Link to="/survey_management/type" className={styles.no_underline}>
-                        <button className={styles.button}>Next</button>
-                    </Link>
+                    <button onClick={handleNextClick} className={styles.button}>Next</button>
                 </div>
+
+                {/* Give user a reminder if none of the option is selected */}
+                {giveWarning && <div className={styles.warning}>Please select an option before proceeding.</div>}
             </div>
 
         </div>

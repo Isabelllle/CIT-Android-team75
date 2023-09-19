@@ -52,6 +52,21 @@
     text-decoration: none;
 }
 
+/* Body */
+#survey_title, #survey_type, #survey_text, #survey_number, #survey_yesno, #survey_rating, #survey_drop_down {
+    height:100vh;
+    width: 90%;
+    margin: 30px 30px 0px 30px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    padding: 0px;
+}
+
+.survey_manage_instruction {
+    margin-top: 30px;
+}
+
 /* Survey Main Page */
 /* Body */
 #survey_main {
@@ -100,37 +115,22 @@
     margin-top: 80px;
 }
 
-/* Survey Title Page */
-/* Body */
-#survey_title {
-    height:100vh;
-    width: 90%;
-    margin: 30px 30px 0px 30px;
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    padding: 0px;
-}
-
-#survey_title h2 {
-    margin-top: 30px;
-}
-
+/* Survey Title and Survey Type Page */
 /* Container */
-#survey_title .container {
+#survey_title .container, #survey_type .container {
     margin-top: 50px;
     width: 70%;
     height: 50vh;
 }
 
-#survey_title .container .row_box {
+#survey_title .container .row_box, #survey_type .container .row_box {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 50px;
 }
 
-#survey_title .container .row_box .button_box {
+#survey_title .container .row_box .button_box, #survey_type .container .row_box .button_box {
     width: 150px;
     height: 150px;
     background-color: white;
@@ -139,7 +139,7 @@
     box-shadow: 1px 3px 3px gray, -1px 3px 3px gray;
 }
 
-#survey_title .container .row_box .selectedButton {
+#survey_title .container .row_box .selectedButton, #survey_type .container .row_box .selectedButton {
     width: 150px;
     height: 150px;
     background-color: #FFE1E1;
@@ -148,20 +148,20 @@
     box-shadow: 1px 3px 3px gray, -1px 3px 3px gray;
 }
 
-#survey_title .container .row_box img {
+#survey_title .container .row_box img, #survey_type .container .row_box img {
     width: 40%;
     margin-top: 20px;
 }
 
 /* Button down the bottom */
-#survey_title .button_container {
+#survey_title .button_container, #survey_type .button_container {
     width: 70%;
     height: 50px;
     display: flex;
     justify-content: space-between;
 }
 
-#survey_title .button_container .button{
+#survey_title .button_container .button, #survey_type .button_container .button {
     width: 150px;
     height: 40px;
     background-color: #DE0A3F;
@@ -171,4 +171,187 @@
     font-family: "Roboto-Medium";
     font-size: 16px;
     text-align: center;
+}
+
+#survey_title .warning, #survey_type .warning {
+    color: red;
+}
+
+/* Survey Question Pages */
+/* Container */
+.question_container {
+    margin-top: 15px;
+    width: 70%;
+    height: 65%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 1px 2px 2px lightgray, -1px 2px 2px lightgray;
+    padding: 50px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.question_container .survey_manage_question_instruction {
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+    color: #52575C;
+}
+
+.question_container .input_question_text {
+    background-color: white;
+    margin-top: 20px;
+    width: 100%;
+    height: 100px;
+    border-radius: 5px;
+    border-width: 1px;
+    text-align: start;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: "Roboto-Regular";
+    font-size: 16px;
+}
+
+.question_container .input_question_text::placeholder {
+    color: #D9D9D9;
+}
+
+.question_container .button_container {
+    display: flex;
+    justify-content: space-between;
+    width: 87%;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0px;
+    margin-bottom: 30px;
+}
+
+.question_container .button_container .button {
+    width: 150px;
+    height: 40px;
+    background-color: #DE0A3F;
+    border-radius: 20px;
+    border-width: 0px;
+    color: white;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Survey Rating Page */
+.question_container .rate_representation{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+    margin-top: 30px;
+    height: 30px;
+    align-items: center; 
+}
+
+.question_container .input_rate_representation{
+    width: 100px;
+    height: 30px;
+    text-align: center;
+}
+
+.question_container .input_rate_representation::placeholder {
+    color: #D9D9D9;
+}
+
+/* Survey Drop Down Page */
+#survey_drop_down .input_drop_down {
+    padding: 0px;
+    width:200px;
+    height: 250px;
+    margin-top: 20px;
+}
+
+#survey_drop_down .input_drop_down .drop_down_list {
+    background-color:#F8F8F8;
+    padding: 0px;
+    width:100%;
+    height: 150px;
+    overflow-y: scroll; 
+    overflow-x: hidden; 
+}
+
+#survey_drop_down .input_drop_down .drop_down_list .item_box {
+    padding: 0px;
+    width:100%;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#survey_drop_down .input_drop_down .drop_down_list .each_item {
+    padding: 0px;
+    width:100px;
+    height: 35px;
+    font-family: "Roboto-Regular";
+    font-size: 16px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#survey_drop_down .input_drop_down .drop_down_list button {
+    background-color: transparent;
+    width: 35px;
+    height: 35px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+#survey_drop_down .input_drop_down .drop_down_list img {
+    width: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#survey_drop_down .input_drop_down .drop_down_list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#survey_drop_down .input_drop_down .drop_down_list::-webkit-scrollbar-thumb {
+    background-color: #9F9D9D;
+    border-radius: 20px;
+}
+
+
+#survey_drop_down .add_item_box {
+    padding: 0px;
+    width:100%;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#survey_drop_down .add_item_box .input_add_item {
+    width: 100px;
+    height: 30px;
+    padding-left: 10px;
+    font-family: "Roboto-Regular";
+    font-size: 16px;
+}
+
+#survey_drop_down .add_item_box .input_add_item::placeholder {
+    color: #D9D9D9;
+}
+
+#survey_drop_down .add_item_box button {
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-right: 10px;
+}
+
+#survey_drop_down .add_item_box img {
+    width: 30px;
 }
