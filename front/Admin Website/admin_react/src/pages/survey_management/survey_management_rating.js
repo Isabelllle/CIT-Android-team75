@@ -73,7 +73,7 @@ const SurveyRating = () =>{
                             <button className={styles.button}>Cancel</button>
                         </Link>
 
-                        <button type="submit" onClick={handleSubmit} className={styles.button}>Add New</button>
+                        <button type="submit" onClick={handleSubmit} className={styles.button}>Submit</button>
                     </div>
                 
                 </div>

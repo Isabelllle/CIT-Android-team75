@@ -19,7 +19,7 @@ const SurveyMain = () =>{
             {/* Add empty space for the sub heading in main page */}
             <div class={styles.space}></div>
 
-            {/* {Line} */}
+            {/* Line */}
             <div class={styles.line}></div>
 
             <div id={styles.survey_main}>

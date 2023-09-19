@@ -21,7 +21,7 @@ const SurveyNumber = () =>{
     const handleSubmit = event => {
         event.preventDefault();
 
-        // ---------------- Add post request
+        // ---------------- Add post request (question)
 
         console.log('Submitted with value:', question);
         navigate('/survey_management'); 
@@ -53,7 +53,7 @@ const SurveyNumber = () =>{
                             <button className={styles.button}>Cancel</button>
                         </Link>
 
-                        <button type="submit" onClick={handleSubmit} className={styles.button}>Add New</button>
+                        <button type="submit" onClick={handleSubmit} className={styles.button}>Submit</button>
                     </div>
                 
                 </div>

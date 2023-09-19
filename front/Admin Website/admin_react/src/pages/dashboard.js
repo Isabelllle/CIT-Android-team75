@@ -1,4 +1,5 @@
-// JS file for Dashboard Page 
+// Dashboard Page 
+// Admin can view a overall summary of viewdata, admin management and reminder list page
 
 // Import library
 import React from 'react';
@@ -13,16 +14,16 @@ const dashboard = () =>{
 
     return (
         <main>
-            <div class={styles.dashboard}>
+            <div className={styles.dashboard}>
 
                 {/* Heading */}
-                <h1 class={styles.page_heading}>Dashboard</h1>
+                <h1 className={styles.page_heading}>Dashboard</h1>
 
                 {/* Container */}
-                <div class={styles.container}>
+                <div className={styles.container}>
 
                     {/* Top box */}
-                    <div class={styles.name_box}>
+                    <div className={styles.name_box}>
                         <img id={styles.plant_one} src={Plant} alt="Plant 1" />
 
                         {/* ----------------------Replace admin's name with Apple Banana */}
@@ -37,7 +38,7 @@ const dashboard = () =>{
                             <h2>Data Review Summary</h2>
 
                             {/* -------------------------------Add summary graph here */}
-                            <div class={styles.middle_box}>
+                            <div className={styles.middle_box}>
                             </div>
                         </div>
 
@@ -46,7 +47,7 @@ const dashboard = () =>{
                             <h2>Reminder List</h2>
 
                             {/* -------------------------------Add reminder list here */}
-                            <div class={styles.middle_box}>
+                            <div className={styles.middle_box}>
                             </div>
                         </div>
                     </div>

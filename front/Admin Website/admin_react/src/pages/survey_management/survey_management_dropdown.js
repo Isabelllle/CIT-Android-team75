@@ -22,7 +22,6 @@ const SurveyDropDown = () =>{
 
     // Handle question input
     const handleQuestion = event => {
-        console.log('Question input:', event.target.value);
         setQuestion(event.target.value);
     };
 
@@ -100,7 +99,7 @@ const SurveyDropDown = () =>{
                             <button className={styles.button}>Cancel</button>
                         </Link>
 
-                        <button type="submit" onClick={handleSubmit} className={styles.button}>Add New</button>
+                        <button type="submit" onClick={handleSubmit} className={styles.button}>Submit</button>
                     </div>
                 
                 </div>

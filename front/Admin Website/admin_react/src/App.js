@@ -31,7 +31,7 @@ function App() {
 
   return <BrowserRouter>
 
-    <div class={styles.app}>
+    <div className={styles.app}>
       {/* Add the navigation bar */}
       <Navbar />
 
