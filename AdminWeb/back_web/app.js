@@ -21,7 +21,7 @@ app.use('/questions', questionsRouter);
 app.use('/react', express.static(path.join(__dirname, './build')));
 app.use(express.static(path.join(__dirname, './build')));
 
-app.use(express.static(path.join(__dirname, '../../front/Admin Website/Public')));
+app.use(express.static(path.join(__dirname, '../front_web/static')));
 app.use('/',loginRouter);
 app.use('/login',loginRouter);
 app.use('/signin',signinRouter);
