@@ -112,7 +112,7 @@ const SurveyDropDown = () =>{
                         </Link>
 
                         {/* Give user a reminder if none of the text is entered */}
-                        {giveWarning && <div className={styles.warning}>Please enter all the info before submit.</div>}
+                        {giveWarning && <div className={styles.warning}>Please fill in all the info before submit.</div>}
 
                         <button type="submit" onClick={handleSubmit} className={styles.button}>Submit</button>
                     </div>

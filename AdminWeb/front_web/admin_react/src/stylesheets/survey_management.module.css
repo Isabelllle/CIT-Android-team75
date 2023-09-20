@@ -462,6 +462,7 @@
 #survey_question_table .survey_list_button {
     border: none;
     background-color: transparent;
+    z-index: 10;
 }
 
 #survey_question_table .survey_list_button img {

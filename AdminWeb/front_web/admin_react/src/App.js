@@ -10,6 +10,7 @@ import Dashboard from './pages/dashboard';
 import DataReview from './pages/data_review';
 import ReminderList from './pages/reminder_list';
 import Settings from "./pages/settings";
+import ChangePassword from "./pages/setting_change_password";
 import AdminManagement from './pages/admin_management';
 import SurveyManagement from './pages/survey_management/survey_management';
 
@@ -41,6 +42,7 @@ function App() {
         <Route path="/data_review" element={<DataReview />} />
         <Route path="/reminder_list" element={<ReminderList />} />
         <Route path="/settings" element={<Settings />} />
+          <Route path="/settings/change_password" element={<ChangePassword />} />
         <Route path="/admin_management" element={<AdminManagement />} />
         <Route path="/survey_management" element={<SurveyManagement />}>
           <Route path="" element={<SurveyMain />} />
