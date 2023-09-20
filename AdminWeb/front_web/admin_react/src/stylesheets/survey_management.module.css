@@ -72,6 +72,11 @@
     margin-top: 30px;
 }
 
+/* Warning */
+.warning {
+    color: red;
+}
+
 /* Survey Main Page */
 /* Body */
 #survey_main {
