@@ -5,7 +5,7 @@
 
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3001;
 const { client, createTables } = require('./db'); 
 const { questionsRouter, loginRouter, signinRouter, enterEmailRouter, 
     emailVerifyRouter, passwordRouter, signInstructRouter, } = require('./routes/1ndex');
@@ -18,11 +18,10 @@ const path = require('path');
 app.use(express.json());
 app.use('/questions', questionsRouter);
 
-app.use('/react', express.static(path.join(__dirname, './build')));
-app.use(express.static(path.join(__dirname, './build')));
+// app.use('/react', express.static(path.join(__dirname, './build')));
+// app.use(express.static(path.join(__dirname, './build')));
 
 app.use(express.static(path.join(__dirname, '../front_web/static')));
-app.use('/',loginRouter);
 app.use('/login',loginRouter);
 app.use('/signin',signinRouter);
 app.use('/enteremail', enterEmailRouter);

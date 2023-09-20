@@ -19,7 +19,8 @@ const loginAdmin = (req, res) => {
             }
 
             if (results.rows.length > 0) {
-                res.send('Login successful');
+                console.log("login suce");
+                res.redirect('http://localhost:3000/success-page');
             } else {
                 // if not admin, just manager
                 client.query(
@@ -33,7 +34,6 @@ const loginAdmin = (req, res) => {
                         if (managerResults.rows.length > 0) {
                             res.send('Login successful for manager');
                         } else {
-                            console.log(`do this login`);
                             res.send('Invalid username or password');
                         }
                     }
