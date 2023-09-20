@@ -3,13 +3,11 @@
  * 
  */
 
-
 const { client } = require('../db'); 
-
 
 const loginAdmin = (req, res) => {  
     const { email, password } = req.body;
-
+    
     client.query(
         'SELECT * FROM admin WHERE email = $1 AND password = $2 AND has_registered = true AND is_manager = false',
         [email, password],
@@ -19,8 +17,9 @@ const loginAdmin = (req, res) => {
             }
 
             if (results.rows.length > 0) {
-                console.log("login suce");
-                res.redirect('http://localhost:3000/success-page');
+                req.session.email = email;
+                console.log(req.session.email);
+                res.redirect('http://localhost:3000');
             } else {
                 // if not admin, just manager
                 client.query(
@@ -32,8 +31,10 @@ const loginAdmin = (req, res) => {
                         }
                 
                         if (managerResults.rows.length > 0) {
-                            res.send('Login successful for manager');
+                            req.session.email = email;
+                            res.redirect('http://localhost:3000');
                         } else {
+                            // console.log(`do this login`);
                             res.send('Invalid username or password');
                         }
                     }
@@ -75,8 +76,43 @@ const getGroups = (req, res) => {
     });
 };
 
+
+//get manager/admin name
+const getUserName = (req, res) => {
+    const email = req.session.email;
+    console.log('Session:', req.session);
+    console.log('Email:', email);
+
+    
+    client.query(
+        'SELECT "first_name ", "last_name " FROM admin WHERE email = $1',
+        [email],
+        
+        (error, results) => {
+            if (error) {
+                throw error;
+            }
+
+            if (results.rows.length > 0) {
+
+                const userData = {
+                    firstName: results.rows[0]['first_name '],
+                    lastName: results.rows[0]['last_name '],
+                    email: email
+                    
+                };
+                console.log('UserData:', userData);
+                res.json(userData);
+            }else {
+                return res.json({});
+            }
+        }
+    );
+  };
+
 module.exports = {
     loginAdmin,
     signupAdmin,
     getGroups,
+    getUserName,
 };
