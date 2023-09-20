@@ -2,7 +2,7 @@
  * This is Admin Login requirements.
  * 
  */
-
+const jwt = require('jsonwebtoken');
 const { client } = require('../db'); 
 
 const loginAdmin = (req, res) => {  
@@ -17,9 +17,8 @@ const loginAdmin = (req, res) => {
             }
 
             if (results.rows.length > 0) {
-                req.session.email = email;
-                console.log(req.session.email);
-                res.redirect('http://localhost:3000');
+                const token = jwt.sign({ email }, 'your-secret-key', { expiresIn: '1h' });
+                res.redirect(`http://localhost:3000/dashboard?token=${token}`);
             } else {
                 // if not admin, just manager
                 client.query(
@@ -31,7 +30,6 @@ const loginAdmin = (req, res) => {
                         }
                 
                         if (managerResults.rows.length > 0) {
-                            req.session.email = email;
                             res.redirect('http://localhost:3000');
                         } else {
                             // console.log(`do this login`);
@@ -77,11 +75,21 @@ const getGroups = (req, res) => {
 };
 
 
+// vertify token
+const verifyToken = (req, res, next) => {
+    const token = req.headers.authorization.split(' ')[1];
+    jwt.verify(token, 'your-secret-key', (err, decoded) => {
+        if (err) {
+            return res.status(401).send('Unauthorized');
+        }
+        req.email = decoded.email; // 将解码后的信息附加到请求对象中
+        next();
+    });
+};
+
+
 //get manager/admin name
 const getUserName = (req, res) => {
-    const email = req.session.email;
-    console.log('Session:', req.session);
-    console.log('Email:', email);
 
     
     client.query(

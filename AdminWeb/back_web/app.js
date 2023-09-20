@@ -4,21 +4,10 @@
  */
 
 
-const session = require('express-session');
 const express = require('express');
 const cors = require('cors');
 const app = express();
-
-const crypto = require('crypto');
-const secretKey = crypto.randomBytes(64).toString('hex');
-
-// 使用 express-session 中间件
-app.use(session({
-    secret: secretKey,
-    resave: false, // 是否在每次请求时重新保存 session
-    saveUninitialized: true, // 是否在新用户访问时设置新的 session
-    cookie: { secure: false } // 安全选项（可以根据需要进行配置）
-  }));
+ 
 
 app.use(cors());
 const port = 3001;
