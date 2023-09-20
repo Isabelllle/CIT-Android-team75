@@ -2,19 +2,28 @@
     <string name="app_name">WeConnect</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_title">Your Name</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <!-- Navigation Drawer Menu-->
+    <string name="menu_home">Home Page</string>
+    <string name="menu_about_weconnect">About WeConnect</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_contact_us">Contact Us</string>
+    <string name="menu_admin_login">Admin Log in</string>
+    <string name="menu_privacy_policy">Privacy Policy</string>
 
     <!--  Content Description  -->
     <string name="main_admin_button">Enter Admin Page</string>
     <string name="main_volunteer_button">Enter Volunteer Page</string>
     <string name="logo">WeConnect Logo</string>
+    <string name="survey_back_arrow">Click and go back to last page</string>
+    <string name="cartoon">cartoon</string>
+    <string name="volunteer_vic_logo">Volunteer Victoria Logo</string>
+    <string name="volunteer_west_logo">Volunteer West Logo</string>
+
 
     <!--  Main Page  -->
     <string name="main_admin_text">Admin</string>
@@ -24,5 +33,85 @@
 
     <!--  Volunteer Home Page  -->
     <string name="take_survey_button">Take the survey</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <!--  Take Survey Page Button  -->
+    <string name="first_survey">First Survey</string>
+    <string name="second_survey">Second Survey</string>
+    <string name="survey_detail_btn">NEXT</string>
+    <string name="survey_question_btn">PREVIOUS</string>
+    <string name="police_agree">Agree and Continue</string>
+    <string name="police_disagree">Disagree </string>
+
+    <!-- Take Survey Title   -->
+    <string name="personal_details">Personal Details</string>
+    <string name="organisation_details">Organisation Details</string>
+    <string name="survey_privacy_police">Your Personal Information And Data Privacy</string>
+
+    <!--  Text Box Label  -->
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="postcode">Postcode</string>
+    <string name="choose_organisation">Choose your organisation</string>
+    <string name="cannont_find_organisation">Cannot find your organisation? Enter Here </string>
+    <string name="manager_email">Manager Email</string>
+
+    <!--  Hint Text  -->
+    <string name="enter_first_name">Enter your first name here</string>
+    <string name="enter_last_name">Enter your last name here</string>
+    <string name="enter_email">Enter your email here</string>
+    <string name="enter_postcode">Enter your postcode here </string>
+    <string name="enter_organisation">Enter organisation name</string>
+    <string name="enter_manager_email">Enter your manager email here</string>
+
+    <!-- Organisation list   -->
+    <string-array name="organisation_list">
+        <item>VCOSS</item>
+        <item>Volunteer Victoria</item>
+        <item>Unimelb</item>
+        <item>Volunteer West</item>
+    </string-array>
+
+    <!-- privacy police content   -->
+    <string name="privacy_policy_text1">
+        We collect your Personal Information for the primary
+        purpose of providing our services to you.
+    </string>
+    <string name="privacy_policy_text2">
+        Your Personal Information is stored in a manner that
+        reasonably protects it from misuse and loss and from unauthorized access,
+        modification or disclosure.
+    </string>
+    <string name="privacy_policy_text3">
+        Further information, including the WeConnect Privacy Policy is available below.
+    </string>
+
+    <!--  About WeConnect  -->
+    <string name="intro_text1">
+        WeConnect is a Collective impact tool  to collect data about a volunteer’s
+        experience, skills and change within three domains, which are Volunteer Wellbeing,
+        Volunteer Confidence and Volunteer to Job potential.
+    </string>
+    <string name="intro_vv_text1">
+        Volunteering Victoria
+    </string>
+    <string name="intro_vv_text2">
+        “Building an inclusive, thriving volunteering culture”
+    </string>
+    <string name="intro_vw_text1">
+        Volunteer West
+    </string>
+    <string name="intro_vw_text2">
+        “Our key focus is on strengthening the volunteering sector
+        and supporting organisational development.”
+    </string>
+    <string name="title_activity_nav_testing">NavTesting</string>
+    
+    <!-- Contact Us   -->
+    <string name="contact_us">Contact Us</string>
+
 
 </resources>

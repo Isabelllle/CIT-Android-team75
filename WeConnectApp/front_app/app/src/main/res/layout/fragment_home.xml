@@ -1,22 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:background="@drawable/background_image"
+    tools:context=".ui.home.Home">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--   WeConnect     -->
+        <TextView
+            android:id="@+id/home_vol_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="250dp"
+            android:fontFamily="@font/roboto_bold"
+            android:shadowColor="@color/black"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="6"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textColor="@color/red_1"
+            android:textSize="48sp" />
+
+        <!--   Logo     -->
+        <ImageView
+            android:id="@+id/logo_vlo_home"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@string/logo"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            app:srcCompat="@drawable/logo" />
+
+        <!--    Take Survey Button  -->
+        <Button
+            android:id="@+id/btn_home_page"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/home_vol_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="300dp"
+            android:background="@color/red_1"
+            android:textStyle="bold"
+            android:text="@string/take_survey_button"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+</RelativeLayout>

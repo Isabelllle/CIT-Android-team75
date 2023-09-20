@@ -1,32 +1,44 @@
 package com.example.weconnectapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Menu;
+import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.ui.AppBarConfiguration;
+
 
 import com.example.weconnectapp.databinding.MainPageBinding;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.weconnectapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration mAppBarConfiguration;
-    private MainPageBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_page);
 
+        /*
+        // call main_page.xml
         binding = MainPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        */
+
+
+        //Redirection to Volunteer home page.
+        ImageButton buttonNext = findViewById(R.id.right_button);
+        buttonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, NavHomePage.class);
+                // launch the Volunteer home page.
+                startActivity(intent);
+            }
+        });
+
     }
+
+
 }

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.WeConnectApp" parent="Theme.MaterialComponents.DayNight.Bridge">
+    <style name="Theme.WeConnectApp" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/red_1</item>
         <item name="colorPrimaryVariant">@color/red_1</item>
@@ -11,6 +11,7 @@
         <item name="colorOnSecondary">@color/purple_200</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/pink_2</item>
+        <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
     </style>
 
