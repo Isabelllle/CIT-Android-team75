@@ -79,7 +79,7 @@ const Settings = () =>{
                 <div className={styles.change_password_container}>
                     <h2>Password</h2>
 
-                    <Link to="/survey_management/type" className={styles.no_underline}>
+                    <Link to="/settings/change_password" className={styles.no_underline}>
                         <button>Change Password</button>
                     </Link>
                 </div>

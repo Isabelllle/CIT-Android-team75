@@ -12,6 +12,11 @@ import Plant from '../Assets/Image/plant1.png';
 
 const dashboard = () =>{
 
+    // Variable
+    // --------------------Replace data here (firstName, lastName)
+    const firstName = 'firstName';
+    const lastName = 'lastName';
+
     return (
         <main>
             <div className={styles.dashboard}>
@@ -27,7 +32,7 @@ const dashboard = () =>{
                         <img id={styles.plant_one} src={Plant} alt="Plant 1" />
 
                         {/* ----------------------Replace admin's name with Apple Banana */}
-                        <div id={styles.hello_info}>Hello, Apple Banana</div>
+                        <div id={styles.hello_info}>Hello, {firstName} {lastName}</div>
                     </div>
 
                     {/* Middle container */}

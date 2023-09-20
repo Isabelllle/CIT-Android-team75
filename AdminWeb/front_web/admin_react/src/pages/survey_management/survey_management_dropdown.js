@@ -4,7 +4,7 @@
 
 // Import library
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 // Import CSS
 import styles from '../../stylesheets/survey_management.module.css';
@@ -14,11 +14,18 @@ import AddIcon from '../../Assets/Icon/icon_add.png'
 import DeleteIcon from '../../Assets/Icon/icon_delete.png'
 
 const SurveyDropDown = () =>{
-    // Submit survey question information
+
+    // Variables
+    const navigate = useNavigate();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+
+    const selectedTitle = queryParams.get('selectedTitle');
+    const selectedType = queryParams.get('selectedType');
     const [question, setQuestion] = useState('');
     const [items, setItems] = useState([]);
     const [addItem, setAddItem] = useState('');
-    const navigate = useNavigate();
+    const [giveWarning, setWarning] = useState(false);
 
     // Handle question input
     const handleQuestion = event => {
@@ -42,13 +49,18 @@ const SurveyDropDown = () =>{
         setItems(updatedItems);
     };
 
+    // Submit survey question information
     const handleSubmit = event => {
         event.preventDefault();
 
-        // ---------------- Add post request
+        if (question !== '' && items !== null) {
+            // ---------------- Add post request (selectedTitle, selectedType, question)
 
-        console.log('Submitted with value:', question, items);
-        navigate('/survey_management'); 
+            console.log('Submitted with value:', selectedTitle, selectedType, question, items);
+            navigate('/survey_management'); 
+        } else {
+            setWarning(true);
+        }
     };
 
     return (
@@ -98,6 +110,9 @@ const SurveyDropDown = () =>{
                         <Link to="/survey_management/type" className={styles.no_underline}>
                             <button className={styles.button}>Cancel</button>
                         </Link>
+
+                        {/* Give user a reminder if none of the text is entered */}
+                        {giveWarning && <div className={styles.warning}>Please fill in all the info before submit.</div>}
 
                         <button type="submit" onClick={handleSubmit} className={styles.button}>Submit</button>
                     </div>

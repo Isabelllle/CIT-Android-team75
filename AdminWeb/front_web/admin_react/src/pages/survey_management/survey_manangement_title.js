@@ -29,7 +29,7 @@ const SurveyTitle = () =>{
 
     const handleNextClick = () => {
         if (selectedTitle !== null) {
-            navigate('/survey_management/type'); 
+            navigate(`/survey_management/type?selectedTitle=${selectedTitle}`); 
         } else {
             setWarning(true);
         }

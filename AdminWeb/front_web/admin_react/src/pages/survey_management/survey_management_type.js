@@ -3,7 +3,7 @@
 
 // Import library
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 // Import CSS
 import styles from '../../stylesheets/survey_management.module.css'
@@ -18,9 +18,13 @@ import DropDownIcon from '../../Assets/Icon/drop_down.png'
 const SurveyType = () =>{
 
     // Selection functions
+    const navigate = useNavigate();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+
     const [selectedType, setSelectedType] = useState(null);
     const [giveWarning, setWarning] = useState(false);
-    const navigate = useNavigate();
+    const selectedTitle = queryParams.get('selectedTitle');
 
     const handleTypeSelect = (type) => {
         setSelectedType(type);
@@ -29,25 +33,27 @@ const SurveyType = () =>{
     const handleNextClick = () => {
         if (selectedType !== null) {
 
+            console.log('Submitted with value:', selectedTitle);
+
             // Navigate to different pages according to user selection
             switch (selectedType) {
                 case 1:
-                  navigate('/survey_management/text');
+                  navigate(`/survey_management/text?selectedTitle=${selectedTitle}&selectedType=${selectedType}`);
                   break;
                 case 2:
-                  navigate('/survey_management/number');
+                  navigate(`/survey_management/number?selectedTitle=${selectedTitle}&selectedType=${selectedType}`);
                   break;
                 case 3:
-                  navigate('/survey_management/yesno');
+                  navigate(`/survey_management/yesno?selectedTitle=${selectedTitle}&selectedType=${selectedType}`);
                   break;
                 case 4:
-                  navigate('/survey_management/rating');
+                  navigate(`/survey_management/rating?selectedTitle=${selectedTitle}&selectedType=${selectedType}`);
                   break;
                 case 5:
-                  navigate('/survey_management/rating');
+                  navigate(`/survey_management/rating?selectedTitle=${selectedTitle}&selectedType=${selectedType}`);
                   break;
                 case 6:
-                  navigate('/survey_management/dropdown');
+                  navigate(`/survey_management/dropdown?selectedTitle=${selectedTitle}&selectedType=${selectedType}`);
                   break;
                 default:
                   break;
