@@ -51,7 +51,6 @@ const Dashboard = () =>{
     }, []); 
 
     // Variable
-    // --------------------Replace data here (firstName, lastName)
     const firstName = FirstName;
     const lastName = LastName;
 

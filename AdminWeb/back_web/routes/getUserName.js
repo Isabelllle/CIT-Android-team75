@@ -5,5 +5,6 @@ const verifyToken = require('../controllers/adminController');
 
 router.get('/api/user', adminController.verifyToken, adminController.getUserName);
 router.put('/api/users', adminController.updateUserInfo);
+router.put('/api/userspassword', adminController.updateUserPass);
 
 module.exports = router;

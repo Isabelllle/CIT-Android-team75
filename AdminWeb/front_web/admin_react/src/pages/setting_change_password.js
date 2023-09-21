@@ -2,11 +2,14 @@
 // Admin can change their password
 
 // Import library
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // Import CSS
 import styles from '../stylesheets/settings.module.css';
+
+// Import Token
+const token = localStorage.getItem('token');
 
 const SettingsPassword = () =>{
 
@@ -17,10 +20,30 @@ const SettingsPassword = () =>{
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [email, setEmail] = useState('');
 
     const [giveWarningFill, setWarningFill] = useState(false);
     const [giveWarningConfirm, setWarningConfirm] = useState(false);
+
+    useEffect(() => {
+        // fetch to get the user's information
+        fetch('http://localhost:3001/api/user', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            },
+        })
+       
+        .then(response => response.json())
+        .then(data => {
+            setOldPassword(data.password);
+            setEmail(data.email);
+        })
+        .catch(error => console.error('Error:', error));
+    }, []); 
     
+
     // Handle input changes
     const handleOldPassword = (old_password) => {
         setOldPassword(old_password.target.value);
@@ -44,6 +67,22 @@ const SettingsPassword = () =>{
             setWarningFill(false);
         } else {
             // ----------------------- Post change of all inputs to database
+            fetch('http://localhost:3001/api/userspassword', {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}` 
+                },
+                body: JSON.stringify({
+                  password: newPassword,
+                  email: email,
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+            console.log('Data updated successfully:', data);
+            })
+            .catch(error => console.error('Error:', error));
 
             console.log('Entered Password:', oldPassword, newPassword, confirmPassword);
             navigate('/settings'); 

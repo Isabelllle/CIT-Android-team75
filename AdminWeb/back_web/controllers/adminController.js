@@ -4,6 +4,7 @@
  */
 const jwt = require('jsonwebtoken');
 const { client } = require('../db'); 
+const { password } = require('pg/lib/defaults');
 
 const loginAdmin = (req, res) => {  
     const { email, password } = req.body;
@@ -94,7 +95,7 @@ const getUserName = (req, res) => {
     const email = req.email;
 
     client.query(
-        'SELECT "first_name ", "last_name " FROM admin WHERE email = $1',
+        'SELECT "first_name ", "last_name ", password FROM admin WHERE email = $1',
         [email],
         
         (error, results) => {
@@ -107,8 +108,8 @@ const getUserName = (req, res) => {
                 const userData = {
                     firstName: results.rows[0]['first_name '],
                     lastName: results.rows[0]['last_name '],
-                    email: email
-                    
+                    password: results.rows[0][password],
+                    email: email,
                 };
                 res.json(userData);
             }else {
@@ -118,6 +119,7 @@ const getUserName = (req, res) => {
     );
   };
 
+//update user profile
 const updateUserInfo = (req, res) => {
     const { firstName, lastName, email } = req.body;
 
@@ -133,6 +135,25 @@ const updateUserInfo = (req, res) => {
     );
 };
 
+//update user password
+const updateUserPass = (req, res) => {
+    const {password, email} = req.body;
+
+    console.log('执行修改密码',email);
+
+    client.query(
+        'UPDATE admin SET password = $1 where email = $2',
+        [password, email],
+        (error, results) => {
+            if (error) {
+                throw error;
+            }
+            res.json({ success: true, message: 'User information updated successfully' });
+        }
+    );
+};
+
+
 module.exports = {
     loginAdmin,
     signupAdmin,
@@ -140,4 +161,5 @@ module.exports = {
     getUserName,
     verifyToken,
     updateUserInfo,
+    updateUserPass,
 };
