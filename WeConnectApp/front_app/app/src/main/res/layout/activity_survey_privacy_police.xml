@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SurveyPrivacyPolice">
+
+    <!--  Base layout  -->
+    <include layout="@layout/survey_base_layout"/>
+    <!--  Icon  -->
+    <ImageView
+        android:id="@+id/privacy_police_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        app:srcCompat="@drawable/privacy_icon"
+        android:contentDescription="@string/logo"/>
+
+    <!-- Title  -->
+    <TextView
+        android:id="@+id/privacy_police_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/privacy_police_icon"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="40dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text="@string/survey_privacy_police"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Content   -->
+    <TextView
+        android:id="@+id/privacy_policy_content1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/privacy_policy_text1"
+        android:layout_below="@id/privacy_police_title"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="15dp"/>
+    <TextView
+        android:id="@+id/privacy_policy_content2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/privacy_policy_text2"
+        android:layout_below="@id/privacy_policy_content1"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="15dp"/>
+    <TextView
+        android:id="@+id/privacy_policy_content3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/privacy_policy_text3"
+        android:layout_below="@id/privacy_policy_content2"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="15dp"/>
+
+    <!--  Agree button  -->
+    <Button
+        android:id="@+id/police_agree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/privacy_policy_content3"
+        android:text="@string/police_agree"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_bold"
+        android:background="@drawable/first_survey_btn_template"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="100dp"
+        />
+
+    <!--  Disagree button  -->
+    <Button
+        android:id="@+id/police_disagree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/privacy_policy_content3"
+        android:text="@string/police_disagree"
+        android:textColor="@color/pink_1"
+        android:textSize="16sp"
+        android:padding="5dp"
+        android:fontFamily="@font/roboto_bold"
+        android:background="@drawable/second_survey_btn_template"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp"/>
+
+
+
+
+</RelativeLayout>

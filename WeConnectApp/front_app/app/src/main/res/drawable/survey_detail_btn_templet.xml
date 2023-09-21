@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+   <!--  This templet is for survey personal detail  -->
+        <!-- set button background -->
+        <solid android:color="@color/pink_3" />
+
+        <!-- set button radius -->
+        <corners android:radius="100dp" />
+
+        <!-- set button border -->
+        <stroke
+            android:width="3dp"
+        android:color="@color/white" /> <!-- 边框颜色 -->
+
+</shape>
+
+
+

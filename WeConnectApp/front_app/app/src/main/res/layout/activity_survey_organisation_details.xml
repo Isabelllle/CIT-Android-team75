@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SurveyOrganisationDetails">
+
+    <!--  Base layout  -->
+    <include layout="@layout/survey_detail_layout"/>
+    <!-- Title   -->
+    <TextView
+        android:id="@+id/organisation_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="90dp"
+        android:text="@string/organisation_details"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!--  Content  -->
+    <!--  Choose organisation   -->
+    <TextView
+        android:id="@+id/choose_organisation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_organisation"
+        android:textColor="@color/black"
+        android:layout_below="@id/organisation_detail"
+        android:textSize="16sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"/>
+
+
+    <Spinner
+        android:id="@+id/organisation_dropdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dropdown_template"
+        android:layout_below="@id/choose_organisation"
+        android:elevation="5dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:entries="@array/organisation_list"
+        />
+
+    <!--  Enter new organisation  -->
+    <TextView
+        android:id="@+id/new_organisation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cannont_find_organisation"
+        android:textColor="@color/black"
+        android:layout_below="@id/organisation_dropdown"
+        android:textSize="16sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        />
+    <EditText
+        android:id="@+id/input_new_organisation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/text_box_template"
+        android:elevation="5dp"
+        android:hint="@string/enter_organisation"
+        android:layout_below="@id/new_organisation"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:inputType="text"/>
+
+    <!--  Enter manager email  -->
+    <TextView
+        android:id="@+id/manager_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/manager_email"
+        android:textColor="@color/black"
+        android:layout_below="@id/input_new_organisation"
+        android:textSize="16sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"/>
+    <EditText
+        android:id="@+id/input_manager_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/text_box_template"
+        android:hint="@string/enter_manager_email"
+        android:layout_below="@id/manager_email"
+        android:elevation="5dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:inputType="textEmailAddress"/>
+
+
+
+
+</RelativeLayout>
