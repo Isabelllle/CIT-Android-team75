@@ -2,7 +2,7 @@
 // Admin can view a overall summary of viewdata, admin management and reminder list page
 
 // Import library
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // Import CSS
 import styles from '../stylesheets/dashboard.module.css';
@@ -10,7 +10,18 @@ import styles from '../stylesheets/dashboard.module.css';
 // Import Assets
 import Plant from '../Assets/Image/plant1.png'; 
 
-const dashboard = () =>{
+const Dashboard = () =>{
+
+    useEffect(() => {
+        // get URL Token
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
+        if (token) {
+            localStorage.setItem('token', token);
+            console.log('Token:', token);
+        }
+    }, []);
 
     // Variable
     // --------------------Replace data here (firstName, lastName)
@@ -73,4 +84,4 @@ const dashboard = () =>{
         </main>
     );
 }
-export default dashboard;
+export default Dashboard;

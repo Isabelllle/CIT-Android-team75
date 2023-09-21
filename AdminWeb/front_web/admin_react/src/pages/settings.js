@@ -2,24 +2,53 @@
 // Admin can manage their personal details and change their password
 
 // Import library
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 // Import CSS
 import styles from '../stylesheets/settings.module.css';
+const token = localStorage.getItem('token');
 
 const Settings = () =>{
 
     // Attributes
     // ---------------------------Replace initial data
     const [isEditingFirstName, setIsEditingFirstName] = useState(false);
-    const [firstName, setFirstName] = useState('Apple');
+    const [firstName, setFirstName] = useState('');
 
     const [isEditingLastName, setIsEditingLastName] = useState(false);
-    const [lastName, setLastName] = useState('Banana');
+    const [lastName, setLastName] = useState('');
 
     const [isEditingEmail, setIsEditingEmail] = useState(false);
-    const [email, setEmail] = useState('apple_banana@email.com');
+    const [email, setEmail] = useState('');
+
+    const [initialFirstName, setInitialFirstName] = useState(''); 
+    const [initialLastName, setInitialLastName] = useState(''); 
+    const [initialEmail, setInitialEmail] = useState('');
+
+    useEffect(() => {
+        // fetch to get the user's information
+        fetch('http://localhost:3001/api/user', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            },
+        })
+       
+        .then(response => response.json())
+        .then(data => {
+   
+            setFirstName(data.firstName);
+            setLastName(data.lastName);
+            setEmail(data.email);
+
+            setInitialFirstName(data.firstName);
+            setInitialLastName(data.lastName);
+            setInitialEmail(data.email);
+        })
+        .catch(error => console.error('Error:', error));
+    }, []); 
 
     // Handle the edit button
     const handleEditButton = () => {
@@ -46,17 +75,32 @@ const Settings = () =>{
         setIsEditingFirstName(false);
         setIsEditingLastName(false);
         setIsEditingEmail(false);
-        console.log('Edited inputs:', firstName, lastName, email);
 
         // ----------------------- Post change of all inputs to database
+        fetch('http://localhost:3001/api/users', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}` 
+            },
+            body: JSON.stringify({
+              firstName: firstName,
+              lastName: lastName,
+              email: email
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+        console.log('Data updated successfully:', data);
+        })
+        .catch(error => console.error('Error:', error));
     };
 
     // Handle cancel button
     const handleCancelButton = () => {
-        // ---------------------------Replace initial data
-        setFirstName('Apple'); 
-        setLastName('Banana'); 
-        setEmail('apple_banana@email.com'); 
+        setFirstName(initialFirstName); 
+        setLastName(initialLastName); 
+        setEmail(initialEmail); 
         setIsEditingFirstName(false);
         setIsEditingLastName(false);
         setIsEditingEmail(false);

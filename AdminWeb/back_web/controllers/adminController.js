@@ -77,12 +77,13 @@ const getGroups = (req, res) => {
 
 // vertify token
 const verifyToken = (req, res, next) => {
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
     jwt.verify(token, 'your-secret-key', (err, decoded) => {
         if (err) {
             return res.status(401).send('Unauthorized');
         }
-        req.email = decoded.email; // 将解码后的信息附加到请求对象中
+        req.email = decoded.email; 
+        req.userId = decoded.userId; 
         next();
     });
 };
@@ -90,8 +91,8 @@ const verifyToken = (req, res, next) => {
 
 //get manager/admin name
 const getUserName = (req, res) => {
+    const email = req.email;
 
-    
     client.query(
         'SELECT "first_name ", "last_name " FROM admin WHERE email = $1',
         [email],
@@ -109,7 +110,6 @@ const getUserName = (req, res) => {
                     email: email
                     
                 };
-                console.log('UserData:', userData);
                 res.json(userData);
             }else {
                 return res.json({});
@@ -118,9 +118,26 @@ const getUserName = (req, res) => {
     );
   };
 
+const updateUserInfo = (req, res) => {
+    const { firstName, lastName, email } = req.body;
+
+    client.query(
+        'UPDATE admin SET "first_name " = $1, "last_name " = $2 WHERE email = $3',
+        [firstName, lastName, email],
+        (error, results) => {
+            if (error) {
+                throw error;
+            }
+            res.json({ success: true, message: 'User information updated successfully' });
+        }
+    );
+};
+
 module.exports = {
     loginAdmin,
     signupAdmin,
     getGroups,
     getUserName,
+    verifyToken,
+    updateUserInfo,
 };

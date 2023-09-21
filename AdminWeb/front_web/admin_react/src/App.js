@@ -39,6 +39,7 @@ function App() {
       {/* Add routes to all the sub pages */}
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/data_review" element={<DataReview />} />
         <Route path="/reminder_list" element={<ReminderList />} />
         <Route path="/settings" element={<Settings />} />
