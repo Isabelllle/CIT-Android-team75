@@ -2,7 +2,7 @@
 // Admin can view a overall summary of viewdata, admin management and reminder list page
 
 // Import library
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Import CSS
 import styles from '../stylesheets/dashboard.module.css';
@@ -10,7 +10,13 @@ import styles from '../stylesheets/dashboard.module.css';
 // Import Assets
 import Plant from '../Assets/Image/plant1.png'; 
 
+// Import Token
+const token = localStorage.getItem('token');
+
 const Dashboard = () =>{
+
+    const [FirstName, setFirstName] = useState(''); 
+    const [LastName, setLastName] = useState(''); 
 
     useEffect(() => {
         // get URL Token
@@ -23,10 +29,31 @@ const Dashboard = () =>{
         }
     }, []);
 
+    // get profile
+    useEffect(() => {
+        // fetch to get the user's information
+        fetch('http://localhost:3001/api/user', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            },
+        })
+       
+        .then(response => response.json())
+        .then(data => {
+   
+            setFirstName(data.firstName);
+            setLastName(data.lastName);
+
+        })
+        .catch(error => console.error('Error:', error));
+    }, []); 
+
     // Variable
     // --------------------Replace data here (firstName, lastName)
-    const firstName = 'firstName';
-    const lastName = 'lastName';
+    const firstName = FirstName;
+    const lastName = LastName;
 
     return (
         <main>

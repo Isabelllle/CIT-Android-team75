@@ -7,12 +7,13 @@ import { Link } from 'react-router-dom';
 
 // Import CSS
 import styles from '../stylesheets/settings.module.css';
+
+// Import Token
 const token = localStorage.getItem('token');
 
 const Settings = () =>{
 
     // Attributes
-    // ---------------------------Replace initial data
     const [isEditingFirstName, setIsEditingFirstName] = useState(false);
     const [firstName, setFirstName] = useState('');
 
