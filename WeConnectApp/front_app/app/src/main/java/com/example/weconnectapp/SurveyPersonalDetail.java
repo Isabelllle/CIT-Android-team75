@@ -31,7 +31,7 @@ public class SurveyPersonalDetail extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SurveyPersonalDetail.this, NavHomePage.class);
+                Intent intent = new Intent(SurveyPersonalDetail.this, MainActivity.class);
                 startActivity(intent);
             }
         });

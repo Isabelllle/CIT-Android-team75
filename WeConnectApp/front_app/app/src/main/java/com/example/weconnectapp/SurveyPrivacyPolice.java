@@ -22,7 +22,7 @@ public class SurveyPrivacyPolice extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SurveyPrivacyPolice.this, NavHomePage.class);
+                Intent intent = new Intent(SurveyPrivacyPolice.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -32,7 +32,7 @@ public class SurveyPrivacyPolice extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SurveyPrivacyPolice.this, NavHomePage.class);
+                Intent intent = new Intent(SurveyPrivacyPolice.this,MainActivity.class);
                 startActivity(intent);
             }
         });

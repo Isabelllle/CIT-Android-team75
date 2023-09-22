@@ -33,7 +33,7 @@ public class SurveyOrganisationDetails extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SurveyOrganisationDetails.this, NavHomePage.class);
+                Intent intent = new Intent(SurveyOrganisationDetails.this, MainActivity.class);
                 startActivity(intent);
             }
         });

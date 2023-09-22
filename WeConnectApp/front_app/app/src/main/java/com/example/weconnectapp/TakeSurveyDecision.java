@@ -20,7 +20,7 @@ public class TakeSurveyDecision extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TakeSurveyDecision.this, NavHomePage.class);
+                Intent intent = new Intent(TakeSurveyDecision.this, MainActivity.class);
                 startActivity(intent);
             }
         });
