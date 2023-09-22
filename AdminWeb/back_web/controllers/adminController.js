@@ -122,7 +122,6 @@ const getUserName = (req, res) => {
 //update user profile
 const updateUserInfo = (req, res) => {
     const { firstName, lastName, email } = req.body;
-
     client.query(
         'UPDATE admin SET "first_name " = $1, "last_name " = $2 WHERE email = $3',
         [firstName, lastName, email],
@@ -139,8 +138,6 @@ const updateUserInfo = (req, res) => {
 const updateUserPass = (req, res) => {
     const {password, email} = req.body;
 
-    console.log('执行修改密码',email);
-
     client.query(
         'UPDATE admin SET password = $1 where email = $2',
         [password, email],
@@ -153,6 +150,38 @@ const updateUserPass = (req, res) => {
     );
 };
 
+const getTableData = (req, res) => {
+    client.query('SELECT * FROM questions', (error, result) => {
+        if (error) {
+            console.error('Error executing query:', error);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+        
+        const tableData = result.rows;
+        res.json(tableData);
+    });
+}
+
+const deleteItem = (req, res) => {
+    const itemId = req.params.id;
+
+    client.query('DELETE FROM questions WHERE id = $1', [itemId], (error, result) => {
+        if (error) {
+          console.error('Error executing query:', error);
+          res.status(500).send('Internal Server Error');
+          return;
+        }
+    
+        if (result.rowCount === 0) {
+          res.status(404).send('Item not found');
+          return;
+        }
+    
+        res.send('Item deleted successfully');
+      });
+
+}
 
 module.exports = {
     loginAdmin,
@@ -162,4 +191,6 @@ module.exports = {
     verifyToken,
     updateUserInfo,
     updateUserPass,
+    getTableData,
+    deleteItem,
 };

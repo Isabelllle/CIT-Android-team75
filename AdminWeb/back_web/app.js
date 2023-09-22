@@ -13,7 +13,7 @@ app.use(cors());
 const port = 3001;
 const { client, createTables } = require('./db'); 
 const { questionsRouter, loginRouter, signinRouter, enterEmailRouter, 
-    emailVerifyRouter, passwordRouter, signInstructRouter, getUserName } = require('./routes/1ndex');
+    emailVerifyRouter, passwordRouter, signInstructRouter, getUserInfo } = require('./routes/1ndex');
 const bodyParser = require('body-parser');
 
 
@@ -33,7 +33,7 @@ app.use('/enteremail', enterEmailRouter);
 app.use('/emailverify', emailVerifyRouter);
 app.use('/newpassword', passwordRouter);
 app.use('/signupinstruction', signInstructRouter);
-app.use('/', getUserName);
+app.use('/', getUserInfo);
 
 
 // connect to PostgreSQL database

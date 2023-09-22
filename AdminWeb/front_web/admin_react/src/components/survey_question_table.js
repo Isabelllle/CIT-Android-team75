@@ -1,6 +1,6 @@
 // Table component for the survey question list
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Import CSS
 import styles from '../stylesheets/survey_management.module.css';
@@ -14,25 +14,14 @@ const SurveyQuestionTable = () => {
     // Variable
     // -------------------- Replace the data with survey question table in database
     const [tableData, setTableData] = useState([
-        { id:1, topic: 'Story', type: 'Text', question: 'This is the first question.' },
-        { id:2, topic: 'Wellbeing', type: 'Rating', question: 'This is the second question.' },
-        { id:3, topic: 'Story', type: 'Drop down', question: 'This is the third question.' },
-        { id:4, topic: 'Employability', type: 'Text', question: 'This is the forth question.' },
-        { id:5, topic: 'Wellbeing', type: 'Number', question: 'This is the fifth question.' },
-        { id:6, topic: 'Story', type: 'Rating', question: 'This is the sixth question.' },
-        { id:7, topic: 'Story', type: 'Text', question: 'This is the first question.' },
-        { id:8, topic: 'Wellbeing', type: 'Rating', question: 'This is the second question.' },
-        { id:9, topic: 'Story', type: 'Drop down', question: 'This is the third question.' },
-        { id:10, topic: 'Employability', type: 'Text', question: 'This is the forth question.' },
-        { id:11, topic: 'Wellbeing', type: 'Number', question: 'This is the fifth question.' },
-        { id:12, topic: 'Story', type: 'Rating', question: 'This is the sixth question.' },
-        { id:13, topic: 'Story', type: 'Text', question: 'This is the first question.' },
-        { id:14, topic: 'Wellbeing', type: 'Rating', question: 'This is the second question.' },
-        { id:15, topic: 'Story', type: 'Drop down', question: 'This is the third question.' },
-        { id:16, topic: 'Employability', type: 'Text', question: 'This is the forth question.' },
-        { id:17, topic: 'Wellbeing', type: 'Number', question: 'This is the fifth question.' },
-        { id:18, topic: 'Story', type: 'Rating', question: 'This is the sixth question.' },
     ]);
+
+    useEffect(() => {
+        fetch('http://localhost:3001/api/getTableData')
+            .then(response => response.json())
+            .then(data => setTableData(data))
+            .catch(error => console.error('Error:', error));
+    }, []); 
 
     // Handle the edit request
     const handleEdit = (id) => {
@@ -48,6 +37,15 @@ const SurveyQuestionTable = () => {
         setTableData(updatedTableData);
 
         //--------------------Delete item from databas
+        // fetch(`http://localhost:3001/api/deleteItem/${id}`, {
+        //     method: 'DELETE',
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log(data); 
+        // })
+        // .catch(error => console.error('Error:', error));
+
         console.log('Delete clicked item:', id);
     };
 

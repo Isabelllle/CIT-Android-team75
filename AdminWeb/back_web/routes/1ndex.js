@@ -14,7 +14,7 @@ const enterEmailRouter = require('./forgetEnterEmail');
 const emailVerifyRouter = require('./forgetEmailVerify');
 const passwordRouter = require('./newPassword');
 const signInstructRouter = require('./signUpInstruct');
-const getUserName = require('./getUserName');
+const getUserInfo = require('./userInfo');
 
 
 module.exports = {
@@ -25,5 +25,5 @@ module.exports = {
     emailVerifyRouter,
     passwordRouter,
     signInstructRouter,
-    getUserName,
+    getUserInfo,
 };
