@@ -10,7 +10,7 @@
          android:layout_height="wrap_content">
 
         <!--  Base layout  -->
-        <include layout="@layout/survey_base_layout"/>
+        <include layout="@layout/menu_base_layout"/>
         <!--  Icon  -->
         <ImageView
             android:id="@+id/privacy_police_icon"

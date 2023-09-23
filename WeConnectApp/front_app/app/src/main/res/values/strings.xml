@@ -116,5 +116,8 @@
     <string name="contact_us_content">For further information, please contact Sara Sterling via
         email info@volunteeringvictoria.org.au.</string>
 
+    <!--  Error hint  -->
+    <string name="empty_hint">The text box cannot be empty</string>
+
 
 </resources>

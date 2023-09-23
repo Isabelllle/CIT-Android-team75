@@ -6,7 +6,7 @@
     tools:context=".ui.aboutweconnect.AboutWeconnectFragment">
 
         <!--  Base page  -->
-        <include layout="@layout/survey_base_layout"/>
+        <include layout="@layout/menu_base_layout"/>
         <!-- Title   -->
         <TextView
             android:id="@+id/about_weconnect"
@@ -20,7 +20,7 @@
             android:textStyle="bold" />
 
         <ScrollView
-            android:layout_width="320dp"
+            android:layout_width="330dp"
             android:layout_height="match_parent"
             android:layout_marginStart="40dp"
             android:layout_marginTop="150dp"
@@ -69,8 +69,7 @@
                     android:textColor="@color/black"
                     android:layout_marginTop="30dp"
                     android:layout_marginStart="50dp"
-                    android:textAlignment="center"
-                    />
+                    android:textAlignment="center" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

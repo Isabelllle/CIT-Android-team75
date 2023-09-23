@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class SurveyOrganisationDetails extends AppCompatActivity {
 
@@ -20,9 +22,20 @@ public class SurveyOrganisationDetails extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create Intent，
-                Intent intent = new Intent(SurveyOrganisationDetails.this, SurveyPrivacyPolice.class);
-                startActivity(intent);
+                //Limit the text box to not be empty
+                EditText organisation = findViewById(R.id.input_new_organisation);
+                String text1 = organisation.getText().toString().trim();
+
+                EditText manager_email = findViewById(R.id.input_manager_email);
+                String text2 = manager_email.getText().toString().trim();
+
+                if (text1.isEmpty() || text2.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "text box cannont be empty",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(SurveyOrganisationDetails.this, SurveyPrivacyPolice.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -33,7 +46,7 @@ public class SurveyOrganisationDetails extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SurveyOrganisationDetails.this, MainActivity.class);
+                Intent intent = new Intent(SurveyOrganisationDetails.this, SurveyPersonalDetail.class);
                 startActivity(intent);
             }
         });
