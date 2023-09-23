@@ -5,6 +5,9 @@
 const jwt = require('jsonwebtoken');
 const { client } = require('../db'); 
 const { password } = require('pg/lib/defaults');
+const titleMap = require('./map');
+
+
 
 const loginAdmin = (req, res) => {  
     const { email, password } = req.body;
@@ -104,7 +107,6 @@ const getUserName = (req, res) => {
             }
 
             if (results.rows.length > 0) {
-
                 const userData = {
                     firstName: results.rows[0]['first_name '],
                     lastName: results.rows[0]['last_name '],
@@ -136,22 +138,47 @@ const updateUserInfo = (req, res) => {
 
 //update user password
 const updateUserPass = (req, res) => {
-    const {password, email} = req.body;
+    const { oldpassword, password, email } = req.body;
 
+    // Step 1: Check if the old password matches the one in the database
     client.query(
-        'UPDATE admin SET password = $1 where email = $2',
-        [password, email],
+        'SELECT password FROM admin WHERE email = $1',
+        [email],
         (error, results) => {
             if (error) {
                 throw error;
             }
-            res.json({ success: true, message: 'User information updated successfully' });
+
+            if (results.rows.length > 0) {
+                const storedPassword = results.rows[0].password;
+
+                if (oldpassword !== storedPassword) {
+                    return res.json({ success: false, message: 'Invalid password' });
+                }
+
+                // Step 2: Update the password if old password matches
+                client.query(
+                    'UPDATE admin SET password = $1 WHERE email = $2',
+                    [password, email],
+                    (error, results) => {
+                        if (error) {
+                            throw error;
+                        }
+                        res.json({ success: true, message: 'User information updated successfully' });
+                    }
+                );
+            } else {
+                return res.json({ success: false, message: 'User not found' });
+            }
         }
     );
 };
 
+
+
+// 
 const getTableData = (req, res) => {
-    client.query('SELECT * FROM questions', (error, result) => {
+    client.query('SELECT * FROM questions ORDER BY id ASC', (error, result) => {
         if (error) {
             console.error('Error executing query:', error);
             res.status(500).send('Internal Server Error');
@@ -159,9 +186,11 @@ const getTableData = (req, res) => {
         }
         
         const tableData = result.rows;
+        console.log(tableData); 
         res.json(tableData);
     });
 }
+
 
 const deleteItem = (req, res) => {
     const itemId = req.params.id;
@@ -183,6 +212,88 @@ const deleteItem = (req, res) => {
 
 }
 
+const addTextQuestion = (req, res) => {
+    const { selectedTitle, question, questionSecond } = req.body;
+
+    const topic = titleMap.get(parseInt(selectedTitle));
+
+    let in_second_survey;
+
+
+    if(questionSecond !=  null) {
+        in_second_survey = true;
+    } else{
+        in_second_survey = false;
+    }
+
+    client.query(
+        'INSERT INTO questions (type, topic, question_first, in_second_survey, \
+            question_second, rate_min, rate_max) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+        ['Text', topic, question, in_second_survey, questionSecond, null, null],
+        (error, results) => {
+            if (error) {
+                throw error;
+            }
+            res.json({ success: true, message: 'Question added successfully' });
+        }
+    );
+
+}
+
+const addYesNoQuestion = (req, res) => {
+    const { selectedTitle, question, questionSecond } = req.body;
+
+    const topic = titleMap.get(parseInt(selectedTitle));
+
+    let in_second_survey;
+
+    if(questionSecond !=  null) {
+        in_second_survey = true;
+    } else{
+        in_second_survey = false;
+    }
+
+    client.query(
+        'INSERT INTO questions (type, topic, question_first, in_second_survey, \
+            question_second, rate_min, rate_max) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+        ['Y/N', topic, question, in_second_survey, questionSecond, null, null],
+        (error, results) => {
+            if (error) {
+                throw error;
+            }
+            res.json({ success: true, message: 'Question added successfully' });
+        }
+    );
+
+}
+
+const addNumQuestion = (req, res) => {
+    const { selectedTitle, question, questionSecond } = req.body;
+
+    const topic = titleMap.get(parseInt(selectedTitle));
+
+    let in_second_survey;
+
+    if(questionSecond !=  null) {
+        in_second_survey = true;
+    } else{
+        in_second_survey = false;
+    }
+
+    client.query(
+        'INSERT INTO questions (type, topic, question_first, in_second_survey, \
+            question_second, rate_min, rate_max) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+        ['Number', topic, question, in_second_survey, questionSecond, null, null],
+        (error, results) => {
+            if (error) {
+                throw error;
+            }
+            res.json({ success: true, message: 'Question added successfully' });
+        }
+    );
+}
+
+
 module.exports = {
     loginAdmin,
     signupAdmin,
@@ -193,4 +304,7 @@ module.exports = {
     updateUserPass,
     getTableData,
     deleteItem,
+    addTextQuestion,
+    addYesNoQuestion,
+    addNumQuestion,
 };
