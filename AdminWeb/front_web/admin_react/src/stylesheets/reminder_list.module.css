@@ -1,0 +1,217 @@
+/* CSS file for reminder list page */
+
+/* Import font */
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../Assets/Roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url('../Assets/Roboto/Roboto-Medium.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url('../Assets/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Cabin-Regular";
+    src: url('../Assets/Cabin/static/Cabin-Regular.ttf');
+}
+
+/* Background */
+.reminder_list {
+    background-image: url('../Assets/Image/reminder_list_background.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    height: 95vh;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+}
+
+/* Page Heading */
+.reminder_list .page_heading {
+    margin: 5px 30px;
+}
+
+/* Search and sort box */
+.reminder_list .box_container {
+    height: 40px;
+    width: 50%;
+    margin: 30px 30px 10px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reminder_list #sort_box {
+    height: 40px;
+    background-color: white;
+    width: 200px;
+    padding-left: 15px;
+    color: #9F9D9D;
+    font-family: "Roboto-Regular";
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.reminder_list #sort_box:focus {
+    border-width: 1px;
+    outline: none;
+}
+
+.reminder_list #search_box {
+    height: 40px;
+    background-color: white;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    border: 1px solid black; 
+    border-radius: 10px;
+}
+
+.reminder_list #search_box input {
+    padding-left: 15px;
+    font-family: "Roboto-Regular";
+    font-size: 16px;
+    border-radius: 10px;
+    border-width: 0px;
+    outline: none;
+    width: 260px;
+    background-color: white;
+}
+
+.reminder_list #search_box input::placeholder {
+    color: #9F9D9D;
+}
+
+.reminder_list #search_box input:focus {
+    border-width: 0px;
+    outline: none;
+}
+
+.reminder_list #search_box button {
+    background-color: transparent;
+    border-width: 0px;
+}
+
+.reminder_list #search_box button img {
+    width: 30px
+}
+
+/* Reminder List Table */
+#reminder_list_table {
+    margin: 0px 30px 0px 30px;
+    width: 90%; 
+    height: 100vh;
+}
+
+#reminder_list_table .header_table {
+    width: 100%;
+    table-layout: fixed;
+    height: 50px;
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+#reminder_list_table .content_container {
+    width: 100%;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+#reminder_list_table .content_table{
+    width: 100%;
+    table-layout: fixed;
+    max-height: 600px;
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+#reminder_list_table .content_container::-webkit-scrollbar {
+    width: 0px;
+}
+
+#reminder_list_table tr {
+    height: 50px;
+    max-height: 50px;
+}
+
+#reminder_list_table th {
+    text-align: start;
+    font-family: "Roboto-Bold";
+    font-size: 18px;
+    position: sticky;
+    height: 50px;
+    padding: 10px;
+}
+
+#reminder_list_table td {
+    text-align: start;
+    font-family: "Cabin-Regular";
+    font-size: 16px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+#reminder_list_table .content_container tr:nth-child(even) {
+    background-color: rgba(255,255,255,80%);
+}
+
+#reminder_list_table .content_container tr:nth-child(odd) {
+    background-color: rgba(228,228,228,35%);
+}
+
+#reminder_list_table tr td:first-child,
+#reminder_list_table tr th:first-child {
+    padding-left: 50px;
+}
+
+#reminder_list_table tr td:last-child,
+#reminder_list_table tr th:last-child {
+    padding-right: 50px;
+}
+
+#reminder_list_table .reminder_list_button {
+    border: none;
+    background-color: transparent;
+    z-index: 10;
+}
+
+#reminder_list_table .reminder_list_button img {
+    width: 15px;
+}
+
+/* Set the width of each column */
+#reminder_list_table th:nth-child(1),
+#reminder_list_table td:nth-child(1) {
+    width: 15%;
+}
+
+#reminder_list_table th:nth-child(2),
+#reminder_list_table td:nth-child(2) {
+    width: 15%;
+}
+
+#reminder_list_table th:nth-child(3),
+#reminder_list_table td:nth-child(3) {
+    width: 45%;
+}
+
+#reminder_list_table th:nth-child(4),
+#reminder_list_table td:nth-child(4) {
+    width: 10%;
+    text-align: center;
+}
+
+#reminder_list_table th:nth-child(5),
+#reminder_list_table td:nth-child(5) {
+    width: 5%;
+}
