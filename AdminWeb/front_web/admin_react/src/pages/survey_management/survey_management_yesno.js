@@ -18,11 +18,16 @@ const SurveyYesNo = () =>{
     const selectedTitle = queryParams.get('selectedTitle');
     const selectedType = queryParams.get('selectedType');
     const [question, setQuestion] = useState('');
+    const [questionSecond, setQuestionSecond] = useState('');
     const [giveWarning, setWarning] = useState(false);
 
     // Submit survey question information
     const handleQuestion = event => {
         setQuestion(event.target.value);
+    };
+
+    const handleQuestionSecond = event => {
+        setQuestionSecond(event.target.value);
     };
 
     const handleSubmit = event => {
@@ -56,7 +61,8 @@ const SurveyYesNo = () =>{
                     <div className={styles.survey_manage_question_instruction}>Question</div>
 
                     {/* Enter question text in the input box */}
-                    <textarea className={styles.input_question_text} value={question} onChange={handleQuestion} placeholder="Enter the question text here" row={4} colume={50}/>
+                    <textarea className={styles.input_question_text} value={question} onChange={handleQuestion} placeholder="Enter the question text here" row={3} colume={50}/>
+                    <textarea className={styles.input_question_text} value={questionSecond} onChange={handleQuestionSecond} placeholder="Enter the second survey question text here if it is different" row={3} colume={50}/>
 
                     {/* Buttons down the bottom */}
                     <div className={styles.button_container}>

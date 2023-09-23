@@ -211,11 +211,11 @@
     background-color: white;
     margin-top: 20px;
     width: 100%;
-    height: 100px;
+    height: 60px;
     border-radius: 5px;
     border-width: 1px;
     text-align: start;
-    padding: 20px;
+    padding: 10px;
     box-sizing: border-box;
     font-family: "Roboto-Regular";
     font-size: 16px;
@@ -272,7 +272,7 @@
 #survey_drop_down .input_drop_down {
     padding: 0px;
     width:200px;
-    height: 250px;
+    height: 220px;
     margin-top: 20px;
 }
 
@@ -280,7 +280,7 @@
     background-color:#F8F8F8;
     padding: 0px;
     width:100%;
-    height: 150px;
+    height: 120px;
     overflow-y: scroll; 
     overflow-x: hidden; 
 }

@@ -19,7 +19,7 @@ const loginAdmin = (req, res) => {
 
             if (results.rows.length > 0) {
                 const token = jwt.sign({ email }, 'your-secret-key', { expiresIn: '1h' });
-                res.redirect(`http://localhost:3000/dashboard?token=${token}`);
+                res.redirect(`http://localhost:3000/?token=${token}`);
             } else {
                 // if not admin, just manager
                 client.query(

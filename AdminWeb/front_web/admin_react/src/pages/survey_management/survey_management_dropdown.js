@@ -23,6 +23,7 @@ const SurveyDropDown = () =>{
     const selectedTitle = queryParams.get('selectedTitle');
     const selectedType = queryParams.get('selectedType');
     const [question, setQuestion] = useState('');
+    const [questionSecond, setQuestionSecond] = useState('');
     const [items, setItems] = useState([]);
     const [addItem, setAddItem] = useState('');
     const [giveWarning, setWarning] = useState(false);
@@ -31,6 +32,11 @@ const SurveyDropDown = () =>{
     const handleQuestion = event => {
         setQuestion(event.target.value);
     };
+
+    const handleQuestionSecond = event => {
+        setQuestionSecond(event.target.value);
+    };
+
 
     // Handle drop down list input
     const handleItem = (item) => {
@@ -56,7 +62,7 @@ const SurveyDropDown = () =>{
         if (question !== '' && items !== null) {
             // ---------------- Add post request (selectedTitle, selectedType, question)
 
-            console.log('Submitted with value:', selectedTitle, selectedType, question, items);
+            console.log('Submitted with value:', selectedTitle, selectedType, question, questionSecond, items);
             navigate('/survey_management'); 
         } else {
             setWarning(true);
@@ -81,7 +87,8 @@ const SurveyDropDown = () =>{
                     <div className={styles.survey_manage_question_instruction}>Question</div>
 
                     {/* Enter question text in the input box */}
-                    <textarea className={styles.input_question_text} value={question} onChange={handleQuestion} onBlur={handleQuestion} placeholder="Enter the question text here" rows={4} cols={50}/>
+                    <textarea className={styles.input_question_text} value={question} onChange={handleQuestion} onBlur={handleQuestion} placeholder="Enter the question text here" rows={3} cols={50}/>
+                    <textarea className={styles.input_question_text} value={questionSecond} onChange={handleQuestionSecond} placeholder="Enter the second survey question text here if it is different" row={3} colume={50}/>
 
                     {/* Edit the drop down choices */}
                     <div className={styles.input_drop_down}>
