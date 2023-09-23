@@ -1,35 +1,36 @@
-/**
- * This file includes the main Express application file 
- * contains the server's configuration and middleware Settings
- */
-
 const express = require('express');
-const app = express();
-const port = 8000;
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const volunteerRoutes = require('./routes/volunteer');  
 const { client } = require('./db'); 
 
+const app = express();
+const PORT = 8000;
 
-//app.use(express.static('path_to_your_xml_files'));
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
 
-// app.get('/your_route', (req, res) => {
-//     res.send('Response from server');
-//   });
-  
-app.get('/', (req, res) =>{
-    
-    res.send('page successful');
-});
+// Use the volunteer routes for anything starting with "/api/volunteer"
+app.use('/api/volunteer', volunteerRoutes);  
 
 // connect to PostgreSQL database
-client.connect(async err => {
+client.connect(err => {
     if (err) {
-        console.error('connection error', err.stack)
+        console.error('Failed to connect to the database!', err.stack);
+        process.exit(1); // Exit the process with an error code
     } else {
-        console.log('connected');
+        console.log('Connected to the database.');
+
+        // Start the server after the database connection is established
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        });
     } 
 });
 
-
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+// Error handling middleware (as an example)
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
 });
