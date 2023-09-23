@@ -2,8 +2,8 @@
     <string name="app_name">WeConnect</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Your Name</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">WELCOME</string>
+    <string name="nav_header_subtitle">Free feel to start your first survey</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -34,8 +34,6 @@
     <!--  Volunteer Home Page  -->
     <string name="take_survey_button">Take the survey</string>
     <string name="title_activity_main2">MainActivity2</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
 
     <!--  Take Survey Page Button  -->
     <string name="first_survey">First Survey</string>
@@ -51,13 +49,13 @@
     <string name="survey_privacy_police">Your Personal Information And Data Privacy</string>
 
     <!--  Text Box Label  -->
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="email">Email</string>
-    <string name="postcode">Postcode</string>
-    <string name="choose_organisation">Choose your organisation</string>
-    <string name="cannont_find_organisation">Cannot find your organisation? Enter Here </string>
-    <string name="manager_email">Manager Email</string>
+    <string name="first_name">First Name*</string>
+    <string name="last_name">Last Name*</string>
+    <string name="email">Email*</string>
+    <string name="postcode">Postcode*</string>
+    <string name="choose_organisation">Choose your organisation*</string>
+    <string name="cannont_find_organisation">Cannot find your organisation? Enter Here*</string>
+    <string name="manager_email">Manager Email*</string>
 
     <!--  Hint Text  -->
     <string name="enter_first_name">Enter your first name here</string>
@@ -75,7 +73,7 @@
         <item>Volunteer West</item>
     </string-array>
 
-    <!-- privacy police content   -->
+    <!-- privacy policy content   -->
     <string name="privacy_policy_text1">
         We collect your Personal Information for the primary
         purpose of providing our services to you.
