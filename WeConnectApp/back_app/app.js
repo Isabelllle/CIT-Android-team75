@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const volunteerRoutes = require('./routes/volunteer');  
+const groupRoutes = require('./routes/groups'); 
+const surveyRoutes = require('./routes/survey'); 
 const { client } = require('./db'); 
 
 const app = express();
@@ -14,6 +16,9 @@ app.use(bodyParser.json());
 // Use the volunteer routes for anything starting with "/api/volunteer"
 app.use('/api/volunteer', volunteerRoutes);  
 
+app.use('/api/groups', groupRoutes);
+
+app.use('/api/survey', surveyRoutes);
 // connect to PostgreSQL database
 client.connect(err => {
     if (err) {
