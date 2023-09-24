@@ -16,7 +16,7 @@ const SurveyText = () =>{
     const queryParams = new URLSearchParams(location.search);
 
     const selectedTitle = queryParams.get('selectedTitle');
-    const selectedType = queryParams.get('selectedType');
+    // const selectedType = queryParams.get('selectedType');
     const [question, setQuestion] = useState('');
     const [questionSecond, setQuestionSecond] = useState('');
     const [giveWarning, setWarning] = useState(false);
@@ -35,8 +35,27 @@ const SurveyText = () =>{
 
         if (question !== '') {
             // ---------------- Add post request (selectedTitle, selectedType, question)
+            fetch('http://localhost:3001/api/addTextQuestion', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                selectedTitle: selectedTitle,  
+                question: question,
+                questionSecond: questionSecond,
+              })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Question added successfully:', data);
+                navigate('/survey_management'); 
+            })
+            .catch(error => {
+                console.error('Error adding question:', error);
+            });
 
-            console.log('Submitted with value:', selectedTitle, selectedType, question, questionSecond);
+            console.log('Submitted with value:', selectedTitle, question, questionSecond);
             navigate('/survey_management'); 
         } else {
             setWarning(true);

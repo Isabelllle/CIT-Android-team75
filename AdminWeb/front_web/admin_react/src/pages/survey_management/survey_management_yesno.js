@@ -35,6 +35,26 @@ const SurveyYesNo = () =>{
 
         if (question !== '') {
             // ---------------- Add post request (selectedTitle, selectedType, question)
+            fetch('http://localhost:3001/api/addYesNoQuestion', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                selectedTitle: selectedTitle,  
+                question: question,
+                questionSecond: questionSecond,
+              })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Question added successfully:', data);
+                navigate('/survey_management'); 
+            })
+            .catch(error => {
+                console.error('Error adding question:', error);
+            });
+
 
             console.log('Submitted with value:', selectedTitle, selectedType, question);
             navigate('/survey_management'); 

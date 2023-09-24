@@ -34,6 +34,8 @@ const ReminderList = () =>{
         setSearchEmail(searchEmailChange);
     };
 
+    
+
     return (
         <main>
             <div className={styles.reminder_list}>

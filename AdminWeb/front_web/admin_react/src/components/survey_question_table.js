@@ -17,7 +17,7 @@ const SurveyQuestionTable = () => {
     ]);
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/getTableData')
+        fetch('http://localhost:3001/api/getSurveyQuesTable')
             .then(response => response.json())
             .then(data => setTableData(data))
             .catch(error => console.error('Error:', error));
@@ -83,7 +83,7 @@ const SurveyQuestionTable = () => {
                         <tr key={item.id}>
                         <td className={styles.content}>{item.topic}</td>
                         <td className={styles.content}>{item.type}</td>
-                        <td className={styles.content}>{item.question}</td>
+                        <td className={styles.content}>{item.question_first}</td>
                         <td className={styles.content}>{item.edit}</td>
                         <td className={styles.content}>{item.delete}</td>
                         </tr>

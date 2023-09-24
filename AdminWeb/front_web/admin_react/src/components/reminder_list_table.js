@@ -1,6 +1,6 @@
 // Table component for the reminder list
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 // Import CSS
 import styles from '../stylesheets/reminder_list.module.css';
@@ -10,59 +10,55 @@ import DeleteIcon from '../Assets/Icon/icon_delete_list.png'
 
 const ReminderTable = ({ selectedSort, searchEmail }) => {
 
-    // useEffect(() => {
-    //     fetch('http://localhost:3001/api/getReminderList')
-    //         .then(response => response.json())
-    //         .then(data => setTableData(data))
-    //         .catch(error => console.error('Error:', error));
-    // }, []); 
-
-
     // Testing Variable
     const [tableData, setTableData] = useState([
-        { id:1, last_name: 'Story', first_name: 'Text', email: '12345@gmail.com', overdue_day: '1' },
-        { id:2, last_name: 'Wellbeing', first_name: 'Rating', email: '23456@gmail.com', overdue_day: '3'},
-        { id:3, last_name: 'Story', first_name: 'Drop down', email: '34567@gmail.com', overdue_day: '3' },
-        { id:4, last_name: 'Employability', first_name: 'Text', email: '45678@gmail.com', overdue_day: '4' },
-        { id:5, last_name: 'Wellbeing', first_name: 'Number', email: '56789@gmail.com', overdue_day: '2' },
-        { id:6, last_name: 'Story', first_name: 'Rating', email: '67890@gmail.com', overdue_day: '2' },
-        { id:7, last_name: 'Story', first_name: 'Text', email: 'abcde@gmail.com', overdue_day: '2' },
-        { id:8, last_name: 'Wellbeing', first_name: 'Rating', email: 'bcdef@gmail.com', overdue_day: '3' },
-        { id:9, last_name: 'Story', first_name: 'Drop down', email: 'cdefg@gmail.com', overdue_day: '1' },
-        { id:10, last_name: 'Employability', first_name: 'Text', email: 'defga@gmail.com', overdue_day: '5' },
-        { id:11, last_name: 'Wellbeing', first_name: 'Number', email: 'efgab@gmail.com', overdue_day: '2' },
-        { id:12, last_name: 'Story', first_name: 'Rating', email: 'fgabc@gmail.com', overdue_day: '5' },
-        { id:13, last_name: 'Story', first_name: 'Text', email: 'gabcd@gmail.com', overdue_day: '5' },
     ])
 
     // Handle the sort option
-    const handleSort = () => {
-        if (selectedSort === 'last_name') {
-            // -------------------- 调取data，用last name排序
-            console.log('Sort by last_name');
-        } else if (selectedSort === 'first_name') {
-            // -------------------- 调取data，用first name排序
-            console.log('Sort by first_name');
-        } else {
-            // -------------------- 调取data，用overdue day排序
-            console.log('Sort by overdue_day');
-        }
-    };
+    const handleSort = useCallback(() => {
+        console.log('Sorting...');
+        fetch('http://localhost:3001/api/getReminderList') 
+            .then(response => response.json())
+            .then(data => {
+                console.log('Sorted data:', data);
+                if (selectedSort === 'last_name') {
+                    // -------------------- 调取data，用last name排序
+                    const sortedData = data.sort((a, b) => a.last_name.localeCompare(b.last_name));
+                    setTableData(sortedData);
+                } else if (selectedSort === 'first_name') {
+                    // -------------------- 调取data，用first name排序
+                    const sortedData = data.sort((a, b) => a.first_name.localeCompare(b.first_name));
+                    setTableData(sortedData);
+                } else {
+                    // -------------------- 调取data，用overdue day排序
+                    const sortedData = data.sort((a, b) => a.overdue_day.seconds - b.overdue_day.seconds);
+                    setTableData(sortedData);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }, [selectedSort]);
 
-    
-    useEffect(() => { // Call handleSort whenever selectedSort changes
-        handleSort();
-    }, [selectedSort]); 
 
     // Handle the sort option
-    const handleSearch = () => {
-        // -------------------- 调取data，只显示searchEmail对应的data
-        console.log('The search Message is' + searchEmail);
-    };
+    const handleSearch = useCallback(() => {
 
-    useEffect(() => { // Call handleSort whenever selectedSort changes
+        // -------------------- 调取data，只显示searchEmail对应的data
+        fetch(`http://localhost:3001/api/searchReminderByEmail?email=${searchEmail}`)
+            .then(response => response.json())
+            .then(data => setTableData(data))
+            .catch(error => console.error('Error:', error));
+
+        //     console.log('The search Message is' + searchEmail);
+    }, [searchEmail]);
+
+    useEffect(() => {
         handleSearch();
-    }, [searchEmail]); 
+    }, [handleSearch]);
+    
+    useEffect(() => {
+        handleSort();
+    }, [handleSort]);
+    
     
     // Handle the delete request
     const handleDelete = (id) => {
@@ -112,17 +108,16 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
             <div className={styles.content_container}>
                 <table className={styles.content_table}>
                     <tbody>
-                    {mappedTableData.map((item) => (
-                        <tr key={item.id}>
+                    {mappedTableData.map((item, index) => (
+                        <tr key={index}>
                         <td className={styles.content}>{item.last_name}</td>
                         <td className={styles.content}>{item.first_name}</td>
                         <td className={styles.content}>{item.email}</td>
-                        <td className={styles.content}>{item.overdue_day}</td>
+                        <td className={styles.content}>{item.overdue_day.seconds}</td>
                         <td className={styles.content}>{item.delete}</td>
-                        </tr>
+                    </tr>
                     ))}
                     </tbody>
-
                 </table>
             </div>
         </div>

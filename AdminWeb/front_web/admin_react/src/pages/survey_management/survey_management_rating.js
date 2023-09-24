@@ -45,6 +45,28 @@ const SurveyRating = () =>{
 
         if (question !== '' && min !== '' && max !== '') {
             // ---------------- Add post request (selectedTitle, selectedType, question, min, max)
+            fetch('http://localhost:3001/api/addRatingQuestion', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                selectedTitle: selectedTitle,  
+                selectedType: selectedType,
+                question: question,
+                questionSecond: questionSecond,
+                rate_min: min,
+                rate_max: max,
+              })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Question added successfully:', data);
+                navigate('/survey_management'); 
+            })
+            .catch(error => {
+                console.error('Error adding question:', error);
+            });
 
             console.log('Submitted with value:', selectedTitle, selectedType, question, min, max);
             navigate('/survey_management'); 

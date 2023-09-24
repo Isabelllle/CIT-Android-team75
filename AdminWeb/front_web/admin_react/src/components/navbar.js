@@ -1,7 +1,7 @@
 // The navigation bar in admin website page
 
 // Import library
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
@@ -16,8 +16,30 @@ import { ReactComponent as SettingsIcon } from '../Assets/Icon/icon_settings.svg
 import { ReactComponent as AdminManageIcon } from '../Assets/Icon/icon_admin_management.svg';
 import { ReactComponent as SurveyManageIcon } from '../Assets/Icon/icon_survey_management.svg';
 
+// Import token
+const token = localStorage.getItem('token');
+
 const NavBar= () =>{
     const location = useLocation();
+    const [isManager, setIsManager] = useState([]);
+
+    useEffect(() => {
+        // fetch to get the user's information
+        fetch('http://localhost:3001/api/getIsManger', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            setIsManager(data);
+        })
+        .catch(error => console.error('Error:', error));
+    }, [isManager]); 
+
+    
 
     return (
 
