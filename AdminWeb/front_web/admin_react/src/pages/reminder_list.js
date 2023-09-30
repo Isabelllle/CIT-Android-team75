@@ -8,10 +8,10 @@ import React, { useState } from 'react'
 import styles from '../stylesheets/reminder_list.module.css';
 
 // Import Component
-import ReminderTable from '../components/reminder_list_table'
+import ReminderTable from '../components/reminder_list_table';
 
 // Import Asset
-import SearchIcon from '../Assets/Icon/icon_search.png'
+import SearchIcon from '../Assets/Icon/icon_search.png';
 
 const ReminderList = () =>{
 
@@ -33,8 +33,6 @@ const ReminderList = () =>{
     const handleSubmitSearchEmail = () => {
         setSearchEmail(searchEmailChange);
     };
-
-    
 
     return (
         <main>

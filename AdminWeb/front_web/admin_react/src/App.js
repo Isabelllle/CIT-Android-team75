@@ -12,6 +12,7 @@ import ReminderList from './pages/reminder_list';
 import Settings from "./pages/settings";
 import ChangePassword from "./pages/setting_change_password";
 import AdminManagement from './pages/admin_management';
+import AddNewGroup from './pages/add_new_group';
 import SurveyManagement from './pages/survey_management/survey_management';
 
 // Import sub pages of SurveyManagement
@@ -44,6 +45,7 @@ function App() {
         <Route path="/settings" element={<Settings />} />
           <Route path="/settings/change_password" element={<ChangePassword />} />
         <Route path="/admin_management" element={<AdminManagement />} />
+          <Route path="/admin_management/add_new_group" element={<AddNewGroup />} />
         <Route path="/survey_management" element={<SurveyManagement />}>
           <Route path="" element={<SurveyMain />} />
           <Route path="title" element={<SurveyTitle />} />

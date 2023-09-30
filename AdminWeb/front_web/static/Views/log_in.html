@@ -1,3 +1,6 @@
+<!-- Admin Log In Page -->
+<!-- Admin and Manager can log in with their email and password here -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,17 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
         <link rel="stylesheet" href="../Stylesheets/log_in.css"/>
-        <script>
-            import { createRoot } from 'react-dom/client';
-    
-            // 清除现有的 HTML 内容
-            document.body.innerHTML = '<div id="app"></div>';
-    
-            // 渲染你的 React 组件
-            const root = createRoot(document.getElementById('app'));
-            root.render(<h1>Hello, world</h1>);
-    
-        </script>
 </head>
 
 <body>
@@ -27,10 +19,10 @@
         <div class = "container">
             <h1>Admin Log In</h1>
 
-            <form action="/static/login/submit" method="post">
+            <form action="/static/login/submit" method="post" onsubmit="return checkEmptyEnter()">
                 <div class = "form_container">
-                    <input class="input_item" type="email" name="email" placeholder="Enter your email">
-                    <input class="input_item" type="password" name="password" placeholder="Enter your password ">
+                    <input class="input_item" type="email" name="email" id="email" placeholder="Enter your email">
+                    <input class="input_item" type="password" name="password" id="password" placeholder="Enter your password ">
                 </div>
 
                 <a id="forgot_password" href="enteremail" target="_self">Forgot Password?</a>
@@ -43,6 +35,26 @@
 
         <img id="contact_us_icon" src="../Assets/Icon/Contact_us.png" alt="Contact us icon">
     </div>
+
+    <!-- Check if any of the email or password is empty -->
+    <script>
+        function checkEmptyEnter() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+    
+            if (email === "") {
+                alert("Please enter your email.");
+                return false;
+            }
+
+            if (password === "") {
+                alert("Please enter your password.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 
 </body>
 

@@ -6,7 +6,6 @@ import React, { useState, useEffect } from 'react'
 import styles from '../stylesheets/survey_management.module.css';
 
 // Import Asset
-import EditIcon from '../Assets/Icon/icon_edit_list.png'
 import DeleteIcon from '../Assets/Icon/icon_delete_list.png'
 
 const SurveyQuestionTable = () => {
@@ -22,17 +21,28 @@ const SurveyQuestionTable = () => {
             .then(data => setTableData(data))
             .catch(error => console.error('Error:', error));
     }, []); 
-
-    // Handle the edit request
-    const handleEdit = (id) => {
-
-        console.log('Edit clicked item:', id);
+    
+    // Handle the delete and comfirm box request
+    const confirmModal = document.getElementById("confirm_modal");
+    var deleteId = '';
+    
+    const showModal = () => {
+        confirmModal.style.display = "block";
     };
     
-    // Handle the delete request
-    const handleDelete = (id) => {
+    const closeModal = () => {
+        confirmModal.style.display = "none";
+    };
 
-        const updatedTableData = tableData.filter(item => item.id !== id);
+    const handleDelete = (id) => {
+        console.log('Delete clicked item:', id);
+        deleteId = id;
+        showModal();
+    };
+
+    const handleConfirm = (id) => {
+
+        const updatedTableData = tableData.filter(item => item.id !== deleteId);
         // Update the tableData state with the updated list
         setTableData(updatedTableData);
 
@@ -46,12 +56,17 @@ const SurveyQuestionTable = () => {
         // })
         // .catch(error => console.error('Error:', error));
 
-        console.log('Delete clicked item:', id);
+        console.log('Confirm delete:', deleteId);
+        closeModal();
     };
+
+    const handelCancel = () => {
+        deleteId = '';
+        closeModal();
+    }
 
     const mappedTableData = tableData.map((item) => ({
         ...item,
-        edit: <button onClick={() => handleEdit(item.id)} className={styles.survey_list_button}><img src={EditIcon} alt="Edit item" /></button>,
         delete: <button onClick={() => handleDelete(item.id)} className={styles.survey_list_button}><img src={DeleteIcon} alt="Delete item" /></button>,
     }));
   
@@ -68,8 +83,7 @@ const SurveyQuestionTable = () => {
                     <th key={index}>{header}</th>
                     ))}
 
-                    {/* Empty header for edit and delete icon */}
-                    <th></th>
+                    {/* Empty header for delete icon */}
                     <th></th>
                 </tr>
                 </thead>
@@ -84,14 +98,25 @@ const SurveyQuestionTable = () => {
                         <td className={styles.content}>{item.topic}</td>
                         <td className={styles.content}>{item.type}</td>
                         <td className={styles.content}>{item.question_first}</td>
-                        <td className={styles.content}>{item.edit}</td>
                         <td className={styles.content}>{item.delete}</td>
                         </tr>
                     ))}
                     </tbody>
-
                 </table>
             </div>
+
+            {/* Confirm Modal if the user trying to delete an item */}
+            <div className={styles.confirm_modal} id='confirm_modal'>
+                <div className={styles.modal_content}>
+                    <div className={styles.confirm_text}>Are you sure you want to delete this?</div>
+                    
+                    <div className={styles.button_box}>
+                        <button id='confirm_button' onClick={handleConfirm}>Confirm</button>
+                        <button id='cancel_button' onClick={handelCancel}>Cancel</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
   };

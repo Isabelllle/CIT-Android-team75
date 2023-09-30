@@ -482,15 +482,64 @@
 
 #survey_question_table th:nth-child(3),
 #survey_question_table td:nth-child(3) {
-    width: 50%;
+    width: 45%;
 }
 
 #survey_question_table th:nth-child(4),
 #survey_question_table td:nth-child(4) {
-    width: 4%;
+    width: 5%;
 }
 
-#survey_question_table th:nth-child(5),
-#survey_question_table td:nth-child(5) {
-    width: 4%;
+/* Confirm pop-up modal */
+#survey_question_table .confirm_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
 }
+
+#survey_question_table .confirm_modal .modal_content {
+    background-color: white;
+    margin: 20% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    height: 200px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#survey_question_table .confirm_modal .modal_content .confirm_text {
+    font-family: "Cabin-Regular";
+    color: black;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#survey_question_table .confirm_modal .modal_content .button_box {
+    width: 60%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+#survey_question_table .confirm_modal button {
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    border-radius: 20px;
+    border-width: 1.5px;
+    border-color: #DE0A3F;
+    color: #DE0A3F;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+    text-align: center;
+    z-index: 10;
+}
+

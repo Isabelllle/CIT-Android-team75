@@ -1,0 +1,381 @@
+/* CSS file for admin management page */
+
+/* Import font */
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../Assets/Roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url('../Assets/Roboto/Roboto-Medium.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url('../Assets/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Cabin-Regular";
+    src: url('../Assets/Cabin/static/Cabin-Regular.ttf');
+}
+
+/* Background */
+.admin_management {
+    background-image: url('../Assets/Image/admin_management_background.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    height: 95vh;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+}
+
+/* Page Heading */
+.admin_management .page_heading {
+    margin: 5px 30px;
+}
+
+/* Sub Heading */
+.sub_heading {
+    margin: 10px 30px;
+    height: 20px;
+}
+
+/* Search and sort box */
+.admin_management .box_container {
+    height: 40px;
+    width: 68%;
+    margin: 30px 30px 10px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin_management #sort_box {
+    height: 40px;
+    background-color: white;
+    width: 200px;
+    padding-left: 15px;
+    color: #9F9D9D;
+    font-family: "Roboto-Regular";
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.admin_management #sort_box:focus {
+    border-width: 1px;
+    outline: none;
+}
+
+.admin_management #new_group_button {
+    width: 150px;
+    height: 40px;
+    background-color: white;
+    border-radius: 20px;
+    border-width: 1.5px;
+    border-color: #DE0A3F;
+    color: #DE0A3F;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+    text-align: center;
+    margin: auto;
+    z-index: 10;
+}
+
+/* Admin Management Table */
+#admin_management_table {
+    margin: 0px 30px 0px 30px;
+    width: 90%; 
+    height: 100vh;
+}
+
+#admin_management_table .header_table {
+    width: 100%;
+    table-layout: fixed;
+    height: 50px;
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+#admin_management_table .content_container {
+    width: 100%;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+#admin_management_table .content_table{
+    width: 100%;
+    table-layout: fixed;
+    max-height: 600px;
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+#admin_management_table .content_container::-webkit-scrollbar {
+    width: 0px;
+}
+
+#admin_management_table tr {
+    height: 50px;
+    max-height: 50px;
+}
+
+#admin_management_table th {
+    text-align: start;
+    font-family: "Roboto-Bold";
+    font-size: 18px;
+    position: sticky;
+    height: 50px;
+    padding: 10px;
+}
+
+#admin_management_table td {
+    text-align: start;
+    font-family: "Cabin-Regular";
+    font-size: 16px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+#admin_management_table .content_container tr:nth-child(even) {
+    background-color: rgba(255,255,255,80%);
+}
+
+#admin_management_table .content_container tr:nth-child(odd) {
+    background-color: rgba(228,228,228,35%);
+}
+
+#admin_management_table tr td:first-child,
+#admin_management_table tr th:first-child {
+    padding-left: 50px;
+}
+
+#admin_management_table tr td:last-child,
+#admin_management_table tr th:last-child {
+    padding-right: 50px;
+}
+
+#admin_management_table .admin_management_button {
+    border: none;
+    background-color: transparent;
+    z-index: 10;
+}
+
+#admin_management_table .admin_management_button img {
+    width: 15px;
+}
+
+/* Set the width of each column */
+#admin_management_table th:nth-child(1),
+#admin_management_table td:nth-child(1) {
+    width: 15%;
+}
+
+#admin_management_table th:nth-child(2),
+#admin_management_table td:nth-child(2) {
+    width: 15%;
+}
+
+#admin_management_table th:nth-child(3),
+#admin_management_table td:nth-child(3) {
+    width: 25%;
+}
+
+#admin_management_table th:nth-child(4),
+#admin_management_table td:nth-child(4) {
+    width: 20%;
+}
+
+#admin_management_table th:nth-child(5),
+#admin_management_table td:nth-child(5) {
+    width: 5%;
+}
+
+#admin_management_table th:nth-child(5),
+#admin_management_table td:nth-child(5) {
+    width: 5%;
+}
+
+/* Confirm pop-up modal */
+#admin_management_table .confirm_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#admin_management_table .confirm_modal .modal_content {
+    background-color: white;
+    margin: 20% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    height: 200px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#admin_management_table .confirm_modal .modal_content .confirm_text {
+    font-family: "Cabin-Regular";
+    color: black;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#admin_management_table .confirm_modal .modal_content .button_box {
+    width: 60%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+#admin_management_table .confirm_modal button {
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    border-radius: 20px;
+    border-width: 1.5px;
+    border-color: #DE0A3F;
+    color: #DE0A3F;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+    text-align: center;
+    z-index: 10;
+}
+
+/* Add New Group Page */
+.add_new_group_container {
+    margin: 50px 30px;
+    width: 350px;
+}
+
+#add_new_group .group_list {
+    padding: 0px;
+    width: 100%;
+    height: 450px;
+}
+
+#add_new_group .group_list .exist_group_list {
+    background-color:white;
+    padding: 0px;
+    width:100%;
+    height: 350px;
+    overflow-y: scroll; 
+    overflow-x: hidden; 
+    padding: 10px;
+}
+
+#add_new_group .group_list .exist_group_list .group_box {
+    padding: 0px;
+    width: 100%;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#add_new_group .group_list .exist_group_list .each_group {
+    padding: 0px;
+    width: 300px;
+    height: 35px;
+    font-family: "Roboto-Regular";
+    font-size: 16px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#add_new_group .group_list .exist_group_list button {
+    background-color: transparent;
+    width: 35px;
+    height: 35px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding: 5px;
+}
+
+#add_new_group .group_list .exist_group_list img {
+    width: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#add_new_group .group_list .exist_group_list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#add_new_group .group_list .exist_group_list::-webkit-scrollbar-thumb {
+    background-color: #9F9D9D;
+    border-radius: 20px;
+}
+
+
+#add_new_group .add_group_box {
+    padding: 0px;
+    width:100%;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+#add_new_group .add_group_box .input_add_group {
+    width: 200px;
+    height: 30px;
+    padding-left: 10px;
+    margin-left: 20px;
+    font-family: "Roboto-Regular";
+    font-size: 16px;
+}
+
+#add_new_group .add_group_box .input_add_group::placeholder {
+    color: #D9D9D9;
+}
+
+#add_new_group .add_group_box button {
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-right: 10px;
+}
+
+#add_new_group .add_group_box img {
+    width: 25px;
+}
+
+.add_new_group_container .button_container {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add_new_group_container .button_container .button {
+    width: 120px;
+    height: 35px;
+    background-color: #DE0A3F;
+    border-radius: 20px;
+    border-width: 0px;
+    color: white;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+    text-align: center;
+}

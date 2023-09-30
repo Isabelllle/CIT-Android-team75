@@ -68,23 +68,26 @@ h1{
 }
 
 /* input personal information (full name, email)*/ 
-.input_item{   
+.input_item {   
     margin-top: 50px;
-    margin-left: 30px;
-    margin-right: 40px;
+    margin-left: 85px;
+    margin-right: 85px;
     margin-bottom: 40px;
+    padding: 20px;
 }
 
-.input_underline{
+.input_hor_box {
+    width: 100%;
+    margin-bottom: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input_half {
     color: black;
     font-family: "Roboto-Regular";
     font-size: 20px;
-    width: 35%;
-    margin-right: 25px;
-    margin-left: 50px;
-}
-
-.input_underline{
+    width: 250px;
     border: none;
     border-bottom: 2px solid black;
     padding: 5px;
@@ -93,19 +96,24 @@ h1{
     background-color: white;
 }
 
-.input_item #email{
-    width:83%;
-    margin-top: 30px;
+.input_full {
+    color: black;
+    font-family: "Roboto-Regular";
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid black;
+    padding: 5px;
+    outline: none;
+    height: 45px;
+    background-color: white;
 }
 
-.input_underline::after{
-    content:"";
-    display: block;
-    border-bottom: 2px solid red;
-    margin-top: -2px;
+.container .col_mid_6_right_side .input_half::placeholder{
+    color: #9F9D9D;
 }
 
-.container .col_mid_6_right_side .input_underline::placeholder{
+.container .col_mid_6_right_side .input_full::placeholder{
     color: #9F9D9D;
 }
 
@@ -115,10 +123,11 @@ h1{
     font-family: "Roboto-Regular";
     font-size: 20px;
     width: 80%;
-    margin-right: 25px;
-    margin-left: 50px;
     margin-top: 60px;
+    margin-bottom: 45px;
     display: flex;
+    align-items: start;
+    justify-content: space-between;
 }
 
 .input_item #group_options select{
@@ -138,24 +147,13 @@ h1{
     margin-right: 50px;
 }
 
-/*sign up button*/
-.btn_sign_up{
-    display: block;
-    position:absolute;
-    bottom: 25%;
-    right: 23%;
-    width: 150px;
-    height: 40px;
-    font-family: "Roboto-Regular";
-    color: white;
-    font-size: 24px;
-    background-color: #DE0A3F;
-    border: none;
-    border-radius: 50px;
-
+.register{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    width: 80%;
 }
 
-/*redirction to register page*/
 .register a{
     font-size: 16px;
     color: #585151;
@@ -163,24 +161,54 @@ h1{
     margin-left: 35px;
 }
 
+/*sign up button*/
+.btn_sign_up{
+    width: 150px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    color: white;
+    background-color: #DE0A3F;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+.btn_sign_up button {
+    width: 100%;
+    height: 100%;
+    font-family: "Roboto-Regular";
+    color: white;
+    font-size: 24px;
+    background-color: transparent;
+    text-align: center;
+    border: none;
+    border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*redirction to login page*/
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 45%;
+    bottom: 15%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .login a{
     font-size: 16px;
     color: #585151;
     font-family: "Roboto-Regular";
-    margin-left: 80px;
 }
 
-.register{
-    margin-left: 160px;
-    position:absolute;
-    bottom: 40%;
-}
-
-.login{
-    margin-left: 160px;
-    position:absolute;
-    bottom: 15%;
-}
 /* Contact us */
 #contact_us_icon{
     position:absolute;
