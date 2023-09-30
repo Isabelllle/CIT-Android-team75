@@ -39,8 +39,6 @@ const NavBar= () =>{
         .catch(error => console.error('Error:', error));
     }, [isManager]); 
 
-    
-
     return (
 
         // Create the list in navigation bar
@@ -73,19 +71,23 @@ const NavBar= () =>{
                 </Link>
             </li>
 
-            <li>
-                <Link to="/admin_management" className={styles.no_underline}>
-                    <AdminManageIcon className={styles.icon} style={{ fill: location.pathname.startsWith('/admin_management') ? '#DE0A3F' : 'black',  stroke: location.pathname.startsWith('/admin_management') ? '#DE0A3F' : 'black'  } } src={AdminManageIcon} />
-                    <h1 className={location.pathname.startsWith('/admin_management') ? styles.selectedText : styles.unselectedText}>Admin Management</h1>
-                </Link>
-            </li>
+            {!isManager && (
+                <div>
+                    <li>
+                        <Link to="/admin_management" className={styles.no_underline}>
+                            <AdminManageIcon className={styles.icon} style={{ fill: location.pathname.startsWith('/admin_management') ? '#DE0A3F' : 'black',  stroke: location.pathname.startsWith('/admin_management') ? '#DE0A3F' : 'black'  } } src={AdminManageIcon} />
+                            <h1 className={location.pathname.startsWith('/admin_management') ? styles.selectedText : styles.unselectedText}>Admin Management</h1>
+                        </Link>
+                    </li>
 
-            <li>
-                <Link to="/survey_management" className={styles.no_underline}>
-                    <SurveyManageIcon className={styles.icon} style={{ fill: location.pathname.startsWith('/survey_management') ? '#DE0A3F' : 'black' } } src={SurveyManageIcon} />
-                    <h1 className={location.pathname.startsWith('/survey_management') ? styles.selectedText : styles.unselectedText}>Survey Management</h1>
-                </Link>
-            </li>
+                    <li>
+                        <Link to="/survey_management" className={styles.no_underline}>
+                            <SurveyManageIcon className={styles.icon} style={{ fill: location.pathname.startsWith('/survey_management') ? '#DE0A3F' : 'black' } } src={SurveyManageIcon} />
+                            <h1 className={location.pathname.startsWith('/survey_management') ? styles.selectedText : styles.unselectedText}>Survey Management</h1>
+                        </Link>
+                    </li>
+                </div>
+            )}
         </div>
     );
 }

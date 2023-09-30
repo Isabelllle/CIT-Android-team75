@@ -1,6 +1,6 @@
 // Table component for the admin management list
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 
 // Import CSS
 import styles from '../stylesheets/admin_management.module.css';
@@ -59,15 +59,17 @@ const AdminManagementTable = ({ selectedSort }) => {
     // }, [handleSort]);
 
     // Handle the approve and confirm box request
-    const confirmApproveModal = document.getElementById("confirm_approve_modal");
+    // const confirmApproveModal = document.getElementById('confirm_approve_modal');
+    // const confirmApproveModal = document.querySelector('#confirm_approve_modal');
+    const confirmApproveModalRef = useRef(null);
     var approveEmail = '';
     
     const showApproveModal = () => {
-        confirmApproveModal.style.display = "block";
+        confirmApproveModalRef.current.style.display = 'block';
     };
     
     const closeApproveModal = () => {
-        confirmApproveModal.style.display = "none";
+        confirmApproveModalRef.current.style.display = 'none';
     };
 
     const handleApprove = (email) => {
@@ -101,15 +103,15 @@ const AdminManagementTable = ({ selectedSort }) => {
     }
 
     // Handle the disapprove and confirm box request
-    const confirmDisapproveModal = document.getElementById("confirm_disapprove_modal");
+    const confirmDisapproveModalRef =  useRef(null);
     var disapproveEmail = '';
     
     const showDisapproveModal = () => {
-        confirmDisapproveModal.style.display = "block";
+        confirmDisapproveModalRef.current.style.display = "block";
     };
     
     const closeDisapproveModal = () => {
-        confirmDisapproveModal.style.display = "none";
+        confirmDisapproveModalRef.current.style.display = "none";
     };
 
     const handleDisapprove = (email) => {
@@ -185,7 +187,7 @@ const AdminManagementTable = ({ selectedSort }) => {
             </div>
 
             {/* Confirm Modal if the admin want to approve the account */}
-            <div className={styles.confirm_modal} id='confirm_approve_modal'>
+            <div className={styles.confirm_modal} ref={confirmApproveModalRef}>
                 <div className={styles.modal_content}>
                     <div className={styles.confirm_text}>Are you sure you want to approve the sign up request?</div>
                     
@@ -197,7 +199,7 @@ const AdminManagementTable = ({ selectedSort }) => {
             </div>
 
             {/* Confirm Modal if the admin want to disapprove the account */}
-            <div className={styles.confirm_modal} id='confirm_disapprove_modal'>
+            <div className={styles.confirm_modal} ref={confirmDisapproveModalRef}>
                 <div className={styles.modal_content}>
                     <div className={styles.confirm_text}>Are you sure you want to disapprove the sign up request?</div>
                     
