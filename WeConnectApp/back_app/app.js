@@ -5,6 +5,7 @@ const volunteerRoutes = require('./routes/volunteer');
 const groupRoutes = require('./routes/groups'); 
 const surveyRoutes = require('./routes/survey'); 
 const reminderRoutes = require('./routes/reminder'); 
+const errorReportRoutes = require('./routes/errorReports'); 
 const { client } = require('./db'); 
 
 
@@ -40,6 +41,8 @@ app.use('/api/groups', groupRoutes);
 app.use('/api/survey', surveyRoutes);
 
 app.use('/api/reminder', reminderRoutes);
+
+app.use('/api/error-reports', errorReportRoutes);
 
 // connect to PostgreSQL database
 client.connect(err => {
