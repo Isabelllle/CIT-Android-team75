@@ -18,4 +18,21 @@ router.post('/volunteerDetails', (req, res) => {
     );
 });
 
+// API to update FCM token
+router.post('/update-fcm-token', async (req, res) => {
+    const { email, fcmToken } = req.body;
+
+    if (!email || !fcmToken) {
+        return res.status(400).json({ error: 'Email and FCM token are required.' });
+    }
+
+    try {
+        await client.query('UPDATE public.volunteers SET fcm_token = $1 WHERE email = $2', [fcmToken, email]);
+        res.json({ message: 'FCM token updated successfully.' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while updating the FCM token.' });
+    }
+});
+
 module.exports = router;
