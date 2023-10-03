@@ -71,7 +71,7 @@ const NavBar= () =>{
                 </Link>
             </li>
 
-            {!isManager && (
+            {isManager && (
                 <div>
                     <li>
                         <Link to="/admin_management" className={styles.no_underline}>

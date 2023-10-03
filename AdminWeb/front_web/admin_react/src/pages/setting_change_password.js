@@ -16,7 +16,6 @@ const SettingsPassword = () =>{
     // Attributes
     const navigate = useNavigate();
 
-    // ---------------------------Replace initial data
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -42,7 +41,6 @@ const SettingsPassword = () =>{
         })
         .catch(error => console.error('Error:', error));
     }, []); 
-    
 
     // Handle input changes
     const handleOldPassword = (old_password) => {
@@ -59,7 +57,7 @@ const SettingsPassword = () =>{
 
     // Handle input changes submit
     const handleSubmit = () => {
-        if (oldPassword === '' && newPassword === '' && confirmPassword === '') {
+        if (oldPassword === '' || newPassword === '' || confirmPassword === '') {
             setWarningFill(true);
             setWarningConfirm(false);
         } else if (newPassword.trim() !== confirmPassword.trim()) {
@@ -74,18 +72,23 @@ const SettingsPassword = () =>{
                   'Authorization': `Bearer ${token}` 
                 },
                 body: JSON.stringify({
+                  oldpassword: oldPassword,
                   password: newPassword,
                   email: email,
                 })
             })
             .then(response => response.json())
             .then(data => {
-            console.log('Data updated successfully:', data);
+                if (data.success) {
+                    console.log('Data updated successfully:', data); 
+                    console.log('Entered Password:', oldPassword, newPassword, confirmPassword);
+                    navigate('/settings'); 
+                } else {
+                    console.error('Error:', data.message);
+                    // -------------------------------- Add: 页面显示密码错误 try again
+                
+                }
             })
-            .catch(error => console.error('Error:', error));
-
-            console.log('Entered Password:', oldPassword, newPassword, confirmPassword);
-            navigate('/settings'); 
         }
     };
 

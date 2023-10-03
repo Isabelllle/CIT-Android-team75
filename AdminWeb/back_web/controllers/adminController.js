@@ -246,7 +246,7 @@ const updateUserPass = (req, res) => {
                 const storedPassword = results.rows[0].password;
 
                 if (oldpassword !== storedPassword) {
-                    return res.json({ success: false, message: 'Invalid password' });
+                    return res.json({ success: false, message: 'Invalid password', oldpassword, storedPassword});
                 }
 
                 // Step 2: Update the password if old password matches

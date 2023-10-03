@@ -27,6 +27,8 @@ const AdminManagementTable = ({ selectedSort }) => {
         { last_name: 'Story', first_name: 'Rating', email: 'fgabc@gmail.com', group: 'Volunteer West' },
         { last_name: 'Story', first_name: 'Text', email: 'gabcd@gmail.com', group: 'Volunteer West' },
     ]);
+
+    // last_name, first_name, email, group
   
     const tableHeaders = ['Last Name', 'First Name', 'Email', 'Group'];
 
@@ -59,8 +61,6 @@ const AdminManagementTable = ({ selectedSort }) => {
     // }, [handleSort]);
 
     // Handle the approve and confirm box request
-    // const confirmApproveModal = document.getElementById('confirm_approve_modal');
-    // const confirmApproveModal = document.querySelector('#confirm_approve_modal');
     const confirmApproveModalRef = useRef(null);
     var approveEmail = '';
     
