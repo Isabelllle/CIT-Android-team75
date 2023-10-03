@@ -22,20 +22,9 @@ public class SurveyOrganisationDetails extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Limit the text box to not be empty
-                EditText organisation = findViewById(R.id.input_new_organisation);
-                String text1 = organisation.getText().toString().trim();
+                Intent intent = new Intent(SurveyOrganisationDetails.this, SurveyPrivacyPolice.class);
+                startActivity(intent);
 
-                EditText manager_email = findViewById(R.id.input_manager_email);
-                String text2 = manager_email.getText().toString().trim();
-
-                if (text1.isEmpty() || text2.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "text box cannont be empty",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(SurveyOrganisationDetails.this, SurveyPrivacyPolice.class);
-                    startActivity(intent);
-                }
             }
         });
 

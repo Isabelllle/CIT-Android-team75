@@ -15,6 +15,16 @@ public class SurveyPrivacyPolice extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_privacy_police);
 
+        //Redirection to take survey page when click on "agree" button
+        Button button1 = findViewById(R.id.police_agree);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SurveyPrivacyPolice.this, QuestionSearchDropdown.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         //Redirection to volunteer home page when click on "disagree" button

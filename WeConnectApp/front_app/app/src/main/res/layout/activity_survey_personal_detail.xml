@@ -46,6 +46,7 @@
         android:gravity="start"
         android:textSize="16sp"
         android:padding="16dp"
+        android:autofillHints="username"
         />
 
     <!-- Enter last name   -->
@@ -58,7 +59,8 @@
         android:layout_below="@id/input_first_name"
         android:textSize="16sp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        />
 
     <EditText
         android:layout_width="wrap_content"
@@ -73,6 +75,7 @@
         android:gravity="start"
         android:textSize="16sp"
         android:padding="16dp"
+        android:autofillHints="username"
         />
 
     <!-- Enter Email   -->
@@ -85,7 +88,8 @@
         android:layout_below="@id/input_last_name"
         android:textSize="16sp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        />
 
     <EditText
         android:layout_width="wrap_content"
@@ -100,6 +104,7 @@
         android:gravity="start"
         android:textSize="16sp"
         android:padding="16dp"
+        android:autofillHints="emailAddress"
         />
 
     <!-- Enter Postcode  -->
@@ -127,6 +132,7 @@
         android:gravity="start"
         android:textSize="16sp"
         android:padding="16dp"
+        android:autofillHints="postalCode"
         />
 
 

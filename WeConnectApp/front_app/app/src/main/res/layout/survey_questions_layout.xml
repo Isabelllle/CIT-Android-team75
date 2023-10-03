@@ -3,17 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image">
 
-    <include
-        layout="@layout/survey_base_layout"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="88dp"></include>
+
+    <ImageView
+        android:id="@+id/survey_base_logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/logo"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
 
     <!-- next question button  -->
     <Button
-        android:id="@+id/survey_question_btn_1"
+        android:id="@+id/survey_question_btn_next"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginEnd="40dp"
@@ -30,7 +40,7 @@
 
     <!--  previous question button  -->
     <Button
-        android:id="@+id/survey_question_btn_2"
+        android:id="@+id/survey_question_btn_previous"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:background="@drawable/survey_detail_btn_templet"

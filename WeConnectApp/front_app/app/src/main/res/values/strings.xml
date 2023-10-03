@@ -54,8 +54,8 @@
     <string name="email">Email*</string>
     <string name="postcode">Postcode*</string>
     <string name="choose_organisation">Choose your organisation*</string>
-    <string name="cannont_find_organisation">Cannot find your organisation? Enter Here*</string>
-    <string name="manager_email">Manager Email*</string>
+    <string name="cannont_find_organisation">Cannot find your organisation? Enter Here</string>
+    <string name="manager_email">Manager Email</string>
 
     <!--  Hint Text  -->
     <string name="enter_first_name">Enter your first name here</string>
@@ -64,6 +64,8 @@
     <string name="enter_postcode">Enter your postcode here </string>
     <string name="enter_organisation">Enter organisation name</string>
     <string name="enter_manager_email">Enter your manager email here</string>
+    <string name="enter_answer">Enter your answer here</string>
+    <string name="enter_search_country">Please enter your country</string>
 
     <!-- Organisation list   -->
     <string-array name="organisation_list">
@@ -107,7 +109,7 @@
         and supporting organisational development.”
     </string>
     <string name="title_activity_nav_testing">NavTesting</string>
-    
+
     <!-- Contact Us   -->
     <string name="contact_us_image">contact us image</string>
     <string name="contact_us">Contact Us</string>
@@ -116,6 +118,49 @@
 
     <!--  Error hint  -->
     <string name="empty_hint">The text box cannot be empty</string>
+
+    <!-- Survey questions   -->
+    <string name="type_short_answer_question_text_sample">What was your role?</string>
+    <string name="type_enter_number_question_text_sample">How many new connections have you
+        made while volunteering? </string>
+    <string name="type_rating_1_5_question_text_sample">Has volunteering helped you to practice the
+         Connect of wellbeing?
+</string>
+    <string name="type_rating_1_10_question_text_sample">Would you recommend Volunteer West to your
+        friends or anyone who want to volunteer?</string>
+    <string name="type_yes_or_no_question_text_sample">Are you volunteering due to Centrelink
+        requirement?</string>
+    <string name="type_search_dropdown_question_text_sample">Country of Birth:</string>
+    <string name="type_multiple_choices_question_text_sample">Single choice question text sample?</string>
+
+    <string name="option1">Option 1</string>
+    <string name="option2">Option 2</string>
+    <string name="option3">Option 3</string>
+    <string name="option4">Option 4</string>
+
+    <string name="rating1">1</string>
+    <string name="rating2">2</string>
+    <string name="rating3">3</string>
+    <string name="rating4">4</string>
+    <string name="rating5">5</string>
+
+    <string name="question_story">Story</string>
+    <string name="question_wellbeing">Wellbeing</string>
+    <string name="question_employability">Employability</string>
+    <string name="question_volunteer_confidence">Volunteer confidence</string>
+    <string name="question_demographic_question">Demographic question</string>
+    <string name="question_service">Service</string>
+
+    <string name="degree_agree">strongly agree</string>
+    <string name="degree_disagree">strongly disagree</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <!--  Congrats Page  -->
+    <string name="congrats">CONGRATS!</string>
+    <string name="thanks_for_submit">thank you for submitting</string>
+    <string name="return_home_page">back home page</string>
 
 
 </resources>
