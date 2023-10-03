@@ -12,7 +12,9 @@ const router = express.Router();
 
 const adminController = require('../controllers/adminController');
 const reminderListsController = require('../controllers/reminderListsController');
+const UnregisterListsController = require('../controllers/adminManageController');
 const surveyManageController = require('../controllers/surveyManageController');
+const dataReviewController = require('../controllers/dataReviewController');
 
 /** 
  * All routes realted to the functions of dashbaord when admin has logged in
@@ -21,12 +23,20 @@ const surveyManageController = require('../controllers/surveyManageController');
 router.get('/api/user', adminController.verifyToken, adminController.getUserName);
 router.get('/api/getIsManger', adminController.verifyToken, adminController.getIsManger);
 router.get('/api/getSurveyQuesTable', adminController.getSurveyQuesTable);
+router.get('/api/getGroups', adminController.getGroups);
 router.get('/api/getReminderList', reminderListsController.getReminderList);
 router.get('/api/searchReminderByEmail', reminderListsController.searchReminderByEmail);
+router.get('/api/getUnregisterList', UnregisterListsController.getUnregisterList);
+router.get('/api/getAnswerData', dataReviewController.getAnswerList);
 
 
 router.put('/api/users', adminController.updateUserInfo);
 router.put('/api/userspassword', adminController.updateUserPass);
+
+// Admin Management routers
+router.put('/api/approveEmail',UnregisterListsController.approveEmail)
+router.put('/api/disapproveEmail',UnregisterListsController.disapproveEmail)
+router.put('/api/addGroup', UnregisterListsController.addGroup);
 
 // Survey Management routers
 router.put('/api/addTextQuestion',surveyManageController.addTextQuestion); 
@@ -36,5 +46,6 @@ router.put('/api/addRatingQuestion',surveyManageController.addRatingQuestion);
 router.put('/api/addDropDownQuestion',surveyManageController.addDropDownQuestion);
 
 router.delete('/api/deleteItem/:id', adminController.deleteItem);
+router.delete('/api/deleteEmail/:email', reminderListsController.deleteItem);
 
 module.exports = router;

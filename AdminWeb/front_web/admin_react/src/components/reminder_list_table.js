@@ -30,10 +30,12 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
                     // -------------------- 调取data，用first name排序
                     const sortedData = data.sort((a, b) => a.first_name.localeCompare(b.first_name));
                     setTableData(sortedData);
-                } else {
+                } else if (selectedSort === 'overdue_day') {
                     // -------------------- 调取data，用overdue day排序
-                    const sortedData = data.sort((a, b) => a.overdue_day.seconds - b.overdue_day.seconds);
+                    const sortedData = data.sort((a, b) => a.overdue_day - b.overdue_day);
                     setTableData(sortedData);
+                } else {
+                    setTableData(data);
                 }
             })
             .catch(error => console.error('Error:', error));
@@ -43,11 +45,21 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
     // Handle search
     const handleSearch = useCallback(() => {
 
-        // -------------------- 调取data，只显示searchEmail对应的data
-        fetch(`http://localhost:3001/api/searchReminderByEmail?email=${searchEmail}`)
+        if (searchEmail === '') {
+            fetch('http://localhost:3001/api/getReminderList')
             .then(response => response.json())
-            .then(data => setTableData(data))
+            .then(data => 
+                {console.log(data, 'survey');
+                setTableData(data)})
             .catch(error => console.error('Error:', error));
+
+        }else{
+            // -------------------- 调取data，只显示searchEmail对应的data
+            fetch(`http://localhost:3001/api/searchReminderByEmail?email=${searchEmail}`)
+                .then(response => response.json())
+                .then(data => setTableData(data))
+                .catch(error => console.error('Error:', error));
+        }
 
         //     console.log('The search Message is' + searchEmail);
     }, [searchEmail]);
@@ -85,14 +97,14 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
         setTableData(updatedTableData);
 
         //--------------------Delete item from databas
-        // fetch(`http://localhost:3001/api/deleteItem/${deleteEmail}`, {
-        //     method: 'DELETE',
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     console.log(data); 
-        // })
-        // .catch(error => console.error('Error:', error));
+        fetch(`http://localhost:3001/api/deleteEmail/${deleteEmail}`, {
+            method: 'DELETE',
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); 
+        })
+        .catch(error => console.error('Error:', error));
 
         console.log('Confirm delete:', deleteEmail);
         closeModal();
@@ -134,7 +146,7 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
                         <td className={styles.content}>{item.last_name}</td>
                         <td className={styles.content}>{item.first_name}</td>
                         <td className={styles.content}>{item.email}</td>
-                        <td className={styles.content}>{item.overdue_day.seconds}</td>
+                        <td className={styles.content}>{item.overdue_day}</td>
                         <td className={styles.content}>{item.delete}</td>
                     </tr>
                     ))}

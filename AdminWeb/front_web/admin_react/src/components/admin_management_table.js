@@ -13,52 +13,40 @@ const AdminManagementTable = ({ selectedSort }) => {
 
     // Table Variable
     const [tableData, setTableData] =  useState([
-        { last_name: 'Story', first_name: 'Text', email: '12345@gmail.com', group: 'unimelb' },
-        { last_name: 'Wellbeing', first_name: 'Rating', email: '23456@gmail.com', group: 'unimelb'},
-        { last_name: 'Story', first_name: 'Drop down', email: '34567@gmail.com', group: 'unimelb' },
-        { last_name: 'Employability', first_name: 'Text', email: '45678@gmail.com', group: 'Volunteering Victoria' },
-        { last_name: 'Wellbeing', first_name: 'Number', email: '56789@gmail.com', group: 'Volunteering Victoria' },
-        { last_name: 'Story', first_name: 'Rating', email: '67890@gmail.com', group: 'Volunteering Victoria' },
-        { last_name: 'Story', first_name: 'Text', email: 'abcde@gmail.com', group: 'Volunteering Victoria' },
-        { last_name: 'Wellbeing', first_name: 'Rating', email: 'bcdef@gmail.com', group: 'unimelb' },
-        { last_name: 'Story', first_name: 'Drop down', email: 'cdefg@gmail.com', group: 'unimelb' },
-        { last_name: 'Employability', first_name: 'Text', email: 'defga@gmail.com', group: 'unimelb' },
-        { last_name: 'Wellbeing', first_name: 'Number', email: 'efgab@gmail.com', group: 'unimelb' },
-        { last_name: 'Story', first_name: 'Rating', email: 'fgabc@gmail.com', group: 'Volunteer West' },
-        { last_name: 'Story', first_name: 'Text', email: 'gabcd@gmail.com', group: 'Volunteer West' },
     ]);
 
     // last_name, first_name, email, group
   
     const tableHeaders = ['Last Name', 'First Name', 'Email', 'Group'];
 
-    // Handle the sort option
-    // const handleSort = useCallback(() => {
-    //     console.log('Sorting...');
-    //     fetch('http://localhost:3001/api/getReminderList') 
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             console.log('Sorted data:', data);
-    //             if (selectedSort === 'last_name') {
-    //                 // -------------------- 调取data，用last name排序
-    //                 const sortedData = data.sort((a, b) => a.last_name.localeCompare(b.last_name));
-    //                 setTableData(sortedData);
-    //             } else if (selectedSort === 'first_name') {
-    //                 // -------------------- 调取data，用first name排序
-    //                 const sortedData = data.sort((a, b) => a.first_name.localeCompare(b.first_name));
-    //                 setTableData(sortedData);
-    //             } else {
-    //                 // -------------------- 调取data，用overdue day排序
-    //                 const sortedData = data.sort((a, b) => a.overdue_day.seconds - b.overdue_day.seconds);
-    //                 setTableData(sortedData);
-    //             }
-    //         })
-    //         .catch(error => console.error('Error:', error));
-    // }, [selectedSort]);
+       // Handle the sort option
+       const handleSort = useCallback(() => {
+        console.log('Sorting...');
+        fetch('http://localhost:3001/api/getUnregisterList') 
+            .then(response => response.json())
+            .then(data => {
+                if (selectedSort === 'last_name') {
+                    // -------------------- 调取data，用last name排序
+                    const sortedData = data.sort((a, b) => a.lastName.localeCompare(b.lastName));
+                    setTableData(sortedData);
+                } else if (selectedSort === 'first_name') {
+                    // -------------------- 调取data，用first name排序
+                    const sortedData = data.sort((a, b) => a.firstName.localeCompare(b.firstName));
+                    setTableData(sortedData);
+                } else if (selectedSort === 'group_name') {
+                    // -------------------- 调取data，用group name排序
+                    const sortedData = data.sort((a, b) => a.group_name.localeCompare(b.group_name));
+                    setTableData(sortedData);
+                } else {
+                    setTableData(data);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }, [selectedSort]);
     
-    // useEffect(() => {
-    //     handleSort();
-    // }, [handleSort]);
+    useEffect(() => {
+        handleSort();
+    }, [handleSort]);
 
     // Handle the approve and confirm box request
     const confirmApproveModalRef = useRef(null);
@@ -83,15 +71,18 @@ const AdminManagementTable = ({ selectedSort }) => {
         // Update the tableData state with the updated list
         setTableData(updatedTableData);
 
-        //--------------------Delete item from databas
-        // fetch(`http://localhost:3001/api/deleteItem/${approveEmail}`, {
-        //     method: 'DELETE',
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     console.log(data); 
-        // })
-        // .catch(error => console.error('Error:', error));
+        // Approve email
+        fetch('http://localhost:3001/api/approveEmail', {
+            method: 'PUT',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: approveEmail,
+           })
+        })
+        .catch(error => console.error('Error:', error));
+
 
         console.log('Confirm approve:', approveEmail);
         closeApproveModal();
@@ -125,15 +116,17 @@ const AdminManagementTable = ({ selectedSort }) => {
         // Update the tableData state with the updated list
         setTableData(updatedTableData);
 
-        //--------------------Delete item from databas
-        // fetch(`http://localhost:3001/api/deleteItem/${disapproveEmail}`, {
-        //     method: 'DELETE',
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     console.log(data); 
-        // })
-        // .catch(error => console.error('Error:', error));
+        // Disapprove email
+        fetch('http://localhost:3001/api/disapproveEmail', {
+            method: 'PUT',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: disapproveEmail,
+            })
+        })
+        .catch(error => console.error('Error:', error));
 
         console.log('Confirm disapprove:', disapproveEmail);
         closeDisapproveModal();
@@ -149,7 +142,8 @@ const AdminManagementTable = ({ selectedSort }) => {
         approve: <button onClick={() => handleApprove(item.email)} className={styles.admin_management_button}><img src={ApproveIcon} alt="Approve request" /></button>,
         disapprove: <button onClick={() => handleDisapprove(item.email)} className={styles.admin_management_button}><img src={DisapproveIcon} alt="Disapprove request" /></button>
     }));
-  
+    
+
     return (
         <div id={styles.admin_management_table}>
 
@@ -174,10 +168,10 @@ const AdminManagementTable = ({ selectedSort }) => {
                     <tbody>
                     {mappedTableData.map((item, index) => (
                         <tr key={index}>
-                        <td className={styles.content}>{item.last_name}</td>
-                        <td className={styles.content}>{item.first_name}</td>
+                        <td className={styles.content}>{item.lastName}</td>
+                        <td className={styles.content}>{item.firstName}</td>
                         <td className={styles.content}>{item.email}</td>
-                        <td className={styles.content}>{item.group}</td>
+                        <td className={styles.content}>{item.group_name}</td>
                         <td className={styles.content}>{item.approve}</td>
                         <td className={styles.content}>{item.disapprove}</td>
                     </tr>

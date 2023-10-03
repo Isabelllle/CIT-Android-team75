@@ -99,8 +99,29 @@ const signupAdmin = (req, res) => {
 
 };
 
+
+// // 示例路由处理器
+// const logout = (req, res) => {
+//     // 清除用户的认证状态，例如删除 session 或 token
+//     req.session.destroy((err) => {
+//       if (err) {
+//         console.error('Error destroying session:', err);
+//         res.status(500).json({ success: false, message: 'Internal Server Error' });
+//         return;
+//       }
+  
+//       // 返回成功响应
+//       res.json({ success: true, message: 'User logged out successfully' });
+//     });
+//   };
+  
+//   // 将路由处理器与路由路径绑定
+//   app.post('/api/logout', logout);
+  
+
 /**
  * GET static/signin/getGroups
+ * GET /api/getGroups
  * Retrieves a list of groups from the database.
  * 
  * @param {Object} req - The HTTP request object.
@@ -112,7 +133,7 @@ const getGroups = (req, res) => {
         if (error) {
             throw error;
         }
-        const groups = results.rows.map(row => row.group_name); 
+        const groups = results.rows.map(row => row.group_name);
         res.json(groups);
     });
 };
@@ -299,22 +320,61 @@ const getSurveyQuesTable = (req, res) => {
 const deleteItem = (req, res) => {
     const itemId = req.params.id;
 
-    client.query('DELETE FROM questions WHERE id = $1', [itemId], (error, result) => {
+    // Check if the item is a dropdown
+    client.query('SELECT type FROM questions WHERE id = $1', [itemId], (error, result) => {
         if (error) {
-          console.error('Error executing query:', error);
-          res.status(500).send('Internal Server Error');
-          return;
+            console.error('Error executing query:', error);
+            res.status(500).send('Internal Server Error');
+            return;
         }
-    
-        if (result.rowCount === 0) {
-          res.status(404).send('Item not found');
-          return;
-        }
-    
-        res.send('Item deleted successfully');
-      });
 
+        const itemType = result.rows[0].type;
+
+        if (itemType === 'dropdown') {
+            // Delete related dropdown options
+            client.query('DELETE FROM dropdown_options WHERE question_id = $1', [itemId], (error, result) => {
+                if (error) {
+                    console.error('Error executing query:', error);
+                    res.status(500).send('Internal Server Error');
+                    return;
+                }
+
+                // Continue with deleting the question
+                client.query('DELETE FROM questions WHERE id = $1', [itemId], (error, result) => {
+                    if (error) {
+                        console.error('Error executing query:', error);
+                        res.status(500).send('Internal Server Error');
+                        return;
+                    }
+
+                    if (result.rowCount === 0) {
+                        res.status(404).send('Item not found');
+                        return;
+                    }
+
+                    res.send('Item and related dropdown options deleted successfully');
+                });
+            });
+        } else {
+            // Delete the question directly
+            client.query('DELETE FROM questions WHERE id = $1', [itemId], (error, result) => {
+                if (error) {
+                    console.error('Error executing query:', error);
+                    res.status(500).send('Internal Server Error');
+                    return;
+                }
+
+                if (result.rowCount === 0) {
+                    res.status(404).send('Item not found');
+                    return;
+                }
+
+                res.send('Item deleted successfully');
+            });
+        }
+    });
 }
+
 
 
 module.exports = {

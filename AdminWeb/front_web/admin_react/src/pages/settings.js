@@ -37,7 +37,12 @@ const Settings = () =>{
             },
         })
        
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
    
             setFirstName(data.firstName);
@@ -170,7 +175,7 @@ const Settings = () =>{
                         )}
 
                         {/* Last Name */}
-                        {isEditingEmail ? (
+                        {/* {isEditingEmail ? (
                             <div className={styles.editing_container}>
                                 <form>
                                     <h4>Email</h4>
@@ -182,7 +187,7 @@ const Settings = () =>{
                                 <h4>Email</h4>
                                 <div className={styles.text}>{email}</div>
                             </div>
-                        )}
+                        )} */}
 
                         <div className={styles.input_button}>
                             {isEditingFirstName && <button onClick={handleCancelButton}>Cancel</button>}

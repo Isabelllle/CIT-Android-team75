@@ -16,7 +16,14 @@ const AddNewGroup = () =>{
 
     // Attributes
     const navigate = useNavigate();
-    const [groups, setGroups] = useState(['Unimelb', 'Volunteering Victoria', 'Volunteer West']);
+    const [groups, setGroups] = useState([
+    ]);
+    useEffect(() => {
+        fetch('http://localhost:3001/api/getGroups')
+            .then(response => response.json())
+            .then(data => setGroups(data))
+            .catch(error => console.error('Error:', error));
+    }, []); 
     const [addGroup, setAddGroup] = useState('');
     const [giveWarning, setWarning] = useState(false);
 
@@ -41,34 +48,31 @@ const AddNewGroup = () =>{
     const handleSubmit = event => {
         event.preventDefault();
 
-        // if (question !== '' && items !== null) {
-            // // ---------------- Add post request (selectedTitle, selectedType, question)
-            // fetch('http://localhost:3001/api/addDropDownQuestion', {
-            // method: 'PUT',
-            // headers: {
-            //     'Content-Type': 'application/json'
-            // },
-            // body: JSON.stringify({
-            //     selectedTitle: selectedTitle,  
-            //     question: question,
-            //     questionSecond: questionSecond,
-            //     items: items,
-            //   })
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //     console.log('Question added successfully:', data);
-            //     navigate('/survey_management'); 
-            // })
-            // .catch(error => {
-            //     console.error('Error adding question:', error);
-            // });
+        if (addGroup !== '') {
+            // ---------------- Add post request (group)
+            fetch('http://localhost:3001/api/addGroup', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                addGroup: addGroup,
+              })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Group added successfully:', data);
+                navigate('/admin_management'); 
+            })
+            .catch(error => {
+                console.error('Error adding group:', error);
+            });
 
             console.log('Submitted with value:', groups);
             navigate('/admin_management'); 
-        // } else {
-        //     setWarning(true);
-        // }
+        } else {
+            setWarning(true);
+        }
     };
 
     return (

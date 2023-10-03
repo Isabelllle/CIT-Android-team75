@@ -12,8 +12,7 @@ const SurveyQuestionTable = () => {
 
     // Variable
     // -------------------- Replace the data with survey question table in database
-    const [tableData, setTableData] = useState([
-    ]);
+    const [tableData, setTableData] = useState([ ]);
 
     useEffect(() => {
         fetch('http://localhost:3001/api/getSurveyQuesTable')
@@ -47,14 +46,14 @@ const SurveyQuestionTable = () => {
         setTableData(updatedTableData);
 
         //--------------------Delete item from databas
-        // fetch(`http://localhost:3001/api/deleteItem/${id}`, {
-        //     method: 'DELETE',
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     console.log(data); 
-        // })
-        // .catch(error => console.error('Error:', error));
+        fetch(`http://localhost:3001/api/deleteItem/${deleteId}`, {
+            method: 'DELETE',
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); 
+        })
+        .catch(error => console.error('Error:', error));
 
         console.log('Confirm delete:', deleteId);
         closeModal();

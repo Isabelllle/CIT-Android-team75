@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,40 +26,31 @@
 
                 <form method="post" action = "/signin/submit">
                     <div class="input_item">
+                        <!-- input first name -->
+                        <input class="input_underline" type="text" name="first_name" placeholder="First Name"/>
 
-                        <div class="input_hor_box">
-                            <!-- input first name -->
-                            <input class="input_half" type="text" name="first_name" placeholder="First Name"/>
+                        <!-- input last name -->
+                        <input class="input_underline" type="text" name="last_name" placeholder="Last Name"/>
 
-                            <!-- input last name -->
-                            <input class="input_half" type="text" name="last_name" placeholder="Last Name"/>
-                        </div>
 
+                        <br>   <!--New Line-->
                         <!-- input email address -->
-                        <input class="input_hor_box input_full" id="email" type="email" name="email" placeholder="Email"/>
+                        <input class="input_underline" id="email" type="email" name="email" placeholder="Email"/>
 
-                        <div class="input_hor_box">
-                            <!-- input password -->
-                            <input class="input_half" type="password" name="password" placeholder="Password"/>
+                        <input class="input_underline" type="password" name="password" placeholder="Password"/>
 
-                            <!-- input confirm password -->
-                            <input class="input_half" type="password" name="confirm_password" placeholder="Confirm password"/>
-                        </div>
+                        <input class="input_underline" type="password" name="confirm_password" placeholder="Password"/>
+
 
                         <!-- select group -->
-                        <div id="group_options">
+                        <br>
+                        <div class="input_item" id="group_options">
                             <label for="group">Find your group:</label>
                             <select id="select_group" onchange="updateSelectedGroup()"></select>
                         </div>
                         
                         <!-- A hidden form field that stores the value of an option -->
                         <input type="hidden" name="selected_group" id="selected_group" value="">
-
-                        <!-- redirection to register page -->
-                        <div class="register">
-                            <div class="normal_text">Can not find your group?</div>
-                            <a href="" target="_self">Register Here</a>
-                        </div>
                         
                         <script>
                             function updateSelectedGroup() {
@@ -82,22 +75,29 @@
                                     .catch(error => console.error('Error fetching data:', error));
                             });
                         </script>
-                    </div>
+
 
                     <!-- sign up -->
-                    <a href="signupinstruction" target="_self" class="btn_sign_up">
-                        <button type="submit">
+                    <a href="signupinstruction" target="_self">
+                        <button type="submit" class="btn_sign_up">
                             Sign Up 
                         </button>
                     </a>
                 </form>
+
+                
+                
+                <!-- redirection to register page -->
+                <div class="register">
+                    <span class="normal_text">Can not find your group?</span>
+                    <a href="" target="_self">Register Here</a>
+                </div>
 
                 <!-- redirection to login page -->
                 <div class="login">
                     <span class="normal_text">Already a member?</span>
                     <a href="login" target="_self">Log in here</a>                   
                 </div>
-
             </div>
             <img id="contact_us_icon" src="../Assets/Icon/Contact_us.png" alt="Contact us icon">
         </div>
