@@ -4,13 +4,19 @@ const { client } = require('../db');
 
 // API to add volunteer details
 router.post('/volunteerDetails', (req, res) => {
-    const { firstName, lastName, email, managerEmail, club, postalCode } = req.body;
+    console.log('Request body:', req.body);  // 
+
+    // 
+    const { firstName, lastName, email, postcode } = req.body;
+    const managerEmail = req.body.managerEmail || null;
+    const club = req.body.club || 'DefaultClub'; 
 
     client.query(
-        'INSERT INTO volunteers ("first_name", "last_name", email, "manager_email", "group_name", "postal_code") VALUES ($1, $2, $3, $4, $5, $6)', 
-        [firstName, lastName, email, managerEmail, club, postalCode], 
+        'INSERT INTO volunteers ("first_name", "last_name", email, "manager_email", "group_name", "postcode", "first_sub_time") VALUES ($1, $2, $3, $4, $5, $6, $7)', 
+        [firstName, lastName, email, managerEmail, club, postcode, new Date()], 
         (error, results) => {
             if (error) {
+                console.error('Database error:', error);  
                 return res.status(500).json({ message: "Internal Server Error", error: error.message });
             }
             res.status(201).json({ message: "Volunteer details added successfully!" });

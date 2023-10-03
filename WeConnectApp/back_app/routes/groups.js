@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { client } = require('./db'); 
+const { client } = require('../db'); 
 
 // get all groups
 router.get('/', async (req, res) => {

@@ -4,11 +4,12 @@ const cors = require('cors');
 const volunteerRoutes = require('./routes/volunteer');  
 const groupRoutes = require('./routes/groups'); 
 const surveyRoutes = require('./routes/survey'); 
-const reminderRoutes = require('./routes/reminder'); 
+//const reminderRoutes = require('./routes/reminder'); 
 const errorReportRoutes = require('./routes/errorReports'); 
 const { client } = require('./db'); 
 
-
+// Temporarily comment out Firebase and related configurations
+/*
 const nodeCron = require('node-cron');
 const nodemailer = require('nodemailer');
 const admin = require('firebase-admin');
@@ -16,15 +17,16 @@ const serviceAccount = require('./serviceAccountKey.json');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
-  });
-  
-  const transporter = nodemailer.createTransport({
+});
+
+const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: 'gmail@gmail.com',  
       pass: 'password'  
     }
-  });
+});
+*/
 
 const app = express();
 const PORT = 8000;
@@ -35,13 +37,9 @@ app.use(bodyParser.json());
 
 // Use the volunteer routes for anything starting with "/api/volunteer"
 app.use('/api/volunteer', volunteerRoutes);  
-
 app.use('/api/groups', groupRoutes);
-
 app.use('/api/survey', surveyRoutes);
-
-app.use('/api/reminder', reminderRoutes);
-
+//app.use('/api/reminder', reminderRoutes);
 app.use('/api/error-reports', errorReportRoutes);
 
 // connect to PostgreSQL database

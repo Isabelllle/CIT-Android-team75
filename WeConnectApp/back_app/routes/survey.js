@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { client } = require('./db'); 
+const { client } = require('../db'); 
 
 // get selected questions
 router.get('/questions', async (req, res) => {
