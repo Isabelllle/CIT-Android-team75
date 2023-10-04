@@ -24,7 +24,7 @@ router.get('/api/user', adminController.verifyToken, adminController.getUserName
 router.get('/api/getIsManger', adminController.verifyToken, adminController.getIsManger);
 router.get('/api/getSurveyQuesTable', adminController.getSurveyQuesTable);
 router.get('/api/getGroups', adminController.getGroups);
-router.get('/api/getReminderList', reminderListsController.getReminderList);
+router.get('/api/getReminderList', adminController.verifyToken, reminderListsController.getReminderList);
 router.get('/api/searchReminderByEmail', reminderListsController.searchReminderByEmail);
 router.get('/api/getUnregisterList', UnregisterListsController.getUnregisterList);
 router.get('/api/getAnswerData', dataReviewController.getAnswerList);

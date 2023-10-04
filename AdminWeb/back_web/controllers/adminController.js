@@ -27,33 +27,30 @@ const loginAdmin = (req, res) => {
     
     // veritify the email & password
     client.query(
-        'SELECT * FROM admin WHERE email = $1 AND password = $2 AND has_registered = true AND is_manager = false',
+        'SELECT * FROM admin WHERE email = $1 AND password = $2 AND has_registered = true',
         [email, password],
         (error, results) => {
             if (error) {
                 throw error;
             }
             if (results.rows.length > 0) {
-                // create an unique token for the user who login sucessfully
+                // const isManager = results.rows[0].is_manager;
+                // console.log('login admin is manager',isManager);
+                // let secretKey;
+
+                // if (isManager) {
+                //     secretKey = 'manager-secret-key';
+                // } else {
+                //     secretKey = 'admin-secret-key';
+                // }
+                // console.log('isman',isManager,secretKey);
+
+                // const token = jwt.sign({ email, role: isManager ? 'manager' : 'admin' }, secretKey, { expiresIn: '1h' });
                 const token = jwt.sign({ email }, 'your-secret-key', { expiresIn: '1h' });
+
                 res.redirect(`http://localhost:3000/?token=${token}`);
             } else {
-                // if not admin, just manager
-                client.query(
-                    'SELECT * FROM admin WHERE email = $1 AND password = $2 AND has_registered = true AND is_manager = true', 
-                    [email, password], 
-                    (error, managerResults) => {
-                        if (error) {
-                            throw error;
-                        }
-                
-                        if (managerResults.rows.length > 0) {
-                            res.redirect('http://localhost:3000/?token=${token}');
-                        } else {
-                            res.send('Invalid username or password');
-                        }
-                    }
-                );
+                res.send('Invalid username or password');
             }
         }
     );
@@ -148,12 +145,14 @@ const getGroups = (req, res) => {
  */
 const verifyToken = (req, res, next) => {
     const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
+    // console.log('Authorization Header:', req.headers.authorization); 
+    // console.log('reminder vertifyqd', token);
     jwt.verify(token, 'your-secret-key', (err, decoded) => {
         if (err) {
+            // console.log('reminder vertify//', token);
             return res.status(401).send('Unauthorized');
         }
         req.email = decoded.email; 
-        req.userId = decoded.userId; 
         next();
     });
 };
@@ -169,7 +168,6 @@ const verifyToken = (req, res, next) => {
  */
 const getUserName = (req, res) => {
     const email = req.email;
-
     client.query(
         'SELECT "first_name ", "last_name ", password FROM admin WHERE email = $1',
         [email],
@@ -203,7 +201,6 @@ const getUserName = (req, res) => {
  */
 const getIsManger = (req, res) => {
     const email = req.email;
-
     client.query(
         'SELECT is_manager FROM admin WHERE email = $1',
         [email],
@@ -212,7 +209,7 @@ const getIsManger = (req, res) => {
                 throw error;
             }
             if (results.rows.length > 0) {
-                res.json(results);
+                res.json(results.rows[0].is_manager);
             }else {
                 return res.json({});
             }

@@ -8,37 +8,58 @@ import styles from '../stylesheets/reminder_list.module.css';
 // Import Asset
 import DeleteIcon from '../Assets/Icon/icon_delete_list.png'
 
+// Import token
+const token = localStorage.getItem('token');
+
 const ReminderTable = ({ selectedSort, searchEmail }) => {
 
     // Table Variable
     const [tableData, setTableData] = useState([])
+    const [initialTableData, setInitialTableData] = useState([])
   
     const tableHeaders = ['Last Name', 'First Name', 'Email', 'Overdue Day'];
 
-    // Handle the sort option
-    const handleSort = useCallback(() => {
-        console.log('Sorting...');
-        fetch('http://localhost:3001/api/getReminderList') 
+    console.log('token is token',token);
+
+    useEffect(() => {
+        if (token){
+            // fetch to get the user's information
+            fetch('http://localhost:3001/api/getReminderList', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                },
+            })
             .then(response => response.json())
             .then(data => {
-                console.log('Sorted data:', data);
-                if (selectedSort === 'last_name') {
-                    // -------------------- 调取data，用last name排序
-                    const sortedData = data.sort((a, b) => a.last_name.localeCompare(b.last_name));
-                    setTableData(sortedData);
-                } else if (selectedSort === 'first_name') {
-                    // -------------------- 调取data，用first name排序
-                    const sortedData = data.sort((a, b) => a.first_name.localeCompare(b.first_name));
-                    setTableData(sortedData);
-                } else if (selectedSort === 'overdue_day') {
-                    // -------------------- 调取data，用overdue day排序
-                    const sortedData = data.sort((a, b) => a.overdue_day - b.overdue_day);
-                    setTableData(sortedData);
-                } else {
-                    setTableData(data);
-                }
+                setTableData(data);
+                setInitialTableData(data);
             })
             .catch(error => console.error('Error:', error));
+        }
+    }, []); 
+
+    console.log(initialTableData);
+
+    // Handle the sort option
+    const handleSort = useCallback(() => {
+        console.log('Sorted data:', initialTableData);
+            if (selectedSort === 'last_name') {
+                // -------------------- 调取data，用last name排序
+                const sortedData = initialTableData.sort((a, b) => a.last_name.localeCompare(b.last_name));
+                setTableData(sortedData);
+            } else if (selectedSort === 'first_name') {
+                // -------------------- 调取data，用first name排序
+                const sortedData = initialTableData.sort((a, b) => a.first_name.localeCompare(b.first_name));
+                setTableData(sortedData);
+            } else if (selectedSort === 'overdue_day') {
+                // -------------------- 调取data，用overdue day排序
+                const sortedData = initialTableData.sort((a, b) => a.overdue_day - b.overdue_day);
+                setTableData(sortedData);
+            } else {
+                setTableData(initialTableData);
+            }  
     }, [selectedSort]);
 
 

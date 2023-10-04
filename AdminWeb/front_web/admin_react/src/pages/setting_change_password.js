@@ -25,21 +25,23 @@ const SettingsPassword = () =>{
     const [giveWarningConfirm, setWarningConfirm] = useState(false);
 
     useEffect(() => {
-        // fetch to get the user's information
-        fetch('http://localhost:3001/api/user', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` 
-            },
-        })
-       
-        .then(response => response.json())
-        .then(data => {
-            setOldPassword(data.password);
-            setEmail(data.email);
-        })
-        .catch(error => console.error('Error:', error));
+        if(token){
+            // fetch to get the user's information
+            fetch('http://localhost:3001/api/user', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                },
+            })
+        
+            .then(response => response.json())
+            .then(data => {
+                setOldPassword(data.password);
+                setEmail(data.email);
+            })
+            .catch(error => console.error('Error:', error));
+        }
     }, []); 
 
     // Handle input changes

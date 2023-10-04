@@ -24,20 +24,24 @@ const NavBar= () =>{
     const [isManager, setIsManager] = useState([]);
 
     useEffect(() => {
-        // fetch to get the user's information
-        fetch('http://localhost:3001/api/getIsManger', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` 
-            },
-        })
-        .then(response => response.json())
-        .then(data => {
-            setIsManager(data);
-        })
-        .catch(error => console.error('Error:', error));
+        if (token){
+            // fetch to get the user's information
+            fetch('http://localhost:3001/api/getIsManger', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                setIsManager(data);
+            })
+            .catch(error => console.error('Error:', error));
+    }
     }, [isManager]); 
+
+    console.log('ismanaged', isManager);
 
     return (
 
@@ -71,7 +75,7 @@ const NavBar= () =>{
                 </Link>
             </li>
 
-            {isManager && (
+            {!isManager && (
                 <div>
                     <li>
                         <Link to="/admin_management" className={styles.no_underline}>
