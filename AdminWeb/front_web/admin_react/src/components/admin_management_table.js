@@ -25,6 +25,7 @@ const AdminManagementTable = ({ selectedSort }) => {
         fetch('http://localhost:3001/api/getUnregisterList') 
             .then(response => response.json())
             .then(data => {
+                console.log(selectedSort);
                 if (selectedSort === 'last_name') {
                     // -------------------- 调取data，用last name排序
                     const sortedData = data.sort((a, b) => a.lastName.localeCompare(b.lastName));
@@ -33,7 +34,7 @@ const AdminManagementTable = ({ selectedSort }) => {
                     // -------------------- 调取data，用first name排序
                     const sortedData = data.sort((a, b) => a.firstName.localeCompare(b.firstName));
                     setTableData(sortedData);
-                } else if (selectedSort === 'group_name') {
+                } else if (selectedSort === 'group') {
                     // -------------------- 调取data，用group name排序
                     const sortedData = data.sort((a, b) => a.group_name.localeCompare(b.group_name));
                     setTableData(sortedData);
