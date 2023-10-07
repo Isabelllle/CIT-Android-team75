@@ -124,7 +124,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/input_postcode"
         android:hint="@string/enter_postcode"
-        android:inputType="text"
+        android:inputType="number"
         android:layout_below="@id/label_postcode"
         android:background="@drawable/text_box_template"
         android:layout_marginStart="40dp"
