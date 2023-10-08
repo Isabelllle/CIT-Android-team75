@@ -82,32 +82,56 @@ const disapproveEmail = (req, res) => {
 
 
 /**
- * PUT /api/addGroup
+ * PUT /api/updateGroups
  * Updates group information (group names)
  * 
  * @param {Object} req - The HTTP request object.
  * @param {Object} res - The HTTP response object.
  * @throws {Error} If an error occurs while inserting the question.
  */
-const addGroup = (req, res) => {
-    const { addGroup } = req.body;
-    console.log(addGroup);
-    client.query(
-        'INSERT INTO groups (description, group_name) VALUES ($1, $2)',
-        [null, addGroup],
-        (error, results) => {
-            if (error) {
-                throw error;
-            }
 
-            res.json({ success: true, message: 'Group added successfully' });
+async function updateGroups(req, res) {
+    const { groups } = req.body;
+
+    try {
+        await client.query('BEGIN');
+
+        // Get current group results from database
+        const currentGroupResult = await client.query('SELECT group_name FROM groups');
+        const currentGroups = currentGroupResult.rows.map(row => row.group_name);
+
+        // Get groups to add and groups to delete
+        const groupsToAdd = Array.isArray(groups) 
+        ? groups.filter(group => !currentGroups.includes(group))
+        : [];
+        const groupsToDelete = Array.isArray(currentGroups) && Array.isArray(groups)
+        ? currentGroups.filter(group => !groups.includes(group))
+        : [];
+
+
+        // Add groups
+        for (const group of groupsToAdd) {
+            await client.query('INSERT INTO groups (group_name) VALUES ($1)', [group]);
         }
-    );
-};
+        // Delete groups
+        for (const group of groupsToDelete) {
+            await client.query('DELETE FROM groups WHERE group_name = $1', [group]);
+        }
+
+        await client.query('COMMIT');
+
+        res.json({ message: 'Groups updated successfully!' });
+    } catch (error) {
+        await client.query('ROLLBACK');
+        console.error('Error updating groups', error);
+        res.status(500).json({ message: 'Internet server error' });
+    }
+}
+
 
 module.exports = {
     getUnregisterList,
     approveEmail,
     disapproveEmail,
-    addGroup,
+    updateGroups,
 };
