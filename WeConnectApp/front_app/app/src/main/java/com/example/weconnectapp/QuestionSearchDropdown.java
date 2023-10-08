@@ -32,7 +32,7 @@ public class QuestionSearchDropdown extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuestionSearchDropdown.this, CongratsPage.class);
+                Intent intent = new Intent(QuestionSearchDropdown.this, Questionnaire.class);
                 startActivity(intent);
             }
         });
