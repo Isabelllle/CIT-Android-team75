@@ -44,18 +44,20 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
 
     // Handle the sort option
     const handleSort = useCallback(() => {
-        console.log('Sorted data:', initialTableData);
+        console.log('Sorted data before:', initialTableData);
+        console.log('Sort options', selectedSort);
             if (selectedSort === 'last_name') {
                 // -------------------- 调取data，用last name排序
-                const sortedData = initialTableData.sort((a, b) => a.last_name.localeCompare(b.last_name));
+                const sortedData = [...initialTableData].sort((a, b) => a.last_name.localeCompare(b.last_name));
                 setTableData(sortedData);
             } else if (selectedSort === 'first_name') {
                 // -------------------- 调取data，用first name排序
-                const sortedData = initialTableData.sort((a, b) => a.first_name.localeCompare(b.first_name));
+                const sortedData =  [...initialTableData].sort((a, b) => a.first_name.localeCompare(b.first_name));
                 setTableData(sortedData);
             } else if (selectedSort === 'overdue_day') {
                 // -------------------- 调取data，用overdue day排序
-                const sortedData = initialTableData.sort((a, b) => a.overdue_day - b.overdue_day);
+                const sortedData =  [...initialTableData].sort((a, b) => a.overdue_day - b.overdue_day);
+                console.log('Sorted data after:', sortedData);
                 setTableData(sortedData);
             } else {
                 setTableData(initialTableData);
@@ -135,6 +137,8 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
         deleteEmail = '';
         closeModal();
     }
+
+    console.log('Table data', tableData);
 
     const mappedTableData = tableData.map((item) => ({
         ...item,
