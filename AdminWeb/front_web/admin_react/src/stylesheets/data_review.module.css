@@ -1,0 +1,137 @@
+/* CSS file for data review page */
+
+/* Import font */
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../Assets/Roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url('../Assets/Roboto/Roboto-Medium.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url('../Assets/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Cabin-Regular";
+    src: url('../Assets/Cabin/static/Cabin-Regular.ttf');
+}
+
+/* Background */
+.data_review {
+    background-image: url('../Assets/Image/data_review_background.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    height: 95vh;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+}
+
+/* Page Heading */
+.page_heading {
+    margin: 5px 30px;
+}
+
+/* Selected Box */
+.selected_box_container {
+    margin: 30px;
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
+}
+
+#selected_box {
+    height: 40px;
+    background-color: white;
+    width: 200px;
+    padding-left: 15px;
+    color: #9F9D9D;
+    font-family: "Roboto-Regular";
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+#selected_box:focus {
+    border-width: 1px;
+    outline: none;
+}
+
+/* Remove the underline and dots for all Links */
+.no_underline {
+    text-decoration: none;
+}
+
+/* View Data Page Selected */
+.method_container {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    margin-left: -30px;
+    margin-right: -10px;
+    position: fixed;
+    padding: 0px;
+}
+
+.method_selected_box {
+    margin-left: 60px;
+    width: 18%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.method_selected_box li {
+    list-style-type: none;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+/* Text for selected page */
+.method_selected_box .selectedText h2 {
+    color: #DE0A3F;
+    height: 47px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 0px;
+}
+
+.method_selected_box .selectedText .line {
+    background-color: #DE0A3F;
+    height: 3px; 
+    width: 60px;
+    margin: 0px auto;
+    padding: 0px;
+}
+
+/* Text for unselected page */
+.method_selected_box .unselectedText h2 {
+    color: black;
+}
+
+/* Sub page data review summary */
+#data_review_summary {
+    margin: 110px 30px 30px 30px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Sub page data  */
+#data_review_question {
+    margin: 110px 30px 30px 30px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+
