@@ -65,7 +65,7 @@ const AddNewGroup = () =>{
             // });
 
             console.log('Submitted with value:', groups);
-            navigate('/admin_management'); 
+            // navigate('/admin_management'); 
         // } else {
         //     setWarning(true);
         // }

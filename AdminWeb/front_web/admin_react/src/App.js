@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 // Import all the components and pages
 import Navbar from "./components/navbar";
 import Dashboard from './pages/dashboard';
-import DataReview from './pages/data_review';
+import DataReview from './pages/data_review/data_review';
 import ReminderList from './pages/reminder_list';
 import Settings from "./pages/settings";
 import ChangePassword from "./pages/setting_change_password";
@@ -26,6 +26,10 @@ import SurveyYesNo from './pages/survey_management/survey_management_yesno';
 import SurveyRating from './pages/survey_management/survey_management_rating';
 import SurveyDropDown from './pages/survey_management/survey_management_dropdown';
 
+// Import sub pages of DataReview
+import DataSummary from './pages/data_review/data_review_summary';
+import DataQuestion from './pages/data_review/data_review_question';
+
 // Import CSS
 import styles from './stylesheets/react_page.module.css'
 
@@ -40,7 +44,10 @@ function App() {
       {/* Add routes to all the sub pages */}
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/data_review" element={<DataReview />} />
+        <Route path="/data_review" element={<DataReview />}>
+          <Route path="summary" element={<DataSummary />} />
+          <Route path="question" element={<DataQuestion />} />
+        </Route>
         <Route path="/reminder_list" element={<ReminderList />} />
         <Route path="/settings" element={<Settings />} />
           <Route path="/settings/change_password" element={<ChangePassword />} />
