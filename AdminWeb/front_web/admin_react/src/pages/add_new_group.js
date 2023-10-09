@@ -44,24 +44,24 @@ const AddNewGroup = () =>{
         setGroups(updatedGroup);
     };
 
-    // Save group list Managemeng
+    // Save group list Management
     const handleSubmit = event => {
         event.preventDefault();
 
-        if (addGroup !== '') {
+        if (groups != null) {
             // ---------------- Add post request (group)
-            fetch('http://localhost:3001/api/addGroup', {
+            fetch('http://localhost:3001/api/updateGroups', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                addGroup: addGroup,
+                groups: groups,
               })
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Group added successfully:', data);
+                console.log('Group updated successfully:', data);
                 navigate('/admin_management'); 
             })
             .catch(error => {
