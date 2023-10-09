@@ -45,24 +45,23 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
     // Handle the sort option
     const handleSort = useCallback(() => {
         console.log('Sorted data before:', initialTableData);
-        console.log('Sort options', selectedSort);
             if (selectedSort === 'last_name') {
-                // -------------------- 调取data，用last name排序
+                // -------------------- Fetch data and sort by last name
                 const sortedData = [...initialTableData].sort((a, b) => a.last_name.localeCompare(b.last_name));
                 setTableData(sortedData);
             } else if (selectedSort === 'first_name') {
-                // -------------------- 调取data，用first name排序
+                // -------------------- Fetch data and sort it with first name
                 const sortedData =  [...initialTableData].sort((a, b) => a.first_name.localeCompare(b.first_name));
                 setTableData(sortedData);
             } else if (selectedSort === 'overdue_day') {
-                // -------------------- 调取data，用overdue day排序
+                // -------------------- Fetch the data and sort it by overdue day
                 const sortedData =  [...initialTableData].sort((a, b) => a.overdue_day - b.overdue_day);
                 console.log('Sorted data after:', sortedData);
                 setTableData(sortedData);
             } else {
                 setTableData(initialTableData);
             }  
-    }, [selectedSort]);
+    }, [selectedSort, initialTableData]);
 
 
     // Handle search
@@ -77,7 +76,7 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
             .catch(error => console.error('Error:', error));
 
         }else{
-            // -------------------- 调取data，只显示searchEmail对应的data
+            // -------------------- fetch data, only the data corresponding to searchEmail is displayed
             fetch(`http://localhost:3001/api/searchReminderByEmail?email=${searchEmail}`)
                 .then(response => response.json())
                 .then(data => setTableData(data))

@@ -29,15 +29,15 @@ const AdminManagementTable = ({ selectedSort }) => {
             .then(data => {
                 console.log(selectedSort);
                 if (selectedSort === 'last_name') {
-                    // -------------------- 调取data，用last name排序
+                    // -------------------- Fetch data and sort by last name
                     const sortedData = data.sort((a, b) => a.lastName.localeCompare(b.lastName));
                     setTableData(sortedData);
                 } else if (selectedSort === 'first_name') {
-                    // -------------------- 调取data，用first name排序
+                    // -------------------- Fetch data and sort it with first name
                     const sortedData = data.sort((a, b) => a.firstName.localeCompare(b.firstName));
                     setTableData(sortedData);
                 } else if (selectedSort === 'group') {
-                    // -------------------- 调取data，用group name排序
+                    // -------------------- Fetch data and sort it with group name
                     const sortedData = data.sort((a, b) => a.group_name.localeCompare(b.group_name));
                     setTableData(sortedData);
                 } else {

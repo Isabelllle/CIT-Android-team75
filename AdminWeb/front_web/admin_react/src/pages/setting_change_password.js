@@ -117,7 +117,7 @@ const SettingsPassword = () =>{
         } catch (error) {
           console.error('Error:', error);
         }
-      };
+    };
 
     return (
         <main>
