@@ -1,14 +1,18 @@
 /**
  * <Description> This is the controller about reminder lists' functions
  * @author {YIJUN GUO}
- * @version 1.0
- * @date {2023}/{Oct}/{3}
+ * @version 2.0
+ * @date {2023}/{Oct}/{9}
  * 
  */
 
 
 // PostgreSQL client from PostgreSQL library.
 const { client } = require('../db'); 
+const nodemailer = require('nodemailer');
+const path = require('path');
+
+
 
 /**
  * GET /api/getReminderList
@@ -105,9 +109,87 @@ const addGroup = (req, res) => {
     );
 };
 
+// const transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//       user: 'gyijun017@gmail.com', // 发送邮件的邮箱
+//       pass: '20010422Gyj' // 发送邮件的邮箱密码或者授权码
+//     }
+//   });
+
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com', port: 465, secure: true, // use SSL
+    auth: {
+        user: 'gyijun017@gmail.com', pass: 'bpyi tkkn ctfu kukr'
+    }
+});
+  
+/**
+ * POST /api/disapproveEmail
+ * send email when deal with approved status
+ * 
+ * @param {Object} req - The HTTP request object.
+ * @param {Object} res - The HTTP response object.
+ */
+// const sendEmail = (req, res) => {
+//     const { email } = req.body;
+
+//     const mailOptions = {
+//         from: 'gyijun017@gmail.com',
+//         to: email,
+//         subject: 'ApproveEmail',
+//         text: 'Your email has been approved, please login.'
+//       };
+    
+//     transporter.sendMail(mailOptions, (error, info) => {
+//         if (error) {
+//           console.error('Error sending email:', error);
+//           res.status(500).send('Internal Server Error');
+//         } else {
+//           console.log('Email sent: ' + info.response);
+//           res.send('Email sent successfully');
+//         }
+//     });
+    
+// };
+const sendEmail = (req, res) => {
+    const { email, type } = req.body; // 添加了一个名为 "type" 的字段
+
+    let subject, text;
+
+    if (type === 'approve') {
+        subject = 'ApproveEmail';
+        text = 'Your email has been approved, please login.';
+    } else if (type === 'disapprove') {
+        subject = 'DisapproveEmail';
+        text = 'Your email has been disapproved, please contact support for more information.';
+    } else {
+        return res.status(400).send('Invalid request type'); // 如果类型不是 approve 或 disapprove，则返回错误响应
+    }
+
+    const mailOptions = {
+        from: 'gyijun017@gmail.com',
+        to: email,
+        subject: subject,
+        text: text
+      };
+    
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error('Error sending email:', error);
+          res.status(500).send('Internal Server Error');
+        } else {
+          console.log('Email sent: ' + info.response);
+          res.send('Email sent successfully');
+        }
+    });
+};
+
+
 module.exports = {
     getUnregisterList,
     approveEmail,
     disapproveEmail,
     addGroup,
+    sendEmail,
 };

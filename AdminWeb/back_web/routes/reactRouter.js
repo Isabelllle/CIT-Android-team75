@@ -48,4 +48,7 @@ router.put('/api/addDropDownQuestion',surveyManageController.addDropDownQuestion
 router.delete('/api/deleteItem/:id', adminController.deleteItem);
 router.delete('/api/deleteEmail/:email', reminderListsController.deleteItem);
 
+// send email
+router.post('/api/sendEmail',UnregisterListsController.sendEmail);
+
 module.exports = router;

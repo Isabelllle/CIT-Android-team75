@@ -9,6 +9,8 @@ import styles from '../stylesheets/admin_management.module.css';
 import ApproveIcon from '../Assets/Icon/icon_approve.png';
 import DisapproveIcon from '../Assets/Icon/icon_disapprove.png';
 
+import axios from 'axios'; // Import the library used to send HTTP requests
+
 const AdminManagementTable = ({ selectedSort }) => {
 
     // Table Variable
@@ -71,23 +73,39 @@ const AdminManagementTable = ({ selectedSort }) => {
         const updatedTableData = tableData.filter(item => item.email !== approveEmail);
         // Update the tableData state with the updated list
         setTableData(updatedTableData);
-
+    
         // Approve email
         fetch('http://localhost:3001/api/approveEmail', {
             method: 'PUT',
             headers: {
-            'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 email: approveEmail,
-           })
+            })
+        })
+        .then(response => response.json()) 
+        .then(data => {
+            sendEmail(approveEmail, 'approve');
         })
         .catch(error => console.error('Error:', error));
-
-
+    
         console.log('Confirm approve:', approveEmail);
         closeApproveModal();
     };
+    
+
+    // send email function
+    const sendEmail = (email, type) => {
+        axios.post('http://localhost:3001/api/sendEmail', { email, type})
+          .then(response => {
+            console.log('Email sent successfully');
+          })
+          .catch(error => {
+            console.error('Error sending email:', error);
+          });
+    };
+    
 
     const handelApproveCancel = () => {
         approveEmail = '';
@@ -127,11 +145,16 @@ const AdminManagementTable = ({ selectedSort }) => {
                 email: disapproveEmail,
             })
         })
+        .then(response => response.json()) 
+        .then(data => {
+            sendEmail(disapproveEmail, 'disapprove');
+        })
         .catch(error => console.error('Error:', error));
 
         console.log('Confirm disapprove:', disapproveEmail);
         closeDisapproveModal();
     };
+
 
     const handelDisapproveCancel = () => {
         approveEmail = '';
