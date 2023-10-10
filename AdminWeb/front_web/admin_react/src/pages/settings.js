@@ -112,6 +112,30 @@ const Settings = () =>{
         setIsEditingEmail(false);
     };
 
+    // Handle logout
+    const handleLogout = async () => {
+        try {
+          const response = await fetch('/api/logout', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+      
+          const data = await response.json();
+      
+          if (data.success) {
+            // 用户成功注销，执行相应的操作，例如跳转到登录页面
+            // 例如：window.location.href = '/login';
+          } else {
+            // 处理注销失败的情况
+            console.error('Logout failed:', data.message);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+    };
+
     return (
         <main>
             <div id={styles.settings}>
@@ -194,6 +218,11 @@ const Settings = () =>{
                             {isEditingFirstName && <button onClick={handleSubmit}>Submit</button>}
                         </div>
                     </div>
+                </div>
+
+                {/* Logout Button */}
+                <div className={styles.logout_container}>
+                    <button onClick={handleLogout} className={styles.logout_button}>Log Out</button>
                 </div>
             </div>
         </main>

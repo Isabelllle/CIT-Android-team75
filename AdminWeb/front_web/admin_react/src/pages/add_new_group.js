@@ -9,8 +9,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from '../stylesheets/admin_management.module.css';
 
 // Import Assets
-import AddIcon from '../Assets/Icon/icon_add.png'
-import DeleteIcon from '../Assets/Icon/icon_delete.png'
+import AddIcon from '../Assets/Icon/icon_add.png';
+import DeleteIcon from '../Assets/Icon/icon_delete.png';
+import SearchIcon from '../Assets/Icon/icon_search.png';
 
 const AddNewGroup = () =>{
 
@@ -44,10 +45,66 @@ const AddNewGroup = () =>{
         setGroups(updatedGroup);
     };
 
+    // Search group
+    const [searchGroup, setSearchGroup] = useState('');
+
+    const handleSearchGroupChange = (event) => {
+        setSearchGroup(event.target.value);
+    };
+
+    const handleSearch = () => {
+        //--------------------------------------------Add Search group
+        console.log('Search Group Name', searchGroup);
+    };
+
     // Save group list Management
+    // const handleSubmit = event => {
+    //     event.preventDefault();
+
+    //     if (groups != null) {
+    //         // ---------------- Add post request (group)
+    //         fetch('http://localhost:3001/api/updateGroups', {
+    //         method: 'PUT',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             groups: groups,
+    //           })
+    //         })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             console.log('Group updated successfully:', data);
+    //             navigate('/admin_management'); 
+    //         })
+    //         .catch(error => {
+    //             console.error('Error adding group:', error);
+    //         });
+
+    //         console.log('Submitted with value:', groups);
+    //         navigate('/admin_management'); 
+    //     } else {
+    //         setWarning(true);
+    //     }
+    // };
+
+    // Handle the delete and comfirm box request
+    const confirmModal = document.getElementById("confirm_modal");
+    
+    const showModal = () => {
+        confirmModal.style.display = "block";
+    };
+    
+    const closeModal = () => {
+        confirmModal.style.display = "none";
+    };
+
     const handleSubmit = event => {
         event.preventDefault();
+        showModal();
+    };
 
+    const handleConfirm = () => {
         if (groups != null) {
             // ---------------- Add post request (group)
             fetch('http://localhost:3001/api/updateGroups', {
@@ -62,18 +119,22 @@ const AddNewGroup = () =>{
             .then(response => response.json())
             .then(data => {
                 console.log('Group updated successfully:', data);
-                navigate('/admin_management'); 
+                window.location.reload();
             })
             .catch(error => {
                 console.error('Error adding group:', error);
             });
 
-            console.log('Submitted with value:', groups);
-            navigate('/admin_management'); 
         } else {
             setWarning(true);
         }
+
+        closeModal();
     };
+
+    const handelCancel = () => {
+        closeModal();
+    }
 
     return (
         <main>
@@ -84,6 +145,12 @@ const AddNewGroup = () =>{
 
                 {/* Subheading */}
                 <h3 className={styles.sub_heading}>Manage Group</h3>
+
+                {/* Search Group Box */}
+                <div id={styles.search_box}>
+                    <input type="text" placeholder="Search Group" value={searchGroup} onChange={handleSearchGroupChange}/>
+                    <button onClick={handleSearch}><img src={SearchIcon} alt="Search Group" /></button>
+                </div>
 
                 {/* Add New Group Container */}
                 <div className={styles.add_new_group_container}>
@@ -115,6 +182,18 @@ const AddNewGroup = () =>{
                         </Link>
 
                         <button onClick={handleSubmit} className={styles.button}>Save</button>
+                    </div>
+                </div>
+
+                {/* Confirm Modal if the user trying save data */}
+                <div className={styles.confirm_modal} id='confirm_modal'>
+                    <div className={styles.modal_content}>
+                        <div className={styles.confirm_text}>Are you sure you want to save the change?</div>
+                        
+                        <div className={styles.button_box}>
+                            <button id='confirm_button' onClick={handleConfirm}>Confirm</button>
+                            <button id='cancel_button' onClick={handelCancel}>Cancel</button>
+                        </div>
                     </div>
                 </div>
 

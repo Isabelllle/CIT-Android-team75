@@ -179,6 +179,27 @@
     text-align: center;
 }
 
+#settings .logout_container {
+    margin: 30px;
+    width: 85%;
+    height: 80px;
+}
+
+#settings .logout_container .logout_button {
+    display: block;
+    margin: auto;
+    width: 120px;
+    height: 45px;
+    background-color: #DE0A3F;
+    border-radius: 20px;
+    border-width: 0px;
+    color: white;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+    text-align: center;
+    z-index: 10;
+}
+
 /* Change Password Page */
 #settings_change_password .change_password_container {
     margin: 30px;
