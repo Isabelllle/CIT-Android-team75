@@ -17,8 +17,7 @@ const AddNewGroup = () =>{
 
     // Attributes
     const navigate = useNavigate();
-    const [groups, setGroups] = useState([
-    ]);
+    const [groups, setGroups] = useState([]);
     useEffect(() => {
         fetch('http://localhost:3001/api/getGroups')
             .then(response => response.json())
@@ -50,45 +49,61 @@ const AddNewGroup = () =>{
 
     const handleSearchGroupChange = (event) => {
         setSearchGroup(event.target.value);
-    };
-
+      };
+    
     const handleSearch = () => {
         //--------------------------------------------Add Search group
-        console.log('Search Group Name', searchGroup);
+        console.log('Search Group Name:', searchGroup);
+
+        if (searchGroup == '') {
+            fetch('http://localhost:3001/api/getGroups')
+            .then(response => response.json())
+            .then(data => setGroups(data))
+            .catch(error => console.error('Error:', error));
+        } else {
+        // -------------- fetch data, only the group being searched is displayed
+        fetch(`http://localhost:3001/api/searchGroupName?searchGroup=${searchGroup}`)
+            .then(response => response.json())
+            .then(data => setGroups(data))
+            .catch(error => console.error('Error:', error));
+        }
+
+        console.log('Successfully find: ' + searchGroup); 
     };
 
-    // Save group list Management
-    // const handleSubmit = event => {
-    //     event.preventDefault();
+    useEffect(() => {
+        handleSearch();
+    }, [searchGroup]);
 
-    //     if (groups != null) {
-    //         // ---------------- Add post request (group)
-    //         fetch('http://localhost:3001/api/updateGroups', {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             groups: groups,
-    //           })
-    //         })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             console.log('Group updated successfully:', data);
-    //             navigate('/admin_management'); 
-    //         })
-    //         .catch(error => {
-    //             console.error('Error adding group:', error);
-    //         });
 
-    //         console.log('Submitted with value:', groups);
-    //         navigate('/admin_management'); 
-    //     } else {
-    //         setWarning(true);
-    //     }
-    // };
+        // // Handle search
+        // const handleSearch = useCallback(() => {
 
-    // Handle the delete and comfirm box request
+        //     if (searchEmail === '') {
+        //         fetch('http://localhost:3001/api/getGroups')
+        //         .then(response => response.json())
+        //         .then(data => 
+        //             {console.log(data, 'survey');
+        //             setTableData(data)})
+        //         .catch(error => console.error('Error:', error));
+    
+        //     }else{
+        //         // -------------------- fetch data, only the data corresponding to searchEmail is displayed
+        //         fetch(`http://localhost:3001/api/searchReminderByEmail?email=${searchEmail}`)
+        //             .then(response => response.json())
+        //             .then(data => setTableData(data))
+        //             .catch(error => console.error('Error:', error));
+        //     }
+    
+        //     //     console.log('The search Message is' + searchEmail);
+        // }, [searchEmail]);
+    
+        // useEffect(() => {
+        //     handleSearch();
+        // }, [handleSearch]);
+
+
+    // Handle the delete and confirm box request
     const confirmModal = document.getElementById("confirm_modal");
     
     const showModal = () => {
