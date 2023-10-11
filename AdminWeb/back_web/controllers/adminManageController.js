@@ -149,33 +149,13 @@ const transporter = nodemailer.createTransport({
 });
   
 /**
- * POST /api/disapproveEmail
+ * POST /api/sendEmail
  * send email when deal with approved status
  * 
  * @param {Object} req - The HTTP request object.
  * @param {Object} res - The HTTP response object.
  */
-// const sendEmail = (req, res) => {
-//     const { email } = req.body;
 
-//     const mailOptions = {
-//         from: 'gyijun017@gmail.com',
-//         to: email,
-//         subject: 'ApproveEmail',
-//         text: 'Your email has been approved, please login.'
-//       };
-    
-//     transporter.sendMail(mailOptions, (error, info) => {
-//         if (error) {
-//           console.error('Error sending email:', error);
-//           res.status(500).send('Internal Server Error');
-//         } else {
-//           console.log('Email sent: ' + info.response);
-//           res.send('Email sent successfully');
-//         }
-//     });
-    
-// };
 const sendEmail = (req, res) => {
     const { email, type } = req.body; // 添加了一个名为 "type" 的字段
 

@@ -1,6 +1,6 @@
 /**
  * <Description> This is all react routes
- * @author {YIJUN GUO}
+ * @author {YIJUN GUO, ZIXIAN LI}
  * @version 2.0
  * @date {2023}/{Sep}/{24}
  * 

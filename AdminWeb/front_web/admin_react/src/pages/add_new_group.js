@@ -76,33 +76,6 @@ const AddNewGroup = () =>{
     }, [searchGroup]);
 
 
-        // // Handle search
-        // const handleSearch = useCallback(() => {
-
-        //     if (searchEmail === '') {
-        //         fetch('http://localhost:3001/api/getGroups')
-        //         .then(response => response.json())
-        //         .then(data => 
-        //             {console.log(data, 'survey');
-        //             setTableData(data)})
-        //         .catch(error => console.error('Error:', error));
-    
-        //     }else{
-        //         // -------------------- fetch data, only the data corresponding to searchEmail is displayed
-        //         fetch(`http://localhost:3001/api/searchReminderByEmail?email=${searchEmail}`)
-        //             .then(response => response.json())
-        //             .then(data => setTableData(data))
-        //             .catch(error => console.error('Error:', error));
-        //     }
-    
-        //     //     console.log('The search Message is' + searchEmail);
-        // }, [searchEmail]);
-    
-        // useEffect(() => {
-        //     handleSearch();
-        // }, [handleSearch]);
-
-
     // Handle the delete and confirm box request
     const confirmModal = document.getElementById("confirm_modal");
     
