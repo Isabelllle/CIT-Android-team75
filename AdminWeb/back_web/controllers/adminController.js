@@ -25,7 +25,7 @@ const { password } = require('pg/lib/defaults');
 const loginAdmin = (req, res) => {  
     const { email, password } = req.body;
     
-    // veritify the email & password
+    // verify the email & password
     client.query(
         'SELECT * FROM admin WHERE email = $1 AND password = $2 AND has_registered = true',
         [email, password],
@@ -34,18 +34,6 @@ const loginAdmin = (req, res) => {
                 throw error;
             }
             if (results.rows.length > 0) {
-                // const isManager = results.rows[0].is_manager;
-                // console.log('login admin is manager',isManager);
-                // let secretKey;
-
-                // if (isManager) {
-                //     secretKey = 'manager-secret-key';
-                // } else {
-                //     secretKey = 'admin-secret-key';
-                // }
-                // console.log('isman',isManager,secretKey);
-
-                // const token = jwt.sign({ email, role: isManager ? 'manager' : 'admin' }, secretKey, { expiresIn: '1h' });
                 const token = jwt.sign({ email }, 'your-secret-key', { expiresIn: '1h' });
 
                 res.redirect(`http://localhost:3000/?token=${token}`);
@@ -95,25 +83,6 @@ const signupAdmin = (req, res) => {
     });
 
 };
-
-
-// // 示例路由处理器
-// const logout = (req, res) => {
-//     // 清除用户的认证状态，例如删除 session 或 token
-//     req.session.destroy((err) => {
-//       if (err) {
-//         console.error('Error destroying session:', err);
-//         res.status(500).json({ success: false, message: 'Internal Server Error' });
-//         return;
-//       }
-  
-//       // 返回成功响应
-//       res.json({ success: true, message: 'User logged out successfully' });
-//     });
-//   };
-  
-//   // 将路由处理器与路由路径绑定
-//   app.post('/api/logout', logout);
   
 
 /**
