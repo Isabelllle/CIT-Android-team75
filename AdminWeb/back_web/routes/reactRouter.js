@@ -34,9 +34,10 @@ router.put('/api/users', adminController.updateUserInfo);
 router.put('/api/userspassword', adminController.updateUserPass);
 
 // Admin Management routers
-router.put('/api/approveEmail',UnregisterListsController.approveEmail)
-router.put('/api/disapproveEmail',UnregisterListsController.disapproveEmail)
+router.put('/api/approveEmail',UnregisterListsController.approveEmail);
+router.put('/api/disapproveEmail',UnregisterListsController.disapproveEmail);
 router.put('/api/updateGroups', UnregisterListsController.updateGroups);
+router.get('/api/searchGroupName', UnregisterListsController.searchGroupName);
 
 // Survey Management routers
 router.put('/api/addTextQuestion',surveyManageController.addTextQuestion); 

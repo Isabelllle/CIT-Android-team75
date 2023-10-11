@@ -209,6 +209,26 @@ const sendEmail = (req, res) => {
     });
 };
 
+/**
+ * GET /api/searchGroupName
+ * 
+ * @param {Object} req - The HTTP request object.
+ * @param {Object} res - The HTTP response object.
+ */
+
+const searchGroupName = (req, res) => {
+    const { searchGroup } = req.query;
+    client.query('SELECT * FROM groups WHERE group_name = $1', [searchGroup], (error, result) => {
+        if (error) {
+        console.error('Error executing query:', error);
+        res.status(500).send('Internal Server Error');
+        return;
+        }
+
+        const searchData = result.rows.map(row => row.group_name);
+        res.json(searchData);
+    });
+};
 
 module.exports = {
     getUnregisterList,
@@ -216,4 +236,5 @@ module.exports = {
     disapproveEmail,
     sendEmail,
     updateGroups,
+    searchGroupName,
 };
