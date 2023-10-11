@@ -21,7 +21,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/type_yes_no_question_text"
+        android:id="@+id/question_text"
         android:layout_below="@id/type_yes_no_theme"
         android:text="@string/type_rating_1_5_question_text_sample"
         android:padding="20dp"
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/type_yes_no_question_text"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="260dp"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true">
         <RadioButton
