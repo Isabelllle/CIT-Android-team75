@@ -23,7 +23,7 @@
 
     <!-- next question button  -->
     <Button
-        android:id="@+id/survey_question_btn_next"
+        android:id="@+id/next_button"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginEnd="40dp"
@@ -40,7 +40,7 @@
 
     <!--  previous question button  -->
     <Button
-        android:id="@+id/survey_question_btn_previous"
+        android:id="@+id/previous_button"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:background="@drawable/survey_detail_btn_templet"

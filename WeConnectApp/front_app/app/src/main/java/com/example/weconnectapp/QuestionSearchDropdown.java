@@ -28,7 +28,7 @@ public class QuestionSearchDropdown extends AppCompatActivity {
         autoCompleteTextView.setAdapter(adapter);
 
         //Redirection to congrats page when click on "next" button
-        Button button1 = findViewById(R.id.survey_question_btn_next);
+        Button button1 = findViewById(R.id.next_button);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +38,7 @@ public class QuestionSearchDropdown extends AppCompatActivity {
         });
 
         //Redirection to previous page when click on "previous" button
-        Button button2 = findViewById(R.id.survey_question_btn_previous);
+        Button button2 = findViewById(R.id.previous_button);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
