@@ -88,6 +88,86 @@
     <string name="privacy_policy_text3">
         Further information, including the WeConnect Privacy Policy is available below.
     </string>
+    <string name="privacy_policy_content">
+        \n
+         Volunteering Victoria Incorporated (we, our, us) recognises the importance of protecting the
+    privacy and the rights of individuals in relation to their personal information. This document
+    is our privacy policy and it tells you how we collect, use, hold and disclose your personal
+    information.\n
+        \n
+    We respect your rights to privacy under the Privacy Act 1988 (Cth) (Act) and, where we are
+    required to do so, we comply with all of the Act’s requirements in respect of the collection,
+    management and disclosure of your personal information.\n
+        \n
+        What is your personal information?\n
+        \n
+    When used in this Privacy Policy, the term ‘personal information’ has the meaning given to it
+    in the Act. In general terms, it is any information that can be used to personally identify you.
+    This may include your name, address, telephone number, email address and profession or
+    occupation. If the information we collect personally identifies you, or you are reasonably
+    identifiable from it, the information will be considered personal information.\n
+        \n
+What personal information do we collect and hold?\n
+        \n
+We may collect the following types of personal information:\n
+ name;\n
+ mailing or street address;\n
+ email address;\n
+ telephone number;\n
+ name of organisation you work or volunteer for;\n
+ profession, occupation or job title;\n
+ details of the products and services you have obtained from us or which you
+have enquired about, together with any additional information necessary to
+deliver those products and services and to respond to your enquiries;\n
+ any additional information relating to you that you provide to us directly, or
+indirectly through our website or online presence, through our representatives
+or otherwise; and\n
+ information you provide to us through our office, surveys or visits by our
+representatives from time to time.\n
+        \n
+We may also collect some information that is not personal information because it does not
+identify you or anyone else. For example, we may collect anonymous answers to surveys or
+aggregated information about how users use our website.\n
+        For what purposes do we collect, hold, use and disclose your personal
+information?
+We collect personal information about you so that we can perform our activities and
+functions and to provide best possible quality of service. In general terms, our relevant
+activities and functions are:
+• providing training and other events;
+• providing membership services;
+• advertising volunteer and paid positions online;
+• answering volunteering queries; and
+• providing information on our website and online presence.
+We collect, hold, use and disclose your personal information for the following purposes:
+• to provide products and services to you and to send communications requested
+by you;
+• to answer enquiries and provide information;
+• to assess the performance of the website and to improve the operation of the
+website;
+• to conduct business processing functions, including providing personal
+information to information to our contractors or service providers;
+• for the administrative, planning, product or service development, quality control
+and research purposes of Volunteering Victoria and our contractors or service
+providers;
+• to provide your updated personal information to our contractors or service
+providers;
+• to update our records and keep your contact details up to date;
+• for the marketing (including direct marketing) purposes of Volunteering Victoria;
+• to process and respond to any complaint made by you; and
+• to comply with any law, rule, regulation, lawful and binding determination,
+decision or direction of a regulator, or in co-operation with any governmental
+authority of any country.
+We will not use or disclose your personal information for any secondary purpose, unless the
+following applies:
+• that secondary purpose is related to the primary purpose for which the personal
+information was collected;
+• you would reasonably expect the use or disclosure;
+• we have an obligation to use or disclose the information or there is another
+permitted purpose; or
+• you consent to the use or disclosure.
+Your personal information will not be shared, sold, rented or disclosed other than as
+described in this Privacy Policy
+    </string>
 
     <!--  About WeConnect  -->
     <string name="intro_text1">
@@ -113,8 +193,8 @@
     <!-- Contact Us   -->
     <string name="contact_us_image">contact us image</string>
     <string name="contact_us">Contact Us</string>
-    <string name="contact_us_content">For further information, please contact Sara Sterling via
-        email info@volunteeringvictoria.org.au.</string>
+    <string name="contact_us_content">For further information, please contact WeConnect via
+        email weconnect@volunteeringvictoria.org.au.</string>
 
     <!--  Error hint  -->
     <string name="empty_hint">The text box cannot be empty</string>

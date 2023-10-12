@@ -40,44 +40,36 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <!-- Content   -->
-        <TextView
-            android:id="@+id/privacy_policy_content1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/privacy_policy_text1"
-            android:layout_below="@id/privacy_police_title"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginTop="15dp"/>
-        <TextView
-            android:id="@+id/privacy_policy_content2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/privacy_policy_text2"
-            android:layout_below="@id/privacy_policy_content1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginTop="15dp"/>
-        <TextView
-            android:id="@+id/privacy_policy_content3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/privacy_policy_text3"
-            android:layout_below="@id/privacy_policy_content2"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginTop="15dp"/>
+         <ScrollView
+             android:layout_width="350dp"
+             android:layout_height="wrap_content"
+             android:layout_below="@id/privacy_police_title"
+             android:layout_centerHorizontal="true"
+             android:layout_marginStart="30dp"
+             android:layout_marginTop="30dp"
+             android:layout_marginEnd="30dp"
+             android:layout_marginBottom="30dp"
+             android:background="@color/white">
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/privacy_policy_content"
+                 android:textSize="16sp"
+                 android:fontFamily="@font/roboto_regular"
+                 android:textColor="@color/black"
+                 android:padding="16dp"/>
 
-    </RelativeLayout>
+         </ScrollView>
+
+
+
+
+
+
+
+
+
+
+     </RelativeLayout>
 
 </FrameLayout>
