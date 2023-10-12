@@ -139,6 +139,7 @@ const DataReviewSummary = () =>{
     // Apply different chart to different data type of question
     const chartTypeMap = {
         'Rating scales 1-5': BarChart, 
+        'Rating scales 1-10': BarChart, 
         'Number': LineGraph,
         'dropdown': HorizontalBar,
         'Y/N': PieChart,
