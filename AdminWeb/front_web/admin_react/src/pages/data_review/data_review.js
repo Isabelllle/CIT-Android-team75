@@ -2,18 +2,23 @@
 // Set up the basic layout of data review pages
 
 // Import library
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
 // Import CSS
 import styles from '../../stylesheets/data_review.module.css'
+//import data review summary page 
+import DataReviewSummary from './data_review_summary'; 
+
 
 const DataReview = () =>{
 
     const location = useLocation();
 
+    const [selectedYear, setSelectedYear] = useState('');
+
     var selectedGroup;
-    var selectedYear;
+    // var selectedYear;
 
     return (
         
@@ -32,10 +37,11 @@ const DataReview = () =>{
                     </select>
 
                     {/* Select Year Box */}
-                    <select id={styles.selected_box} value={selectedYear}>
+                    <select id={styles.selected_box} value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
                         <option value="2023">2023</option>
+                        <option value="All">All</option>
                     </select>
                 </div>
 
@@ -63,6 +69,7 @@ const DataReview = () =>{
                 </div>
 
                 <Outlet />
+                <DataReviewSummary selectedYear={selectedYear} />
             </div>
         </main>
     );
