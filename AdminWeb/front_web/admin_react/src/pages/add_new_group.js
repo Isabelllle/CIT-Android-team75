@@ -57,36 +57,6 @@ const AddNewGroup = () =>{
         console.log('Search Group Name', searchGroup);
     };
 
-    // Save group list Management
-    // const handleSubmit = event => {
-    //     event.preventDefault();
-
-    //     if (groups != null) {
-    //         // ---------------- Add post request (group)
-    //         fetch('http://localhost:3001/api/updateGroups', {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             groups: groups,
-    //           })
-    //         })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             console.log('Group updated successfully:', data);
-    //             navigate('/admin_management'); 
-    //         })
-    //         .catch(error => {
-    //             console.error('Error adding group:', error);
-    //         });
-
-    //         console.log('Submitted with value:', groups);
-    //         navigate('/admin_management'); 
-    //     } else {
-    //         setWarning(true);
-    //     }
-    // };
 
     // Handle the delete and comfirm box request
     const confirmModal = document.getElementById("confirm_modal");

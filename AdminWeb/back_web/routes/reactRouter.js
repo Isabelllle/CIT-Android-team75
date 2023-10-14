@@ -28,6 +28,7 @@ router.get('/api/getReminderList', adminController.verifyToken, reminderListsCon
 router.get('/api/searchReminderByEmail', reminderListsController.searchReminderByEmail);
 router.get('/api/getUnregisterList', UnregisterListsController.getUnregisterList);
 router.get('/api/getAnswerData', dataReviewController.getAnswerList);
+router.get('/api/getQuestionsAnswer', dataReviewController.getQuestionsAnswer);
 
 
 router.put('/api/users', adminController.updateUserInfo);

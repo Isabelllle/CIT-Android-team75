@@ -97,25 +97,6 @@ const signupAdmin = (req, res) => {
 };
 
 
-// // 示例路由处理器
-// const logout = (req, res) => {
-//     // 清除用户的认证状态，例如删除 session 或 token
-//     req.session.destroy((err) => {
-//       if (err) {
-//         console.error('Error destroying session:', err);
-//         res.status(500).json({ success: false, message: 'Internal Server Error' });
-//         return;
-//       }
-  
-//       // 返回成功响应
-//       res.json({ success: true, message: 'User logged out successfully' });
-//     });
-//   };
-  
-//   // 将路由处理器与路由路径绑定
-//   app.post('/api/logout', logout);
-  
-
 /**
  * GET static/signin/getGroups
  * GET /api/getGroups

@@ -16,22 +16,35 @@ import WordCloudComponent from '../../components/word_cloud';
 
 const DataReviewSummary = () =>{
 
-    const [selectedYear, setSelectedYear] = useState('2022');
+    const [selectedYear, setSelectedYear] = useState('All');
     const handleSelectedYear = (event) => {
         setSelectedYear(event.target.value);
     };
 
-    const [selectedGroup, setSelectedGroup] = useState('group 1');
+    const [selectedGroup, setSelectedGroup] = useState('All');
     const handleSelecteGroup = (event) => {
         setSelectedGroup(event.target.value);
     };
 
     // Data Variable
     const [data, setData] =  useState([]);
+    const [groupList, setGroupList] = useState([]);
+
+    useEffect(() => {
+        // get group data from back end
+        fetch('http://localhost:3001/api/getGroups') 
+        .then(response => response.json())
+        .then(data => {
+            const newGroupList = data.map(group => group);
+            setGroupList(newGroupList); 
+            console.log('new group list data_review_questions',newGroupList);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }, []);
 
     useEffect(() => {
         setData([]);
-        fetch(`http://localhost:3001/api/getAnswerData?year=${selectedYear}`)
+        fetch(`http://localhost:3001/api/getAnswerData?year=${selectedYear}&group=${selectedGroup}`)
             .then(response => response.json())
             .then(data => {
                 if (data !== null && data !== undefined) {
@@ -41,7 +54,7 @@ const DataReviewSummary = () =>{
             })
             .catch(error => console.error('Error:', error));
         
-    }, [selectedYear]);
+    }, [selectedYear, selectedGroup]);
     
     // Apply different chart to different data type of question
     const chartTypeMap = {
@@ -74,7 +87,7 @@ const DataReviewSummary = () =>{
             .map(questionId => {
                 const questionData = groupedData[questionId];
                 const ChartComponent = determineChartComponent(questionData[0]);
-                console.log('Not Null questionData', questionData);
+                // console.log('Not Null questionData', questionData);
                 return (
                     <div className={styles.chart_container} key={questionId}>
                         <div className={styles.topic}>
@@ -103,9 +116,10 @@ const DataReviewSummary = () =>{
             {/* Select Group Box */}
             <div className={styles.selected_box_container}>
                 <select id={styles.selected_box} value={selectedGroup} onChange={handleSelecteGroup}>
-                    <option value="group1">group1</option>
-                    <option value="group2">group2</option>
-                    <option value="group3">group3</option>
+                    {groupList.map(group => (
+                        <option key={group} value={group}>{group}</option>
+                    ))}
+                    <option value="All">All</option>
                 </select>
 
                 {/* Select Year Box */}
