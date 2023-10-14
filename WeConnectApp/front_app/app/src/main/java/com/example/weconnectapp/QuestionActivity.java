@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.RadioButton;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -86,13 +87,15 @@ public class QuestionActivity extends AppCompatActivity {
                     }
                     break;
                 case "Y/N":
-                    RadioGroup ynGroup = findViewById(R.id.type_rating_1_5_answer);
-                    if(ynGroup != null) { // Check if ynGroup is initialized
-                        int selectedId = ynGroup.getCheckedRadioButtonId();
-                        answers.put(questionId, selectedId);
-                        Log.d("Save Answer", "Saved Y/N answer: " + selectedId + " for question ID: " + questionId);
+                case "Rating scales 1-5":
+                    RadioGroup radioGroup = findViewById(R.id.type_rating_1_5_answer);
+                    if(radioGroup != null) {
+                        int selectedIndex = radioGroup.indexOfChild(findViewById(radioGroup.getCheckedRadioButtonId()));
+                        answers.put(questionId, selectedIndex);
+                        Log.d("Save Answer", "Saved answer index: " + selectedIndex + " for question ID: " + questionId);
                     }
                     break;
+
                 case "Number":
                     EditText numberEditText = findViewById(R.id.type_enter_number_answer_box);
                     if(numberEditText != null && numberEditText.getText() != null) { // Check if numberEditText is initialized
@@ -111,7 +114,7 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     private void fetchQuestions() {
-        saveCurrentAnswer(); // save current answer before get new question
+        // save current answer before get new question
 
         Call<List<Questions>> call = api.getQuestions(currentPage, 1);
         call.enqueue(new Callback<List<Questions>>() {
@@ -134,7 +137,7 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-        saveCurrentAnswer();
+
         if (questionList != null && !questionList.isEmpty()) {
             Questions currentQuestion = questionList.get(0);
             layout.removeAllViews();
@@ -168,12 +171,14 @@ public class QuestionActivity extends AppCompatActivity {
             previousButton = findViewById(R.id.previous_button);
 
             nextButton.setOnClickListener(v -> {
+                saveCurrentAnswer();
                 currentPage++;
                 fetchQuestions();
             });
 
             previousButton.setOnClickListener(v -> {
                 if (currentPage > 1) {
+                    saveCurrentAnswer();
                     currentPage--;
                     fetchQuestions();
                 } else {
@@ -203,8 +208,15 @@ public class QuestionActivity extends AppCompatActivity {
                     editText.setText((String) savedAnswer);
                     break;
                 case "Y/N":
-                    RadioGroup ynGroup = findViewById(R.id.type_rating_1_5_answer);
-                    ynGroup.check((Integer) savedAnswer);
+                case "Rating scales 1-5":
+                    RadioGroup radioGroup = findViewById(R.id.type_rating_1_5_answer);
+                    if(radioGroup != null && savedAnswer instanceof Integer) {
+                        int answerIndex = (Integer) savedAnswer;
+                        if(answerIndex >= 0 && answerIndex < radioGroup.getChildCount()) {
+                            ((RadioButton) radioGroup.getChildAt(answerIndex)).setChecked(true);
+                            Log.d("Load Answer", "Loaded answer index: " + answerIndex + " for question ID: " + questionId);
+                        }
+                    }
                     break;
                 case "Number":
                     EditText numberEditText = findViewById(R.id.type_enter_number_answer_box);

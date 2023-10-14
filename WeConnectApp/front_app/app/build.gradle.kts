@@ -53,7 +53,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     //View pdf
-    implementation ("com.github.barteksc:android-pdf-viewer:3.2.0")
+    //implementation ("com.github.barteksc:android-pdf-viewer:3.2.0")
 
 
 
