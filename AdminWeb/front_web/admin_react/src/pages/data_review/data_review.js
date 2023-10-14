@@ -16,9 +16,14 @@ const DataReview = () =>{
     const location = useLocation();
 
     const [selectedYear, setSelectedYear] = useState('');
+    const handleSelectedYear = (event) => {
+        setSelectedYear(event.target.value);
+    };
 
-    var selectedGroup;
-    // var selectedYear;
+    const [selectedGroup, setSelectedGroup] = useState('');
+    const handleSelecteGroup = (event) => {
+        setSelectedGroup(event.target.value);
+    };
 
     return (
         
@@ -30,14 +35,14 @@ const DataReview = () =>{
 
                 {/* Select Group Box */}
                 <div className={styles.selected_box_container}>
-                    <select id={styles.selected_box} value={selectedGroup}>
+                    <select id={styles.selected_box} value={selectedGroup} onChange={handleSelecteGroup}>
                         <option value="group1">group1</option>
                         <option value="group2">group2</option>
                         <option value="group3">group3</option>
                     </select>
 
                     {/* Select Year Box */}
-                    <select id={styles.selected_box} value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+                    <select id={styles.selected_box} value={selectedYear} onChange={handleSelectedYear}>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
                         <option value="2023">2023</option>

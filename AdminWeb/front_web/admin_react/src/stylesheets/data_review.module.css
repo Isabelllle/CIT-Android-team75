@@ -117,8 +117,8 @@
     color: black;
 }
 
-/* Sub page data review summary */
-#data_review_summary {
+/* Sub page data review summary and question */
+#data_review_summary, #data_review_question {
     margin: 110px 30px 30px 30px;
     padding: 0px;
     width: 100%;
@@ -126,7 +126,7 @@
     overflow-y: scroll;
 }
 
-#data_review_summary .chart_container {
+#data_review_summary .chart_container, #data_review_question .chart_container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,7 +139,7 @@
     box-shadow: 2px 2px 2px lightgray, 2px 2px 2px lightgray;
 }
 
-#data_review_summary .chart_container .topic {
+#data_review_summary .chart_container .topic, #data_review_question .chart_container .topic {
     text-align: left;
     background-color: #FFE1E1;
     width: 100%;
@@ -152,21 +152,13 @@
     box-shadow: 2px 2px 2px lightgray, 2px 2px 2px lightgray;
 }
 
-#data_review_summary .chart_container .question {
+#data_review_summary .chart_container .question, #data_review_question .chart_container .question {
     margin-top: 10px;
 }
 
-#data_review_summary .chart_container .each_chart {
+#data_review_summary .chart_container .each_chart, #data_review_question .chart_container .each_chart {
     max-width: 80%;
     margin-bottom: 30px;
-}
-
-/* Sub page data  */
-#data_review_question {
-    margin: 110px 30px 30px 30px;
-    padding: 0px;
-    width: 100%;
-    height: 100%;
 }
 
 /* Chart Component */
@@ -203,3 +195,5 @@
     max-width: 350px;
     height: auto;
 }
+
+/* Table Component */
