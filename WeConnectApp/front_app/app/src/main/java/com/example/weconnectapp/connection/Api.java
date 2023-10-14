@@ -3,7 +3,7 @@ package com.example.weconnectapp.connection;
 import com.example.weconnectapp.Questions;
 import com.example.weconnectapp.Response;
 import com.example.weconnectapp.VolunteerDetails;
-
+import retrofit2.http.Path;
 import java.util.List;
 
 import retrofit2.Call;
@@ -21,5 +21,8 @@ public interface Api {
 
     @POST("/api/survey/responses")
     Call<Void> submitResponse(@Body Response response);
+
+    @GET("/api/dropdown-options/{questionId}")
+    Call<List<String>> getDropdownOptions(@Path("questionId") int questionId);
 }
 

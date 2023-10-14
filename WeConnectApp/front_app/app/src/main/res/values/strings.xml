@@ -369,7 +369,11 @@ Email: info@volunteeringvictoria.org.au\n
     <string name="rating3">3</string>
     <string name="rating4">4</string>
     <string name="rating5">5</string>
-
+    <string name="rating6">6</string>
+    <string name="rating7">7</string>
+    <string name="rating8">8</string>
+    <string name="rating9">9</string>
+    <string name="rating10">10</string>
     <string name="question_story">Story</string>
     <string name="question_wellbeing">Wellbeing</string>
     <string name="question_employability">Employability</string>
