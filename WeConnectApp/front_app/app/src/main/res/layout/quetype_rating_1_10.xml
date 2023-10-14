@@ -33,104 +33,106 @@
 
     <RadioGroup
         android:id="@+id/type_rating_1_10_answer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/question_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:orientation="vertical">
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <RadioButton
+            style="@style/SmallRadioButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:text="@string/rating1"
+            android:textColor="@color/black"
+            <!--android:button="@drawable/small_radio_button"
+            android:scaleX="0.1"
+            android:scaleY="0.1"-->
+            android:textSize="12sp" />
 
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="6dp"
-                android:text="@string/rating1"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
 
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="6dp"
-                android:text="@string/rating2"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="6dp"
-                android:text="@string/rating3"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="6dp"
-                android:text="@string/rating4"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <RadioButton
-                android:layout_width="60dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="6dp"
-                android:text="@string/rating5"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <RadioButton
+            style="@style/SmallRadioButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:text="@string/rating2"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
 
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="6dp"
-                android:text="@string/rating6"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+        <RadioButton
+            style="@style/SmallRadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rating3"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
 
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="6dp"
-                android:text="@string/rating7"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+        <RadioButton
+            style="@style/SmallRadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rating4"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
 
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="6dp"
-                android:text="@string/rating8"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+        <RadioButton
+            style="@style/SmallRadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rating5"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
 
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="6dp"
-                android:text="@string/rating9"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+        <RadioButton
+            style="@style/SmallRadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rating6"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
 
-            <RadioButton
-                android:layout_width="60dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="6dp"
-                android:text="@string/rating10"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
+        <RadioButton
+            style="@style/SmallRadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rating7"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <RadioButton
+            style="@style/SmallRadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rating8"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <RadioButton
+            style="@style/SmallRadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rating9"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <RadioButton
+            style="@style/SmallRadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rating10"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
     </RadioGroup>
 
 

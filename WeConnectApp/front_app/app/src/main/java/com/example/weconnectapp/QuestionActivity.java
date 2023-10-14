@@ -102,22 +102,18 @@ public class QuestionActivity extends AppCompatActivity {
                 case "Rating scales 1-10":
                     RadioGroup radioGroup10 = findViewById(R.id.type_rating_1_10_answer);
                     if (radioGroup10 != null) {
-                        radioGroup10.setOnCheckedChangeListener((group, checkedId) -> {
-                            Log.d("RadioGroup", "Checked ID changed: " + checkedId);  // 添加这一行来查看选中状态的变化
-                        });
                         int selectedRadioButtonId = radioGroup10.getCheckedRadioButtonId();
-                        Log.d("Save Answer", "Selected radio button ID: " + selectedRadioButtonId);
                         if (selectedRadioButtonId != -1) {
                             RadioButton radioButton = radioGroup10.findViewById(selectedRadioButtonId);
-                            View parent = (View) radioButton.getParent(); // 获取 RadioButton 的父布局
-                            int parentIndex = radioGroup10.indexOfChild(parent); // 获取父布局在 RadioGroup 中的索引
-                            int buttonIndex = ((RadioGroup) parent).indexOfChild(radioButton); // 获取 RadioButton 在父布局中的索引
-                            int finalIndex = parentIndex * 5 + buttonIndex; // 计算 RadioButton 的总索引
-                            answers.put(questionId, finalIndex);
-                            Log.d("Save Answer", "Saved answer index: " + finalIndex + " for question ID: " + questionId);
+                            // 保存与 RadioButton 关联的答案或答案值，而不是 RadioButton 的索引
+                            String answer = radioButton.getText().toString();  // 假设每个 RadioButton 的文本就是答案值
+                            answers.put(questionId, answer);
+                            Log.d("Save Answer", "Saved answer: " + answer + " for question ID: " + questionId);
                         } else {
                             Log.d("Save Answer", "No radio button selected for question ID: " + questionId);
                         }
+                    } else {
+                        Log.d("Save Answer", "RadioGroup is null for question ID: " + questionId);
                     }
                     break;
 
@@ -275,14 +271,16 @@ public class QuestionActivity extends AppCompatActivity {
 
                 case "Rating scales 1-10":
                     RadioGroup radioGroup10 = findViewById(R.id.type_rating_1_10_answer);
-                    if (savedAnswer instanceof Integer && radioGroup10 != null) {
-                        int finalIndex = (Integer) savedAnswer;
-                        int parentIndex = finalIndex / 5; // 计算父布局的索引
-                        int buttonIndex = finalIndex % 5; // 计算 RadioButton 在父布局中的索引
-                        LinearLayout parent = (LinearLayout) radioGroup10.getChildAt(parentIndex); // 获取父布局
-                        RadioButton radioButton = (RadioButton) parent.getChildAt(buttonIndex); // 获取 RadioButton
-                        radioButton.setChecked(true);
-                        Log.d("Load Answer", "Loaded answer index: " + finalIndex + " for question ID: " + questionId);
+                    if (radioGroup10 != null && savedAnswer instanceof String) {
+                        String answer = (String) savedAnswer;
+                        for (int i = 0; i < radioGroup10.getChildCount(); i++) {
+                            RadioButton radioButton = (RadioButton) radioGroup10.getChildAt(i);
+                            if (radioButton.getText().toString().equals(answer)) {  // 比较 RadioButton 的文本和保存的答案值
+                                radioButton.setChecked(true);
+                                Log.d("Load Answer", "Loaded answer: " + answer + " for question ID: " + questionId);
+                                break;
+                            }
+                        }
                     }
                     break;
                 case "Number":
