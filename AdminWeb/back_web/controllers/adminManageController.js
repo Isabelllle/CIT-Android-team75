@@ -142,7 +142,7 @@ const transporter = nodemailer.createTransport({
   
 /**
  * POST /api/sendEmail
- * send email when deal with approved status
+ * send email when deal with different status
  * 
  * @param {Object} req - The HTTP request object.
  * @param {Object} res - The HTTP response object.
