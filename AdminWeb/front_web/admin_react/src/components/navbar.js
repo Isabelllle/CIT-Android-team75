@@ -55,9 +55,9 @@ const NavBar= () =>{
             </li>
 
             <li>
-                <Link to="/data_review" className={styles.no_underline}>
-                    <DataReviewIcon className={styles.icon} style={{ fill: location.pathname === '/data_review' ? '#DE0A3F' : 'black' }} src={DataReviewIcon} />
-                    <h1 className={location.pathname === '/data_review' ?  styles.selectedText : styles.unselectedText}>Data Review</h1>
+                <Link to="/data_review/summary" className={styles.no_underline}>
+                    <DataReviewIcon className={styles.icon} style={{ fill: location.pathname.startsWith('/data_review') ? '#DE0A3F' : 'black' }} src={DataReviewIcon} />
+                    <h1 className={location.pathname.startsWith('/data_review') ?  styles.selectedText : styles.unselectedText}>Data Review</h1>
                 </Link>
             </li>
 
