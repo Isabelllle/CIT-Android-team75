@@ -15,16 +15,6 @@ const DataReview = () =>{
 
     const location = useLocation();
 
-    const [selectedYear, setSelectedYear] = useState('');
-    const handleSelectedYear = (event) => {
-        setSelectedYear(event.target.value);
-    };
-
-    const [selectedGroup, setSelectedGroup] = useState('');
-    const handleSelecteGroup = (event) => {
-        setSelectedGroup(event.target.value);
-    };
-
     return (
         
         <main>
@@ -32,23 +22,6 @@ const DataReview = () =>{
 
                 {/* Heading */}
                 <h1 class={styles.page_heading}>Data Review</h1>
-
-                {/* Select Group Box */}
-                <div className={styles.selected_box_container}>
-                    <select id={styles.selected_box} value={selectedGroup} onChange={handleSelecteGroup}>
-                        <option value="group1">group1</option>
-                        <option value="group2">group2</option>
-                        <option value="group3">group3</option>
-                    </select>
-
-                    {/* Select Year Box */}
-                    <select id={styles.selected_box} value={selectedYear} onChange={handleSelectedYear}>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="All">All</option>
-                    </select>
-                </div>
 
                 {/* View data method page */}
                 <div className={styles.method_container}>
@@ -74,7 +47,6 @@ const DataReview = () =>{
                 </div>
 
                 <Outlet />
-                <DataReviewSummary selectedYear={selectedYear} />
             </div>
         </main>
     );

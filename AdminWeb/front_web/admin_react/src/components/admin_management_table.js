@@ -14,8 +14,7 @@ import axios from 'axios'; // Import the library used to send HTTP requests
 const AdminManagementTable = ({ selectedSort }) => {
 
     // Table Variable
-    const [tableData, setTableData] =  useState([
-    ]);
+    const [tableData, setTableData] =  useState([]);
 
     // last_name, first_name, email, group
   
