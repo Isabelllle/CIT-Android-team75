@@ -1,0 +1,25 @@
+name: Depoly Action
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: ssh deploy
+      uses: easingthemes/ssh-deploy@v2.1.5
+      with:
+        REMOTE_HOST: ${{ secrets.HOST }}
+        REMOTE_USER: ${{ secrets.USER }}
+        SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+        SOURCE: "AdminWeb/back_web/app.js"
+        TARGET: "/var/www/html"
+
+    - name: Prepare For CITWeb
+      uses: webfactory/ssh-agent@v0.5.0
+      with:
+        ssh-private-key: ${{ secrets.DEPLOY_KEY }}
