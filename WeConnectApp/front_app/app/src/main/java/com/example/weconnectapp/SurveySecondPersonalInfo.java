@@ -83,8 +83,6 @@ public class SurveySecondPersonalInfo extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                nextButton.setEnabled(true);
-                Log.d("Submit", "Response received with code: " + response.code());
 
                 if (response.isSuccessful()) {
                     Toast.makeText(SurveySecondPersonalInfo.this, "Responses submitted successfully!",
@@ -92,12 +90,14 @@ public class SurveySecondPersonalInfo extends AppCompatActivity {
                 } else {
                     Toast.makeText(SurveySecondPersonalInfo.this, "Failed to submit responses!",
                             Toast.LENGTH_SHORT).show();
+                    responsesList.clear();  // clear responsesList
                 }
+                nextButton.setEnabled(true);  // succeed  or not, re-enable button
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                nextButton.setEnabled(true);
+                nextButton.setEnabled(true);  // if fail, re-enable button
                 Log.d("Submit", "Failure: " + t.getMessage());
                 Toast.makeText(SurveySecondPersonalInfo.this, "Error: " + t.getMessage(),
                         Toast.LENGTH_SHORT).show();
