@@ -38,6 +38,7 @@ const loginAdmin = (req, res) => {
             }
             if (results.rows.length > 0) {
                 const token = jwt.sign({ email }, 'your-secret-key', { expiresIn: '1h' });
+
                 res.redirect(`http://localhost:3000/?token=${token}`);
             } else {
                 res.send('Invalid username or password');
@@ -198,7 +199,7 @@ const verifyToken = (req, res, next) => {
     jwt.verify(token, 'your-secret-key', (err, decoded) => {
         if (err) {
             // console.log('reminder vertify//', token);
-            return res.status(401).send('Unauthorized');
+            return res.status(401).json({ error: 'Unauthorized' });
         }
         req.email = decoded.email; 
         next();
