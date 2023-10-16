@@ -1,5 +1,5 @@
 package com.example.weconnectapp;
-
+import com.google.gson.Gson;
 public class Response {
     private int question_id;
     private String vol_email;
@@ -87,6 +87,12 @@ public class Response {
 
     public void setdropdown_id(Integer dropdown_id) {
         this.dropdown_id = dropdown_id;
+    }
+
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }
 
