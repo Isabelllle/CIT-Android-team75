@@ -1,6 +1,8 @@
 
 package com.example.weconnectapp;
 
+import java.io.Serializable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -37,7 +39,7 @@ public class QuestionActivity extends AppCompatActivity {
     private Api api;
     private RelativeLayout layout;
 
-    private Map<Integer, Object> answers = new HashMap<>(); // map to save answer
+    private HashMap<Integer, Object> answers = new HashMap<>();  // map to save answer
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +107,8 @@ public class QuestionActivity extends AppCompatActivity {
                         int selectedRadioButtonId = radioGroup10.getCheckedRadioButtonId();
                         if (selectedRadioButtonId != -1) {
                             RadioButton radioButton = radioGroup10.findViewById(selectedRadioButtonId);
-                            // 保存与 RadioButton 关联的答案或答案值，而不是 RadioButton 的索引
-                            String answer = radioButton.getText().toString();  // 假设每个 RadioButton 的文本就是答案值
+                            // Save the answer or answer value associated with RadioButton, rather than the index of RadioButton
+                            String answer = radioButton.getText().toString();  // Assuming that the text of each RadioButton is the answer value
                             answers.put(questionId, answer);
                             Log.d("Save Answer", "Saved answer: " + answer + " for question ID: " + questionId);
                         } else {
@@ -218,9 +220,12 @@ public class QuestionActivity extends AppCompatActivity {
 
                 nextButton.setOnClickListener(v -> {
                     saveCurrentAnswer();
-                    if (currentPage == 37 && areAllQuestionsAnswered()) {  // Assuming 37 is the ID of the last question
-                        submitAnswers();
-                    } else if (currentPage < 37 || !areAllQuestionsAnswered()) {
+                    if (currentPage == 10 && areAllQuestionsAnswered()) {  // Assuming 37 is the ID of the last question
+                        // Start the email input activity
+                        Intent intent = new Intent(QuestionActivity.this, SurveySecondPersonalInfo.class);
+                        intent.putExtra("answers", (Serializable) answers);  // transport answers to next Activity
+                        startActivity(intent);
+                    } else if (currentPage < 10 || !areAllQuestionsAnswered()) {
                         currentPage++;
                         fetchQuestions();
                     } else {
@@ -281,7 +286,7 @@ public class QuestionActivity extends AppCompatActivity {
                         String answer = (String) savedAnswer;
                         for (int i = 0; i < radioGroup10.getChildCount(); i++) {
                             RadioButton radioButton = (RadioButton) radioGroup10.getChildAt(i);
-                            if (radioButton.getText().toString().equals(answer)) {  // compare RadioButton 的文本和保存的答案值
+                            if (radioButton.getText().toString().equals(answer)) {  // compare RadioButton's text and saved answer
                                 radioButton.setChecked(true);
                                 Log.d("Load Answer", "Loaded answer: " + answer + " for question ID: " + questionId);
                                 break;
@@ -348,7 +353,7 @@ public class QuestionActivity extends AppCompatActivity {
         // Check if all questions are answered
         // For simplicity, just check if the size of the answers map is equal to the total number of questions
         // Modify this as per your actual requirements
-        return answers.size() == 37;  // Replace with actual total number of questions
+        return answers.size() == 10;  // Replace with actual total number of questions
     }
 
     private void submitAnswers() {
