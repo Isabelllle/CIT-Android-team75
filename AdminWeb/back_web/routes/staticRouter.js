@@ -34,11 +34,10 @@ router.get('/email_verify',staticController.emailVerify);
 
 // all forget password related routes
 router.get('/enteremail', staticController.forgetEnterEmail);
-// router.get('/enteremail/enter',adminController.functionName);
+// router.post('/enteremail/enter',adminController.functionName);
 
 // 渲染
 router.get('/emailverify', staticController.forgetEmailVerify);
 router.get('/newPassword', staticController.newPassword);
-// router.post('/newPassword/submit', adminController.insertNewPassword);
 
 module.exports = router;
