@@ -1,44 +1,44 @@
 package com.example.weconnectapp;
 
 public class Response {
-    private int questionId;
-    private String volunteerEmail;
+    private int question_id;
+    private String vol_email;
     private String text;
     private Integer number;
-    private Integer rating_1_5;
+    private Integer rating;
     private Integer rating1_10;
-    private Boolean y_n;
-    private Integer dropdown_option_id;
+    private Boolean yes_or_no;
+    private Integer dropdown_id;
 
     public Response() {
         // Default constructor
     }
 
-    public Response(int questionId, String volunteerEmail, String text, Integer number, Integer rating_1_5, Integer rating1_10, Boolean y_n, Integer dropdown_option_id) {
-        this.questionId = questionId;
-        this.volunteerEmail = volunteerEmail;
+    public Response(int question_id, String vol_email, String text, Integer number, Integer rating, Integer rating1_10, Boolean yes_or_no, Integer dropdown_id) {
+        this.question_id = question_id;
+        this.vol_email = vol_email;
         this.text = text;
         this.number = number;
-        this.rating_1_5 = rating_1_5;
+        this.rating = rating;
         this.rating1_10 = rating1_10;
-        this.y_n = y_n;
-        this.dropdown_option_id = dropdown_option_id;
+        this.yes_or_no = yes_or_no;
+        this.dropdown_id = dropdown_id;
     }
 
-    public int getQuestionId() {
-        return questionId;
+    public int getquestion_id() {
+        return question_id;
     }
 
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
+    public void setquestion_id(int question_id) {
+        this.question_id = question_id;
     }
 
-    public String getVolunteerEmail() {
-        return volunteerEmail;
+    public String getvol_email() {
+        return vol_email;
     }
 
-    public void setVolunteerEmail(String volunteerEmail) {
-        this.volunteerEmail = volunteerEmail;
+    public void setvol_email(String vol_email) {
+        this.vol_email = vol_email;
     }
 
     public String getText() {
@@ -57,12 +57,12 @@ public class Response {
         this.number = number;
     }
 
-    public Integer getRating_1_5() {
-        return rating_1_5;
+    public Integer getrating() {
+        return rating;
     }
 
-    public void setRating_1_5(Integer rating_1_5) {
-        this.rating_1_5 = rating_1_5;
+    public void setrating(Integer rating) {
+        this.rating = rating;
     }
 
     public Integer getRating1_10() {
@@ -73,20 +73,20 @@ public class Response {
         this.rating1_10 = rating1_10;
     }
 
-    public Boolean getY_n() {
-        return y_n;
+    public Boolean getyes_or_no() {
+        return yes_or_no;
     }
 
-    public void setY_n(Boolean y_n) {
-        this.y_n = y_n;
+    public void setyes_or_no(Boolean yes_or_no) {
+        this.yes_or_no = yes_or_no;
     }
 
-    public Integer getDropdown_option_id() {
-        return dropdown_option_id;
+    public Integer getdropdown_id() {
+        return dropdown_id;
     }
 
-    public void setDropdown_option_id(Integer dropdown_option_id) {
-        this.dropdown_option_id = dropdown_option_id;
+    public void setdropdown_id(Integer dropdown_id) {
+        this.dropdown_id = dropdown_id;
     }
 }
 

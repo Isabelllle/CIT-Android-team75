@@ -33,6 +33,9 @@
         <activity
             android:name=".SurveyPersonalDetail"
             android:exported="false" />
+        <activity
+            android:name=".SurveySecondPersonalInfo"
+            android:exported="false" />
         <activity android:name=".QuestionActivity" />
         <activity
             android:name=".TakeSurveyDecision"

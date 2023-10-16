@@ -218,8 +218,14 @@ public class QuestionActivity extends AppCompatActivity {
 
                 nextButton.setOnClickListener(v -> {
                     saveCurrentAnswer();
-                    currentPage++;
-                    fetchQuestions();
+                    if (currentPage == 37 && areAllQuestionsAnswered()) {  // Assuming 37 is the ID of the last question
+                        submitAnswers();
+                    } else if (currentPage < 37 || !areAllQuestionsAnswered()) {
+                        currentPage++;
+                        fetchQuestions();
+                    } else {
+                        Toast.makeText(QuestionActivity.this, "Please answer all questions before submitting.", Toast.LENGTH_SHORT).show();
+                    }
                 });
 
                 previousButton.setOnClickListener(v -> {
@@ -275,7 +281,7 @@ public class QuestionActivity extends AppCompatActivity {
                         String answer = (String) savedAnswer;
                         for (int i = 0; i < radioGroup10.getChildCount(); i++) {
                             RadioButton radioButton = (RadioButton) radioGroup10.getChildAt(i);
-                            if (radioButton.getText().toString().equals(answer)) {  // 比较 RadioButton 的文本和保存的答案值
+                            if (radioButton.getText().toString().equals(answer)) {  // compare RadioButton 的文本和保存的答案值
                                 radioButton.setChecked(true);
                                 Log.d("Load Answer", "Loaded answer: " + answer + " for question ID: " + questionId);
                                 break;
@@ -337,5 +343,24 @@ public class QuestionActivity extends AppCompatActivity {
                 Log.e("API Error", t.getMessage(), t);
             }
         });
+    }
+    private boolean areAllQuestionsAnswered() {
+        // Check if all questions are answered
+        // For simplicity, just check if the size of the answers map is equal to the total number of questions
+        // Modify this as per your actual requirements
+        return answers.size() == 37;  // Replace with actual total number of questions
+    }
+
+    private void submitAnswers() {
+        // Send a POST request to the server with the answers
+        // This is just a skeleton, you need to implement the actual POST request
+        if (areAllQuestionsAnswered()) {
+            // Convert answers map to JSON or another suitable format
+            // Send POST request to server
+            // Show success message or handle response as needed
+            Toast.makeText(QuestionActivity.this, "Answers submitted successfully!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(QuestionActivity.this, "Please answer all questions before submitting.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

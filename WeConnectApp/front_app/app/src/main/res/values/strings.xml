@@ -43,6 +43,11 @@
     <string name="police_agree">Agree and Continue</string>
     <string name="police_disagree">Disagree </string>
 
+    <string name="sec_email_hint1">Your Email Address</string>
+    <string name="sec_email_hint2">Note: To collect information more accurately, please ensure that
+        the email address you provide matches the one from the first survey. \n
+        Thank you for your cooperation.</string>
+        
     <!-- Take Survey Title   -->
     <string name="personal_details">Personal Details</string>
     <string name="organisation_details">Organisation Details</string>

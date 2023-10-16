@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { client } = require('../db'); 
 
+console.log('Survey route file is loaded.');
+
 // get selected questions
 router.get('/questions', async (req, res) => {
     const page = parseInt(req.query.page) || 1; // select from which page,default from first page
@@ -22,23 +24,34 @@ router.get('/questions', async (req, res) => {
 
 // submit response
 router.post('/responses', async (req, res) => {
-    const { question_id, volunteer_email, text, number, rating_1_5, rating1_10, y_n, dropdown_option_id } = req.body;
+    console.log('Received a request to /responses'); 
+    const responses = req.body.responses;  // Assume responses is an array of objects
     
     // verify
-    if (!question_id || !volunteer_email) {
-        return res.status(400).json({ message: "Question ID and volunteer email are required" });
+    if (!responses || !Array.isArray(responses) || responses.length === 0) {
+        return res.status(400).json({ message: "Responses are required" });
     }
 
     try {
-        await client.query(
-            'INSERT INTO public.responses (question_id, volunteer_email, text, number, rating_1_5, rating1_10, y_n, dropdown_option_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
-            [question_id, volunteer_email, text, number, rating_1_5, rating1_10, y_n, dropdown_option_id]
-        );
-        res.status(201).json({ message: "Response saved successfully." });
+        // 
+        for (let response of responses) {
+            const { question_id, vol_email, text, number, rating, rating1_10, yes_or_no, dropdown_id } = response;
+
+            if (!question_id || !vol_email) {
+                return res.status(400).json({ message: "Question ID and volunteer email are required" });
+            }
+
+            await client.query(
+                'INSERT INTO public.responses (question_id, vol_email, sub_time, text, number, rating, rating1_10, yes_or_no, dropdown_id) VALUES ($1, $2, CURRENT_DATE, $3, $4, $5, $6, $7, $8)',
+                [question_id, vol_email, text, number, rating, rating1_10, yes_or_no, dropdown_id]
+            );
+        }
+
+        res.status(201).json({ message: "Responses saved successfully." });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
 });
-
+console.log('Route for /responses is configured.');
 module.exports = router;

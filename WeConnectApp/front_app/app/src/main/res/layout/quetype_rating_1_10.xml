@@ -47,11 +47,10 @@
             android:layout_weight="1"
             android:text="@string/rating1"
             android:textColor="@color/black"
-            <!--android:button="@drawable/small_radio_button"
-            android:scaleX="0.1"
-            android:scaleY="0.1"-->
             android:textSize="12sp" />
-
+        <!--android:button="@drawable/small_radio_button"
+                    android:scaleX="0.1"
+                    android:scaleY="0.1"-->
 
         <RadioButton
             style="@style/SmallRadioButton"

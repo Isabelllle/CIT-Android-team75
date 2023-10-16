@@ -40,6 +40,8 @@ app.use(bodyParser.json());
 app.use('/api/volunteer', volunteerRoutes);  
 app.use('/api/groups', groupRoutes);
 app.use('/api/survey', surveyRoutes);
+console.log('Survey routes configured.');
+
 //app.use('/api/reminder', reminderRoutes);
 app.use('/api/error-reports', errorReportRoutes);
 app.use('/api/dropdown-options', dropdownOptionsRoutes);
