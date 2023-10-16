@@ -115,21 +115,22 @@ const DataReviewSummary = () =>{
     return (
         <div id={styles.data_review_question}>
 
-        <select id={styles.selected_box} value={selectedGroup} onChange={handleSelecteGroup}>
-            {groupList.map(group => (
-                <option key={group} value={group}>{group}</option>
-            ))}
-            <option value="All">All</option>
-        </select>
+            <div className={styles.selected_box_container}>
+                <select id={styles.selected_box} value={selectedGroup} onChange={handleSelecteGroup}>
+                    {groupList.map(group => (
+                        <option key={group} value={group}>{group}</option>
+                    ))}
+                    <option value="All">All</option>
+                </select>
 
-
-            {/* Select Year Box */}
-            <select id={styles.selected_box} value={selectedYear} onChange={handleSelectedYear}>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-                <option value="All">All</option>
-            </select>
+                {/* Select Year Box */}
+                <select id={styles.selected_box} value={selectedYear} onChange={handleSelectedYear}>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="All">All</option>
+                </select>
+            </div>
 
             {/* Render chart components based on data type */}
             <div className={styles.data_container} key={data}>

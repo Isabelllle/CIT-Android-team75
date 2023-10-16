@@ -11,8 +11,6 @@ const WordCloudComponent = ({ data }) => {
 
     const textOneArray = data.map(item => item.text_one);
         const textTwoArray = data.map(item => item.text_two);
-        // console.log('textOneArray:', textOneArray);
-        // console.log('textTwoArray:', textTwoArray);
 
         const textFrequencyOne = {};
         const textFrequencyTwo = {};
@@ -28,9 +26,6 @@ const WordCloudComponent = ({ data }) => {
                 textFrequencyTwo[item] = (textFrequencyTwo[item] || 0) + 1;
             }
         });
-
-        // console.log('textFrequencyOne:', textFrequencyOne);
-        // console.log('textFrequencyTwo:', textFrequencyTwo);
 
         const formattedDataOne = Object.keys(textFrequencyOne).map(key => ({
             value: key,
