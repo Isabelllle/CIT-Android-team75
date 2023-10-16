@@ -132,15 +132,7 @@ async function updateGroups(req, res) {
     }
 }
 
-
-// const transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//       user: 'gyijun017@gmail.com', // 发送邮件的邮箱
-//       pass: '20010422Gyj' // 发送邮件的邮箱密码或者授权码
-//     }
-//   });
-
+// transport to email 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com', port: 465, secure: true, // use SSL
     auth: {
@@ -149,53 +141,49 @@ const transporter = nodemailer.createTransport({
 });
   
 /**
- * POST /api/disapproveEmail
- * send email when deal with approved status
+ * POST /api/sendEmail
+ * send email when deal with different status
  * 
  * @param {Object} req - The HTTP request object.
  * @param {Object} res - The HTTP response object.
  */
-// const sendEmail = (req, res) => {
-//     const { email } = req.body;
 
-//     const mailOptions = {
-//         from: 'gyijun017@gmail.com',
-//         to: email,
-//         subject: 'ApproveEmail',
-//         text: 'Your email has been approved, please login.'
-//       };
-    
-//     transporter.sendMail(mailOptions, (error, info) => {
-//         if (error) {
-//           console.error('Error sending email:', error);
-//           res.status(500).send('Internal Server Error');
-//         } else {
-//           console.log('Email sent: ' + info.response);
-//           res.send('Email sent successfully');
-//         }
-//     });
-    
-// };
 const sendEmail = (req, res) => {
-    const { email, type } = req.body; // 添加了一个名为 "type" 的字段
+    const { email, type } = req.body;
 
     let subject, text;
 
     if (type === 'approve') {
-        subject = 'ApproveEmail';
-        text = 'Your email has been approved, please login.';
+        subject = 'Registration Approved';
+        text = "Congratulations! Your registration with WeConnect Admin Management System has been successfully approved. "
+            + "We are pleased to welcome you as a valued member of our community.\n\n\n"
+            + "So what's next?\n"
+            + "Log in your account with email and password, and do further advanced operations.\n\n\n"
+            + "If you have any questions or need assistance with any aspect of your registration, please do not hesitate to contact us via weconnect@volunteeringvictoria.org.";
     } else if (type === 'disapprove') {
-        subject = 'DisapproveEmail';
-        text = 'Your email has been disapproved, please contact support for more information.';
+        subject = 'Registration Disapproved';
+        text = "Sorry, we regret to inform you that your registration with WeConnect Admin Management System has been disapproved.\n\n\n"
+            + "We understand that this may be disappointing, and we would like to provide you with more information regarding the reasons for the disapproval. The decision may be due to one or more of the following reasons:\n"
+            + "1. Incomplete Information: Your registration may not have been approved if essential information was missing or incomplete. Please ensure all required fields are properly filled out when reapplying.\n"
+            + "2. Invalid Documentation: If certain documents or proof of eligibility were required, and they were either not provided or were not valid, this could lead to a disapproval.\n"
+            + "3. Eligibility Criteria Not Met: Your registration might not align with the eligibility requirements set forth by our organization. Carefully review the eligibility criteria and ensure that you meet all the necessary qualifications.\n\n\n"
+            + "If you believe there has been a mistake or if you have additional information to provide that could help us reconsider your registration, please feel free to contact our support team via weconnect@volunteeringvictoria.org.";
     } else {
-        return res.status(400).send('Invalid request type'); // 如果类型不是 approve 或 disapprove，则返回错误响应
+        return res.status(400).send('Invalid request type');
     }
+
+
 
     const mailOptions = {
         from: 'gyijun017@gmail.com',
         to: email,
         subject: subject,
-        text: text
+        text: text,
+        attachments: [{
+            filename: 'image.png',
+            path: path.join(__dirname, '..', 'images', 'image.png'),
+            cid: 'unique@nodemailer.com'
+        }]
       };
     
     transporter.sendMail(mailOptions, (error, info) => {
@@ -209,6 +197,26 @@ const sendEmail = (req, res) => {
     });
 };
 
+/**
+ * GET /api/searchGroupName
+ * 
+ * @param {Object} req - The HTTP request object.
+ * @param {Object} res - The HTTP response object.
+ */
+
+const searchGroupName = (req, res) => {
+    const { searchGroup } = req.query;
+    client.query('SELECT * FROM groups WHERE group_name = $1', [searchGroup], (error, result) => {
+        if (error) {
+        console.error('Error executing query:', error);
+        res.status(500).send('Internal Server Error');
+        return;
+        }
+
+        const searchData = result.rows.map(row => row.group_name);
+        res.json(searchData);
+    });
+};
 
 module.exports = {
     getUnregisterList,
@@ -216,4 +224,5 @@ module.exports = {
     disapproveEmail,
     sendEmail,
     updateGroups,
+    searchGroupName,
 };

@@ -1,7 +1,7 @@
 /**
  * <Description> This is the controllers of login/signup functions & methods of profile settings
- *  Need token to vertify the indetification of users
- * @author {YIJUN GUO}
+ *  Need token to verify the identification of users
+ * @author {YIJUN GUO, ZIXIAN LI}
  * @version 3.0
  * @date {2023}/{Sep}/{19}
  * 
@@ -12,6 +12,9 @@ const jwt = require('jsonwebtoken');
 // PostgreSQL client & default password value from PostgreSQL library.
 const { client } = require('../db'); 
 const { password } = require('pg/lib/defaults');
+const { v4: uuidv4 } = require('uuid');
+const nodemailer = require('nodemailer');
+
 
 
 /**
@@ -25,7 +28,7 @@ const { password } = require('pg/lib/defaults');
 const loginAdmin = (req, res) => {  
     const { email, password } = req.body;
     
-    // veritify the email & password
+    // verify the email & password
     client.query(
         'SELECT * FROM admin WHERE email = $1 AND password = $2 AND has_registered = true',
         [email, password],
@@ -34,18 +37,6 @@ const loginAdmin = (req, res) => {
                 throw error;
             }
             if (results.rows.length > 0) {
-                // const isManager = results.rows[0].is_manager;
-                // console.log('login admin is manager',isManager);
-                // let secretKey;
-
-                // if (isManager) {
-                //     secretKey = 'manager-secret-key';
-                // } else {
-                //     secretKey = 'admin-secret-key';
-                // }
-                // console.log('isman',isManager,secretKey);
-
-                // const token = jwt.sign({ email, role: isManager ? 'manager' : 'admin' }, secretKey, { expiresIn: '1h' });
                 const token = jwt.sign({ email }, 'your-secret-key', { expiresIn: '1h' });
 
                 res.redirect(`http://localhost:3000/?token=${token}`);
@@ -56,9 +47,10 @@ const loginAdmin = (req, res) => {
     );
 };
 
+
 /**
  * POST static/signin/submit
- * Handles the signup request for an admin user.
+ * Handles the login request for an admin user.
  * 
  * @param {Object} req - The HTTP request object.
  * @param {Object} res - The HTTP response object.
@@ -66,36 +58,117 @@ const loginAdmin = (req, res) => {
  */
 const signupAdmin = (req, res) => {
     const { first_name, last_name, email, password } = req.body;
+    
+    let token = uuidv4(); // 生成唯一的验证令牌
+
+    // 保存令牌和用户信息，以便稍后验证
+    client.query('INSERT INTO email_verification (email, first_name, last_name, password, token) VALUES ($1, $2, $3, $4, $5)', 
+    [email, first_name, last_name, password, token]);
+
+    sendVerificationEmail(email, first_name, token);
+    verifyEmailToken(token, res, req);
+};
+
+// 调用此函数来发送验证邮件
+function sendVerificationEmail(email, name, token) {
+    
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // 如果是 true 则 port 设置为 465，如果是 false 则可以用其它端口
+        auth: {
+            user: 'gyijun017@gmail.com', // 发送邮件的邮箱
+            pass: 'bpyi tkkn ctfu kukr' // 邮箱密码
+            }
+        });
+    
+    // 需要修改link
+    const verificationLink = `http://localhost:3000/verify-email?token=${token}`;
+    const mailOptions = {
+        from: 'gyijun017@gmail.com',
+        to: email,
+        subject: 'Email Verification',
+        text: `Hello ${name},\n\nPlease verify your email address by clicking the following link:\n\n${verificationLink}\n\nThank you!`,
+    };
+
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error(error);
+        }
+    });
+}
+
+/**
+ * GET static/verify-email
+ * Handles the login request for an admin user.
+ * 
+ * @param {Object} req - The HTTP request object.
+ * @param {Object} res - The HTTP response object.
+ * @throws {Error} If an error occurs while inserting the question.
+ */
+const verifyEmailToken = (token, res, req) => {
+    
+    if (!token) {
+        res.status(400).send('Missing verification token.');
+        return;
+    }
+    verifyTokenSignUp(token, res, req);
+};
+
+function verifyTokenSignUp(token, res, req) {
+    const { first_name, last_name, email, password } = req.body;
     const selectedGroup = req.body.selected_group; // selected group name
     const has_registered = false; // default
     const is_manager = true; // default
 
-    // find the group id of the group name to insert id in the admin table
-    client.query('SELECT group_id FROM groups WHERE group_name = $1', [selectedGroup], (error, results) => {
+    client.query('SELECT * FROM email_verification WHERE token = $1', [token], (error, results) => {
         if (error) {
             throw error;
         }
+        // find the group id of the group name to insert id in the admin table
+        client.query('SELECT group_id FROM groups WHERE group_name = $1', [selectedGroup], (error, results) => {
+            if (error) {
+                throw error;
+            }
 
-        if (results.rows.length > 0) {
-            const group_id = results.rows[0].group_id;
+            if (results.rows.length > 0) {
+                const group_id = results.rows[0].group_id;
 
-            // insert signup information to the admin table
-            client.query('INSERT INTO admin (email, password, "first_name ", "last_name ", has_registered, is_manager,\
-                group_id, group_name) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', 
-                [email, password, first_name, last_name, has_registered, is_manager, group_id, selectedGroup],
-                (error, results) => {
+                // 将用户信息移动到主用户表
+                client.query('INSERT INTO admin (email, password, "first_name ", "last_name ", has_registered, is_manager,\
+                    group_id, group_name) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', 
+                    [email, password, first_name, last_name, has_registered, is_manager, group_id, selectedGroup]);
+
+                // 删除已验证的令牌和用户信息
+                client.query('DELETE FROM email_verification WHERE token = $1', [token], (error, deleteResults) => {
                     if (error) {
-                        throw error;
+                        console.error("Error deleting token:", error); // 添加详细的错误日志
+                        return res.status(500).send('Internal Server Error');
                     }
-                    res.redirect(`/static/signUpInstruct`);
+                
+                    if (deleteResults.rowCount === 0) {
+                        console.warn("No matching token found for deletion"); // 如果没有匹配的令牌，添加警告日志
+                        return res.status(400).send('Invalid Token');
+                    }
+                
+                    // 如果一切正常，则重定向
+                    return res.redirect('/static/signUpInstruct');
                 });
-        } else {
-            res.status(400).send('Error: Group not found');
-        }
+                
+            // res.redirect('/static/signUpInstruct');
+            } else {
+                res.status(400).send('Invalid verification token');
+            }
+        });
     });
+}
 
+<<<<<<< HEAD
 };
 
+=======
+>>>>>>> merge_email
 
 /**
  * GET static/signin/getGroups
@@ -366,4 +439,5 @@ module.exports = {
     getSurveyQuesTable,
     deleteItem,
     getIsManger,
+    verifyEmailToken,
 };

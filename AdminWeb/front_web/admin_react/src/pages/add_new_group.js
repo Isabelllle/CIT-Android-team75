@@ -17,8 +17,7 @@ const AddNewGroup = () =>{
 
     // Attributes
     const navigate = useNavigate();
-    const [groups, setGroups] = useState([
-    ]);
+    const [groups, setGroups] = useState([]);
     useEffect(() => {
         fetch('http://localhost:3001/api/getGroups')
             .then(response => response.json())
@@ -50,15 +49,39 @@ const AddNewGroup = () =>{
 
     const handleSearchGroupChange = (event) => {
         setSearchGroup(event.target.value);
-    };
-
+      };
+    
     const handleSearch = () => {
         //--------------------------------------------Add Search group
-        console.log('Search Group Name', searchGroup);
+        console.log('Search Group Name:', searchGroup);
+
+        if (searchGroup == '') {
+            fetch('http://localhost:3001/api/getGroups')
+            .then(response => response.json())
+            .then(data => setGroups(data))
+            .catch(error => console.error('Error:', error));
+        } else {
+        // -------------- fetch data, only the group being searched is displayed
+        fetch(`http://localhost:3001/api/searchGroupName?searchGroup=${searchGroup}`)
+            .then(response => response.json())
+            .then(data => setGroups(data))
+            .catch(error => console.error('Error:', error));
+        }
+
+        console.log('Successfully find: ' + searchGroup); 
     };
 
+<<<<<<< HEAD
 
     // Handle the delete and comfirm box request
+=======
+    useEffect(() => {
+        handleSearch();
+    }, [searchGroup]);
+
+
+    // Handle the delete and confirm box request
+>>>>>>> merge_email
     const confirmModal = document.getElementById("confirm_modal");
     
     const showModal = () => {

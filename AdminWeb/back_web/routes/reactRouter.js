@@ -1,6 +1,6 @@
 /**
  * <Description> This is all react routes
- * @author {YIJUN GUO}
+ * @author {YIJUN GUO, ZIXIAN LI}
  * @version 2.0
  * @date {2023}/{Sep}/{24}
  * 
@@ -35,9 +35,10 @@ router.put('/api/users', adminController.updateUserInfo);
 router.put('/api/userspassword', adminController.updateUserPass);
 
 // Admin Management routers
-router.put('/api/approveEmail',UnregisterListsController.approveEmail)
-router.put('/api/disapproveEmail',UnregisterListsController.disapproveEmail)
+router.put('/api/approveEmail',UnregisterListsController.approveEmail);
+router.put('/api/disapproveEmail',UnregisterListsController.disapproveEmail);
 router.put('/api/updateGroups', UnregisterListsController.updateGroups);
+router.get('/api/searchGroupName', UnregisterListsController.searchGroupName);
 
 // Survey Management routers
 router.put('/api/addTextQuestion',surveyManageController.addTextQuestion); 

@@ -95,7 +95,7 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
     }, [handleSort]);
     
     
-    // Handle the delete and comfirm box request
+    // Handle the delete and confirm box request
     const confirmModal = document.getElementById("confirm_modal");
     var deleteEmail = '';
     
