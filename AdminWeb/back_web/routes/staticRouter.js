@@ -34,6 +34,8 @@ router.get('/email_verify',staticController.emailVerify);
 
 // all forget password related routes
 router.get('/enteremail', staticController.forgetEnterEmail);
+router.get('/enteremail/enterEmail',adminController.functionName);
+
 router.get('/emailverify', staticController.forgetEmailVerify);
 router.get('/newPassword', staticController.newPassword);
 
