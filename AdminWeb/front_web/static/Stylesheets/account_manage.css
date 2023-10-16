@@ -16,6 +16,11 @@
     src: url('../Assets/Roboto/Roboto-Regular.ttf');
 }
 
+@font-face {
+    font-family: "Cabin-Regular";
+    src: url('../Assets/Cabin/static/Cabin-Regular.ttf');
+}
+
 *{
     padding: 0;
     margin: 0;
@@ -208,5 +213,38 @@ input[type="number"]::-webkit-outer-spin-button {
     background-color: #DE0A3F;
     border: none;
     border-radius: 50px;
-    margin: 365px auto;
+    margin: 200px auto;
 }
+
+/* email_verify.html */
+#email_verify .resend_code_container {
+    width: 80%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+#email_verify .resend_code_container h5 {
+    font-family: "Cabin-Regular";
+    font-size: 14px;
+    text-align: center;
+    align-self: center;
+    color: #9F9D9D;
+}
+
+#email_verify .resend_code_container button {
+    align-self: center;
+    margin: auto;
+}
+
+#email_verify #cancel_button {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+}
+
