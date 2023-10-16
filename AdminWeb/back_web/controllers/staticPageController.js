@@ -40,6 +40,12 @@ const newPassword = (req, res) => {
 }
 
 
+// display 
+const emailVerify = (req, res) => {
+    res.sendFile(path.join(__dirname, '../../front_web/static/Views/AccountManage/email_verify.html'));
+}
+
+
 module.exports = {
     loginPage,
     signinPage,
@@ -47,4 +53,5 @@ module.exports = {
     forgetEnterEmail,
     forgetEmailVerify,
     newPassword,
+    emailVerify,
 };

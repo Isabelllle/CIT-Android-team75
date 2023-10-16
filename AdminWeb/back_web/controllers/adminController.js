@@ -38,7 +38,6 @@ const loginAdmin = (req, res) => {
             }
             if (results.rows.length > 0) {
                 const token = jwt.sign({ email }, 'your-secret-key', { expiresIn: '1h' });
-
                 res.redirect(`http://localhost:3000/?token=${token}`);
             } else {
                 res.send('Invalid username or password');
@@ -83,7 +82,7 @@ function sendVerificationEmail(email, name, token) {
         });
     
     // 需要修改link
-    const verificationLink = `http://localhost:3000/verify-email?token=${token}`;
+    const verificationLink = `http://localhost:3001/static/sign_up_instruction?token=${token}`;
     const mailOptions = {
         from: 'gyijun017@gmail.com',
         to: email,
@@ -153,7 +152,7 @@ function verifyTokenSignUp(token, res, req) {
                     }
                 
                     // 如果一切正常，则重定向
-                    return res.redirect('/static/signUpInstruct');
+                    return res.redirect('/static/email_verify');
                 });
                 
             // res.redirect('/static/signUpInstruct');

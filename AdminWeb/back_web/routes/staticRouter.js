@@ -25,8 +25,12 @@ router.post('/login/submit', adminController.loginAdmin);
 router.get('/signin', staticController.signinPage);
 router.post('/signin/submit', adminController.signupAdmin);
 router.get('/signin/getGroups', adminController.getGroups);
-router.get('/signUpInstruct', staticController.signupWait);
+router.get('/sign_up_instruction', staticController.signupWait);
 router.get('/verify-email', adminController.verifyEmailToken);
+
+
+router.get('/email_verify',staticController.emailVerify);
+
 
 // all forget password related routes
 router.get('/enteremail', staticController.forgetEnterEmail);

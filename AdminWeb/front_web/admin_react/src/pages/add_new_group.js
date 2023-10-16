@@ -77,7 +77,6 @@ const AddNewGroup = () =>{
 
 
     // Handle the delete and confirm box request
->>>>>>> merge_email
     const confirmModal = document.getElementById("confirm_modal");
     
     const showModal = () => {
