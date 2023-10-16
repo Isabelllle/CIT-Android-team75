@@ -115,6 +115,7 @@ const Settings = () =>{
     // Handle logout
     const handleLogout = async () => {
         localStorage.removeItem('token');
+        window.isRefresh = false;
         window.location.href = 'http://localhost:3001/static/login';
     };
 

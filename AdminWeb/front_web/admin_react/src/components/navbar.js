@@ -22,9 +22,9 @@ const token = localStorage.getItem('token');
 const NavBar= () =>{
     const location = useLocation();
     const [isManager, setIsManager] = useState([]);
-    const [isRefresh, setIsRefresh] = useState([false]);
 
     useEffect(() => {
+        
         if (token){
             // fetch to get the user's information
             fetch('http://localhost:3001/api/getIsManger', {
@@ -39,11 +39,6 @@ const NavBar= () =>{
                 setIsManager(data);
             })
             .catch(error => console.error('Error:', error));
-            
-            if (isRefresh == false) {
-                window.location.reload(true);
-                setIsRefresh(true);
-            }
         }
     }, [isManager]); 
 

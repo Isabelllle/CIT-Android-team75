@@ -26,9 +26,6 @@ const Dashboard = () =>{
             localStorage.setItem('token', token);
             console.log('Token:', token);
         }
-        // setTimeout(() => {
-        //     setLoading(false);
-        // }, 2000);
     }, []);
 
     // get profile
@@ -43,7 +40,12 @@ const Dashboard = () =>{
             },
         })
        
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                window.location.reload(true);
+            }
+            return response.json();
+        })
         .then(data => {
    
             setFirstName(data.firstName);
