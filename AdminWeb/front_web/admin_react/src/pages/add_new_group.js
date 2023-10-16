@@ -71,10 +71,6 @@ const AddNewGroup = () =>{
         console.log('Successfully find: ' + searchGroup); 
     };
 
-<<<<<<< HEAD
-
-    // Handle the delete and comfirm box request
-=======
     useEffect(() => {
         handleSearch();
     }, [searchGroup]);

@@ -25,7 +25,7 @@ const nodemailer = require('nodemailer');
  * @param {Object} res - The HTTP response object.
  * @throws {Error} If an error occurs while inserting the question.
  */
-const loginAdmin = (req, res) => {  
+const loginAdmin = (req, res) => {
     const { email, password } = req.body;
     
     // verify the email & password
@@ -50,7 +50,7 @@ const loginAdmin = (req, res) => {
 
 /**
  * POST static/signin/submit
- * Handles the login request for an admin user.
+ * Handles the signup request for an admin user.
  * 
  * @param {Object} req - The HTTP request object.
  * @param {Object} res - The HTTP response object.
@@ -162,13 +162,8 @@ function verifyTokenSignUp(token, res, req) {
             }
         });
     });
-}
-
-<<<<<<< HEAD
 };
 
-=======
->>>>>>> merge_email
 
 /**
  * GET static/signin/getGroups
