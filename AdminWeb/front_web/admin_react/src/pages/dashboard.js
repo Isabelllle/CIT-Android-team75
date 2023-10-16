@@ -14,7 +14,7 @@ import Plant from '../Assets/Image/plant1.png';
 const token = localStorage.getItem('token');
 
 const Dashboard = () =>{
-
+    // const [loading, setLoading] = useState(true);
     const [FirstName, setFirstName] = useState(''); 
     const [LastName, setLastName] = useState(''); 
 
@@ -22,16 +22,19 @@ const Dashboard = () =>{
         // get URL Token
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
-
         if (token) {
             localStorage.setItem('token', token);
             console.log('Token:', token);
         }
+        // setTimeout(() => {
+        //     setLoading(false);
+        // }, 2000);
     }, []);
 
     // get profile
     useEffect(() => {
         // fetch to get the user's information
+        
         fetch('http://localhost:3001/api/user', {
             method: 'GET',
             headers: {
@@ -48,6 +51,7 @@ const Dashboard = () =>{
 
         })
         .catch(error => console.error('Error:', error));
+
     }, []); 
 
     // Variable

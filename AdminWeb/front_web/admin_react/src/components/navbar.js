@@ -38,10 +38,9 @@ const NavBar= () =>{
                 setIsManager(data);
             })
             .catch(error => console.error('Error:', error));
-    }
+            
+        }
     }, [isManager]); 
-
-    console.log('ismanaged', isManager);
 
     return (
 

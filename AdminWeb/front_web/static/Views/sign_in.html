@@ -22,7 +22,8 @@
             <div class="col_mid_6_right_side">
                 <h1>Admin Sign Up</h1>
 
-                <form method="post" action = "/static/signin/submit">
+                <!-- <form method="post" action = "/static/signin/submit"> -->
+                <form method="post" action="/static/signin/submit" onsubmit="return checkPasswords()">
                     <div class="input_item">
 
                         <div class="input_hor_box">
@@ -82,6 +83,18 @@
                                     })
                                     .catch(error => console.error('Error fetching data:', error));
                             });
+
+                            function checkPasswords() {
+                                var password = document.getElementsByName('password')[0].value;
+                                var confirmPassword = document.getElementsByName('confirm_password')[0].value;
+                        
+                                if (password !== confirmPassword) {
+                                    alert("Passwords do not match. Please try again.");
+                                    return false; 
+                                }
+                        
+                                return true; 
+                            }
                         </script>
                     </div>
 
