@@ -23,6 +23,7 @@ const SettingsPassword = () =>{
 
     const [giveWarningFill, setWarningFill] = useState(false);
     const [giveWarningConfirm, setWarningConfirm] = useState(false);
+    const [giveWarningPassword, setWarningPassword] = useState(false);
 
     useEffect(() => {
         if(token){
@@ -62,9 +63,11 @@ const SettingsPassword = () =>{
         if (oldPassword === '' || newPassword === '' || confirmPassword === '') {
             setWarningFill(true);
             setWarningConfirm(false);
+            setWarningPassword(false);
         } else if (newPassword.trim() !== confirmPassword.trim()) {
             setWarningConfirm(true);
             setWarningFill(false);
+            setWarningPassword(false);
         } else {
             // ----------------------- Post change of all inputs to database
             fetch('http://localhost:3001/api/userspassword', {
@@ -84,11 +87,14 @@ const SettingsPassword = () =>{
                 if (data.success) {
                     console.log('Data updated successfully:', data); 
                     console.log('Entered Password:', oldPassword, newPassword, confirmPassword);
+                    setWarningPassword(false);
                     navigate('/settings'); 
                 } else {
                     console.error('Error:', data.message);
                     // -------------------------------- Add: 页面显示密码错误 try again
-                
+                    setWarningFill(false);
+                    setWarningConfirm(false);
+                    setWarningPassword(true);
                 }
             })
         }
@@ -134,6 +140,9 @@ const SettingsPassword = () =>{
 
                     {/* Give user a reminder if the new password and confirm password are different */}
                     {giveWarningConfirm && <div className={styles.warning}>New password and confirm password must be same!</div>}
+
+                    {/* Give user a reminder if the old password is incorrect */}
+                    {giveWarningPassword && <div className={styles.warning}>Old password is incorrect, check your input!</div>}
 
                     <div className={styles.button_container}>
                         <Link to="/settings" className={styles.no_underline}>
