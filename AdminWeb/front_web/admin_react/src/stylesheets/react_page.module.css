@@ -1,0 +1,61 @@
+/* CSS file for dashboard page */
+
+/* Import font */
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../Assets/Roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url('../Assets/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url('../Assets/Roboto/Roboto-Medium.ttf');
+}
+
+@font-face {
+    font-family: "Cabin-Regular";
+    src: url('../Assets/Cabin/static/Cabin-Regular.ttf');
+}
+
+.app {
+    background-color: #F8F8F8;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Texts */
+h1 {
+    font-family: "Roboto-Bold";
+    font-size: 32px;
+    color: black;
+}
+
+h2 {
+    font-family: "Roboto-Medium";
+    font-size: 20px;
+    color: black;
+}
+
+h3 {
+    font-family: "Roboto-Regular";
+    font-size: 16px;
+    color: #9F9D9D;
+}
+
+h4 {
+    font-family: "Cabin-Regular";
+    font-size: 16px;
+    color: black;
+}
+
+main{
+    margin-left: 120px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 10px 20px;
+    height: 100%;
+}

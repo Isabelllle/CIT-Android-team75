@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/menu_home_24"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_about_weconnect"
+            android:icon="@drawable/menu_about_weconnect_24"
+            android:title="@string/menu_about_weconnect" />
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@drawable/menu_perm_phone_msg_24"
+            android:title="@string/menu_contact_us" />
+        <item
+            android:id="@+id/nav_privacy_police"
+            android:icon="@drawable/menu_shield_24"
+            android:title="@string/menu_privacy_policy" />
+        <item
+            android:id="@+id/menu_item_settings"
+            android:icon="@drawable/menu_settings_24"
+            android:title="@string/menu_settings" />
+
+    </group>
+</menu>

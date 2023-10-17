@@ -1,0 +1,274 @@
+/* CSS file for data review page */
+
+/* Import font */
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../Assets/Roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url('../Assets/Roboto/Roboto-Medium.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url('../Assets/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Cabin-Regular";
+    src: url('../Assets/Cabin/static/Cabin-Regular.ttf');
+}
+
+/* Background */
+.data_review {
+    background-image: url('../Assets/Image/data_review_background.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    height: 95vh;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+}
+
+/* Page Heading */
+.page_heading {
+    margin: 5px 30px;
+}
+
+/* Selected Box */
+.selected_box_container {
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
+}
+
+#selected_box {
+    height: 40px;
+    background-color: white;
+    width: 200px;
+    padding-left: 15px;
+    color: #9F9D9D;
+    font-family: "Roboto-Regular";
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+#selected_box:focus {
+    border-width: 1px;
+    outline: none;
+}
+
+/* Remove the underline and dots for all Links */
+.no_underline {
+    text-decoration: none;
+}
+
+/* View Data Page Selected */
+.method_container {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    margin-left: -30px;
+    margin-right: -10px;
+    margin-top: 30px;
+    position: fixed;
+    padding: 0px;
+}
+
+.method_selected_box {
+    margin-left: 60px;
+    width: 18%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.method_selected_box li {
+    list-style-type: none;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+/* Text for selected page */
+.method_selected_box .selectedText h2 {
+    color: #DE0A3F;
+    height: 47px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 0px;
+}
+
+.method_selected_box .selectedText .line {
+    background-color: #DE0A3F;
+    height: 3px; 
+    width: 60px;
+    margin: 0px auto;
+    padding: 0px;
+}
+
+/* Text for unselected page */
+.method_selected_box .unselectedText h2 {
+    color: black;
+}
+
+/* Sub page data review summary and question */
+#data_review_summary, #data_review_question {
+    margin: 100px 30px 0px 30px;
+    padding: 0px;
+    width: 100%;
+    height: 80%;
+}
+
+#data_review_summary .data_container, #data_review_question .data_container  {
+    padding: 0px;
+    margin: 30px 0px 30px 0px;
+    overflow-y: scroll;
+    display: block;
+    position: relative;
+    max-height: 98%;
+}
+
+#data_review_summary .data_container .chart_container, #data_review_question .data_container .chart_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    background-color: white;
+    margin-right: 100px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px lightgray, 2px 2px 2px lightgray;
+}
+
+#data_review_summary .chart_container .topic, #data_review_question .chart_container .topic {
+    text-align: left;
+    background-color: #FFE1E1;
+    width: 100%;
+    padding-left: 50px;
+    box-sizing: border-box;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 2px 2px 2px lightgray, 2px 2px 2px lightgray;
+}
+
+#data_review_summary .chart_container .question, #data_review_question .chart_container .question {
+    margin-top: 10px;
+}
+
+#data_review_summary .chart_container .each_chart, #data_review_question .chart_container .each_chart {
+    max-width: 80%;
+    margin-bottom: 30px;
+}
+
+/* Chart Component */
+.bar_chart, .line_graph, .horizontal_bar {
+    width: 550px;
+}
+
+.pie_chart_container, .horizontal_bar_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1000px;
+}
+
+.word_cloud_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 800px;
+}
+
+.pie_chart_container .pie_chart {
+    max-width: 450px;
+    max-height: 450px;
+    display: block;
+}
+
+.horizontal_bar_container .horizontal_bar {
+    max-width: 400px;
+    height: auto;
+}
+
+.word_cloud_container .word_cloud{
+    max-width: 350px;
+    height: auto;
+}
+
+/* Table Component */
+.header_table {
+    width: 100%;
+    table-layout: fixed;
+    height: 50px;
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+.content_container {
+    width: 100%;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.content_table{
+    width: 100%;
+    table-layout: fixed;
+    max-height: 600px;
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+.content_container::-webkit-scrollbar {
+    width: 0px;
+}
+
+tr {
+    height: 50px;
+    max-height: 50px;
+}
+
+th {
+    font-family: "Roboto-Bold";
+    font-size: 18px;
+    position: sticky;
+    height: 50px;
+    padding: 10px;
+    text-align: center;
+}
+
+td {
+    font-family: "Cabin-Regular";
+    font-size: 16px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px;
+    text-align: center;
+}
+
+.content_container tr:nth-child(even) {
+    background-color: rgba(255,255,255,80%);
+}
+
+.content_container tr:nth-child(odd) {
+    background-color: rgba(228,228,228,35%);
+}
+
+tr td:first-child, tr th:first-child {
+    padding-left: 30px;
+}
+
+tr td:last-child, tr th:last-child {
+    padding-right: 30px;
+}

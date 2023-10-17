@@ -1,0 +1,76 @@
+<!-- Admin Log In Page -->
+<!-- Admin and Manager can log in with their email and password here -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+        <link rel="stylesheet" href="../Stylesheets/log_in.css"/>
+</head>
+
+<body>
+    <div class="main">
+        <img id="background" src="../Assets/Image/log_in_background.png" alt="Log in Background">
+        <img id="logo" src="../Assets/Icon/Logo.png" alt="WeConnect Logo">
+
+        <!-- Log in Box in the middle -->
+        <div class = "container">
+            <h1>Admin Log In</h1>
+
+            <form action="/static/login/submit" method="post" onsubmit="return checkEmptyEnter()">
+                <div class = "form_container">
+                    <input class="input_item" type="email" name="email" id="email" placeholder="Enter your email">
+                    <input class="input_item" type="password" name="password" id="password" placeholder="Enter your password ">
+                </div>
+
+                <a id="forgot_password" href="enteremail" target="_self">Forgot Password?</a>
+
+                <button type="submit">Log In</button>
+            </form>
+
+            <div class="sign_up">New member? <a href="signin" target="_self">Sign up here</a></div>
+        </div>
+
+        <img id="contact_us_icon" src="../Assets/Icon/Contact_us.png" alt="Contact us icon">
+    </div>
+
+    <!-- Check if any of the email or password is empty -->
+    <script>
+        function checkEmptyEnter() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+    
+            if (email === "") {
+                alert("Please enter your email.");
+                return false;
+            }
+
+            if (password === "") {
+                alert("Please enter your password.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    <script>
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var error = getUrlParameter('error');
+            if (error) {
+                alert(error);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
