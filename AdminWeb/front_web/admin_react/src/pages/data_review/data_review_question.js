@@ -78,7 +78,6 @@ const DataReviewSummary = () =>{
         .then(data => {
             const newGroupList = data.map(group => group);
             setGroupList(newGroupList); 
-            console.log('new group list data_review_questions',newGroupList);
         })
         .catch(error => console.error('Error fetching data:', error));
     }, []);

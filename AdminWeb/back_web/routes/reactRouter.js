@@ -26,12 +26,12 @@ router.get('/api/getSurveyQuesTable', adminController.getSurveyQuesTable);
 router.get('/api/getGroups', adminController.verifyToken, adminController.getOwnGroups);
 router.get('/api/getYear', adminController.verifyToken, adminController.getYear);
 router.get('/api/getReminderList', adminController.verifyToken, reminderListsController.getReminderList);
+router.get('/api/getResponseNum', adminController.verifyToken, reminderListsController.getResponseNum);
+router.get('/api/getVolunteer', adminController.verifyToken, reminderListsController.getVolunteer);
 router.get('/api/searchReminderByEmail', reminderListsController.searchReminderByEmail);
 router.get('/api/getUnregisterList', UnregisterListsController.getUnregisterList);
 router.get('/api/getAnswerData', adminController.verifyToken, dataReviewController.getAnswerList);
 router.get('/api/getQuestionsAnswer', adminController.verifyToken, dataReviewController.getQuestionsAnswer);
-
-
 router.put('/api/users', adminController.updateUserInfo);
 router.put('/api/userspassword', adminController.updateUserPass);
 

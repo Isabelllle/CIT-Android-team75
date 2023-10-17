@@ -73,9 +73,88 @@ const Dashboard = () =>{
     const [dataNum, setDataNum] = useState('19'); 
     const [volunNum, setVolunNum] = useState('5'); 
 
+    // get reminder list number
     useEffect(() => {
-        // -------------------------- 将数据存入上面三个const
-    }, []);
+        if (token){
+            // fetch to get the user's information
+            fetch('http://localhost:3001/api/getReminderList', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                },
+            })
+            .then(response => {
+                if (!response.ok) {
+                  return response.json().then(errorData => {
+                    throw new Error(errorData.error);
+                  });
+                }
+                return response.json();
+            })
+            .then(data => {
+                const dataLength = data.length;
+                setReminderNum(dataLength);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }, []); 
+
+    // get data number
+    useEffect(() => {
+        if (token){
+            // fetch to get the user's information
+            fetch('http://localhost:3001/api/getResponseNum', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                },
+            })
+            .then(response => {
+                if (!response.ok) {
+                  return response.json().then(errorData => {
+                    throw new Error(errorData.error);
+                  });
+                }
+                return response.json();
+            })
+            .then(data => {
+                const dataLength = data.length;
+                setDataNum(dataLength);
+                console.log('datalength',dataNum);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }, []); 
+
+
+    // get volunteer number
+    useEffect(() => {
+        if (token){
+            // fetch to get the user's information
+            fetch('http://localhost:3001/api/getVolunteer', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                },
+            })
+            .then(response => {
+                if (!response.ok) {
+                  return response.json().then(errorData => {
+                    throw new Error(errorData.error);
+                  });
+                }
+                return response.json();
+            })
+            .then(data => {
+                const dataLength = data.length;
+                setVolunNum(dataLength);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }, []); 
 
     return (
         <main>
@@ -108,7 +187,7 @@ const Dashboard = () =>{
 
                         <div className={styles.middle_box}>
                             <div className={styles.middle_num} id={styles.num_three}>{volunNum}</div>
-                            <div className={styles.middle_text}>Signed Manager</div>
+                            <div className={styles.middle_text}>Volunteer Number</div>
                         </div>
                     </div>
 
