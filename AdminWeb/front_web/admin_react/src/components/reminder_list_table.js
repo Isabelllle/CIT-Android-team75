@@ -31,7 +31,15 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
                     'Authorization': `Bearer ${token}` 
                 },
             })
-            .then(response => response.json())
+            .then(response => {
+                console.log('Response:', response);
+                if (!response.ok) {
+                  return response.json().then(errorData => {
+                    throw new Error(errorData.error);
+                  });
+                }
+                return response.json();
+            })
             .then(data => {
                 setTableData(data);
                 setInitialTableData(data);
@@ -69,7 +77,15 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
 
         if (searchEmail === '') {
             fetch('http://localhost:3001/api/getReminderList')
-            .then(response => response.json())
+            .then(response => {
+                console.log('Response:', response);
+                if (!response.ok) {
+                  return response.json().then(errorData => {
+                    throw new Error(errorData.error);
+                  });
+                }
+                return response.json();
+            })
             .then(data => 
                 {console.log(data, 'survey');
                 setTableData(data)})
@@ -78,7 +94,15 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
         }else{
             // -------------------- fetch data, only the data corresponding to searchEmail is displayed
             fetch(`http://localhost:3001/api/searchReminderByEmail?email=${searchEmail}`)
-                .then(response => response.json())
+                .then(response => {
+                    console.log('Response:', response);
+                    if (!response.ok) {
+                      return response.json().then(errorData => {
+                        throw new Error(errorData.error);
+                      });
+                    }
+                    return response.json();
+                })
                 .then(data => setTableData(data))
                 .catch(error => console.error('Error:', error));
         }

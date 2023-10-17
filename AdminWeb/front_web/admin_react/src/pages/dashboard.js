@@ -10,11 +10,13 @@ import styles from '../stylesheets/dashboard.module.css';
 // Import Assets
 import Plant from '../Assets/Image/plant1.png'; 
 
-// Import Token
+// Import Component
+import VolunteerTable from '../components/all_volunteer_table';
+
+// Get Token
 const token = localStorage.getItem('token');
 
 const Dashboard = () =>{
-    // const [loading, setLoading] = useState(true);
     const [FirstName, setFirstName] = useState(''); 
     const [LastName, setLastName] = useState(''); 
 
@@ -44,6 +46,7 @@ const Dashboard = () =>{
             if (!response.ok) {
                 window.location.reload(true);
             }
+
             return response.json();
         })
         .then(data => {
@@ -60,6 +63,15 @@ const Dashboard = () =>{
     const firstName = FirstName;
     const lastName = LastName;
 
+    // Middle Box Numbers
+    const [reminderNum, setReminderNum] = useState('20'); 
+    const [dataNum, setDataNum] = useState('19'); 
+    const [volunNum, setVolunNum] = useState('5'); 
+
+    useEffect(() => {
+        // -------------------------- 将数据存入上面三个const
+    }, []);
+
     return (
         <main>
             <div className={styles.dashboard}>
@@ -74,40 +86,30 @@ const Dashboard = () =>{
                     <div className={styles.name_box}>
                         <img id={styles.plant_one} src={Plant} alt="Plant 1" />
 
-                        {/* ----------------------Replace admin's name with Apple Banana */}
                         <div id={styles.hello_info}>Hello, {firstName} {lastName}</div>
                     </div>
 
                     {/* Middle container */}
                     <div id={styles.middle_container}>
-
-                        {/* Summary Box */}
-                        <div id={styles.summary_box}>
-                            <h2>Data Review Summary</h2>
-
-                            {/* -------------------------------Add summary graph here */}
-                            <div className={styles.middle_box}>
-                            </div>
+                        <div className={styles.middle_box}>
+                            <div className={styles.middle_num} id={styles.num_one}>{reminderNum}</div>
+                            <div className={styles.middle_text}>Reminder List People</div>
                         </div>
 
-                        {/* Reminder Box */}
-                        <div id={styles.reminder_box}>
-                            <h2>Reminder List</h2>
+                        <div className={styles.middle_box}>
+                            <div className={styles.middle_num} id={styles.num_two}>{dataNum}</div>
+                            <div className={styles.middle_text}>Number of Data</div>
+                        </div>
 
-                            {/* -------------------------------Add reminder list here */}
-                            <div className={styles.middle_box}>
-                            </div>
+                        <div className={styles.middle_box}>
+                            <div className={styles.middle_num} id={styles.num_three}>{volunNum}</div>
+                            <div className={styles.middle_text}>Signed Manager</div>
                         </div>
                     </div>
 
                     {/* Bottom container */}
                     <div id={styles.bottom_container}>
-                        <h2>Admin Management</h2>
-
-                        {/* -------------------------------Add admin management reminder here */}
-                        <div id={styles.admin_manage_box}>
-                        </div>
-
+                        <VolunteerTable token={token}/>
                     </div>
 
                 </div>
