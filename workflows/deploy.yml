@@ -1,0 +1,61 @@
+# Custom built Github Actions Workflow by Caitlin
+
+# Workflow should:
+# 1. Move to the repo directory
+# 2. Stop NGINX serice
+# 3. Pull repo
+# 4. NPM Install in Backend
+# 5. Copy PROD environment settings into Backend
+# 6. NPM Install in Frontend
+# 7. Copy PROD environment settings into Frontend
+# 8. NPM Build Frontend
+# 9. Start NGINX and Backend Server
+# Done!
+
+
+name: Build / Deploy PROD Main Branch
+
+on:
+  pull_request:
+    branches:
+      - Main
+  push:
+    branches:
+      - Main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: self-hosted
+
+    steps:
+    - name: Stop NGINX
+      run:  |
+            sudo service nginx stop
+
+    - name: Pull repo - Backend
+      run:  |
+            cd /var/www/CIT-Android-team75
+            sudo git fetch git@github.com:Isabelllle/CIT-Android-team75.git
+            sudo git reset --hard origin/main
+            sudo git pull git@github.com:Isabelllle/CIT-Android-team75.git
+            cd AdminWeb
+            cd back_web
+            npm install
+            sudo cp /var/www/prod/db.js .
+            cd ../config
+            sudo cp /var/www/prod/keys.js .
+
+    - name: Pull repo - Frontend
+      run:  |
+            cd /var/www/CIT-Android-team75/AdminWeb/front_web
+            sudo rm -r node_modules
+            sudo rm package-lock.json
+            npm install --production
+            # cd src
+            # sudo cp /var/www/prod/.env .
+            # cd stores
+            # sudo cp /var/www/prod/Settings.js .
+            cd /var/www/CIT-Android-team75/AdminWeb/front_web
+            npm run-script build
+            sudo service nginx start
