@@ -34,7 +34,7 @@
 
 
     <RadioGroup
-        android:id="@+id/type_rating_1_5_answer"
+        android:id="@+id/type_yes_no_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/type_yes_no_question_text"

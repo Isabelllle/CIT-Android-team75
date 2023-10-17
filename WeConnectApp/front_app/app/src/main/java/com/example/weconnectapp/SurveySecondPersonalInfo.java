@@ -35,8 +35,23 @@ public class SurveySecondPersonalInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_second_personal_info);
 
+
         Intent intent = getIntent();
-        answers = (Map<Integer, MyPair<String, SerializableValue>>) intent.getSerializableExtra("answers");
+        List<Answer> answersList = (List<Answer>) intent.getSerializableExtra("answers");
+
+        if (answersList != null) {
+            for (Answer answer : answersList) {
+                int questionId = answer.getQuestionId();
+                String type = answer.getType();
+                Object value = answer.getValue();
+
+                // Create a MyPair object to hold the type and value of the answer
+                MyPair<String, SerializableValue> answerPair = new MyPair<>(type, new SerializableValue(value));
+
+                // Add the answer to the answers map
+                answers.put(questionId, answerPair);
+            }
+        }
 
         nextButton = findViewById(R.id.next_button);
         nextButton.setOnClickListener(new View.OnClickListener() {

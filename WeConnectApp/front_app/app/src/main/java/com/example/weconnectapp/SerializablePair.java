@@ -13,7 +13,7 @@ public class SerializablePair<F, S> implements Parcelable {
     }
 
     protected SerializablePair(Parcel in) {
-        // 注意，这里需要按照你具体的类型进行读取
+
         first = (F) in.readString();
         second = (S) in.readParcelable(SerializableValue.class.getClassLoader());
     }

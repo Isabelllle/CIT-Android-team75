@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.weconnectapp.connection.Api;
 import com.example.weconnectapp.connection.RetrofitClientInstance;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class QuestionActivity extends AppCompatActivity {
     private Api api;
     private RelativeLayout layout;
 
-    private HashMap<Integer, Pair<String, Object>> answers = new HashMap<>(); // map to save answer
+    private List<Answer> answers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,9 @@ public class QuestionActivity extends AppCompatActivity {
             Questions currentQuestion = questionList.get(0);
             int questionId = currentQuestion.getId();
             Log.d("Save Answer", "Current question ID: " + questionId);
-            Log.d("HashMap Key", "Using key: " + questionId);
+
+            Answer answer = new Answer();  // Create a new Answer object
+            answer.setQuestionId(questionId);  // Set the question ID
 
             switch (currentQuestion.getType()) {
                 case "Text":
@@ -92,9 +95,13 @@ public class QuestionActivity extends AppCompatActivity {
                         String textAnswer = editText.getText().toString().trim();
                         Log.d("Save Answer", "Read text answer: '" + textAnswer + "'");
                         if(!textAnswer.isEmpty()) {
-                            answers.put(questionId, new Pair<>("text", textAnswer));
+                            answer.setType("text");
+                            answer.setValue(textAnswer);  // Set the text answer
+
+                            // Use this instead of answers.add(answer)
+                            updateOrAddAnswer(answer, questionId);
+
                             Log.d("Save Answer", "Saved text answer: '" + textAnswer + "' for question ID: " + questionId);
-                            Log.d("Pair Creation", "Creating pair with: text, " + textAnswer);
                         } else {
                             Log.e("Save Answer", "Text answer is empty for question ID: " + questionId);
                         }
@@ -102,12 +109,38 @@ public class QuestionActivity extends AppCompatActivity {
                         Log.e("Save Answer", "EditText is null for question ID: " + questionId);
                     }
                     break;
+
                 case "Y/N":
+                    RadioGroup radioGroupYN = findViewById(R.id.type_yes_no_answer);
+                    if(radioGroupYN != null) {
+                        int selectedRadioButtonId = radioGroupYN.getCheckedRadioButtonId();
+                        if (selectedRadioButtonId != -1) {
+                            RadioButton radioButton = radioGroupYN.findViewById(selectedRadioButtonId);
+                            String value = radioButton.getText().toString();
+                            answer.setType("yes_or_no");
+                            answer.setValue(value);  // Set the yes_or_no answer
+
+                            updateOrAddAnswer(answer, questionId);
+
+                            Log.d("Save Answer", "Saved answer: " + value + " for question ID: " + questionId);
+                        } else {
+                            Log.d("Save Answer", "No radio button selected for question ID: " + questionId);
+                        }
+                    } else {
+                        Log.d("Save Answer", "RadioGroup is null for question ID: " + questionId);
+                    }
+                    break;
+
                 case "Rating scales 1-5":
                     RadioGroup radioGroup1 = findViewById(R.id.type_rating_1_5_answer);
                     if(radioGroup1 != null) {
                         int selectedIndex = radioGroup1.indexOfChild(findViewById(radioGroup1.getCheckedRadioButtonId()));
-                        answers.put(questionId, new Pair<>("rating", selectedIndex));
+                        answer.setType("rating");
+                        answer.setValue(selectedIndex);  // Set the rating answer
+
+                        // Use this instead of answers.add(answer)
+                        updateOrAddAnswer(answer, questionId);
+
                         Log.d("Save Answer", "Saved answer index: " + selectedIndex + " for question ID: " + questionId);
                     }
                     break;
@@ -118,9 +151,14 @@ public class QuestionActivity extends AppCompatActivity {
                         int selectedRadioButtonId = radioGroup10.getCheckedRadioButtonId();
                         if (selectedRadioButtonId != -1) {
                             RadioButton radioButton = radioGroup10.findViewById(selectedRadioButtonId);
-                            String answer = radioButton.getText().toString();
-                            answers.put(questionId, new Pair<>("rating1_10", answer));
-                            Log.d("Save Answer", "Saved answer: " + answer + " for question ID: " + questionId);
+                            String value = radioButton.getText().toString();
+                            answer.setType("rating1_10");
+                            answer.setValue(value);  // Set the rating 1-10 answer
+
+                            // Use this instead of answers.add(answer)
+                            updateOrAddAnswer(answer, questionId);
+
+                            Log.d("Save Answer", "Saved answer: " + value + " for question ID: " + questionId);
                         } else {
                             Log.d("Save Answer", "No radio button selected for question ID: " + questionId);
                         }
@@ -131,17 +169,32 @@ public class QuestionActivity extends AppCompatActivity {
 
                 case "Number":
                     EditText numberEditText = findViewById(R.id.type_enter_number_answer_box);
-                    if(numberEditText != null && numberEditText.getText() != null) {
-                        answers.put(questionId, new Pair<>("number", numberEditText.getText().toString()));
-                        Log.d("Save Answer", "Saved number answer: " + numberEditText.getText().toString() + " for question ID: " + questionId);
+                    if(numberEditText != null && !numberEditText.getText().toString().isEmpty()) {
+                        try {
+                            Integer value = Integer.parseInt(numberEditText.getText().toString());  // Parse the text to an Integer
+                            answer.setType("number");
+                            answer.setValue(value);  // Set the number answer
+
+                            // Use this instead of answers.add(answer)
+                            updateOrAddAnswer(answer, questionId);
+
+                            Log.d("Save Answer", "Saved number answer: " + value + " for question ID: " + questionId);
+                        } catch (NumberFormatException e) {
+                            Log.e("Save Answer", "Invalid number format for question ID: " + questionId);
+                        }
                     }
                     break;
 
                 case "dropdown":
                     Spinner spinner = findViewById(R.id.quetype_dropdown_box);
                     if(spinner != null) {
-                        answers.put(questionId, new Pair<>("dropdown_id", spinner.getSelectedItem().toString()));
-                        Log.d("Save Answer", "Saved dropdown answer: " + spinner.getSelectedItem().toString() + " for question ID: " + questionId);
+                        String value = spinner.getSelectedItem().toString();
+                        answer.setType("dropdown_id");
+                        answer.setValue(value);  // Set the dropdown answer
+
+                        updateOrAddAnswer(answer, questionId);
+
+                        Log.d("Save Answer", "Saved dropdown answer: " + value + " for question ID: " + questionId);
                     }
                     break;
 
@@ -149,9 +202,27 @@ public class QuestionActivity extends AppCompatActivity {
                     Log.d("Save Answer", "Unknown question type for question ID: " + questionId);
                     break;
             }
-            Log.d("Answers Map", "Current answers: " + answers.toString());
+            Log.d("Answers List", "Current answers: " + answers.toString());  // Log the current state of the answers list
         } else {
             Log.d("Save Answer", "questionList is empty or null");
+        }
+    }
+    // update answers,and avoid repeated saved answer
+    private void updateOrAddAnswer(Answer newAnswer, int questionId) {
+        boolean updated = false;
+        for (int i = 0; i < answers.size(); i++) {
+            Answer existingAnswer = answers.get(i);
+            if (existingAnswer.getQuestionId() == questionId) {
+                answers.set(i, newAnswer);  // Update the existing answer
+                updated = true;
+                Log.d("Save Answer", "Updated answer for question ID: " + questionId);
+                break;
+            }
+        }
+
+        if (!updated) {
+            answers.add(newAnswer);  // Add new answer if not updated
+            Log.d("Save Answer", "Added new answer for question ID: " + questionId);
         }
     }
 
@@ -218,9 +289,9 @@ public class QuestionActivity extends AppCompatActivity {
                 questionText = findViewById(R.id.question_text);
                 if (questionText != null) {
                     questionText.setText(currentQuestion.getQuestion_first());
-                    Log.d("UI Update", "Question Text Set: " + currentQuestion.getQuestion_first());  // Add this line
+                    Log.d("UI Update", "Question Text Set: " + currentQuestion.getQuestion_first());
                 } else {
-                    Log.e("UI Update", "Question Text is null");  // Add this line
+                    Log.e("UI Update", "Question Text is null");
                 }
 
                 // load previous saved answer
@@ -232,19 +303,17 @@ public class QuestionActivity extends AppCompatActivity {
 
                 nextButton.setOnClickListener(v -> {
                     saveCurrentAnswer();
-                    if (currentPage == 10 && areAllQuestionsAnswered()) {  // Assuming 37 is the ID of the last question
-                        // Start the email input activity
+                    if (currentPage == 37 && areAllQuestionsAnswered()) {
                         Intent intent = new Intent(QuestionActivity.this, SurveySecondPersonalInfo.class);
-                        intent.putExtra("answers", (Serializable) answers);  // transport answers to next Activity
+                        intent.putExtra("answers", (Serializable) answers);
                         startActivity(intent);
-                    } else if (currentPage < 10 || !areAllQuestionsAnswered()) {
+                    } else if (currentPage < 37) {
                         currentPage++;
                         fetchQuestions();
                     } else {
                         Toast.makeText(QuestionActivity.this, "Please answer all questions before submitting.", Toast.LENGTH_SHORT).show();
                     }
                 });
-
                 previousButton.setOnClickListener(v -> {
                     if (currentPage > 1) {
                         saveCurrentAnswer();
@@ -263,29 +332,51 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     private void loadSavedAnswer(int questionId, String type) {
-        Pair<String, Object> savedAnswerPair = answers.get(questionId);
         Log.d("Load Answer", "Using key: " + questionId);
-        if (savedAnswerPair != null) {
+        Answer savedAnswer = null;
+
+        for (Answer answer : answers) {
+            if (answer.getQuestionId() == questionId) {
+                savedAnswer = answer;
+                break;
+            }
+        }
+
+        if (savedAnswer != null) {
             Log.d("Load Answer", "Loading saved answer for question ID: " + questionId);
+            Object value = savedAnswer.getValue();
 
-            String answerType = savedAnswerPair.first;
-            Object savedAnswer = savedAnswerPair.second;
-
-            switch (answerType) {
+            switch (savedAnswer.getType()) {
                 case "text":
                     EditText editText = findViewById(R.id.type_short_answer_answer_box);
-                    if (editText != null && savedAnswer instanceof String) {
-                        editText.setText((String) savedAnswer);
-                        Log.d("Load Answer", "Loaded text answer: '" + savedAnswer + "' for question ID: " + questionId);
+                    if (editText != null && value instanceof String) {
+                        editText.setText((String) value);
+                        Log.d("Load Answer", "Loaded text answer: '" + value + "' for question ID: " + questionId);
                     } else {
                         Log.e("Load Answer", "EditText is null or saved answer is not a string for question ID: " + questionId);
+                    }
+                    break;
+                case "yes_or_no":
+                    RadioGroup radioGroupYN = findViewById(R.id.type_yes_no_answer);
+                    if (radioGroupYN != null && value instanceof String) {
+                        String answerValue = (String) value;
+                        for (int i = 0; i < radioGroupYN.getChildCount(); i++) {
+                            RadioButton rb = (RadioButton) radioGroupYN.getChildAt(i);
+                            if (rb.getText().toString().equals(answerValue)) {
+                                rb.setChecked(true);
+                                Log.d("Load Answer", "Loaded yes_or_no answer: '" + value + "' for question ID: " + questionId);
+                                break;
+                            }
+                        }
+                    } else {
+                        Log.e("Load Answer", "RadioGroup is null or saved answer is not a string for question ID: " + questionId);
                     }
                     break;
                 case "rating":
                     if (type.equals("Rating scales 1-5")) {
                         RadioGroup radioGroup1 = findViewById(R.id.type_rating_1_5_answer);
-                        if (savedAnswer instanceof Integer) {
-                            int answerIndex = (Integer) savedAnswer;
+                        if (value instanceof Integer) {
+                            int answerIndex = (Integer) value;
                             RadioButton radioButton = (RadioButton) radioGroup1.getChildAt(answerIndex);
                             if (radioButton != null) {
                                 radioButton.setChecked(true);
@@ -294,49 +385,42 @@ public class QuestionActivity extends AppCompatActivity {
                         }
                     } else if (type.equals("Rating scales 1-10")) {
                         RadioGroup radioGroup10 = findViewById(R.id.type_rating_1_10_answer);
-                        if (savedAnswer instanceof String) {
-                            String answer = (String) savedAnswer;
-                            for (int i = 0; i < radioGroup10.getChildCount(); i++) {
-                                RadioButton radioButton = (RadioButton) radioGroup10.getChildAt(i);
-                                if (radioButton.getText().toString().equals(answer)) {
-                                    radioButton.setChecked(true);
-                                    Log.d("Load Answer", "Loaded answer: " + answer + " for question ID: " + questionId);
-                                    break;
-                                }
+                        if (value instanceof Integer) {
+                            int answerIndex = (Integer) value;
+                            RadioButton radioButton = (RadioButton) radioGroup10.getChildAt(answerIndex);
+                            if (radioButton != null) {
+                                radioButton.setChecked(true);
+                                Log.d("Load Answer", "Loaded answer: " + answerIndex + " for question ID: " + questionId);
                             }
                         }
                     }
                     break;
+
                 case "number":
                     EditText numberEditText = findViewById(R.id.type_enter_number_answer_box);
-                    if(savedAnswer instanceof String) {  // Add this check
-                        numberEditText.setText((String) savedAnswer);
+                    if (numberEditText != null && value instanceof Integer) {
+                        numberEditText.setText(String.valueOf(value));
+                        Log.d("Load Answer", "Loaded number answer: " + value + " for question ID: " + questionId);
                     }
                     break;
+
                 case "dropdown":
                     Spinner spinner = findViewById(R.id.quetype_dropdown_box);
-                    if (spinner != null && savedAnswer instanceof String) {  // Already added this check, just ensure it’s correct
+                    if (spinner != null && value instanceof String) {
                         ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinner.getAdapter();
-                        int position = adapter.getPosition((String) savedAnswer);
+                        int position = adapter.getPosition((String) value);
                         if (position != -1) {
                             spinner.setSelection(position);
+                            Log.d("Load Answer", "Loaded dropdown answer: " + value + " for question ID: " + questionId);
                         }
                     }
                     break;
+
                 default:
                     break;
             }
         } else {
-            // when there was no saved answer, log
             Log.d("Load Answer", "No saved answer for question ID: " + questionId);
-        }
-        // Log the current state of the UI element after trying to load the answer
-        // Add these lines at the end of the method to log the final state of the UI
-        EditText finalCheckEditText = findViewById(R.id.type_short_answer_answer_box);
-        if (finalCheckEditText != null) {
-            Log.d("Final UI State", "EditText content after loading answer for question ID " + questionId + ": '" + finalCheckEditText.getText() + "'");
-        } else {
-            Log.e("Final UI State", "EditText is null after loading answer for question ID: " + questionId);
         }
     }
     private void loadDropdownOptions(int questionId, Spinner spinner) {
@@ -371,9 +455,21 @@ public class QuestionActivity extends AppCompatActivity {
     }
     private boolean areAllQuestionsAnswered() {
         // Check if all questions are answered
-        // For simplicity, just check if the size of the answers map is equal to the total number of questions
-        // Modify this as per your actual requirements
-        return answers.size() == 10;  // Replace with actual total number of questions
+        // For simplicity, check if every questionId from 1 to 10 (inclusive) is in the answers list
+        for (int questionId = 1; questionId <= 37; questionId++) {
+            if (!isQuestionAnswered(questionId)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean isQuestionAnswered(int questionId) {
+        for (Answer answer : answers) {
+            if (answer.getQuestionId() == questionId && answer.getValue() != null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void submitAnswers() {
