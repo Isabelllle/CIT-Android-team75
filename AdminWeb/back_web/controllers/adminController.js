@@ -59,7 +59,6 @@ const forgetEmailVerify = (req, res) => {
     const { email} = req.body;
     const token = jwt.sign({ email }, 'your-secret-key', { expiresIn: '1h' });
 
-    // check email是否在amin表里存在
     client.query('SELECT email FROM admin WHERE email = $1', [email], (error, results) => {
         if (error) {
             throw error;
@@ -70,7 +69,6 @@ const forgetEmailVerify = (req, res) => {
         }
 
         if(results.rows.length > 0) {
-            // 保存token和用户email
             client.query('INSERT INTO forget_email_verify (email, token) VALUES ($1, $2)',
             [email, token]);
 
@@ -82,15 +80,15 @@ const forgetEmailVerify = (req, res) => {
 
 }
 
-// 用来发送验证邮件
+
 function sendforgetEmail(email, token) {
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
-        secure: false, // 如果是 true 则 port 设置为 465，如果是 false 则可以用其它端口
+        secure: false, 
         auth: {
-            user: 'gyijun017@gmail.com', // 发送邮件的邮箱
-            pass: 'bpyi tkkn ctfu kukr' // 邮箱密码
+            user: 'gyijun017@gmail.com', 
+            pass: 'bpyi tkkn ctfu kukr' 
             }
         });
     
@@ -110,7 +108,7 @@ function sendforgetEmail(email, token) {
     });
 }
 
-// 验证邮件token
+
 const verifyForgetEmail = (token, res, req) => {
     if (!token) {
         res. status(400).send('Missing verification token.');
@@ -139,9 +137,9 @@ const verifyForgetEmail = (token, res, req) => {
 const signupAdmin = (req, res) => {
     const { first_name, last_name, email, password } = req.body;
     
-    let token = uuidv4(); // 生成唯一的验证令牌
+    let token = uuidv4(); 
 
-    // 保存令牌和用户信息，以便稍后验证
+
     client.query('INSERT INTO email_verification (email, first_name, last_name, password, token) VALUES ($1, $2, $3, $4, $5)', 
     [email, first_name, last_name, password, token]);
 
@@ -149,20 +147,19 @@ const signupAdmin = (req, res) => {
     verifyEmailToken(token, res, req);
 };
 
-// 调用此函数来发送验证邮件
+
 function sendVerificationEmail(email, name, token) {
     
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
-        secure: false, // 如果是 true 则 port 设置为 465，如果是 false 则可以用其它端口
+        secure: false, 
         auth: {
-            user: 'gyijun017@gmail.com', // 发送邮件的邮箱
-            pass: 'bpyi tkkn ctfu kukr' // 邮箱密码
+            user: 'gyijun017@gmail.com', 
+            pass: 'bpyi tkkn ctfu kukr' 
             }
         });
     
-    // 需要修改link
     const verificationLink = `http://localhost:3001/static/sign_up_instruction?token=${token}`;
     const mailOptions = {
         from: 'gyijun017@gmail.com',
@@ -225,24 +222,21 @@ function verifyTokenSignUp(token, res, req) {
                     }
 
                     if(results.rows.length == 0) {
-                        // 将用户信息移动到主用户表
                         client.query('INSERT INTO admin (email, password, "first_name ", "last_name ", has_registered, is_manager,\
                         group_id, group_name) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', 
                         [email, password, first_name, last_name, has_registered, is_manager, group_id, selectedGroup]);
 
-                        // 删除已验证的令牌和用户信息
                         client.query('DELETE FROM email_verification WHERE token = $1', [token], (error, deleteResults) => {
                         if (error) {
-                            console.error("Error deleting token:", error); // 添加详细的错误日志
+                            console.error("Error deleting token:", error); 
                             return res.status(500).send('Internal Server Error');
                         }
             
                         if (deleteResults.rowCount === 0) {
-                            console.warn("No matching token found for deletion"); // 如果没有匹配的令牌，添加警告日志
+                            console.warn("No matching token found for deletion"); 
                             return res.status(400).send('Invalid Token');
                         }
             
-                        // 如果一切正常，则重定向
                         return res.redirect('/static/email_verify');
                     });
                 }
@@ -379,11 +373,8 @@ const getYear = (req, res) => {
  */
 const verifyToken = (req, res, next) => {
     const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
-    // console.log('Authorization Header:', req.headers.authorization); 
-    // console.log('reminder vertifyqd', token);
     jwt.verify(token, 'your-secret-key', (err, decoded) => {
         if (err) {
-            // console.log('reminder vertify//', token);
             return res.status(401).json({ error: 'Unauthorized' });
         }
         req.email = decoded.email; 
@@ -462,6 +453,7 @@ const getIsManger = (req, res) => {
  */
 const updateUserInfo = (req, res) => {
     const { firstName, lastName, email } = req.body;
+    console.log('first', firstName, 'last', lastName, email);
     client.query(
         'UPDATE admin SET "first_name " = $1, "last_name " = $2 WHERE email = $3',
         [firstName, lastName, email],

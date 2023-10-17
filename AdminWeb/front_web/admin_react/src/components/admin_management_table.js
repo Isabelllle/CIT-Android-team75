@@ -28,15 +28,15 @@ const AdminManagementTable = ({ selectedSort }) => {
             .then(data => {
                 console.log(selectedSort);
                 if (selectedSort === 'last_name') {
-                    // -------------------- Fetch data and sort by last name
+                    //  Fetch data and sort by last name
                     const sortedData = data.sort((a, b) => a.lastName.localeCompare(b.lastName));
                     setTableData(sortedData);
                 } else if (selectedSort === 'first_name') {
-                    // -------------------- Fetch data and sort it with first name
+                    // Fetch data and sort it with first name
                     const sortedData = data.sort((a, b) => a.firstName.localeCompare(b.firstName));
                     setTableData(sortedData);
                 } else if (selectedSort === 'group') {
-                    // -------------------- Fetch data and sort it with group name
+                    // Fetch data and sort it with group name
                     const sortedData = data.sort((a, b) => a.group_name.localeCompare(b.group_name));
                     setTableData(sortedData);
                 } else {

@@ -17,7 +17,6 @@ const VolunteerTable = ({ token }) => {
 
     useEffect(() => {
         if (token_one){
-            // ---------------------------把这里的api从reminder list改成新的volunteer list
             fetch('http://localhost:3001/api/getReminderList', {
                 method: 'GET',
                 headers: {

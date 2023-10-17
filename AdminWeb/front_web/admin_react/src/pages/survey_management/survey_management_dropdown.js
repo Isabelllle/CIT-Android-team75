@@ -60,7 +60,7 @@ const SurveyDropDown = () =>{
         event.preventDefault();
 
         if (question !== '' && items !== null) {
-            // ---------------- Add post request (selectedTitle, selectedType, question)
+            // Add post request (selectedTitle, selectedType, question)
             fetch('http://localhost:3001/api/addDropDownQuestion', {
             method: 'PUT',
             headers: {

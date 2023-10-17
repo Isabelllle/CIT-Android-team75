@@ -34,7 +34,7 @@ const SurveyYesNo = () =>{
         event.preventDefault();
 
         if (question !== '') {
-            // ---------------- Add post request (selectedTitle, selectedType, question)
+            // Add post request (selectedTitle, selectedType, question)
             fetch('http://localhost:3001/api/addYesNoQuestion', {
             method: 'PUT',
             headers: {

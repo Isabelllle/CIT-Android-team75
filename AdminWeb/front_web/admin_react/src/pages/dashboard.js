@@ -69,9 +69,9 @@ const Dashboard = () =>{
     const lastName = LastName;
 
     // Middle Box Numbers
-    const [reminderNum, setReminderNum] = useState('20'); 
-    const [dataNum, setDataNum] = useState('19'); 
-    const [volunNum, setVolunNum] = useState('5'); 
+    const [reminderNum, setReminderNum] = useState(''); 
+    const [dataNum, setDataNum] = useState(''); 
+    const [volunNum, setVolunNum] = useState(''); 
 
     // get reminder list number
     useEffect(() => {
@@ -187,7 +187,7 @@ const Dashboard = () =>{
 
                         <div className={styles.middle_box}>
                             <div className={styles.middle_num} id={styles.num_three}>{volunNum}</div>
-                            <div className={styles.middle_text}>Volunteer Number</div>
+                            <div className={styles.middle_text}>Volunteers Number</div>
                         </div>
                     </div>
 

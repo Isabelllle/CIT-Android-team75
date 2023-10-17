@@ -34,7 +34,7 @@ const SurveyNumber = () =>{
         event.preventDefault();
 
         if (question !== '') {
-            // ---------------- Add post request (selectedTitle, selectedType, question, questionSecond)
+            // Add post request (selectedTitle, selectedType, question, questionSecond)
             fetch('http://localhost:3001/api/addNumQuestion', {
             method: 'PUT',
             headers: {
