@@ -130,6 +130,16 @@ public class SurveySecondPersonalInfo extends AppCompatActivity {
                     }
                     // Send all responses at once
                     sendResponsesToBackend(responsesList);
+
+                    //Redirection to previous page when click on "next" button
+                    Button button2 = findViewById(R.id.next_button);
+                    button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(SurveySecondPersonalInfo.this, CongratsPage.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
         });

@@ -20,7 +20,7 @@ public class SurveyPrivacyPolice extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SurveyPrivacyPolice.this, QuestionSearchDropdown.class);
+                Intent intent = new Intent(SurveyPrivacyPolice.this, QuestionActivity.class);
                 startActivity(intent);
             }
         });

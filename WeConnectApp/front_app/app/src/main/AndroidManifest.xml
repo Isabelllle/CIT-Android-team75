@@ -19,12 +19,6 @@
             android:name=".CongratsPage"
             android:exported="false" />
         <activity
-            android:name=".QuestionSearchDropdown"
-            android:exported="false" />
-        <activity
-            android:name=".Questionnaire"
-            android:exported="false" />
-        <activity
             android:name=".SurveyPrivacyPolice"
             android:exported="false" />
         <activity
