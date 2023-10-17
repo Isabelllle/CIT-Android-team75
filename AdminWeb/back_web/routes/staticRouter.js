@@ -11,6 +11,7 @@ const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
 const staticController = require('../controllers/staticPageController');
+const staticPage = require('../controllers/staticController')
 
 /** 
  * All routes realted to the static pages 
@@ -34,10 +35,11 @@ router.get('/email_verify',staticController.emailVerify);
 
 // all forget password related routes
 router.get('/enteremail', staticController.forgetEnterEmail);
-// router.post('/enteremail/enter',adminController.functionName);
+router.post('/enteremail/enterEmail',adminController.forgetEmailVerify);
 
 // 渲染
 router.get('/emailverify', staticController.forgetEmailVerify);
 router.get('/newPassword', staticController.newPassword);
+router.post('/newPassword/submit', staticPage.resetPassword);
 
 module.exports = router;
