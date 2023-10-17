@@ -1,7 +1,8 @@
 package com.example.weconnectapp;
+import java.io.Serializable;
 import java.util.List;
 
-public class ResponsesWrapper {
+public class ResponsesWrapper implements Serializable {
     private List<com.example.weconnectapp.Response> responses;
 
     public ResponsesWrapper(List<com.example.weconnectapp.Response> responses) {

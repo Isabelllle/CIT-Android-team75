@@ -1,6 +1,9 @@
 package com.example.weconnectapp;
 import com.google.gson.Gson;
-public class Response {
+
+import java.io.Serializable;
+
+public class Response implements Serializable {
     private int question_id;
     private String vol_email;
     private String text;

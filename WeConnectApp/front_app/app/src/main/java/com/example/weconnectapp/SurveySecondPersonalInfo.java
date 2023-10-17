@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,8 @@ import com.example.weconnectapp.connection.RetrofitClientInstance;
 
 public class SurveySecondPersonalInfo extends AppCompatActivity {
 
-    private Map<Integer, Object> answers = new HashMap<>();
+    private Map<Integer, MyPair<String, SerializableValue>> answers = new HashMap<>();
+
     private Button nextButton;
     private List<com.example.weconnectapp.Response> responsesList = new ArrayList<>();
 
@@ -34,7 +36,7 @@ public class SurveySecondPersonalInfo extends AppCompatActivity {
         setContentView(R.layout.activity_survey_second_personal_info);
 
         Intent intent = getIntent();
-        answers = (Map<Integer, Object>) intent.getSerializableExtra("answers");
+        answers = (Map<Integer, MyPair<String, SerializableValue>>) intent.getSerializableExtra("answers");
 
         nextButton = findViewById(R.id.next_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -51,12 +53,38 @@ public class SurveySecondPersonalInfo extends AppCompatActivity {
                     nextButton.setEnabled(true);
                 } else {
                     // Create a response list
-                    for (Map.Entry<Integer, Object> entry : answers.entrySet()) {
+                    for (Map.Entry<Integer, MyPair<String, SerializableValue>> entry : answers.entrySet()) { // Updated this line
                         Integer questionId = entry.getKey();
-                        Object answer = entry.getValue();
-                        com.example.weconnectapp.Response response =
-                                new com.example.weconnectapp.Response(questionId, emailText, answer.toString(),
-                                        null, null, null, null, null);
+                        MyPair<String, SerializableValue> answerPair = entry.getValue();  // Updated this line
+                        String type = answerPair.first;
+                        Object value = answerPair.second.getValue(); // Here we are extracting the value from SerializableValue
+
+                        com.example.weconnectapp.Response response = new com.example.weconnectapp.Response();
+                        response.setquestion_id(questionId);
+                        response.setvol_email(emailText);
+
+                        switch (type) {
+                            case "text":
+                                response.setText((String) value);
+                                break;
+                            case "number":
+                                response.setNumber((Integer) value);
+                                break;
+                            case "rating":
+                                response.setrating((Integer) value);
+                                break;
+                            case "rating1_10":
+                                response.setRating1_10((Integer) value);
+                                break;
+                            case "yes_or_no":
+                                response.setyes_or_no((Boolean) value);
+                                break;
+                            case "dropdown_id":
+                                response.setdropdown_id((Integer) value);
+                                break;
+                            default:
+                                throw new IllegalArgumentException("Unknown answer type: " + type);
+                        }
                         responsesList.add(response);
                     }
                     // Send all responses at once
@@ -92,7 +120,7 @@ public class SurveySecondPersonalInfo extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                     responsesList.clear();  // clear responsesList
                 }
-                nextButton.setEnabled(true);  // succeed  or not, re-enable button
+                nextButton.setEnabled(true);  // succeed or not, re-enable button
             }
 
             @Override
