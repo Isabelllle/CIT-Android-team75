@@ -16,11 +16,18 @@ import SearchIcon from '../Assets/Icon/icon_search.png';
 const AddNewGroup = () =>{
 
     // Attributes
-    const navigate = useNavigate();
     const [groups, setGroups] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:3001/api/getGroups')
-            .then(response => response.json())
+        fetch('http://localhost:3001/api/getGroupsList')
+            .then(response => {
+                console.log('Response:', response);
+                if (!response.ok) {
+                  return response.json().then(errorData => {
+                    throw new Error(errorData.error);
+                  });
+                }
+                return response.json();
+            })
             .then(data => setGroups(data))
             .catch(error => console.error('Error:', error));
     }, []); 
@@ -52,18 +59,34 @@ const AddNewGroup = () =>{
       };
     
     const handleSearch = () => {
-        //--------------------------------------------Add Search group
+        //Add Search group
         console.log('Search Group Name:', searchGroup);
 
         if (searchGroup == '') {
             fetch('http://localhost:3001/api/getGroups')
-            .then(response => response.json())
+            .then(response => {
+                console.log('Response:', response);
+                if (!response.ok) {
+                  return response.json().then(errorData => {
+                    throw new Error(errorData.error);
+                  });
+                }
+                return response.json();
+            })
             .then(data => setGroups(data))
             .catch(error => console.error('Error:', error));
         } else {
-        // -------------- fetch data, only the group being searched is displayed
+        // fetch data, only the group being searched is displayed
         fetch(`http://localhost:3001/api/searchGroupName?searchGroup=${searchGroup}`)
-            .then(response => response.json())
+            .then(response => {
+                console.log('Response:', response);
+                if (!response.ok) {
+                  return response.json().then(errorData => {
+                    throw new Error(errorData.error);
+                  });
+                }
+                return response.json();
+            })
             .then(data => setGroups(data))
             .catch(error => console.error('Error:', error));
         }
@@ -94,7 +117,7 @@ const AddNewGroup = () =>{
 
     const handleConfirm = () => {
         if (groups != null) {
-            // ---------------- Add post request (group)
+            // Add post request (group)
             fetch('http://localhost:3001/api/updateGroups', {
             method: 'PUT',
             headers: {

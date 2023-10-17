@@ -44,7 +44,7 @@ const SurveyRating = () =>{
         event.preventDefault();
 
         if (question !== '' && min !== '' && max !== '') {
-            // ---------------- Add post request (selectedTitle, selectedType, question, min, max)
+            // Add post request (selectedTitle, selectedType, question, min, max)
             fetch('http://localhost:3001/api/addRatingQuestion', {
             method: 'PUT',
             headers: {

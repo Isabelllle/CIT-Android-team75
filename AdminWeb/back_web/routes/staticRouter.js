@@ -37,7 +37,6 @@ router.get('/email_verify',staticController.emailVerify);
 router.get('/enteremail', staticController.forgetEnterEmail);
 router.post('/enteremail/enterEmail',adminController.forgetEmailVerify);
 
-// 渲染
 router.get('/emailverify', staticController.forgetEmailVerify);
 router.get('/newPassword', staticController.newPassword);
 router.post('/newPassword/submit', staticPage.resetPassword);

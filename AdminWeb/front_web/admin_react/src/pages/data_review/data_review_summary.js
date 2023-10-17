@@ -2,7 +2,7 @@
 // Admin and manager can view data summary in this page
 
 // Import library
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 // Import CSS
 import styles from '../../stylesheets/data_review.module.css'
@@ -120,7 +120,6 @@ const DataReviewSummary = () =>{
             .map(questionId => {
                 const questionData = groupedData[questionId];
                 const ChartComponent = determineChartComponent(questionData[0]);
-                // console.log('Not Null questionData', questionData);
                 return (
                     <div className={styles.chart_container} key={questionId}>
                         <div className={styles.topic}>

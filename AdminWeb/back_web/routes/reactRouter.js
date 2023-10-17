@@ -23,6 +23,7 @@ const dataReviewController = require('../controllers/dataReviewController');
 router.get('/api/user', adminController.verifyToken, adminController.getUserName);
 router.get('/api/getIsManger', adminController.verifyToken, adminController.getIsManger);
 router.get('/api/getSurveyQuesTable', adminController.getSurveyQuesTable);
+router.get('/api/getGroupsList', adminController.getGroups);
 router.get('/api/getGroups', adminController.verifyToken, adminController.getOwnGroups);
 router.get('/api/getYear', adminController.verifyToken, adminController.getYear);
 router.get('/api/getReminderList', adminController.verifyToken, reminderListsController.getReminderList);

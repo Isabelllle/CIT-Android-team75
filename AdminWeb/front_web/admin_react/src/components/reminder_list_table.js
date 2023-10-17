@@ -54,15 +54,15 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
     const handleSort = useCallback(() => {
         console.log('Sorted data before:', initialTableData);
             if (selectedSort === 'last_name') {
-                // -------------------- Fetch data and sort by last name
+                // Fetch data and sort by last name
                 const sortedData = [...initialTableData].sort((a, b) => a.last_name.localeCompare(b.last_name));
                 setTableData(sortedData);
             } else if (selectedSort === 'first_name') {
-                // -------------------- Fetch data and sort it with first name
+                // Fetch data and sort it with first name
                 const sortedData =  [...initialTableData].sort((a, b) => a.first_name.localeCompare(b.first_name));
                 setTableData(sortedData);
             } else if (selectedSort === 'overdue_day') {
-                // -------------------- Fetch the data and sort it by overdue day
+                // Fetch the data and sort it by overdue day
                 const sortedData =  [...initialTableData].sort((a, b) => a.overdue_day - b.overdue_day);
                 console.log('Sorted data after:', sortedData);
                 setTableData(sortedData);
@@ -92,7 +92,7 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
             .catch(error => console.error('Error:', error));
 
         }else{
-            // -------------------- fetch data, only the data corresponding to searchEmail is displayed
+            // fetch data, only the data corresponding to searchEmail is displayed
             fetch(`http://localhost:3001/api/searchReminderByEmail?email=${searchEmail}`)
                 .then(response => {
                     console.log('Response:', response);
@@ -107,7 +107,6 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
                 .catch(error => console.error('Error:', error));
         }
 
-        //     console.log('The search Message is' + searchEmail);
     }, [searchEmail]);
 
     useEffect(() => {
@@ -142,7 +141,7 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
         // Update the tableData state with the updated list
         setTableData(updatedTableData);
 
-        //--------------------Delete item from databas
+        // Delete item from databas
         fetch(`http://localhost:3001/api/deleteEmail/${deleteEmail}`, {
             method: 'DELETE',
         })

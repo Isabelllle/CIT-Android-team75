@@ -25,7 +25,6 @@ const Settings = () =>{
 
     const [initialFirstName, setInitialFirstName] = useState(''); 
     const [initialLastName, setInitialLastName] = useState(''); 
-    const [initialEmail, setInitialEmail] = useState('');
 
     useEffect(() => {
         // fetch to get the user's information
@@ -44,14 +43,12 @@ const Settings = () =>{
             return response.json();
         })
         .then(data => {
-   
             setFirstName(data.firstName);
             setLastName(data.lastName);
             setEmail(data.email);
 
             setInitialFirstName(data.firstName);
             setInitialLastName(data.lastName);
-            setInitialEmail(data.email);
         })
         .catch(error => console.error('Error:', error));
     }, []); 
@@ -72,17 +69,13 @@ const Settings = () =>{
         setLastName(last_name.target.value);
     };
 
-    const handleEmailChange = (email) => {
-        setEmail(email.target.value);
-    };
-
     // Handle input changes submit
     const handleSubmit = () => {
         setIsEditingFirstName(false);
         setIsEditingLastName(false);
         setIsEditingEmail(false);
 
-        // ----------------------- Post change of all inputs to database
+        //Post change of all inputs to database
         fetch('http://localhost:3001/api/users', {
             method: 'PUT',
             headers: {
@@ -106,10 +99,8 @@ const Settings = () =>{
     const handleCancelButton = () => {
         setFirstName(initialFirstName); 
         setLastName(initialLastName); 
-        setEmail(initialEmail); 
         setIsEditingFirstName(false);
         setIsEditingLastName(false);
-        setIsEditingEmail(false);
     };
 
     // Handle logout
@@ -180,21 +171,6 @@ const Settings = () =>{
                                 <div className={styles.text}>{lastName}</div>
                             </div>
                         )}
-
-                        {/* Last Name */}
-                        {/* {isEditingEmail ? (
-                            <div className={styles.editing_container}>
-                                <form>
-                                    <h4>Email</h4>
-                                    <input type="email" value={email} onChange={handleEmailChange} />
-                                </form>
-                            </div>
-                        ) : (
-                            <div className={styles.text_container}>
-                                <h4>Email</h4>
-                                <div className={styles.text}>{email}</div>
-                            </div>
-                        )} */}
 
                         <div className={styles.input_button}>
                             {isEditingFirstName && <button onClick={handleCancelButton}>Cancel</button>}

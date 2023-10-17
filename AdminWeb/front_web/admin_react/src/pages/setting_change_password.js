@@ -69,7 +69,7 @@ const SettingsPassword = () =>{
             setWarningFill(false);
             setWarningPassword(false);
         } else {
-            // ----------------------- Post change of all inputs to database
+            // Post change of all inputs to database
             fetch('http://localhost:3001/api/userspassword', {
                 method: 'PUT',
                 headers: {
@@ -91,7 +91,6 @@ const SettingsPassword = () =>{
                     navigate('/settings'); 
                 } else {
                     console.error('Error:', data.message);
-                    // -------------------------------- Add: 页面显示密码错误 try again
                     setWarningFill(false);
                     setWarningConfirm(false);
                     setWarningPassword(true);
