@@ -1,7 +1,8 @@
 <network-security-config>
-    <base-config cleartextTrafficPermitted="true">
-        <trust-anchors>
-            <certificates src="system" />
-        </trust-anchors>
-    </base-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">13.211.212.204</domain>
+    </domain-config>
 </network-security-config>
+
+
+
