@@ -259,7 +259,7 @@ function verifyTokenSignUp(token, res, req) {
 
 /**
  * GET static/signin/getGroups
- * GET /api/getGroups
+ * 
  * Retrieves a list of groups from the database.
  * 
  * @param {Object} req - The HTTP request object.
@@ -273,6 +273,99 @@ const getGroups = (req, res) => {
         }
         const groups = results.rows.map(row => row.group_name);
         res.json(groups);
+    });
+};
+
+/**
+ * 
+ * GET /api/getGroups
+ * Retrieves a list of groups from the database.
+ * 
+ * @param {Object} req - The HTTP request object.
+ * @param {Object} res - The HTTP response object.
+ * @throws {Error} If an error occurs while inserting the question.
+ */
+const getOwnGroups = (req, res) => {
+    const email = req.email;
+    client.query('SELECT is_manager FROM admin WHERE email = $1',
+        [email], (error, results) => {
+        if (error) {
+            console.error('Error in find status of manager', error);
+            return;
+        }
+        
+        const isManager = results.rows[0].is_manager;
+        if(!isManager) {
+            client.query('SELECT * FROM groups', (error, results) => {
+                if (error) {
+                    throw error;
+                }
+                const groups = results.rows.map(row => row.group_name);
+                res.json(groups);
+            });
+        } else {
+            client.query('SELECT group_name FROM admin where email = $1',
+            [email], (error, result) => {
+                if (error) {
+                    console.error('Error executing query:', error);
+                    res.status(500).send('Internal Server Error');
+                    return;
+                }
+                const groups = [result.rows[0].group_name];;
+                res.json(groups);
+            });
+        }
+    });
+};
+
+/**
+ * 
+ * GET /api/getGroups
+ * Retrieves a list of groups from the database.
+ * 
+ * @param {Object} req - The HTTP request object.
+ * @param {Object} res - The HTTP response object.
+ * @throws {Error} If an error occurs while inserting the question.
+ */
+const getYear = (req, res) => {
+    const email = req.email;
+    client.query('SELECT is_manager FROM admin WHERE email = $1',
+        [email], (error, results) => {
+        if (error) {
+            console.error('Error in find status of manager', error);
+            return;
+        }
+        const isManager = results.rows[0].is_manager;
+        if(!isManager) {
+            client.query('SELECT EXTRACT(year FROM sub_time) FROM responses', (error, results) => {
+                if (error) {
+                    throw error;
+                }
+                const years = results.rows.map(row => row.extract);
+                const uniqueYears = [...new Set(years)];
+                res.json(uniqueYears);
+            });
+        } else {
+
+            client.query('SELECT email FROM volunteers WHERE manager_email = $1', [email], (volunteerError, volunteerResult) => {
+                if (volunteerError) {
+                    console.error('Error executing query:', volunteerError);
+                    res.status(500).send('Internal Server Error');
+                    return;
+                }
+                const volunteerEmails = volunteerResult.rows.map(row => row.email);
+
+                client.query('SELECT EXTRACT(year FROM sub_time) FROM responses r  WHERE r.vol_email IN (SELECT unnest($1::text[]))', 
+                [volunteerEmails], (error, results) => {
+                    if (error) {
+                        throw error;
+                    }
+                    const years = results.rows.map(row => row.extract);
+                    const uniqueYears = [...new Set(years)];
+                    res.json(uniqueYears);
+                });
+            });
+        }
     });
 };
 
@@ -528,4 +621,6 @@ module.exports = {
     getIsManger,
     verifyEmailToken,
     forgetEmailVerify,
+    getOwnGroups,
+    getYear,
 };

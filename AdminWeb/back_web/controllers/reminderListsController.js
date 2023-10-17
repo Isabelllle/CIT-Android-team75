@@ -66,7 +66,6 @@ const getReminderList = (req, res) => {
                 });
             });
         }
-
     });
 }
 

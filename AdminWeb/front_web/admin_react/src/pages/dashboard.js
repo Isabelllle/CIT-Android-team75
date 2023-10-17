@@ -20,6 +20,10 @@ const Dashboard = () =>{
     const [FirstName, setFirstName] = useState(''); 
     const [LastName, setLastName] = useState(''); 
 
+    if (token != localStorage.getItem('token')) {
+        window.location.reload(true);
+    }
+
     useEffect(() => {
         // get URL Token
         const urlParams = new URLSearchParams(window.location.search);
@@ -28,6 +32,7 @@ const Dashboard = () =>{
             localStorage.setItem('token', token);
             console.log('Token:', token);
         }
+
     }, []);
 
     // get profile

@@ -14,6 +14,8 @@ import DropDownTable from '../../components/dropdown_table';
 import YesNoTable from '../../components/yesno_table';
 import NumberTable from '../../components/number_table';
 
+const token = localStorage.getItem('token');
+
 const DataReviewSummary = () =>{
 
     const [selectedYear, setSelectedYear] = useState('All');
@@ -61,10 +63,17 @@ const DataReviewSummary = () =>{
     ]);
 
     const [groupList, setGroupList] = useState([]);
+    const [yearList, setYearList] = useState([]);
 
     useEffect(() => {
         // get group data from back end
-        fetch('http://localhost:3001/api/getGroups') 
+        fetch('http://localhost:3001/api/getGroups', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            },
+        }) 
         .then(response => response.json())
         .then(data => {
             const newGroupList = data.map(group => group);
@@ -74,9 +83,34 @@ const DataReviewSummary = () =>{
         .catch(error => console.error('Error fetching data:', error));
     }, []);
 
+// get corresponding year
+    useEffect(() => {
+    // get group data from back end
+    fetch('http://localhost:3001/api/getYear', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
+            },
+        }) 
+        .then(response => response.json())
+        .then(data => {
+            const newYearList = data.map(group => group);
+            setYearList(newYearList); 
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }, []);
+    
+
     useEffect(() => {
         setData([]);
-        fetch(`http://localhost:3001/api/getQuestionsAnswer?year=${selectedYear}&group=${selectedGroup}`)
+        fetch(`http://localhost:3001/api/getQuestionsAnswer?year=${selectedYear}&group=${selectedGroup}`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            },
+        })
             .then(response => response.json())
             .then(data => {
                 if (data !== null && data !== undefined) {
@@ -125,9 +159,9 @@ const DataReviewSummary = () =>{
 
                 {/* Select Year Box */}
                 <select id={styles.selected_box} value={selectedYear} onChange={handleSelectedYear}>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
+                    {yearList.map(extract => (
+                        <option key={extract} value={extract}>{extract}</option>
+                    ))}
                     <option value="All">All</option>
                 </select>
             </div>

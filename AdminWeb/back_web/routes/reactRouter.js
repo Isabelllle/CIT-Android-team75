@@ -23,12 +23,13 @@ const dataReviewController = require('../controllers/dataReviewController');
 router.get('/api/user', adminController.verifyToken, adminController.getUserName);
 router.get('/api/getIsManger', adminController.verifyToken, adminController.getIsManger);
 router.get('/api/getSurveyQuesTable', adminController.getSurveyQuesTable);
-router.get('/api/getGroups', adminController.getGroups);
+router.get('/api/getGroups', adminController.verifyToken, adminController.getOwnGroups);
+router.get('/api/getYear', adminController.verifyToken, adminController.getYear);
 router.get('/api/getReminderList', adminController.verifyToken, reminderListsController.getReminderList);
 router.get('/api/searchReminderByEmail', reminderListsController.searchReminderByEmail);
 router.get('/api/getUnregisterList', UnregisterListsController.getUnregisterList);
-router.get('/api/getAnswerData', dataReviewController.getAnswerList);
-router.get('/api/getQuestionsAnswer', dataReviewController.getQuestionsAnswer);
+router.get('/api/getAnswerData', adminController.verifyToken, dataReviewController.getAnswerList);
+router.get('/api/getQuestionsAnswer', adminController.verifyToken, dataReviewController.getQuestionsAnswer);
 
 
 router.put('/api/users', adminController.updateUserInfo);
