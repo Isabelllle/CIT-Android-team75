@@ -42,7 +42,7 @@ public class QuestionActivity extends AppCompatActivity {
     private RelativeLayout layout;
 
     private List<Answer> answers = new ArrayList<>();
-    
+    private Map<String, Integer> dropdownIds = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,13 +189,18 @@ public class QuestionActivity extends AppCompatActivity {
                 case "dropdown":
                     Spinner spinner = findViewById(R.id.quetype_dropdown_box);
                     if(spinner != null) {
-                        String value = spinner.getSelectedItem().toString();
-                        answer.setType("dropdown_id");
-                        answer.setValue(value);  // Set the dropdown answer
+                        String selectedOption = spinner.getSelectedItem().toString();
+                        int id = getDropdownId(selectedOption); // get ID
+                        if (id != -1) {
+                            answer.setType("dropdown_id");
+                            answer.setValue(id);  // save ID，instead text value
 
-                        updateOrAddAnswer(answer, questionId);
+                            updateOrAddAnswer(answer, questionId);
 
-                        Log.d("Save Answer", "Saved dropdown answer: " + value + " for question ID: " + questionId);
+                            Log.d("Save Answer", "Saved dropdown answer ID: " + id + " for question ID: " + questionId);
+                        } else {
+                            Log.e("Save Answer", "Unknown dropdown option: " + selectedOption);
+                        }
                     }
                     break;
 
@@ -304,11 +309,11 @@ public class QuestionActivity extends AppCompatActivity {
 
                 nextButton.setOnClickListener(v -> {
                     saveCurrentAnswer();
-                    if (currentPage == 37 && areAllQuestionsAnswered()) {
+                    if (currentPage == 6 && areAllQuestionsAnswered()) {
                         Intent intent = new Intent(QuestionActivity.this, SurveySecondPersonalInfo.class);
                         intent.putExtra("answers", (Serializable) answers);
                         startActivity(intent);
-                    } else if (currentPage < 37) {
+                    } else if (currentPage < 6) {
                         currentPage++;
                         fetchQuestions();
                     } else {
@@ -423,19 +428,27 @@ public class QuestionActivity extends AppCompatActivity {
 
                 case "dropdown_id":
                     Spinner spinner = findViewById(R.id.quetype_dropdown_box);
-                    if (spinner != null && value instanceof String) {
-                        Log.d("Load Answer", "Value is a string: " + value);
-                        ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinner.getAdapter();
-                        if (adapter != null) {
-                            int position = adapter.getPosition((String) value);
-                            Log.d("Load Answer", "Position in adapter: " + position);
-                            if (position != -1) {
-                                spinner.setSelection(position);
-                                Log.d("Load Answer", "Loaded dropdown answer: " + value + " for question ID: " + questionId);
+                    if (spinner != null && value instanceof Integer) {
+                        int id = (Integer) value;
+                        String option = getDropdownValue(id);
+                        if (option != null) {
+                            ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinner.getAdapter();
+                            if (adapter != null) {
+                                int position = adapter.getPosition(option);
+                                if (position != -1) {
+                                    spinner.setSelection(position);
+                                    Log.d("Load Answer", "Loaded dropdown answer ID: " + id + " for question ID: " + questionId);
+                                } else {
+                                    Log.e("Load Answer", "Option not found in adapter: " + option);
+                                }
+                            } else {
+                                Log.e("Load Answer", "Adapter is null");
                             }
                         } else {
-                            Log.d("Load Answer", "Adapter is null");
+                            Log.e("Load Answer", "Unknown dropdown id: " + id);
                         }
+                    } else {
+                        Log.e("Load Answer", "Spinner is null or saved answer is not an integer for question ID: " + questionId);
                     }
                     break;
 
@@ -453,15 +466,13 @@ public class QuestionActivity extends AppCompatActivity {
             public void onResponse(Call<List<String>> call, Response<List<String>> response) {
                 if (response.isSuccessful()) {
                     List<String> options = response.body();
-                    if(options != null && !options.isEmpty()) {
+                    if (options != null && !options.isEmpty()) {
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(QuestionActivity.this, android.R.layout.simple_spinner_item, options);
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner.setAdapter(adapter);
-                        Log.d("Dropdown Options", "Adapter set to spinner: " + (spinner.getAdapter() != null));
-                        Log.d("Dropdown Options", "Options loaded: " + options.toString());
 
-                        Log.d("Dropdown Options", "Loading saved answer after setting options");
-                        loadSavedAnswer(questionId, "dropdown");
+                        // Load saved answer after options are set
+                        postDropdownOptionsLoad(questionId, spinner);
                     } else {
                         Log.e("Dropdown Options", "Options are null or empty");
                     }
@@ -476,10 +487,35 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void postDropdownOptionsLoad(int questionId, Spinner spinner) {
+        // Options are loaded, now we can load the saved answer
+        loadSavedAnswer(questionId, "dropdown");
+    }
+
+    private int getDropdownId(String value) {
+        Integer id = dropdownIds.get(value);
+        if (id != null) {
+            return id;
+        } else {
+            Log.e("Save Answer", "Unknown dropdown value: " + value);
+            return -1;  //default value
+        }
+    }
+
+    private String getDropdownValue(int id) {
+        for (Map.Entry<String, Integer> entry : dropdownIds.entrySet()) {
+            if (entry.getValue() == id) {
+                return entry.getKey();
+            }
+        }
+        Log.e("Load Answer", "Unknown dropdown id: " + id);
+        return null;
+    }
     private boolean areAllQuestionsAnswered() {
         // Check if all questions are answered
         // For simplicity, check if every questionId from 1 to 10 (inclusive) is in the answers list
-        for (int questionId = 1; questionId <= 37; questionId++) {
+        for (int questionId = 1; questionId <= 6; questionId++) {
             if (!isQuestionAnswered(questionId)) {
                 return false;
             }
