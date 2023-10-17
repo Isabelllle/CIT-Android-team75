@@ -80,22 +80,48 @@ public class SurveySecondPersonalInfo extends AppCompatActivity {
 
                         switch (type) {
                             case "text":
-                                response.setText((String) value);
+                                if (value instanceof String) {
+                                    response.setText((String) value);
+                                } else {
+                                    Log.e("Error", "Value is not a String for type text");
+                                }
                                 break;
                             case "number":
-                                response.setNumber((Integer) value);
+                                if (value instanceof Integer) {
+                                    response.setNumber((Integer) value);
+                                } else {
+                                    Log.e("Error", "Value is not an Integer for type number");
+                                }
                                 break;
                             case "rating":
-                                response.setrating((Integer) value);
+                                if (value instanceof Integer) {
+                                    response.setrating((Integer) value);
+                                } else {
+                                    Log.e("Error", "Value is not an Integer for type rating");
+                                }
                                 break;
                             case "rating1_10":
-                                response.setRating1_10((Integer) value);
+                                if (value instanceof Integer) {
+                                    response.setRating1_10((Integer) value);
+                                } else {
+                                    Log.e("Error", "Value is not an Integer for type rating1_10");
+                                }
                                 break;
                             case "yes_or_no":
-                                response.setyes_or_no((Boolean) value);
+                                if (value instanceof Boolean) {
+                                    response.setyes_or_no((Boolean) value);
+                                } else if (value instanceof String) {  // Add this check to convert String to Boolean if needed
+                                    response.setyes_or_no(Boolean.parseBoolean((String) value));
+                                } else {
+                                    Log.e("Error", "Value is not a Boolean for type yes_or_no");
+                                }
                                 break;
                             case "dropdown_id":
-                                response.setdropdown_id((Integer) value);
+                                if (value instanceof Integer) {
+                                    response.setdropdown_id((Integer) value);
+                                } else {
+                                    Log.e("Error", "Value is not an Integer for type dropdown_id");
+                                }
                                 break;
                             default:
                                 throw new IllegalArgumentException("Unknown answer type: " + type);

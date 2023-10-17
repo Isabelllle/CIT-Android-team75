@@ -42,6 +42,7 @@ public class QuestionActivity extends AppCompatActivity {
     private RelativeLayout layout;
 
     private List<Answer> answers = new ArrayList<>();
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,14 +152,14 @@ public class QuestionActivity extends AppCompatActivity {
                         int selectedRadioButtonId = radioGroup10.getCheckedRadioButtonId();
                         if (selectedRadioButtonId != -1) {
                             RadioButton radioButton = radioGroup10.findViewById(selectedRadioButtonId);
-                            String value = radioButton.getText().toString();
+                            int selectedIndex = radioGroup10.indexOfChild(findViewById(radioGroup10.getCheckedRadioButtonId()));
                             answer.setType("rating1_10");
-                            answer.setValue(value);  // Set the rating 1-10 answer
+                            answer.setValue(selectedIndex);
 
                             // Use this instead of answers.add(answer)
                             updateOrAddAnswer(answer, questionId);
 
-                            Log.d("Save Answer", "Saved answer: " + value + " for question ID: " + questionId);
+                            Log.d("Save Answer", "Saved answer: " + selectedIndex + " for question ID: " + questionId);
                         } else {
                             Log.d("Save Answer", "No radio button selected for question ID: " + questionId);
                         }
@@ -374,28 +375,44 @@ public class QuestionActivity extends AppCompatActivity {
                     break;
                 case "rating":
                     if (type.equals("Rating scales 1-5")) {
-                        RadioGroup radioGroup1 = findViewById(R.id.type_rating_1_5_answer);
-                        if (value instanceof Integer) {
+                        RadioGroup radioGroup = findViewById(R.id.type_rating_1_5_answer);
+                        if (radioGroup != null && value instanceof Integer) {
                             int answerIndex = (Integer) value;
-                            RadioButton radioButton = (RadioButton) radioGroup1.getChildAt(answerIndex);
-                            if (radioButton != null) {
-                                radioButton.setChecked(true);
-                                Log.d("Load Answer", "Loaded answer index: " + answerIndex + " for question ID: " + questionId);
+                            if (answerIndex >= 0 && answerIndex < radioGroup.getChildCount()) {
+                                RadioButton radioButton = (RadioButton) radioGroup.getChildAt(answerIndex);
+                                if (radioButton != null) {
+                                    radioButton.setChecked(true);
+                                    Log.d("Load Answer", "Loaded answer index: " + answerIndex + " for question ID: " + questionId);
+                                } else {
+                                    Log.e("Load Answer", "RadioButton is null for index: " + answerIndex);
+                                }
+                            } else {
+                                Log.e("Load Answer", "Invalid answer index for question ID: " + questionId);
                             }
-                        }
-                    } else if (type.equals("Rating scales 1-10")) {
-                        RadioGroup radioGroup10 = findViewById(R.id.type_rating_1_10_answer);
-                        if (value instanceof Integer) {
-                            int answerIndex = (Integer) value;
-                            RadioButton radioButton = (RadioButton) radioGroup10.getChildAt(answerIndex);
-                            if (radioButton != null) {
-                                radioButton.setChecked(true);
-                                Log.d("Load Answer", "Loaded answer: " + answerIndex + " for question ID: " + questionId);
-                            }
+                        } else {
+                            Log.e("Load Answer", "RadioGroup is null or saved answer is not an integer for question ID: " + questionId);
                         }
                     }
                     break;
-
+                case "rating1_10":
+                    RadioGroup radioGroup10 = findViewById(R.id.type_rating_1_10_answer);
+                    if (radioGroup10 != null && value instanceof Integer) {
+                        int answerValue = (Integer) value;
+                        if (answerValue >= 1 && answerValue <= 10) {
+                            RadioButton radioButton = (RadioButton) radioGroup10.getChildAt(answerValue - 1); // -1 because index is 0-based
+                            if (radioButton != null) {
+                                radioButton.setChecked(true);
+                                Log.d("Load Answer", "Loaded rating1_10 answer: " + answerValue + " for question ID: " + questionId);
+                            } else {
+                                Log.e("Load Answer", "RadioButton is null for index: " + (answerValue - 1));
+                            }
+                        } else {
+                            Log.e("Load Answer", "Invalid answer value for question ID: " + questionId);
+                        }
+                    } else {
+                        Log.e("Load Answer", "RadioGroup is null or saved answer is not an integer for question ID: " + questionId);
+                    }
+                    break;
                 case "number":
                     EditText numberEditText = findViewById(R.id.type_enter_number_answer_box);
                     if (numberEditText != null && value instanceof Integer) {
@@ -404,14 +421,20 @@ public class QuestionActivity extends AppCompatActivity {
                     }
                     break;
 
-                case "dropdown":
+                case "dropdown_id":
                     Spinner spinner = findViewById(R.id.quetype_dropdown_box);
                     if (spinner != null && value instanceof String) {
+                        Log.d("Load Answer", "Value is a string: " + value);
                         ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinner.getAdapter();
-                        int position = adapter.getPosition((String) value);
-                        if (position != -1) {
-                            spinner.setSelection(position);
-                            Log.d("Load Answer", "Loaded dropdown answer: " + value + " for question ID: " + questionId);
+                        if (adapter != null) {
+                            int position = adapter.getPosition((String) value);
+                            Log.d("Load Answer", "Position in adapter: " + position);
+                            if (position != -1) {
+                                spinner.setSelection(position);
+                                Log.d("Load Answer", "Loaded dropdown answer: " + value + " for question ID: " + questionId);
+                            }
+                        } else {
+                            Log.d("Load Answer", "Adapter is null");
                         }
                     }
                     break;
@@ -437,7 +460,7 @@ public class QuestionActivity extends AppCompatActivity {
                         Log.d("Dropdown Options", "Adapter set to spinner: " + (spinner.getAdapter() != null));
                         Log.d("Dropdown Options", "Options loaded: " + options.toString());
 
-                        // Load saved answer after setting the options
+                        Log.d("Dropdown Options", "Loading saved answer after setting options");
                         loadSavedAnswer(questionId, "dropdown");
                     } else {
                         Log.e("Dropdown Options", "Options are null or empty");
