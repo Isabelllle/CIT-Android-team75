@@ -41,7 +41,7 @@ const loginAdmin = (req, res) => {
 
                 res.redirect(`http://localhost:3000/?token=${token}`);
             } else {
-                res.send('Invalid username or password');
+                res.redirect(`http://localhost:3001/static/login?error=invalid_password_or_email`);
             }
         }
     );
