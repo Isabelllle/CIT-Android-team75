@@ -5,11 +5,7 @@ const nodemailer = require('nodemailer');
 const admin = require('firebase-admin');
 const serviceAccount = require('../serviceAccountKey.json');
 const { client } = require('../db');
-/*
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-*/
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -20,15 +16,16 @@ const transporter = nodemailer.createTransport({
 
 // set up timing task
 nodeCron.schedule('0 17 * * 5', async () => { 
-  const currentDate = new Date();
+  const currentDateWithoutTime = new Date();
+  currentDateWithoutTime.setHours(0,0,0,0);
 
   const { rows: volunteers } = await client.query('SELECT * FROM public.volunteers');
 
   volunteers.forEach(async volunteer => {
-    const secondSurveyStartTime = new Date(volunteer.first_sub_time);
+    const secondSurveyStartTime = new Date(volunteer.sub_time);
     secondSurveyStartTime.setMonth(secondSurveyStartTime.getMonth() + 2);
 
-    if (currentDate >= secondSurveyStartTime && !volunteer.sec_sub_time) {
+    if (currentDateWithoutTime >= secondSurveyStartTime && !volunteer.sec_sub_time) {
       sendPushNotification(volunteer);
       sendEmailNotification(volunteer.email, 'It’s time for the second survey!');
 
@@ -80,5 +77,19 @@ async function sendEmailNotification(email, message) {
     console.log('Message sent: %s', info.messageId);
   });
 }
+
+router.get('/test-push', (req, res) => {
+    const volunteer = {
+        fcm_token: 'dV3gV8h4RfSfcpdBWBi5Ri:APA91bHEb6VuJfLFJ4sFRx-yCGTEhPTHhXYcq97ngvswfZ1Vs06jJnn6y_AeL4Teu9dcwNZzoI8bUkw1cDmoH6X8lpLztBrhl5Cq953XPAu94Rg8izVw2n5lGX4S0dpqs8ut0Uo2VUQ0',
+
+        first_name: 'Test',
+        last_name: 'User'
+    };
+    
+    sendPushNotification(volunteer);
+    res.send('Push notification sent');
+});
+
+module.exports = router;
 
 module.exports = router;

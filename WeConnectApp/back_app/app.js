@@ -47,6 +47,8 @@ app.use('/api/reminder', reminderRoutes);
 app.use('/api/error-reports', errorReportRoutes);
 app.use('/api/dropdown-options', dropdownOptionsRoutes);
 
+
+
 // connect to PostgreSQL database
 client.connect(err => {
     if (err) {

@@ -4,10 +4,10 @@ const { client } = require('../db');
 
 // API to add volunteer details
 router.post('/volunteerDetails', (req, res) => {
-    console.log('Request body:', req.body);  // 
+    console.log('Request body:', req.body);   
 
-    // 
-    const { firstName, lastName, email, postcode } = req.body;
+     
+    const { firstName, lastName, email, postcode, fcmToken } = req.body;
     const managerEmail = req.body.managerEmail || null;
     const club = req.body.club || 'DefaultClub'; 
 
