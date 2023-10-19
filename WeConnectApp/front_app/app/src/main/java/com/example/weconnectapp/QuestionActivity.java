@@ -189,23 +189,24 @@ public class QuestionActivity extends AppCompatActivity {
                 case "dropdown":
                     Spinner spinner = findViewById(R.id.quetype_dropdown_box);
                     if(spinner != null) {
-                        String selectedOption = spinner.getSelectedItem().toString();
-                        int id = getDropdownId(selectedOption); // get ID
-                        if (id != -1) {
-                            answer.setType("dropdown_id");
-                            answer.setValue(id);  // save ID，instead text value
+                        Object selectedItem = spinner.getSelectedItem();
+                        if(selectedItem != null) {  // Add this null check
+                            String selectedOption = selectedItem.toString();
+                            int id = getDropdownId(selectedOption); // get ID
+                            if (id != -1) {
+                                answer.setType("dropdown_id");
+                                answer.setValue(id);  // save ID, instead text value
 
-                            updateOrAddAnswer(answer, questionId);
+                                updateOrAddAnswer(answer, questionId);
 
-                            Log.d("Save Answer", "Saved dropdown answer ID: " + id + " for question ID: " + questionId);
+                                Log.d("Save Answer", "Saved dropdown answer ID: " + id + " for question ID: " + questionId);
+                            } else {
+                                Log.e("Save Answer", "Unknown dropdown option: " + selectedOption);
+                            }
                         } else {
-                            Log.e("Save Answer", "Unknown dropdown option: " + selectedOption);
+                            Log.e("Save Answer", "No selected item in dropdown for question ID: " + questionId);
                         }
                     }
-                    break;
-
-                default:
-                    Log.d("Save Answer", "Unknown question type for question ID: " + questionId);
                     break;
             }
             Log.d("Answers List", "Current answers: " + answers.toString());  // Log the current state of the answers list
@@ -309,11 +310,11 @@ public class QuestionActivity extends AppCompatActivity {
 
                 nextButton.setOnClickListener(v -> {
                     saveCurrentAnswer();
-                    if (currentPage == 6 && areAllQuestionsAnswered()) {
+                    if (currentPage == 37 && areAllQuestionsAnswered()) {
                         Intent intent = new Intent(QuestionActivity.this, SurveySecondPersonalInfo.class);
                         intent.putExtra("answers", (Serializable) answers);
                         startActivity(intent);
-                    } else if (currentPage < 6) {
+                    } else if (currentPage < 37) {
                         currentPage++;
                         fetchQuestions();
                     } else {
@@ -460,18 +461,29 @@ public class QuestionActivity extends AppCompatActivity {
         }
     }
     private void loadDropdownOptions(int questionId, Spinner spinner) {
-        Call<List<String>> call = api.getDropdownOptions(questionId);
-        call.enqueue(new Callback<List<String>>() {
+        Call<List<Option>> call = api.getDropdownOptions(questionId);
+        call.enqueue(new Callback<List<Option>>() {
             @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+            public void onResponse(Call<List<Option>> call, Response<List<Option>> response) {
                 if (response.isSuccessful()) {
-                    List<String> options = response.body();
+                    Log.d("API Response", "Response received: " + response.body());
+                    List<Option> options = response.body();
+                    Log.d("Parsed Options", "Options: " + options);
                     if (options != null && !options.isEmpty()) {
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(QuestionActivity.this, android.R.layout.simple_spinner_item, options);
+                        List<String> optionValues = new ArrayList<>();
+                        for (Option option : options) {
+                            if (option.getOptionValue() != null && !option.getOptionValue().isEmpty()) {  // Check if the option value is not null or empty
+                                optionValues.add(option.getOptionValue());
+                                dropdownIds.put(option.getOptionValue(), option.getId());
+                            } else {
+                                Log.e("Dropdown Options", "Option value is null or empty for option ID: " + option.getId());
+                            }
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(QuestionActivity.this, android.R.layout.simple_spinner_item, optionValues);
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner.setAdapter(adapter);
+                        Log.d("Spinner Items", "Items: " + optionValues);
 
-                        // Load saved answer after options are set
                         postDropdownOptionsLoad(questionId, spinner);
                     } else {
                         Log.e("Dropdown Options", "Options are null or empty");
@@ -482,12 +494,11 @@ public class QuestionActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
+            public void onFailure(Call<List<Option>> call, Throwable t) {
                 Log.e("API Error", t.getMessage(), t);
             }
         });
     }
-
     private void postDropdownOptionsLoad(int questionId, Spinner spinner) {
         // Options are loaded, now we can load the saved answer
         loadSavedAnswer(questionId, "dropdown");
@@ -515,7 +526,7 @@ public class QuestionActivity extends AppCompatActivity {
     private boolean areAllQuestionsAnswered() {
         // Check if all questions are answered
         // For simplicity, check if every questionId from 1 to 10 (inclusive) is in the answers list
-        for (int questionId = 1; questionId <= 6; questionId++) {
+        for (int questionId = 1; questionId <= 37; questionId++) {
             if (!isQuestionAnswered(questionId)) {
                 return false;
             }

@@ -1,10 +1,13 @@
 package com.example.weconnectapp;
 
-public class Option {
-    private int id;
-    private String option_value;
+import com.google.gson.annotations.SerializedName;
 
-    // Add getters and setters for the id and option_value fields
+public class Option {
+    @SerializedName("id")
+    private int id;
+
+    @SerializedName("optionValue")
+    private String optionValue;
 
     public int getId() {
         return id;
@@ -15,10 +18,18 @@ public class Option {
     }
 
     public String getOptionValue() {
-        return option_value;
+        return optionValue;
     }
 
-    public void setOptionValue(String option_value) {
-        this.option_value = option_value;
+    public void setOptionValue(String optionValue) {
+        this.optionValue = optionValue;
+    }
+
+    @Override
+    public String toString() {
+        return "Option{" +
+                "id=" + id +
+                ", optionValue='" + optionValue + '\'' +
+                '}';
     }
 }
