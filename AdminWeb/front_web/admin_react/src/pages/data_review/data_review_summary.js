@@ -99,6 +99,7 @@ const DataReviewSummary = () =>{
         'Text': WordCloudComponent
     };
 
+    // eslint-disable-next-line
     const determineChartComponent = (question) => {
         const chartType = chartTypeMap[question.type];
         return chartType ? chartType : BarChart;  
@@ -140,6 +141,7 @@ const DataReviewSummary = () =>{
 
     useEffect(() => {
         updateQuestionComponents();
+    // eslint-disable-next-line
     }, [data]);
 
     return (

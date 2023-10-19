@@ -38,7 +38,7 @@ const VolunteerTable = ({ token }) => {
             })
             .catch(error => console.error('Error:', error));
         }
-    }, []); 
+    }, [token]); 
 
     return (
         <div id={styles.volunteer_table}>

@@ -126,8 +126,7 @@ const Dashboard = () =>{
             })
             .catch(error => console.error('Error:', error));
         }
-    }, []); 
-
+    }, [dataNum]); 
 
     // get volunteer number
     useEffect(() => {

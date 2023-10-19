@@ -96,7 +96,7 @@ const AddNewGroup = () =>{
 
     useEffect(() => {
         handleSearch();
-    }, [searchGroup]);
+    }, [searchGroup, handleSearch()]);
 
 
     // Handle the delete and confirm box request
