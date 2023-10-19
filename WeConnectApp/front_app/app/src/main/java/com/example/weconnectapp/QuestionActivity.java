@@ -243,7 +243,18 @@ public class QuestionActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     questionList = response.body();
 
-                    updateUI();
+                    if (questionList == null || questionList.isEmpty()) {
+                        // No more questions, proceed to the next activity or whatever logic you want
+                        if (areAllQuestionsAnswered()) {
+                            Intent intent = new Intent(QuestionActivity.this, SurveySecondPersonalInfo.class);
+                            intent.putExtra("answers", (Serializable) answers);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(QuestionActivity.this, "Please answer all questions before submitting.", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        updateUI();
+                    }
                 } else {
                     Log.e("API Error", "Failed to fetch questions. Status code: " + response.code());
                 }
@@ -310,15 +321,12 @@ public class QuestionActivity extends AppCompatActivity {
 
                 nextButton.setOnClickListener(v -> {
                     saveCurrentAnswer();
-                    if (currentPage == 37 && areAllQuestionsAnswered()) {
-                        Intent intent = new Intent(QuestionActivity.this, SurveySecondPersonalInfo.class);
-                        intent.putExtra("answers", (Serializable) answers);
-                        startActivity(intent);
-                    } else if (currentPage < 37) {
+                    if (isQuestionAnswered(currentPage)) {
+                        saveCurrentAnswer();
                         currentPage++;
                         fetchQuestions();
                     } else {
-                        Toast.makeText(QuestionActivity.this, "Please answer all questions before submitting.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QuestionActivity.this, "Please answer the current question before proceeding.", Toast.LENGTH_SHORT).show();
                     }
                 });
                 previousButton.setOnClickListener(v -> {
