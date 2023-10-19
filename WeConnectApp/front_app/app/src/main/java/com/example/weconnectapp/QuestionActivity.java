@@ -479,7 +479,7 @@ public class QuestionActivity extends AppCompatActivity {
                     Log.d("Parsed Options", "Options: " + options);
                     if (options != null && !options.isEmpty()) {
                         List<String> optionValues = new ArrayList<>();
-                        optionValues.add("please choose");  // Add the default option at the beginning
+                        optionValues.add("please select");  // Add the default option at the beginning
                         for (Option option : options) {
                             if (option.getOptionValue() != null && !option.getOptionValue().isEmpty()) {
                                 optionValues.add(option.getOptionValue());
