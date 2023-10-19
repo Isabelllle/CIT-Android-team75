@@ -1,0 +1,1 @@
+web: cd AdminWeb\back_web\ && node app.js
