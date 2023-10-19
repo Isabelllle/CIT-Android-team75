@@ -4,6 +4,7 @@ const cors = require('cors');
 const volunteerRoutes = require('./routes/volunteer');  
 const groupRoutes = require('./routes/groups'); 
 const surveyRoutes = require('./routes/survey'); 
+const surveyRoutes = require('./routes/secondResponse');
 const dropdownOptionsRoutes = require('./routes/dropdownOptions');
 //const reminderRoutes = require('./routes/reminder'); 
 const errorReportRoutes = require('./routes/errorReports'); 
@@ -40,6 +41,7 @@ app.use(bodyParser.json());
 app.use('/api/volunteer', volunteerRoutes);  
 app.use('/api/groups', groupRoutes);
 app.use('/api/survey', surveyRoutes);
+app.use('/api/secondResponse', secondResponseRoutes);
 console.log('Survey routes configured.');
 
 //app.use('/api/reminder', reminderRoutes);

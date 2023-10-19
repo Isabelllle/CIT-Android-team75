@@ -1,5 +1,6 @@
 package com.example.weconnectapp.connection;
 
+import com.example.weconnectapp.Option;
 import com.example.weconnectapp.Questions;
 import com.example.weconnectapp.Response;
 import com.example.weconnectapp.VolunteerDetails;
@@ -28,5 +29,5 @@ public interface Api {
     Call<Void> submitResponses(@Body ResponsesWrapper responsesWrapper);
 
     @GET("/api/dropdown-options/{questionId}")
-    Call<List<String>> getDropdownOptions(@Path("questionId") int questionId);
+    Call<List<Option>> getDropdownOptions(@Path("questionId") int questionId);
 }
