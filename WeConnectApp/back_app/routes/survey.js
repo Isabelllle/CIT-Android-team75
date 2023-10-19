@@ -3,7 +3,6 @@ const router = express.Router();
 const { client } = require('../db'); 
 
 console.log('Survey route file is loaded.');
-
 // get selected questions
 router.get('/questions', async (req, res) => {
     const page = parseInt(req.query.page) || 1; // select from which page,default from first page
@@ -21,6 +20,7 @@ router.get('/questions', async (req, res) => {
         res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
 });
+
 
 // submit response
 router.post('/responses', async (req, res) => {
