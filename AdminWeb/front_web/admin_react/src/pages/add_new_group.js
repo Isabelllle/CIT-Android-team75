@@ -96,7 +96,8 @@ const AddNewGroup = () =>{
 
     useEffect(() => {
         handleSearch();
-    }, [searchGroup, handleSearch()]);
+    // eslint-disable-next-line
+    }, [searchGroup]);
 
 
     // Handle the delete and confirm box request

@@ -38,7 +38,8 @@ const VolunteerTable = ({ token }) => {
             })
             .catch(error => console.error('Error:', error));
         }
-    }, [token]); 
+    // eslint-disable-next-line
+    }, []); 
 
     return (
         <div id={styles.volunteer_table}>
