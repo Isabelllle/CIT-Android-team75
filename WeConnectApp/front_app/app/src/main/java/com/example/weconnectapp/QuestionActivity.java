@@ -118,12 +118,13 @@ public class QuestionActivity extends AppCompatActivity {
                         if (selectedRadioButtonId != -1) {
                             RadioButton radioButton = radioGroupYN.findViewById(selectedRadioButtonId);
                             String value = radioButton.getText().toString();
+                            boolean boolValue = "Yes".equalsIgnoreCase(value);  // Convert the string to boolean
                             answer.setType("yes_or_no");
-                            answer.setValue(value);  // Set the yes_or_no answer
+                            answer.setValue(boolValue);  // Set the yes_or_no answer with boolean value
 
                             updateOrAddAnswer(answer, questionId);
 
-                            Log.d("Save Answer", "Saved answer: " + value + " for question ID: " + questionId);
+                            Log.d("Save Answer", "Saved answer: " + boolValue + " for question ID: " + questionId);
                         } else {
                             Log.d("Save Answer", "No radio button selected for question ID: " + questionId);
                         }
@@ -371,18 +372,19 @@ public class QuestionActivity extends AppCompatActivity {
                     break;
                 case "yes_or_no":
                     RadioGroup radioGroupYN = findViewById(R.id.type_yes_no_answer);
-                    if (radioGroupYN != null && value instanceof String) {
-                        String answerValue = (String) value;
+                    if (radioGroupYN != null && value instanceof Boolean) { // Check if value is Boolean
+                        boolean answerValue = (Boolean) value; // Cast value to Boolean
+                        String stringValue = answerValue ? "Yes" : "No"; // Convert Boolean to String
                         for (int i = 0; i < radioGroupYN.getChildCount(); i++) {
                             RadioButton rb = (RadioButton) radioGroupYN.getChildAt(i);
-                            if (rb.getText().toString().equals(answerValue)) {
+                            if (rb.getText().toString().equalsIgnoreCase(stringValue)) { // Compare with String value
                                 rb.setChecked(true);
-                                Log.d("Load Answer", "Loaded yes_or_no answer: '" + value + "' for question ID: " + questionId);
+                                Log.d("Load Answer", "Loaded yes_or_no answer: '" + stringValue + "' for question ID: " + questionId);
                                 break;
                             }
                         }
                     } else {
-                        Log.e("Load Answer", "RadioGroup is null or saved answer is not a string for question ID: " + questionId);
+                        Log.e("Load Answer", "RadioGroup is null or saved answer is not a Boolean for question ID: " + questionId);
                     }
                     break;
                 case "rating":
@@ -477,8 +479,9 @@ public class QuestionActivity extends AppCompatActivity {
                     Log.d("Parsed Options", "Options: " + options);
                     if (options != null && !options.isEmpty()) {
                         List<String> optionValues = new ArrayList<>();
+                        optionValues.add("please choose");  // Add the default option at the beginning
                         for (Option option : options) {
-                            if (option.getOptionValue() != null && !option.getOptionValue().isEmpty()) {  // Check if the option value is not null or empty
+                            if (option.getOptionValue() != null && !option.getOptionValue().isEmpty()) {
                                 optionValues.add(option.getOptionValue());
                                 dropdownIds.put(option.getOptionValue(), option.getId());
                             } else {
@@ -488,6 +491,7 @@ public class QuestionActivity extends AppCompatActivity {
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(QuestionActivity.this, android.R.layout.simple_spinner_item, optionValues);
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner.setAdapter(adapter);
+                        spinner.setSelection(0);  // Set the default option as the selected one
                         Log.d("Spinner Items", "Items: " + optionValues);
 
                         postDropdownOptionsLoad(questionId, spinner);
@@ -547,14 +551,14 @@ public class QuestionActivity extends AppCompatActivity {
                     case "text":
                         return !((String) answer.getValue()).trim().isEmpty();
                     case "yes_or_no":
-                        return !((String) answer.getValue()).trim().isEmpty();
+                        return answer.getValue() instanceof Boolean;  // Fixed: Check if the value is not null and is a Boolean type
                     case "rating":
                     case "rating1_10":
-                        return ((Integer) answer.getValue()) >= 0;
+                        return ((Integer) answer.getValue()) >= 1;
                     case "number":
                         return ((Integer) answer.getValue()) != null;
                     case "dropdown_id":
-                        return ((Integer) answer.getValue()) >= 0;
+                        return ((Integer) answer.getValue()) > 0;
                     default:
                         return false;
                 }
@@ -562,7 +566,6 @@ public class QuestionActivity extends AppCompatActivity {
         }
         return false;
     }
-
     private void submitAnswers() {
         // Send a POST request to the server with the answers
         // This is just a skeleton, you need to implement the actual POST request
