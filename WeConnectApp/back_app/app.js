@@ -6,12 +6,11 @@ const groupRoutes = require('./routes/groups');
 const surveyRoutes = require('./routes/survey'); 
 const secondResponseRoutes = require('./routes/secondResponse');
 const dropdownOptionsRoutes = require('./routes/dropdownOptions');
-//const reminderRoutes = require('./routes/reminder'); 
+const reminderRoutes = require('./routes/reminder'); 
 const errorReportRoutes = require('./routes/errorReports'); 
 const { client } = require('./db'); 
 
-// Temporarily comment out Firebase and related configurations
-/*
+
 const nodeCron = require('node-cron');
 const nodemailer = require('nodemailer');
 const admin = require('firebase-admin');
@@ -28,7 +27,7 @@ const transporter = nodemailer.createTransport({
       pass: 'password'  
     }
 });
-*/
+
 
 const app = express();
 const PORT = 8000;
@@ -44,7 +43,7 @@ app.use('/api/survey', surveyRoutes);
 app.use('/api/secondResponse', secondResponseRoutes);
 console.log('Survey routes configured.');
 
-//app.use('/api/reminder', reminderRoutes);
+app.use('/api/reminder', reminderRoutes);
 app.use('/api/error-reports', errorReportRoutes);
 app.use('/api/dropdown-options', dropdownOptionsRoutes);
 

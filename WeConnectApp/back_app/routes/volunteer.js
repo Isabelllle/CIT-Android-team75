@@ -12,8 +12,8 @@ router.post('/volunteerDetails', (req, res) => {
     const club = req.body.club || 'DefaultClub'; 
 
     client.query(
-        'INSERT INTO volunteers ("first_name", "last_name", email, "manager_email", "group_name", "postcode", "first_sub_time") VALUES ($1, $2, $3, $4, $5, $6, $7)', 
-        [firstName, lastName, email, managerEmail, club, postcode, new Date()], 
+        'INSERT INTO volunteers ("first_name", "last_name", email, "manager_email", "group_name", "postcode", "first_sub_time", "fcm_token") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', 
+        [firstName, lastName, email, managerEmail, club, postcode, new Date(), fcmToken], 
         (error, results) => {
             if (error) {
                 console.error('Database error:', error);  
