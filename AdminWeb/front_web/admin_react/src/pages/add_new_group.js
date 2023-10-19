@@ -39,12 +39,20 @@ const AddNewGroup = () =>{
         setAddGroup(group.target.value);
     };
     
+    const [duplicateWarning, setDuplicateWarning] = useState(false);
+
     const handleAddGroup = () => {
         if (addGroup.trim() !== '') {
-            setGroups([...groups, addGroup]);
-            setAddGroup('');
+            if (groups.includes(addGroup.trim())) {
+                setDuplicateWarning(true);
+            } else {
+                setDuplicateWarning(false);
+                setGroups([...groups, addGroup]);
+                setAddGroup('');
+            }
         }
     };
+    
 
     const handleDeleteGroup = (delete_group) => {
         const updatedGroup = groups.filter((_, i) => i !== delete_group);
@@ -53,6 +61,8 @@ const AddNewGroup = () =>{
 
     // Search group
     const [searchGroup, setSearchGroup] = useState('');
+    const [notFoundWarning, setNotFoundWarning] = useState(false);
+
 
     const handleSearchGroupChange = (event) => {
         setSearchGroup(event.target.value);
@@ -87,7 +97,10 @@ const AddNewGroup = () =>{
                 }
                 return response.json();
             })
-            .then(data => setGroups(data))
+            .then(data => {
+                setGroups(data);
+                setNotFoundWarning(data.length === 0);
+            })
             .catch(error => console.error('Error:', error));
         }
 
@@ -161,6 +174,7 @@ const AddNewGroup = () =>{
                 <div id={styles.search_box}>
                     <input type="text" placeholder="Search Group" value={searchGroup} onChange={handleSearchGroupChange}/>
                     <button onClick={handleSearch}><img src={SearchIcon} alt="Search Group" /></button>
+                    {notFoundWarning && <p className={styles.warning}>Not found!</p>}
                 </div>
 
                 {/* Add New Group Container */}
@@ -180,11 +194,14 @@ const AddNewGroup = () =>{
                         </ul>
                         
                         <div className={styles.add_group_box}>
-                            <input className={styles.input_add_group} type="text" value={addGroup} onChange={handleGroup} placeholder="New Group"/>
+                        <input className={styles.input_add_group} type="text" value={addGroup} onChange={handleGroup} placeholder="New Group"/>
                             <button onClick={handleAddGroup}>
                                 <img src={AddIcon} alt="Add New Group" />
                             </button>
+                            {duplicateWarning && <p className={styles.warning}>Group name already exists!</p>}
                         </div>
+                        
+
                     </div>
 
                     <div className={styles.button_container}>
