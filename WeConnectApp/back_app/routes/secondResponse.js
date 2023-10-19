@@ -43,5 +43,34 @@ router.post('/', async (req, res) => {
     }
 });
 
+
+//  API to set sec_sub_time for a volunteer
+router.post('/set-sec-sub-time', async (req, res) => {
+    console.log('Received a request to /set-sec-sub-time'); 
+    console.log('Request body:', JSON.stringify(req.body, null, 2));  
+
+    const { email } = req.body;
+
+    // Verify that email is provided
+    if (!email) {
+        console.log('Email is required.');  
+        return res.status(400).json({ message: "Email is required" });
+    }
+
+    try {
+        // Update sec_sub_time in the database
+        await client.query(
+            'UPDATE public.volunteers SET sec_sub_time = CURRENT_DATE WHERE email = $1',
+            [email]
+        );
+
+        console.log('sec_sub_time updated successfully for', email);  
+        res.status(200).json({ message: "sec_sub_time updated successfully." });
+    } catch (error) {
+        console.error('Error occurred:', error);  
+        res.status(500).json({ message: "Internal Server Error", error: error.message });
+    }
+});
+
 console.log('Route for /responses is configured.');
 module.exports = router;

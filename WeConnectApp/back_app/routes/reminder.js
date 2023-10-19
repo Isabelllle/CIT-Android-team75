@@ -22,7 +22,7 @@ nodeCron.schedule('0 17 * * 5', async () => {
   const { rows: volunteers } = await client.query('SELECT * FROM public.volunteers');
 
   volunteers.forEach(async volunteer => {
-    const secondSurveyStartTime = new Date(volunteer.sub_time);
+    const secondSurveyStartTime = new Date(volunteer.first_sub_time); 
     secondSurveyStartTime.setMonth(secondSurveyStartTime.getMonth() + 2);
 
     if (currentDateWithoutTime >= secondSurveyStartTime && !volunteer.sec_sub_time) {
