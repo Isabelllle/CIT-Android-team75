@@ -14,6 +14,12 @@ import android.widget.Toast;
 import com.example.weconnectapp.connection.Api;
 import com.example.weconnectapp.connection.RetrofitClientInstance;
 
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import androidx.annotation.NonNull;
+import android.util.Log;
+
 public class SurveyPersonalDetail extends AppCompatActivity {
 
     @Override
@@ -43,38 +49,54 @@ public class SurveyPersonalDetail extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "text box cannot be empty",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    // Create a VolunteerDetails object
-                    int postcode = Integer.parseInt(text4); // Convert postcode to int
-                    VolunteerDetails details = new VolunteerDetails(text1, text2, text3, postcode);
+                    // Get FCM token
+                    FirebaseMessaging.getInstance().getToken()
+                            .addOnCompleteListener(new OnCompleteListener<String>() {
+                                @Override
+                                public void onComplete(@NonNull Task<String> task) {
+                                    if (!task.isSuccessful()) {
+                                        Log.w("FCM", "Fetching FCM registration token failed", task.getException());
+                                        return;
+                                    }
 
-                    // Get a Retrofit instance and API interface
-                    Api api = RetrofitClientInstance.getRetrofitInstance().create(Api.class);
+                                    // Get new FCM registration token
+                                    String token = task.getResult();
 
-                    // Send POST request
-                    Call<Void> call = api.postVolunteerDetails(details);
-                    call.enqueue(new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                            if (response.isSuccessful()) {
-                                // Handle successful response
-                                Toast.makeText(getApplicationContext(), "Details submitted successfully",
-                                        Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SurveyPersonalDetail.this, SurveyOrganisationDetails.class);
-                                startActivity(intent);
-                            } else {
-                                // Handle error response
-                                Toast.makeText(getApplicationContext(), "Failed to submit details",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        }
+                                    // Create a VolunteerDetails object
+                                    int postcode = Integer.parseInt(text4); // Convert postcode to int
+                                    VolunteerDetails details = new VolunteerDetails(text1, text2, text3, postcode);
+                                    details.setFcmToken(token);  // Set FCM token
 
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
-                            // Handle request failure
-                            Toast.makeText(getApplicationContext(), "An error occurred",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                                    // Get a Retrofit instance and API interface
+                                    Api api = RetrofitClientInstance.getRetrofitInstance().create(Api.class);
+
+                                    // Send POST request
+                                    Call<Void> call = api.postVolunteerDetails(details);
+                                    call.enqueue(new Callback<Void>() {
+                                        @Override
+                                        public void onResponse(Call<Void> call, Response<Void> response) {
+                                            if (response.isSuccessful()) {
+                                                // Handle successful response
+                                                Toast.makeText(getApplicationContext(), "Details submitted successfully",
+                                                        Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(SurveyPersonalDetail.this, SurveyOrganisationDetails.class);
+                                                startActivity(intent);
+                                            } else {
+                                                // Handle error response
+                                                Toast.makeText(getApplicationContext(), "Failed to submit details",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Void> call, Throwable t) {
+                                            // Handle request failure
+                                            Toast.makeText(getApplicationContext(), "An error occurred",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            });
                 }
             }
         });

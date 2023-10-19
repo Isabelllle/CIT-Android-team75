@@ -118,12 +118,13 @@ public class QuestionActivity extends AppCompatActivity {
                         if (selectedRadioButtonId != -1) {
                             RadioButton radioButton = radioGroupYN.findViewById(selectedRadioButtonId);
                             String value = radioButton.getText().toString();
+                            boolean boolValue = "Yes".equalsIgnoreCase(value);  // Convert the string to boolean
                             answer.setType("yes_or_no");
-                            answer.setValue(value);  // Set the yes_or_no answer
+                            answer.setValue(boolValue);  // Set the yes_or_no answer with boolean value
 
                             updateOrAddAnswer(answer, questionId);
 
-                            Log.d("Save Answer", "Saved answer: " + value + " for question ID: " + questionId);
+                            Log.d("Save Answer", "Saved answer: " + boolValue + " for question ID: " + questionId);
                         } else {
                             Log.d("Save Answer", "No radio button selected for question ID: " + questionId);
                         }
@@ -137,12 +138,11 @@ public class QuestionActivity extends AppCompatActivity {
                     if(radioGroup1 != null) {
                         int selectedIndex = radioGroup1.indexOfChild(findViewById(radioGroup1.getCheckedRadioButtonId()));
                         answer.setType("rating");
-                        answer.setValue(selectedIndex);  // Set the rating answer
+                        answer.setValue(selectedIndex + 1);  // Add 1 to the index
 
-                        // Use this instead of answers.add(answer)
                         updateOrAddAnswer(answer, questionId);
 
-                        Log.d("Save Answer", "Saved answer index: " + selectedIndex + " for question ID: " + questionId);
+                        Log.d("Save Answer", "Saved answer index: " + (selectedIndex + 1) + " for question ID: " + questionId);
                     }
                     break;
 
@@ -151,15 +151,13 @@ public class QuestionActivity extends AppCompatActivity {
                     if (radioGroup10 != null) {
                         int selectedRadioButtonId = radioGroup10.getCheckedRadioButtonId();
                         if (selectedRadioButtonId != -1) {
-                            RadioButton radioButton = radioGroup10.findViewById(selectedRadioButtonId);
                             int selectedIndex = radioGroup10.indexOfChild(findViewById(radioGroup10.getCheckedRadioButtonId()));
                             answer.setType("rating1_10");
-                            answer.setValue(selectedIndex);
+                            answer.setValue(selectedIndex + 1);  // Add 1 to the index
 
-                            // Use this instead of answers.add(answer)
                             updateOrAddAnswer(answer, questionId);
 
-                            Log.d("Save Answer", "Saved answer: " + selectedIndex + " for question ID: " + questionId);
+                            Log.d("Save Answer", "Saved answer: " + (selectedIndex + 1) + " for question ID: " + questionId);
                         } else {
                             Log.d("Save Answer", "No radio button selected for question ID: " + questionId);
                         }
@@ -190,12 +188,12 @@ public class QuestionActivity extends AppCompatActivity {
                     Spinner spinner = findViewById(R.id.quetype_dropdown_box);
                     if(spinner != null) {
                         Object selectedItem = spinner.getSelectedItem();
-                        if(selectedItem != null) {  // Add this null check
+                        if(selectedItem != null) {
                             String selectedOption = selectedItem.toString();
-                            int id = getDropdownId(selectedOption); // get ID
+                            int id = getDropdownId(selectedOption);
                             if (id != -1) {
                                 answer.setType("dropdown_id");
-                                answer.setValue(id);  // save ID, instead text value
+                                answer.setValue(id);
 
                                 updateOrAddAnswer(answer, questionId);
 
@@ -205,6 +203,7 @@ public class QuestionActivity extends AppCompatActivity {
                             }
                         } else {
                             Log.e("Save Answer", "No selected item in dropdown for question ID: " + questionId);
+                            return;  // Add this line to exit the method if no item is selected
                         }
                     }
                     break;
@@ -243,7 +242,18 @@ public class QuestionActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     questionList = response.body();
 
-                    updateUI();
+                    if (questionList == null || questionList.isEmpty()) {
+                        // No more questions, proceed to the next activity or whatever logic you want
+                        if (areAllQuestionsAnswered()) {
+                            Intent intent = new Intent(QuestionActivity.this, SurveySecondPersonalInfo.class);
+                            intent.putExtra("answers", (Serializable) answers);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(QuestionActivity.this, "Please answer all questions before submitting.", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        updateUI();
+                    }
                 } else {
                     Log.e("API Error", "Failed to fetch questions. Status code: " + response.code());
                 }
@@ -310,15 +320,12 @@ public class QuestionActivity extends AppCompatActivity {
 
                 nextButton.setOnClickListener(v -> {
                     saveCurrentAnswer();
-                    if (currentPage == 37 && areAllQuestionsAnswered()) {
-                        Intent intent = new Intent(QuestionActivity.this, SurveySecondPersonalInfo.class);
-                        intent.putExtra("answers", (Serializable) answers);
-                        startActivity(intent);
-                    } else if (currentPage < 37) {
+                    if (isQuestionAnswered(currentPage)) {
+                        saveCurrentAnswer();
                         currentPage++;
                         fetchQuestions();
                     } else {
-                        Toast.makeText(QuestionActivity.this, "Please answer all questions before submitting.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QuestionActivity.this, "Please answer the current question before proceeding.", Toast.LENGTH_SHORT).show();
                     }
                 });
                 previousButton.setOnClickListener(v -> {
@@ -365,18 +372,19 @@ public class QuestionActivity extends AppCompatActivity {
                     break;
                 case "yes_or_no":
                     RadioGroup radioGroupYN = findViewById(R.id.type_yes_no_answer);
-                    if (radioGroupYN != null && value instanceof String) {
-                        String answerValue = (String) value;
+                    if (radioGroupYN != null && value instanceof Boolean) { // Check if value is Boolean
+                        boolean answerValue = (Boolean) value; // Cast value to Boolean
+                        String stringValue = answerValue ? "Yes" : "No"; // Convert Boolean to String
                         for (int i = 0; i < radioGroupYN.getChildCount(); i++) {
                             RadioButton rb = (RadioButton) radioGroupYN.getChildAt(i);
-                            if (rb.getText().toString().equals(answerValue)) {
+                            if (rb.getText().toString().equalsIgnoreCase(stringValue)) { // Compare with String value
                                 rb.setChecked(true);
-                                Log.d("Load Answer", "Loaded yes_or_no answer: '" + value + "' for question ID: " + questionId);
+                                Log.d("Load Answer", "Loaded yes_or_no answer: '" + stringValue + "' for question ID: " + questionId);
                                 break;
                             }
                         }
                     } else {
-                        Log.e("Load Answer", "RadioGroup is null or saved answer is not a string for question ID: " + questionId);
+                        Log.e("Load Answer", "RadioGroup is null or saved answer is not a Boolean for question ID: " + questionId);
                     }
                     break;
                 case "rating":
@@ -384,13 +392,13 @@ public class QuestionActivity extends AppCompatActivity {
                         RadioGroup radioGroup = findViewById(R.id.type_rating_1_5_answer);
                         if (radioGroup != null && value instanceof Integer) {
                             int answerIndex = (Integer) value;
-                            if (answerIndex >= 0 && answerIndex < radioGroup.getChildCount()) {
-                                RadioButton radioButton = (RadioButton) radioGroup.getChildAt(answerIndex);
+                            if (answerIndex >= 1 && answerIndex <= 5) { // Change the condition here
+                                RadioButton radioButton = (RadioButton) radioGroup.getChildAt(answerIndex - 1);
                                 if (radioButton != null) {
                                     radioButton.setChecked(true);
                                     Log.d("Load Answer", "Loaded answer index: " + answerIndex + " for question ID: " + questionId);
                                 } else {
-                                    Log.e("Load Answer", "RadioButton is null for index: " + answerIndex);
+                                    Log.e("Load Answer", "RadioButton is null for index: " + (answerIndex - 1));
                                 }
                             } else {
                                 Log.e("Load Answer", "Invalid answer index for question ID: " + questionId);
@@ -405,7 +413,7 @@ public class QuestionActivity extends AppCompatActivity {
                     if (radioGroup10 != null && value instanceof Integer) {
                         int answerValue = (Integer) value;
                         if (answerValue >= 1 && answerValue <= 10) {
-                            RadioButton radioButton = (RadioButton) radioGroup10.getChildAt(answerValue - 1); // -1 because index is 0-based
+                            RadioButton radioButton = (RadioButton) radioGroup10.getChildAt(answerValue - 1);
                             if (radioButton != null) {
                                 radioButton.setChecked(true);
                                 Log.d("Load Answer", "Loaded rating1_10 answer: " + answerValue + " for question ID: " + questionId);
@@ -471,8 +479,9 @@ public class QuestionActivity extends AppCompatActivity {
                     Log.d("Parsed Options", "Options: " + options);
                     if (options != null && !options.isEmpty()) {
                         List<String> optionValues = new ArrayList<>();
+                        optionValues.add("please select");  // Add the default option at the beginning
                         for (Option option : options) {
-                            if (option.getOptionValue() != null && !option.getOptionValue().isEmpty()) {  // Check if the option value is not null or empty
+                            if (option.getOptionValue() != null && !option.getOptionValue().isEmpty()) {
                                 optionValues.add(option.getOptionValue());
                                 dropdownIds.put(option.getOptionValue(), option.getId());
                             } else {
@@ -482,6 +491,7 @@ public class QuestionActivity extends AppCompatActivity {
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(QuestionActivity.this, android.R.layout.simple_spinner_item, optionValues);
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner.setAdapter(adapter);
+                        spinner.setSelection(0);  // Set the default option as the selected one
                         Log.d("Spinner Items", "Items: " + optionValues);
 
                         postDropdownOptionsLoad(questionId, spinner);
@@ -536,12 +546,26 @@ public class QuestionActivity extends AppCompatActivity {
     private boolean isQuestionAnswered(int questionId) {
         for (Answer answer : answers) {
             if (answer.getQuestionId() == questionId && answer.getValue() != null) {
-                return true;
+                // Check for specific types and their valid answers
+                switch (answer.getType()) {
+                    case "text":
+                        return !((String) answer.getValue()).trim().isEmpty();
+                    case "yes_or_no":
+                        return answer.getValue() instanceof Boolean;  // Fixed: Check if the value is not null and is a Boolean type
+                    case "rating":
+                    case "rating1_10":
+                        return ((Integer) answer.getValue()) >= 1;
+                    case "number":
+                        return ((Integer) answer.getValue()) != null;
+                    case "dropdown_id":
+                        return ((Integer) answer.getValue()) > 0;
+                    default:
+                        return false;
+                }
             }
         }
         return false;
     }
-
     private void submitAnswers() {
         // Send a POST request to the server with the answers
         // This is just a skeleton, you need to implement the actual POST request

@@ -5,7 +5,7 @@ const { client } = require('../db');
 console.log('Survey route file is loaded.');
 
 // submit second response
-router.post('/second-responses', async (req, res) => {
+router.post('/', async (req, res) => {
     console.log('Received a request to /second-responses'); 
     console.log('Request body:', JSON.stringify(req.body, null, 2));  
 

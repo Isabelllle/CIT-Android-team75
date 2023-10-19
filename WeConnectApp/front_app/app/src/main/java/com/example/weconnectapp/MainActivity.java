@@ -14,6 +14,13 @@ import com.example.weconnectapp.databinding.ActivityNavHomePageBinding;
 
 import com.google.android.material.navigation.NavigationView;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.messaging.FirebaseMessaging;
+import android.util.Log;
+import androidx.annotation.NonNull;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -28,11 +35,29 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.appBarNavTesting.toolbar);
 
+        // Initialize Firebase
+        FirebaseApp.initializeApp(this);
+
+        // Get FCM token
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("FCM", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        // Log and toast (or send it to the server)
+                        Log.d("FCM", "Token: " + token);
+                    }
+                });
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_contact_us, R.id.nav_about_weconnect,
                 R.id.nav_privacy_police)
@@ -42,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

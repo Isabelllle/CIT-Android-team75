@@ -60,6 +60,8 @@ public class SurveySecondPersonalInfo extends AppCompatActivity {
                 Log.d("Submit", "Next button clicked");
                 nextButton.setEnabled(false);
 
+                responsesList.clear();  // Clear the responsesList each time
+
                 EditText email = findViewById(R.id.sec_input_email);
                 String emailText = email.getText().toString().trim();
                 if (emailText.isEmpty()) {
@@ -67,12 +69,12 @@ public class SurveySecondPersonalInfo extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                     nextButton.setEnabled(true);
                 } else {
-                    // Create a response list
-                    for (Map.Entry<Integer, MyPair<String, SerializableValue>> entry : answers.entrySet()) { // Updated this line
+                    // Populate the responsesList
+                    for (Map.Entry<Integer, MyPair<String, SerializableValue>> entry : answers.entrySet()) {
                         Integer questionId = entry.getKey();
-                        MyPair<String, SerializableValue> answerPair = entry.getValue();  // Updated this line
+                        MyPair<String, SerializableValue> answerPair = entry.getValue();
                         String type = answerPair.first;
-                        Object value = answerPair.second.getValue(); // Here we are extracting the value from SerializableValue
+                        Object value = answerPair.second.getValue();
 
                         com.example.weconnectapp.Response response = new com.example.weconnectapp.Response();
                         response.setquestion_id(questionId);
@@ -131,15 +133,7 @@ public class SurveySecondPersonalInfo extends AppCompatActivity {
                     // Send all responses at once
                     sendResponsesToBackend(responsesList);
 
-                    //Redirection to previous page when click on "next" button
-                    Button button2 = findViewById(R.id.next_button);
-                    button2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(SurveySecondPersonalInfo.this, CongratsPage.class);
-                            startActivity(intent);
-                        }
-                    });
+
                 }
             }
         });
@@ -155,31 +149,32 @@ public class SurveySecondPersonalInfo extends AppCompatActivity {
     }
 
     private void sendResponsesToBackend(List<com.example.weconnectapp.Response> responses) {
-        ResponsesWrapper responsesWrapper = new ResponsesWrapper(responses);  // Wrap the responses in a wrapper object
+        ResponsesWrapper responsesWrapper = new ResponsesWrapper(responses);
         Api api = RetrofitClientInstance.getRetrofitInstance().create(Api.class);
-        Call<Void> call = api.submitResponses(responsesWrapper);  // Send the wrapper object
+        Call<Void> call = api.submitResponses(responsesWrapper);
 
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-
                 if (response.isSuccessful()) {
                     Toast.makeText(SurveySecondPersonalInfo.this, "Responses submitted successfully!",
                             Toast.LENGTH_SHORT).show();
+
+                    // Now that the submission is successful, navigate to the CongratsPage.
+                    Intent intent = new Intent(SurveySecondPersonalInfo.this, CongratsPage.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(SurveySecondPersonalInfo.this, "Failed to submit responses!",
                             Toast.LENGTH_SHORT).show();
-                    responsesList.clear();  // clear responsesList
                 }
-                nextButton.setEnabled(true);  // succeed or not, re-enable button
+                nextButton.setEnabled(true);
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                nextButton.setEnabled(true);  // if fail, re-enable button
-                Log.d("Submit", "Failure: " + t.getMessage());
                 Toast.makeText(SurveySecondPersonalInfo.this, "Error: " + t.getMessage(),
                         Toast.LENGTH_SHORT).show();
+                nextButton.setEnabled(true);
             }
         });
     }
