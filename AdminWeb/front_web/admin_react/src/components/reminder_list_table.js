@@ -19,8 +19,6 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
   
     const tableHeaders = ['Last Name', 'First Name', 'Email', 'Overdue Day'];
 
-    console.log('token is token',token);
-
     useEffect(() => {
         if (token){
             // fetch to get the user's information
@@ -52,7 +50,6 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
 
     // Handle the sort option
     const handleSort = useCallback(() => {
-        console.log('Sorted data before:', initialTableData);
             if (selectedSort === 'last_name') {
                 // Fetch data and sort by last name
                 const sortedData = [...initialTableData].sort((a, b) => a.last_name.localeCompare(b.last_name));
@@ -76,7 +73,13 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
     const handleSearch = useCallback(() => {
 
         if (searchEmail === '') {
-            fetch('http://localhost:3001/api/getReminderList')
+            fetch('http://localhost:3001/api/getReminderList', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                },
+            })
             .then(response => {
                 console.log('Response:', response);
                 if (!response.ok) {

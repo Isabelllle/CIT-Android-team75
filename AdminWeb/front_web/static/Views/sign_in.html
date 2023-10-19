@@ -39,7 +39,9 @@
 
                         <div class="input_hor_box">
                             <!-- input password -->
-                            <input class="input_half" type="password" name="password" placeholder="Password"/>
+                            <input class="input_half" type="password" name="password" placeholder="Password" pattern=".{8,}" title="At least 8 characters" required/>
+                            <span id="password-error" style="color: red;"></span>
+
 
                             <!-- input confirm password -->
                             <input class="input_half" type="password" name="confirm_password" placeholder="Confirm password"/>
@@ -87,14 +89,22 @@
                             function checkPasswords() {
                                 var password = document.getElementsByName('password')[0].value;
                                 var confirmPassword = document.getElementsByName('confirm_password')[0].value;
-                        
+
                                 if (password !== confirmPassword) {
                                     alert("Passwords do not match. Please try again.");
                                     return false; 
                                 }
-                        
+
+                                if (password.length < 8) {
+                                    document.getElementById('password-error').innerText = 'Password should be at least 8 characters.';
+                                    return false;
+                                } else {
+                                    document.getElementById('password-error').innerText = '';
+                                }
+
                                 return true; 
                             }
+
                         </script>
                         
                         <script>
