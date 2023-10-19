@@ -137,12 +137,11 @@ public class QuestionActivity extends AppCompatActivity {
                     if(radioGroup1 != null) {
                         int selectedIndex = radioGroup1.indexOfChild(findViewById(radioGroup1.getCheckedRadioButtonId()));
                         answer.setType("rating");
-                        answer.setValue(selectedIndex);  // Set the rating answer
+                        answer.setValue(selectedIndex + 1);  // Add 1 to the index
 
-                        // Use this instead of answers.add(answer)
                         updateOrAddAnswer(answer, questionId);
 
-                        Log.d("Save Answer", "Saved answer index: " + selectedIndex + " for question ID: " + questionId);
+                        Log.d("Save Answer", "Saved answer index: " + (selectedIndex + 1) + " for question ID: " + questionId);
                     }
                     break;
 
@@ -151,15 +150,13 @@ public class QuestionActivity extends AppCompatActivity {
                     if (radioGroup10 != null) {
                         int selectedRadioButtonId = radioGroup10.getCheckedRadioButtonId();
                         if (selectedRadioButtonId != -1) {
-                            RadioButton radioButton = radioGroup10.findViewById(selectedRadioButtonId);
                             int selectedIndex = radioGroup10.indexOfChild(findViewById(radioGroup10.getCheckedRadioButtonId()));
                             answer.setType("rating1_10");
-                            answer.setValue(selectedIndex);
+                            answer.setValue(selectedIndex + 1);  // Add 1 to the index
 
-                            // Use this instead of answers.add(answer)
                             updateOrAddAnswer(answer, questionId);
 
-                            Log.d("Save Answer", "Saved answer: " + selectedIndex + " for question ID: " + questionId);
+                            Log.d("Save Answer", "Saved answer: " + (selectedIndex + 1) + " for question ID: " + questionId);
                         } else {
                             Log.d("Save Answer", "No radio button selected for question ID: " + questionId);
                         }
@@ -190,12 +187,12 @@ public class QuestionActivity extends AppCompatActivity {
                     Spinner spinner = findViewById(R.id.quetype_dropdown_box);
                     if(spinner != null) {
                         Object selectedItem = spinner.getSelectedItem();
-                        if(selectedItem != null) {  // Add this null check
+                        if(selectedItem != null) {
                             String selectedOption = selectedItem.toString();
-                            int id = getDropdownId(selectedOption); // get ID
+                            int id = getDropdownId(selectedOption);
                             if (id != -1) {
                                 answer.setType("dropdown_id");
-                                answer.setValue(id);  // save ID, instead text value
+                                answer.setValue(id);
 
                                 updateOrAddAnswer(answer, questionId);
 
@@ -205,6 +202,7 @@ public class QuestionActivity extends AppCompatActivity {
                             }
                         } else {
                             Log.e("Save Answer", "No selected item in dropdown for question ID: " + questionId);
+                            return;  // Add this line to exit the method if no item is selected
                         }
                     }
                     break;
@@ -392,13 +390,13 @@ public class QuestionActivity extends AppCompatActivity {
                         RadioGroup radioGroup = findViewById(R.id.type_rating_1_5_answer);
                         if (radioGroup != null && value instanceof Integer) {
                             int answerIndex = (Integer) value;
-                            if (answerIndex >= 0 && answerIndex < radioGroup.getChildCount()) {
-                                RadioButton radioButton = (RadioButton) radioGroup.getChildAt(answerIndex);
+                            if (answerIndex >= 1 && answerIndex <= 5) { // Change the condition here
+                                RadioButton radioButton = (RadioButton) radioGroup.getChildAt(answerIndex - 1);
                                 if (radioButton != null) {
                                     radioButton.setChecked(true);
                                     Log.d("Load Answer", "Loaded answer index: " + answerIndex + " for question ID: " + questionId);
                                 } else {
-                                    Log.e("Load Answer", "RadioButton is null for index: " + answerIndex);
+                                    Log.e("Load Answer", "RadioButton is null for index: " + (answerIndex - 1));
                                 }
                             } else {
                                 Log.e("Load Answer", "Invalid answer index for question ID: " + questionId);
@@ -413,7 +411,7 @@ public class QuestionActivity extends AppCompatActivity {
                     if (radioGroup10 != null && value instanceof Integer) {
                         int answerValue = (Integer) value;
                         if (answerValue >= 1 && answerValue <= 10) {
-                            RadioButton radioButton = (RadioButton) radioGroup10.getChildAt(answerValue - 1); // -1 because index is 0-based
+                            RadioButton radioButton = (RadioButton) radioGroup10.getChildAt(answerValue - 1);
                             if (radioButton != null) {
                                 radioButton.setChecked(true);
                                 Log.d("Load Answer", "Loaded rating1_10 answer: " + answerValue + " for question ID: " + questionId);
