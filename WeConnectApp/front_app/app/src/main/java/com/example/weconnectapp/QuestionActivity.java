@@ -544,7 +544,22 @@ public class QuestionActivity extends AppCompatActivity {
     private boolean isQuestionAnswered(int questionId) {
         for (Answer answer : answers) {
             if (answer.getQuestionId() == questionId && answer.getValue() != null) {
-                return true;
+                // Check for specific types and their valid answers
+                switch (answer.getType()) {
+                    case "text":
+                        return !((String) answer.getValue()).trim().isEmpty();
+                    case "yes_or_no":
+                        return !((String) answer.getValue()).trim().isEmpty();
+                    case "rating":
+                    case "rating1_10":
+                        return ((Integer) answer.getValue()) >= 0;
+                    case "number":
+                        return ((Integer) answer.getValue()) != null;
+                    case "dropdown_id":
+                        return ((Integer) answer.getValue()) >= 0;
+                    default:
+                        return false;
+                }
             }
         }
         return false;
