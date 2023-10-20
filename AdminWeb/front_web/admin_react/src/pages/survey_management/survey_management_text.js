@@ -35,7 +35,7 @@ const SurveyText = () =>{
 
         if (question !== '') {
             // Add post request (selectedTitle, selectedType, question)
-            fetch('http://localhost:3001/api/addTextQuestion', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/addTextQuestion', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

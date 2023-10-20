@@ -2,14 +2,11 @@
 // Set up the basic layout of data review pages
 
 // Import library
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
 // Import CSS
 import styles from '../../stylesheets/data_review.module.css'
-//import data review summary page 
-import DataReviewSummary from './data_review_summary'; 
-
 
 const DataReview = () =>{
 

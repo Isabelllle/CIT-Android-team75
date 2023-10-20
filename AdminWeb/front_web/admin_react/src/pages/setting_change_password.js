@@ -28,7 +28,7 @@ const SettingsPassword = () =>{
     useEffect(() => {
         if(token){
             // fetch to get the user's information
-            fetch('http://localhost:3001/api/user', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/user', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const SettingsPassword = () =>{
             setWarningPassword(false);
         } else {
             // Post change of all inputs to database
-            fetch('http://localhost:3001/api/userspassword', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/userspassword', {
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',

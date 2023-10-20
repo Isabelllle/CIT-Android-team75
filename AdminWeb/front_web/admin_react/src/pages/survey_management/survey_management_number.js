@@ -35,7 +35,7 @@ const SurveyNumber = () =>{
 
         if (question !== '') {
             // Add post request (selectedTitle, selectedType, question, questionSecond)
-            fetch('http://localhost:3001/api/addNumQuestion', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/addNumQuestion', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

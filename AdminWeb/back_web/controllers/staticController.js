@@ -31,7 +31,7 @@ const resetPassword = (req, res) => {
             if (error) {
                 throw error;
             }
-            res.redirect(`http://localhost:3001/static/login`);
+            res.redirect(`https://weconnect-admin-06193c688dcf.herokuapp.com/static/login`);
         }
     );
 };

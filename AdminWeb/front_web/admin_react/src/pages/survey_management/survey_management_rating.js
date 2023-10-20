@@ -45,7 +45,7 @@ const SurveyRating = () =>{
 
         if (question !== '' && min !== '' && max !== '') {
             // Add post request (selectedTitle, selectedType, question, min, max)
-            fetch('http://localhost:3001/api/addRatingQuestion', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/addRatingQuestion', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

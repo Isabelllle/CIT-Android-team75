@@ -17,7 +17,7 @@ const VolunteerTable = ({ token }) => {
 
     useEffect(() => {
         if (token_one){
-            fetch('http://localhost:3001/api/getReminderList', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getReminderList', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,6 +38,7 @@ const VolunteerTable = ({ token }) => {
             })
             .catch(error => console.error('Error:', error));
         }
+    // eslint-disable-next-line
     }, []); 
 
     return (

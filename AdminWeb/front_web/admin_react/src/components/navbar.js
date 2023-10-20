@@ -27,7 +27,7 @@ const NavBar= () =>{
         
         if (token){
             // fetch to get the user's information
-            fetch('http://localhost:3001/api/getIsManger', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getIsManger', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

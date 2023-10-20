@@ -17,7 +17,7 @@ const path = require('path');
 app.use(cors());
 
 // Set the server port
-const port = 3001; 
+const port = process.env.PORT || 3001;
 
 // Import the database connection and table creation function
 const { client, createTables } = require('./db'); 
@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 // Set the static file directory to serve static resources
-app.use(express.static(path.join(__dirname, '../front_web/static')));
+app.use(express.static(path.join(__dirname, 'static')));
 
 
 // Call routers to run

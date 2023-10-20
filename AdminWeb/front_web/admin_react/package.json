@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.1.0"
+    "@babel/plugin-proposal-private-property-in-object": "^7.1.0",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "@iconfu/svg-inject": "^1.2.3",
@@ -17,14 +18,13 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-tagcloud": "^2.3.1",
-    "react-wordcloud": "^1.2.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && node copy-static-files.js",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -45,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": "16.15.0"
   }
 }
