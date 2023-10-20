@@ -45,9 +45,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rating1"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textColor="@color/black" />
         <!--android:button="@drawable/small_radio_button"
                     android:scaleX="0.1"
                     android:scaleY="0.1"-->
@@ -57,82 +55,96 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rating2"
+
             android:textColor="@color/black"
-            android:textSize="12sp" />
+           />
 
         <RadioButton
             style="@style/SmallRadioButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rating3"
+
             android:textColor="@color/black"
-            android:textSize="12sp" />
+           />
 
         <RadioButton
             style="@style/SmallRadioButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rating4"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            />
 
         <RadioButton
             style="@style/SmallRadioButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rating5"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+             />
 
         <RadioButton
             style="@style/SmallRadioButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rating6"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+             />
 
         <RadioButton
             style="@style/SmallRadioButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rating7"
+
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            />
 
         <RadioButton
             style="@style/SmallRadioButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rating8"
+
             android:textColor="@color/black"
-            android:textSize="12sp" />
+         />
 
         <RadioButton
             style="@style/SmallRadioButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rating9"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+          />
 
         <RadioButton
             style="@style/SmallRadioButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rating10"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+             />
     </RadioGroup>
+    <TextView
+        android:id="@+id/weak_degree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/type_rating_1_10_answer"
+        android:layout_marginTop="10dp"
+        android:text="@string/weak_degree"
+        android:layout_marginStart="20dp"
+        />
+    <TextView
+        android:id="@+id/strong_degree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/type_rating_1_10_answer"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentEnd="true"
+        android:text="@string/strong_degree"
+        android:layout_marginEnd="20dp"
+        />
 
 
 

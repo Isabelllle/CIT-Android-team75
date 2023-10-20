@@ -388,6 +388,8 @@ Email: info@volunteeringvictoria.org.au\n
 
     <string name="degree_agree">strongly agree</string>
     <string name="degree_disagree">strongly disagree</string>
+    <string name="weak_degree">weak</string>
+    <string name="strong_degree">strong</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
