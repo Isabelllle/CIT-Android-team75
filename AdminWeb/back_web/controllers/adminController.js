@@ -39,7 +39,7 @@ const loginAdmin = (req, res) => {
             if (results.rows.length > 0) {
                 const token = jwt.sign({ email }, 'your-secret-key', { expiresIn: '1h' });
 
-                res.redirect(`http://localhost:3000/?token=${token}`);
+                res.redirect(`https://weconnect-admin-management.netlify.app/?token=${token}`);
             } else {
                 res.redirect(`http://localhost:3001/static/login?error=invalid_password_or_email`);
             }

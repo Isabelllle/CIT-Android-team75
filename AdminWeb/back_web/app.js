@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 // Set the static file directory to serve static resources
-app.use(express.static(path.join(__dirname, '../front_web/static')));
+app.use(express.static(path.join(__dirname, 'static')));
 
 
 // Call routers to run
