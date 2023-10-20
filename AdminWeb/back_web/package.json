@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "react-scripts build",
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "node app.js",
     "dev": "webpack-dev-server --hot"
   },
   "author": "",
@@ -25,6 +24,9 @@
     "react-native": "^0.72.4",
     "react-router-dom": "^6.16.0",
     "react-scripts": "^5.0.1"
+  },
+  "engines": {
+    "node": "16.15.0" 
   },
   "devDependencies": {
     "html-webpack-plugin": "^5.5.3",

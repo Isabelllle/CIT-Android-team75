@@ -17,7 +17,7 @@ const path = require('path');
 app.use(cors());
 
 // Set the server port
-const port = 3001; 
+const port = process.env.PORT || 3001;
 
 // Import the database connection and table creation function
 const { client, createTables } = require('./db'); 
