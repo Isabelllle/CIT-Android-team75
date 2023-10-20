@@ -23,7 +23,7 @@ const AdminManagementTable = ({ selectedSort }) => {
        // Handle the sort option
        const handleSort = useCallback(() => {
         console.log('Sorting...');
-        fetch('http://localhost:3001/api/getUnregisterList') 
+        fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getUnregisterList') 
             .then(response => response.json())
             .then(data => {
                 console.log(selectedSort);
@@ -74,7 +74,7 @@ const AdminManagementTable = ({ selectedSort }) => {
         setTableData(updatedTableData);
     
         // Approve email
-        fetch('http://localhost:3001/api/approveEmail', {
+        fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/approveEmail', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ const AdminManagementTable = ({ selectedSort }) => {
 
     // send email function
     const sendEmail = (email, type) => {
-        axios.post('http://localhost:3001/api/sendEmail', { email, type})
+        axios.post('https://weconnect-admin-06193c688dcf.herokuapp.com/api/sendEmail', { email, type})
           .then(response => {
             console.log('Email sent successfully');
           })
@@ -135,7 +135,7 @@ const AdminManagementTable = ({ selectedSort }) => {
         setTableData(updatedTableData);
 
         // Disapprove email
-        fetch('http://localhost:3001/api/disapproveEmail', {
+        fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/disapproveEmail', {
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json',

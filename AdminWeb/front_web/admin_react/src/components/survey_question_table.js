@@ -15,7 +15,7 @@ const SurveyQuestionTable = () => {
     const [tableData, setTableData] = useState([ ]);
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/getSurveyQuesTable')
+        fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getSurveyQuesTable')
             .then(response => response.json())
             .then(data => setTableData(data))
             .catch(error => console.error('Error:', error));
@@ -46,7 +46,7 @@ const SurveyQuestionTable = () => {
         setTableData(updatedTableData);
 
         //--------------------Delete item from databas
-        fetch(`http://localhost:3001/api/deleteItem/${deleteId}`, {
+        fetch(`https://weconnect-admin-06193c688dcf.herokuapp.com/api/deleteItem/${deleteId}`, {
             method: 'DELETE',
         })
         .then(response => response.json())

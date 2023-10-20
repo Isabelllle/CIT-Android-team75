@@ -35,7 +35,7 @@ const DataReviewSummary = () =>{
 
     useEffect(() => {
         // get group data from back end
-        fetch('http://localhost:3001/api/getGroups', {
+        fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getGroups', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const DataReviewSummary = () =>{
     // get corresponding year
     useEffect(() => {
         // get group data from back end
-        fetch('http://localhost:3001/api/getYear', {
+        fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getYear', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const DataReviewSummary = () =>{
 
     useEffect(() => {
         setData([]);
-        fetch(`http://localhost:3001/api/getAnswerData?year=${selectedYear}&group=${selectedGroup}`,{
+        fetch(`https://weconnect-admin-06193c688dcf.herokuapp.com/api/getAnswerData?year=${selectedYear}&group=${selectedGroup}`,{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

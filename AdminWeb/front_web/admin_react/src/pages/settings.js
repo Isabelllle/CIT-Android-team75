@@ -28,7 +28,7 @@ const Settings = () =>{
 
     useEffect(() => {
         // fetch to get the user's information
-        fetch('http://localhost:3001/api/user', {
+        fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/user', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const Settings = () =>{
         setIsEditingEmail(false);
 
         //Post change of all inputs to database
-        fetch('http://localhost:3001/api/users', {
+        fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/users', {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ const Settings = () =>{
     const handleLogout = async () => {
         localStorage.removeItem('token');
         window.isRefresh = false;
-        window.location.href = 'http://localhost:3001/static/login';
+        window.location.href = 'https://weconnect-admin-06193c688dcf.herokuapp.com/static/login';
     };
 
     return (

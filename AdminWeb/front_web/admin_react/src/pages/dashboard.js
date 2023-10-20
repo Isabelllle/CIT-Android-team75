@@ -39,7 +39,7 @@ const Dashboard = () =>{
     useEffect(() => {
         // fetch to get the user's information
         
-        fetch('http://localhost:3001/api/user', {
+        fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/user', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ const Dashboard = () =>{
     useEffect(() => {
         if (token){
             // fetch to get the user's information
-            fetch('http://localhost:3001/api/getReminderList', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getReminderList', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ const Dashboard = () =>{
     useEffect(() => {
         if (token){
             // fetch to get the user's information
-            fetch('http://localhost:3001/api/getResponseNum', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getResponseNum', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ const Dashboard = () =>{
     useEffect(() => {
         if (token){
             // fetch to get the user's information
-            fetch('http://localhost:3001/api/getVolunteer', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getVolunteer', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

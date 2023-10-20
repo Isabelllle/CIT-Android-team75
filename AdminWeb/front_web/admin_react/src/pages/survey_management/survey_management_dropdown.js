@@ -61,7 +61,7 @@ const SurveyDropDown = () =>{
 
         if (question !== '' && items !== null) {
             // Add post request (selectedTitle, selectedType, question)
-            fetch('http://localhost:3001/api/addDropDownQuestion', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/addDropDownQuestion', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

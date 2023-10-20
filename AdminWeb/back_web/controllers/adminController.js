@@ -41,7 +41,7 @@ const loginAdmin = (req, res) => {
 
                 res.redirect(`https://weconnect-admin-management.netlify.app/?token=${token}`);
             } else {
-                res.redirect(`http://localhost:3001/static/login?error=invalid_password_or_email`);
+                res.redirect(`https://weconnect-admin-06193c688dcf.herokuapp.com/static/login?error=invalid_password_or_email`);
             }
         }
     );
@@ -65,7 +65,7 @@ const forgetEmailVerify = (req, res) => {
         }
 
         if (results.rows.length == 0) {
-            res.redirect(`http://localhost:3001/static/enteremail?error=email_not_exist`);
+            res.redirect(`https://weconnect-admin-06193c688dcf.herokuapp.com/static/enteremail?error=email_not_exist`);
         }
 
         if(results.rows.length > 0) {
@@ -92,7 +92,7 @@ function sendforgetEmail(email, token) {
             }
         });
     
-    const verificationLink = `http://localhost:3001/static/newPassword?token=${token}`;
+    const verificationLink = `https://weconnect-admin-06193c688dcf.herokuapp.com/static/newPassword?token=${token}`;
     const mailOptions = {
         from: 'gyijun017@gmail.com',
         to: email,
@@ -119,7 +119,7 @@ const verifyForgetEmail = (token, res, req) => {
         if (error) {
             throw error;
         }
-        res.redirect(`http://localhost:3001/static/emailverify`);
+        res.redirect(`https://weconnect-admin-06193c688dcf.herokuapp.com/static/emailverify`);
     });
 };
 
@@ -160,7 +160,7 @@ function sendVerificationEmail(email, name, token) {
             }
         });
     
-    const verificationLink = `http://localhost:3001/static/sign_up_instruction?token=${token}`;
+    const verificationLink = `https://weconnect-admin-06193c688dcf.herokuapp.com/static/sign_up_instruction?token=${token}`;
     const mailOptions = {
         from: 'gyijun017@gmail.com',
         to: email,
@@ -218,7 +218,7 @@ function verifyTokenSignUp(token, res, req) {
                     }
 
                     if (results.rows.length > 0) {
-                        res.redirect(`http://localhost:3001/static/signin?error=email_already_exist`);
+                        res.redirect(`https://weconnect-admin-06193c688dcf.herokuapp.com/static/signin?error=email_already_exist`);
                     }
 
                     if(results.rows.length == 0) {

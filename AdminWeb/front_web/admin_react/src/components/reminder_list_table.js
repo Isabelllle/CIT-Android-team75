@@ -24,7 +24,7 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
     useEffect(() => {
         if (token){
             // fetch to get the user's information
-            fetch('http://localhost:3001/api/getReminderList', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getReminderList', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
     const handleSearch = useCallback(() => {
 
         if (searchEmail === '') {
-            fetch('http://localhost:3001/api/getReminderList')
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getReminderList')
             .then(response => {
                 console.log('Response:', response);
                 if (!response.ok) {
@@ -93,7 +93,7 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
 
         }else{
             // fetch data, only the data corresponding to searchEmail is displayed
-            fetch(`http://localhost:3001/api/searchReminderByEmail?email=${searchEmail}`)
+            fetch(`https://weconnect-admin-06193c688dcf.herokuapp.com/api/searchReminderByEmail?email=${searchEmail}`)
                 .then(response => {
                     console.log('Response:', response);
                     if (!response.ok) {
@@ -142,7 +142,7 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
         setTableData(updatedTableData);
 
         // Delete item from databas
-        fetch(`http://localhost:3001/api/deleteEmail/${deleteEmail}`, {
+        fetch(`https://weconnect-admin-06193c688dcf.herokuapp.com/api/deleteEmail/${deleteEmail}`, {
             method: 'DELETE',
         })
         .then(response => response.json())
