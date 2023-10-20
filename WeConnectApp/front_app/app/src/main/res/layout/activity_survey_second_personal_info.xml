@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SurveySecondPersonalInfo">
+    <include layout="@layout/survey_questions_layout"/>
+
+
+    <!-- Enter Email   -->
+    <TextView
+        android:id="@+id/sec_label_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/sec_email_hint1"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="22sp"
+        android:layout_marginTop="120dp"
+        />
+
+    <TextView
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/sec_label_email2"
+        android:layout_centerHorizontal="true"
+        android:text="@string/sec_email_hint2"
+        android:layout_below="@id/sec_label_email"
+        android:padding="10dp"
+        android:gravity="center_horizontal"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sec_input_email"
+        android:hint="@string/enter_email"
+        android:inputType="textEmailAddress"
+        android:layout_below="@id/sec_label_email2"
+        android:background="@drawable/text_box_template"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:gravity="start"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:autofillHints="emailAddress"
+        />
+
+
+
+
+</RelativeLayout>

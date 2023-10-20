@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,12 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeConnectApp"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:networkSecurityConfig="@xml/network_security_config">
         <activity
-            android:name=".NavHomePage"
-            android:exported="false"
-            android:label="@string/title_activity_nav_testing"
-            android:theme="@style/Theme.WeConnectApp.NoActionBar" />
+            android:name=".CongratsPage"
+            android:exported="false" />
         <activity
             android:name=".SurveyPrivacyPolice"
             android:exported="false" />
@@ -26,6 +27,10 @@
         <activity
             android:name=".SurveyPersonalDetail"
             android:exported="false" />
+        <activity
+            android:name=".SurveySecondPersonalInfo"
+            android:exported="false" />
+        <activity android:name=".QuestionActivity" />
         <activity
             android:name=".TakeSurveyDecision"
             android:exported="false" />
