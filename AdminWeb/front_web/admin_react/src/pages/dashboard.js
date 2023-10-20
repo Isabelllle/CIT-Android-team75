@@ -20,7 +20,7 @@ const Dashboard = () =>{
     const [FirstName, setFirstName] = useState(''); 
     const [LastName, setLastName] = useState(''); 
 
-    if (token != localStorage.getItem('token')) {
+    if (token !== localStorage.getItem('token')) {
         window.location.reload(true);
     }
 
@@ -126,8 +126,7 @@ const Dashboard = () =>{
             })
             .catch(error => console.error('Error:', error));
         }
-    }, []); 
-
+    }, [dataNum]); 
 
     // get volunteer number
     useEffect(() => {

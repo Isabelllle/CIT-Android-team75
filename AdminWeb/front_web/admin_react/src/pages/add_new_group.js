@@ -3,7 +3,7 @@
 
 // Import library
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Import CSS
 import styles from '../stylesheets/admin_management.module.css';
@@ -32,7 +32,7 @@ const AddNewGroup = () =>{
             .catch(error => console.error('Error:', error));
     }, []); 
     const [addGroup, setAddGroup] = useState('');
-    const [giveWarning, setWarning] = useState(false);
+    // const [giveWarning, setWarning] = useState(false);
 
     // Handle group list
     const handleGroup = (group) => {
@@ -62,7 +62,7 @@ const AddNewGroup = () =>{
         //Add Search group
         console.log('Search Group Name:', searchGroup);
 
-        if (searchGroup == '') {
+        if (searchGroup === '') {
             fetch('http://localhost:3001/api/getGroups')
             .then(response => {
                 console.log('Response:', response);
@@ -96,6 +96,7 @@ const AddNewGroup = () =>{
 
     useEffect(() => {
         handleSearch();
+    // eslint-disable-next-line
     }, [searchGroup]);
 
 
@@ -136,8 +137,6 @@ const AddNewGroup = () =>{
                 console.error('Error adding group:', error);
             });
 
-        } else {
-            setWarning(true);
         }
 
         closeModal();

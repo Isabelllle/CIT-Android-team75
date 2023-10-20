@@ -20,7 +20,7 @@ const Settings = () =>{
     const [isEditingLastName, setIsEditingLastName] = useState(false);
     const [lastName, setLastName] = useState('');
 
-    const [isEditingEmail, setIsEditingEmail] = useState(false);
+    // const [isEditingEmail, setIsEditingEmail] = useState(false);
     const [email, setEmail] = useState('');
 
     const [initialFirstName, setInitialFirstName] = useState(''); 
@@ -57,7 +57,7 @@ const Settings = () =>{
     const handleEditButton = () => {
         setIsEditingFirstName(true);
         setIsEditingLastName(true);
-        setIsEditingEmail(true);
+        // setIsEditingEmail(true);
     };
     
     // Handle input changes
@@ -73,7 +73,7 @@ const Settings = () =>{
     const handleSubmit = () => {
         setIsEditingFirstName(false);
         setIsEditingLastName(false);
-        setIsEditingEmail(false);
+        // setIsEditingEmail(false);
 
         //Post change of all inputs to database
         fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/users', {
