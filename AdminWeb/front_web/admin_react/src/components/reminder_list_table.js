@@ -76,7 +76,13 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
     const handleSearch = useCallback(() => {
 
         if (searchEmail === '') {
-            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getReminderList')
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getReminderList', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                },
+            })
             .then(response => {
                 console.log('Response:', response);
                 if (!response.ok) {

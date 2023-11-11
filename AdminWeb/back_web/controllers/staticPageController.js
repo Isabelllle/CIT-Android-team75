@@ -46,6 +46,12 @@ const emailVerify = (req, res) => {
 }
 
 
+// display 
+const registerHere = (req, res) => {
+    res.sendFile(path.join(__dirname, '../static/Views/AccountManage/organization_instruction.html'));
+}
+
+
 module.exports = {
     loginPage,
     signinPage,
@@ -54,4 +60,5 @@ module.exports = {
     forgetEmailVerify,
     newPassword,
     emailVerify,
+    registerHere,
 };

@@ -17,6 +17,8 @@ const AddNewGroup = () =>{
 
     // Attributes
     const [groups, setGroups] = useState([]);
+    const [isEmptyResult, setIsEmptyResult] = useState(false);
+
     useEffect(() => {
         fetch('http://localhost:3001/api/getGroupsList')
             .then(response => {
@@ -31,6 +33,7 @@ const AddNewGroup = () =>{
             .then(data => setGroups(data))
             .catch(error => console.error('Error:', error));
     }, []); 
+
     const [addGroup, setAddGroup] = useState('');
     // const [giveWarning, setWarning] = useState(false);
 
@@ -58,12 +61,54 @@ const AddNewGroup = () =>{
         setSearchGroup(event.target.value);
       };
     
+    // const handleSearch = () => {
+    //     //Add Search group
+    //     console.log('Search Group Name:', searchGroup);
+
+    //     if (searchGroup === '') {
+    //         fetch('http://localhost:3001/api/getGroups')
+    //         .then(response => {
+    //             console.log('Response:', response);
+    //             if (!response.ok) {
+    //               return response.json().then(errorData => {
+    //                 throw new Error(errorData.error);
+    //               });
+    //             }
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             setGroups(data);
+    //             setIsEmptyResult(data.length === 0); // Check if search result is empty
+    //         })
+    //         .catch(error => console.error('Error:', error));
+    //     } else {
+    //     // fetch data, only the group being searched is displayed
+    //     fetch(`http://localhost:3001/api/searchGroupName?searchGroup=${searchGroup}`)
+    //         .then(response => {
+    //             console.log('Response:', response);
+    //             if (!response.ok) {
+    //               return response.json().then(errorData => {
+    //                 throw new Error(errorData.error);
+    //               });
+    //             }
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             setGroups(data);
+    //             setIsEmptyResult(data.length === 0); // Check if search result is empty
+    //         })
+    //         .catch(error => console.error('Error:', error));
+    //     }
+
+    //     console.log('Successfully find: ' + searchGroup); 
+    // };
+
     const handleSearch = () => {
         //Add Search group
         console.log('Search Group Name:', searchGroup);
-
-        if (searchGroup === '') {
-            fetch('http://localhost:3001/api/getGroups')
+    
+        if (searchGroup.trim() === '') { 
+            fetch('http://localhost:3001/static/signin/getGroups') 
             .then(response => {
                 console.log('Response:', response);
                 if (!response.ok) {
@@ -73,9 +118,13 @@ const AddNewGroup = () =>{
                 }
                 return response.json();
             })
-            .then(data => setGroups(data))
+            .then(data => {
+                setGroups(data);
+                setIsEmptyResult(data.length === 0); // Check if search result is empty
+            })
             .catch(error => console.error('Error:', error));
         } else {
+        console.log('Search Group Name not empty:', searchGroup);
         // fetch data, only the group being searched is displayed
         fetch(`http://localhost:3001/api/searchGroupName?searchGroup=${searchGroup}`)
             .then(response => {
@@ -87,17 +136,24 @@ const AddNewGroup = () =>{
                 }
                 return response.json();
             })
-            .then(data => setGroups(data))
+            .then(data => {
+                setGroups(data);
+                setIsEmptyResult(data.length === 0); // Check if search result is empty
+            })
             .catch(error => console.error('Error:', error));
         }
-
+    
         console.log('Successfully find: ' + searchGroup); 
     };
-
+    
     useEffect(() => {
-        handleSearch();
+        // handleSearch();
     // eslint-disable-next-line
     }, [searchGroup]);
+
+    const handleSearchClick = () => {
+        handleSearch();
+    };
 
 
     // Handle the delete and confirm box request
@@ -159,15 +215,21 @@ const AddNewGroup = () =>{
                 {/* Search Group Box */}
                 <div id={styles.search_box}>
                     <input type="text" placeholder="Search Group" value={searchGroup} onChange={handleSearchGroupChange}/>
-                    <button onClick={handleSearch}><img src={SearchIcon} alt="Search Group" /></button>
+                    <button onClick={handleSearchClick}><img src={SearchIcon} alt="Search Group" /></button>
+                    {/* {isEmptyResult && (
+                    <div className={styles.not_found_message}>No results found</div>
+                    )} */}
                 </div>
+                
 
                 {/* Add New Group Container */}
                 <div className={styles.add_new_group_container}>
-                    
                     {/* Group List */}
                     <div className={styles.group_list}>
                         <ul className={styles.exist_group_list}>
+                        {isEmptyResult && (
+                            <div className={styles.not_found_message}>*No Results Found</div>
+                        )}
                             {groups.map((group, delete_group) => (
                                 <li className={styles.group_box} key={delete_group}>
                                     <div className={styles.each_group}>{group}</div>
@@ -212,3 +274,4 @@ const AddNewGroup = () =>{
     );
 }
 export default AddNewGroup;
+

@@ -39,7 +39,8 @@
 
                         <div class="input_hor_box">
                             <!-- input password -->
-                            <input class="input_half" type="password" name="password" placeholder="Password"/>
+                            <input class="input_half" type="password" name="password" placeholder="Password" pattern=".{8,}" title="At least 8 characters" required/>
+                            <span id="password-error" style="color: red;"></span>
 
                             <!-- input confirm password -->
                             <input class="input_half" type="password" name="confirm_password" placeholder="Confirm password"/>
@@ -57,7 +58,7 @@
                         <!-- redirection to register page -->
                         <div class="register">
                             <div class="normal_text">Can not find your group?</div>
-                            <a href="" target="_self">Register Here</a>
+                            <a href="registerhere" target="_self">Register Here</a>
                         </div>
                         
                         <script>
@@ -91,6 +92,12 @@
                                 if (password !== confirmPassword) {
                                     alert("Passwords do not match. Please try again.");
                                     return false; 
+                                }
+                                if (password.length < 8) {
+                                    document.getElementById('password-error').innerText = 'Password should be at least 8 characters.';
+                                    return false;
+                                } else {
+                                    document.getElementById('password-error').innerText = '';
                                 }
                         
                                 return true; 

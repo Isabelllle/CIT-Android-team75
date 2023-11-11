@@ -473,3 +473,12 @@
     text-align: center;
     z-index: 10;
 }
+
+#add_new_group .not_found_message {
+    color: red; /* Change the color to your preference */
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: regular;/* Make the text bold if desired */
+     /* Add some space above the message */
+    font-family: "Roboto-Medium";
+
+}

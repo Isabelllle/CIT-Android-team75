@@ -24,6 +24,7 @@ const SettingsPassword = () =>{
     const [giveWarningFill, setWarningFill] = useState(false);
     const [giveWarningConfirm, setWarningConfirm] = useState(false);
     const [giveWarningPassword, setWarningPassword] = useState(false);
+    const [giveWarningNumPassword, setWarningNumPassword] = useState(false);
 
     useEffect(() => {
         if(token){
@@ -64,11 +65,18 @@ const SettingsPassword = () =>{
             setWarningFill(true);
             setWarningConfirm(false);
             setWarningPassword(false);
+            setWarningNumPassword(false);
         } else if (newPassword.trim() !== confirmPassword.trim()) {
             setWarningConfirm(true);
             setWarningFill(false);
             setWarningPassword(false);
-        } else {
+            setWarningNumPassword(false);
+        } else if (newPassword.length < 8) { 
+            setWarningNumPassword(true);
+            setWarningPassword(false);
+            setWarningFill(false);
+            setWarningConfirm(false);
+        }else {
             // Post change of all inputs to database
             fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/userspassword', {
                 method: 'PUT',
@@ -94,6 +102,7 @@ const SettingsPassword = () =>{
                     setWarningFill(false);
                     setWarningConfirm(false);
                     setWarningPassword(true);
+                    setWarningNumPassword(false);
                 }
             })
         }
@@ -142,6 +151,9 @@ const SettingsPassword = () =>{
 
                     {/* Give user a reminder if the old password is incorrect */}
                     {giveWarningPassword && <div className={styles.warning}>Old password is incorrect, check your input!</div>}
+
+                    {/* Give user a reminder if the number of password is lower than 8 */}
+                    {giveWarningNumPassword && <div className={styles.warning}>New password must be at least 8 characters!</div>}
 
                     <div className={styles.button_container}>
                         <Link to="/settings" className={styles.no_underline}>

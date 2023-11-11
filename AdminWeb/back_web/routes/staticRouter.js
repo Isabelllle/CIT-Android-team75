@@ -28,6 +28,7 @@ router.post('/signin/submit', adminController.signupAdmin);
 router.get('/signin/getGroups', adminController.getGroups);
 router.get('/sign_up_instruction', staticController.signupWait);
 router.get('/verify-email', adminController.verifyEmailToken);
+router.get('/registerhere', staticController.registerHere);
 
 
 router.get('/email_verify',staticController.emailVerify);
