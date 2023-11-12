@@ -42,6 +42,7 @@ With user-centric design and strategic functionalities, our product stands ready
 ## Demo
 
 ## Documentation
+All the documentation related to the product can be found [here](HandoverResource/Documentation.pdf).
 
 ## System Requirements
 ### Database
