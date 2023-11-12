@@ -71,19 +71,19 @@ Steps:
 Command for git through Terminal: 
 `git checkout main`    
 2. Both frontend and backend servers need to be running simultaneously.  
-    **Run Frontend:**     
-    Open a terminal window and navigate to the AdminWeb/front_web/admin_react directory.    
-    Use the following command to start the frontend server:     
-    `npm start`    
-    *Note: You need to install npm before running*  
-    `npm install`
+     **Run Frontend:**     
+     Open a terminal window and navigate to the AdminWeb/front_web/admin_react directory.    
+     Use the following command to start the frontend server:     
+     `npm start`    
+     *Note: You need to install npm before running*  
+     `npm install`
             
      **Run Backend:**    
      Open a new terminal window and navigate to the AdminWeb/back_web directory.    
      Start the backend server using the following command:   
     `node app.js`   
-    Access The Website:    
-    Open a web browser and go to the address: http://localhost3001/static/login (Login Page)
+     Access The Website:    
+3. Open a web browser and go to the address: http://localhost3001/static/login (Login Page)
          
 **Admin account provided for the test is:**    
 username: weconnect@volunteeringvictoria.org.au     
