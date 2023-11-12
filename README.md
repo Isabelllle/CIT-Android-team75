@@ -60,11 +60,11 @@ Entity-Relationship Diagram (ERD):
 The relationships between various entities can be illustrated using an Entity-Relationship Diagram (ERD).
 
 Relationships below:       
-Each **admin** belongs to one **group**.        
-Each **admin** manages several **volunteers**.         
-**Volunteers** who do not take the second survey on time will be put in the **reminder list**.      
-**Volunteers** can **respond** to the **questions** of the survey.     
-The survey has **dropdown questions**.       
+1. Each **admin** belongs to one **group**.        
+2. Each **admin** manages several **volunteers**.         
+3. **Volunteers** who do not take the second survey on time will be put in the **reminder list**.      
+4. **Volunteers** can **respond** to the **questions** of the survey.     
+5. The survey has **dropdown questions**.       
    
 
 ## Installation Guide 
