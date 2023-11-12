@@ -319,12 +319,15 @@ public class QuestionActivity extends AppCompatActivity {
                 previousButton = findViewById(R.id.previous_button);
 
                 nextButton.setOnClickListener(v -> {
-                    saveCurrentAnswer();
-                    if (isQuestionAnswered(currentPage)) {
-                        saveCurrentAnswer();
+                    saveCurrentAnswer();  // Save the current answer
+
+                    // Check if the current question is answered
+                    if (questionList != null && !questionList.isEmpty() && isQuestionAnswered(questionList.get(0).getId())) {
+                        // If answered, fetch the next question
                         currentPage++;
                         fetchQuestions();
                     } else {
+                        // If not answered, show a toast message
                         Toast.makeText(QuestionActivity.this, "Please answer the current question before proceeding.", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -536,7 +539,7 @@ public class QuestionActivity extends AppCompatActivity {
     private boolean areAllQuestionsAnswered() {
         // Check if all questions are answered
         // For simplicity, check if every questionId from 1 to 10 (inclusive) is in the answers list
-        for (int questionId = 1; questionId <= 37; questionId++) {
+        for (int questionId = 1; questionId <= 3; questionId++) {
             if (!isQuestionAnswered(questionId)) {
                 return false;
             }
