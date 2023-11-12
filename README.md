@@ -110,13 +110,6 @@ Command for git through Terminal:
     `node app.js`      
 4. Now access The Website:     
    Open a web browser and go to the address: http://localhost3001/static/login (Login Page)      
-         
-**Admin account provided for the test is:**    
-username: weconnect@volunteeringvictoria.org.au     
-password: adminpassword    
-**Manager account provided for the test is:**   
-username: 123456789@gmail.com   
-password: managerpassword    
 
 Additionally, you can access the signup page at http://localhost:3001/static/signin. 
 
