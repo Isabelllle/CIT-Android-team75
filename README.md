@@ -44,6 +44,7 @@ With user-centric design and strategic functionalities, our product stands ready
 ## Documentation
 
 ## System Requirements
+### Database
 The database we used is called **PgAdmin4**. The database deployed on Amazon is designed to provide a secure and stable cloud-based solution. 
 
 Here is the account we create: 
