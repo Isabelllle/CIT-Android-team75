@@ -19,8 +19,6 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
   
     const tableHeaders = ['Last Name', 'First Name', 'Email', 'Overdue Day'];
 
-    console.log('token is token',token);
-
     useEffect(() => {
         if (token){
             // fetch to get the user's information
@@ -72,6 +70,7 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
     }, [selectedSort, initialTableData]);
 
 
+    const [notFoundWarning, setNotFoundWarning] = useState(false);
     // Handle search
     const handleSearch = useCallback(() => {
 
@@ -109,7 +108,10 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
                     }
                     return response.json();
                 })
-                .then(data => setTableData(data))
+                .then(data => {
+                    setTableData(data);
+                    setNotFoundWarning(data.length === 0);
+                })
                 .catch(error => console.error('Error:', error));
         }
 
@@ -175,6 +177,9 @@ const ReminderTable = ({ selectedSort, searchEmail }) => {
   
     return (
         <div id={styles.reminder_list_table}>
+
+            {/* If notFoundWarning is true, display a warning message */}
+            {notFoundWarning && <div className={styles.warning_message}>No results found for the provided email.</div>}
 
             {/* Table header */}
             <table className={styles.header_table}>

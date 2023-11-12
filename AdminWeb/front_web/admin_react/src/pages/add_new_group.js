@@ -20,7 +20,7 @@ const AddNewGroup = () =>{
     const [isEmptyResult, setIsEmptyResult] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/getGroupsList')
+        fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/api/getGroupsList')
             .then(response => {
                 console.log('Response:', response);
                 if (!response.ok) {
@@ -35,7 +35,6 @@ const AddNewGroup = () =>{
     }, []); 
 
     const [addGroup, setAddGroup] = useState('');
-    // const [giveWarning, setWarning] = useState(false);
 
     // Handle group list
     const handleGroup = (group) => {
@@ -108,7 +107,7 @@ const AddNewGroup = () =>{
         console.log('Search Group Name:', searchGroup);
     
         if (searchGroup.trim() === '') { 
-            fetch('http://localhost:3001/static/signin/getGroups') 
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com/static/signin/getGroups') 
             .then(response => {
                 console.log('Response:', response);
                 if (!response.ok) {
@@ -126,7 +125,7 @@ const AddNewGroup = () =>{
         } else {
         console.log('Search Group Name not empty:', searchGroup);
         // fetch data, only the group being searched is displayed
-        fetch(`http://localhost:3001/api/searchGroupName?searchGroup=${searchGroup}`)
+        fetch(`https://weconnect-admin-06193c688dcf.herokuapp.com/api/searchGroupName?searchGroup=${searchGroup}`)
             .then(response => {
                 console.log('Response:', response);
                 if (!response.ok) {
@@ -144,6 +143,7 @@ const AddNewGroup = () =>{
         }
     
         console.log('Successfully find: ' + searchGroup); 
+        console.log('isEmptyResult find: ' + isEmptyResult); 
     };
     
     useEffect(() => {
@@ -175,7 +175,7 @@ const AddNewGroup = () =>{
     const handleConfirm = () => {
         if (groups != null) {
             // Add post request (group)
-            fetch('http://localhost:3001/api/updateGroups', {
+            fetch('https://weconnect-admin-06193c688dcf.herokuapp.com//api/updateGroups', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

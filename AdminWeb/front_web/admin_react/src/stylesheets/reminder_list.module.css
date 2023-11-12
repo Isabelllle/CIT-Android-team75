@@ -268,3 +268,14 @@
     text-align: center;
     z-index: 10;
 }
+
+
+#reminder_list_table .warning_message {
+    color: red; /* Change the color to your preference */
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: regular;/* Make the text bold if desired */
+     /* Add some space above the message */
+    font-family: "Roboto-Medium";
+    text-align: center;
+
+}
