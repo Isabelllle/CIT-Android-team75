@@ -52,8 +52,8 @@ User name: 'postgres', password:  "Qezc5566".
 PgAdmin4 can be used for conveniently viewing and managing the cloud database. Below is the download link
 https://www.pgadmin.org/download/
 
-Entity-Relationship Diagram (ERD): 
-![Image text](https://[raw.github.com/yourName/repositpry/master/yourprojectName/img-folder/test.jpg](https://github.com/Isabelllle/CIT-Android-team75/blob/Edit-Readme-file---Basic-Structure/HandoverResource/Image/database_model.png))
+Entity-Relationship Diagram (ERD):      
+![Image](https://[raw.github.com/yourName/repositpry/master/yourprojectName/img-folder/test.jpg](https://github.com/Isabelllle/CIT-Android-team75/blob/Edit-Readme-file---Basic-Structure/HandoverResource/Image/database_model.png))
 
 
 The relationships between various entities can be illustrated using an Entity-Relationship Diagram (ERD).
