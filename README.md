@@ -9,16 +9,19 @@
 * [Installation Guide](#installation-guide)
 * [Changelog](#changelog)
 * [Traceability Matrix](#traceability-matrix)
+  
 
 ## Collective Impact Tool
 
 Welcome to the Collective Impact Tool (CIT) Android app, developed by Team WI5DOM. This app is designed to empower users to participate in surveys and provide valuable insights over time.  
 
+
 ## Introduction  
 
 The Collective Impact Tool (CIT) Android app focuses on two key aspects:  
 1. **User Surveys**: This app enables users to register and participate in surveys. Users can register to participate in surveys and complete follow-up surveys after a set period.  
-2. **Admin Dashboard**: The admin page provides detailed statistics on completed surveys.   
+2. **Admin Dashboard**: The admin page provides detailed statistics on completed surveys.
+   
 
 ## Our team members  
 
@@ -27,6 +30,7 @@ Yijun Guo     1255197
 Zixian Li     1240140  
 Zhiyi Wang    1173477  
 Jielong Zeng  1214079  
+
 
 ## Project Background
 
@@ -40,9 +44,26 @@ With user-centric design and strategic functionalities, our product stands ready
 
 
 ## Demo
+### 1. Admin Website Demo
+
+Visit our Admin Website through the [Link](https://weconnect-admin-06193c688dcf.herokuapp.com/static/login).
+
+#### Testing Account
+- **Admin account:**
+  - username: weconnect@volunteeringvictoria.org.au 
+  - password: adminpassword
+
+- **Manager account:**
+  - username: 123456789@gmail.com
+  - password: managerpassword
+
+#### Demo Video
+<video src="" controls="controls" style="max-width: 730px;"></video>
+
 
 ## Documentation
 All the documentation related to the product can be found [here](HandoverResource/Documentation.pdf).
+
 
 ## System Requirements
 ### Database
@@ -65,7 +86,7 @@ Relationships below:
 2. Each **admin** manages several **volunteers**.         
 3. **Volunteers** who do not take the second survey on time will be put in the **reminder list**.      
 4. **Volunteers** can **respond** to the **questions** of the survey.     
-5. The survey has **dropdown questions**.       
+5. The survey has **dropdown questions**.
    
 
 ## Installation Guide 
@@ -98,6 +119,7 @@ username: 123456789@gmail.com
 password: managerpassword    
 
 Additionally, you can access the signup page at http://localhost:3001/static/signin. 
+
 
 ### WeConnect Application
 Steps:   
