@@ -83,9 +83,9 @@ Command for git through Terminal:
      **Run Backend:**    
      Open a new terminal window and navigate to the AdminWeb/back_web directory.    
      Start the backend server using the following command:   
-    `node app.js`   
-     Access The Website:    
-4. Open a web browser and go to the address: http://localhost3001/static/login (Login Page)
+    `node app.js`      
+4. Now access The Website:     
+   Open a web browser and go to the address: http://localhost3001/static/login (Login Page)      
          
 **Admin account provided for the test is:**    
 username: weconnect@volunteeringvictoria.org.au     
