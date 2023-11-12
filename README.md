@@ -68,7 +68,7 @@ The survey has **dropdown questions**.
 
 ## Installation Guide 
 Steps: 
-1. Download(Git clone)
+1. Clone the repository to your local computer.    
 2. Start by navigating to the 'main' branch on your version control system. Make sure you're working with the latest code.  
 Command for git through Terminal: 
 `git checkout main`    
