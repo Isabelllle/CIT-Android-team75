@@ -71,14 +71,14 @@ Steps:
 Command for git through Terminal: 
 `git checkout main`    
 2. Both frontend and backend servers need to be running simultaneously.  
-    Run Frontend:    
+    **Run Frontend:**     
     Open a terminal window and navigate to the AdminWeb/front_web/admin_react directory.    
     Use the following command to start the frontend server:     
     `npm start`    
     *Note: You need to install npm before running*  
     `npm install`
             
-     Run Backend:    
+     **Run Backend:**    
      Open a new terminal window and navigate to the AdminWeb/back_web directory.    
      Start the backend server using the following command:   
     `node app.js`   
