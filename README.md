@@ -61,7 +61,7 @@ Visit our Admin Website through the [Link](https://weconnect-admin-06193c688dcf.
 <video src="https://github.com/Isabelllle/CIT-Android-team75/assets/89910392/8ea3ae38-9770-48e1-b3c0-aa7acf5f0a11" controls="controls" style="max-width: 730px;"></video>
 
 
-### 1. WeConnect App Demo
+### 2. WeConnect App Demo
 
 Our App has an apk exported can be found [here](HandoverResource/app-debug.apk).
 
