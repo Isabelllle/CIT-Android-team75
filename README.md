@@ -58,7 +58,7 @@ Visit our Admin Website through the [Link](https://weconnect-admin-06193c688dcf.
   - password: managerpassword
 
 #### Demo Video
-<video src="" controls="controls" style="max-width: 730px;"></video>
+<video src="https://github.com/Isabelllle/CIT-Android-team75/blob/8f791f53049fdc61b561ddf82a57fe73fee3bac3/HandoverResource/Admin%20video.mov" controls="controls" style="max-width: 730px;"></video>
 
 
 ## Documentation
