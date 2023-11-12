@@ -45,7 +45,7 @@ With user-centric design and strategic functionalities, our product stands ready
 
 ## System Requirements
 ### Database
-The database we used is called **PgAdmin4**. The database deployed on Amazon is designed to provide a secure and stable cloud-based solution. 
+The database we used is called **PgAdmin4(Version 7.6)**. The database deployed on Amazon is designed to provide a secure and stable cloud-based solution. 
 
 Here is the account we create: 
 User name: 'postgres', password:  "Qezc5566".
