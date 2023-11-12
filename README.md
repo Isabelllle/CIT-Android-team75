@@ -58,7 +58,12 @@ Visit our Admin Website through the [Link](https://weconnect-admin-06193c688dcf.
   - password: managerpassword
 
 #### Demo Video
-<video src="https://github.com/Isabelllle/CIT-Android-team75/blob/8f791f53049fdc61b561ddf82a57fe73fee3bac3/HandoverResource/Admin%20video.mov" controls="controls" style="max-width: 730px;"></video>
+<video src="https://github.com/Isabelllle/CIT-Android-team75/assets/89910392/8ea3ae38-9770-48e1-b3c0-aa7acf5f0a11" controls="controls" style="max-width: 730px;"></video>
+
+
+### 1. WeConnect App Demo
+
+Our App has an apk exported can be found [here](HandoverResource/app-debug.apk).
 
 
 ## Documentation
