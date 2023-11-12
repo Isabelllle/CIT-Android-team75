@@ -53,7 +53,7 @@ PgAdmin4 can be used for conveniently viewing and managing the cloud database. B
 https://www.pgadmin.org/download/
 
 Entity-Relationship Diagram (ERD): 
-
+< img src="HandoverResource/Image/database_model.png" width="700" height="200">
 
 The relationships between various entities can be illustrated using an Entity-Relationship Diagram (ERD).
 
@@ -67,10 +67,11 @@ The survey has **dropdown questions**.
 
 ## Installation Guide 
 Steps: 
-1. Start by navigating to the 'main' branch on your version control system. Make sure you're working with the latest code.  
+1. Download(Git clone)
+2. Start by navigating to the 'main' branch on your version control system. Make sure you're working with the latest code.  
 Command for git through Terminal: 
 `git checkout main`    
-2. Both frontend and backend servers need to be running simultaneously.  
+3. Both frontend and backend servers need to be running simultaneously.  
      **Run Frontend:**     
      Open a terminal window and navigate to the AdminWeb/front_web/admin_react directory.    
      Use the following command to start the frontend server:     
@@ -83,7 +84,7 @@ Command for git through Terminal:
      Start the backend server using the following command:   
     `node app.js`   
      Access The Website:    
-3. Open a web browser and go to the address: http://localhost3001/static/login (Login Page)
+4. Open a web browser and go to the address: http://localhost3001/static/login (Login Page)
          
 **Admin account provided for the test is:**    
 username: weconnect@volunteeringvictoria.org.au     
