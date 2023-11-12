@@ -55,7 +55,7 @@ PgAdmin4 can be used for conveniently viewing and managing the cloud database. B
 https://www.pgadmin.org/download/
 
 Entity-Relationship Diagram (ERD):      
-![Image](https://github.com/Isabelllle/CIT-Android-team75/blob/Edit-Readme-file---Basic-Structure/HandoverResource/Image/database_model.png)
+![Image](HandoverResource/Image/database_model.png)
 
 
 The relationships between various entities can be illustrated using an Entity-Relationship Diagram (ERD).
