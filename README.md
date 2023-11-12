@@ -1,5 +1,5 @@
 ## Table of Content
-* [Collective Impact Tool](collective-impact-tool)
+* [Collective Impact Tool](#collective-impact-tool)
 * [Introduction](#introduction)
 * [Our team members](#our-team-members)
 * [Project Background](#project-background)
