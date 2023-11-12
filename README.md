@@ -97,8 +97,23 @@ password: adminpassword
 username: 123456789@gmail.com   
 password: managerpassword    
 
-Additionally, you can access the signup page at http://localhost:3001/static/signin.   
+Additionally, you can access the signup page at http://localhost:3001/static/signin. 
 
+### WeConnect Application
+Steps:   
+1. Clone the repository to your local computer.    
+2. Start by navigating to the 'main' branch on your version control system. Make sure you're working with the latest code.   
+Command for git through Terminal: 
+`git checkout main`    
+3. Both frontend and backend servers need to be running simultaneously.     
+     **Run Frontend:**      
+     Download  and open Android studio and navigate to the Weconnect/front_app directory.     
+     Run the mainActivity.     
+            
+     **Run Backend:**      
+     Open a new terminal window and navigate to the Weconnect/back_app directory.       
+     Start the backend server using the following command:     
+    `node app.js`
 ## Changelog
 
 ## Traceability Matrix
