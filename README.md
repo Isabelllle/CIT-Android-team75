@@ -35,6 +35,30 @@ Jielong Zeng  1214079
 ## Documentation
 
 ## System Requirements
+The database we used is called **PgAdmin4**. The database deployed on Amazon is designed to provide a secure and stable cloud-based solution. 
+
+Here is the account we create: 
+User name: 'postgres', password:  "Qezc5566".
+
+PgAdmin4 can be used for conveniently viewing and managing the cloud database. Below is the download link
+https://www.pgadmin.org/download/
+
+Entity-Relationship Diagram (ERD): 
+
+
+The relationships between various entities can be illustrated using an Entity-Relationship Diagram (ERD).
+
+Relationships below:
+Each **admin** belongs to one **group**.
+Each **admin** manages several **volunteersv.
+**Volunteers** who do not take the second survey on time will be put in the **reminder list**.
+**Volunteers** can **respond** to the **questions** of the survey.
+The survey has **dropdown questions**.
+
+
+
+
+
 
 ## Installation Guide
 
