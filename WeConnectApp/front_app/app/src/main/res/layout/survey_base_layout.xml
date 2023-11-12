@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image">
+
+
+    <ImageView
+        android:id="@+id/survey_base_logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/logo"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageButton
+        android:id="@+id/survey_base_back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/survey_base_logo"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/white"
+        android:contentDescription="@string/survey_back_arrow"
+        app:srcCompat="@drawable/survey_arrow_back_24"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="4dp" />
+
+</RelativeLayout>

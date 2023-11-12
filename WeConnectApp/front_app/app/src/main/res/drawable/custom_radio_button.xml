@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" 
+          android:drawable="@drawable/iconmonstr_radio_button_checked_thin_240" 
+          android:state_pressed="true"/>
+    <item android:state_checked="false" 
+          android:drawable="@drawable/iconmonstr_shape_20_240" 
+          android:state_pressed="true"/>
+    <item android:state_checked="true" 
+          android:drawable="@drawable/iconmonstr_radio_button_checked_thin_240"/>
+    <item android:state_checked="false" 
+          android:drawable="@drawable/iconmonstr_shape_20_240"/>
+</selector>

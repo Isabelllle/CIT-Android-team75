@@ -64,5 +64,9 @@ When committing code, provide clear commit messages that describe your changes.
 2. To delete a local branch, run either of these commands: `$ git branch -d my-branch-name` or `$ git branch -D my-branch-name`  
 
 ## Directory Structure Description  
+    ├── AdminWeb
+    ├── WeConnectApp
+    ├── git
     ├── ReadMe.md              // help  
     ├── azure-pipelines.yml    // pipeline  
+    

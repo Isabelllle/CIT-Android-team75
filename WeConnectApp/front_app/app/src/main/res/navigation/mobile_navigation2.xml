@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation2"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.weconnectapp.ui.home.Home"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_about_weconnect"
+        android:name="com.example.weconnectapp.ui.aboutweconnect.AboutWeconnectFragment"
+        android:label="@string/menu_about_weconnect"
+        tools:layout="@layout/fragment_about_weconnect"/>
+
+    <fragment
+        android:id="@+id/nav_privacy_police"
+        android:name="com.example.weconnectapp.ui.privacyPolice.PrivacyPoliceFragment"
+        android:label="@string/menu_privacy_policy"
+        tools:layout="@layout/fragment_privacy_police"/>
+
+    <fragment
+        android:id="@+id/nav_contact_us"
+        android:name="com.example.weconnectapp.ui.contactUs.ContactUsFragment"
+        android:label="@string/contact_us"
+        tools:layout="@layout/fragment_contact_us" />
+
+</navigation>

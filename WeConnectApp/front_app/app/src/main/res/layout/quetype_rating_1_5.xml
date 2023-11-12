@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/quetype_rating1_5">
+    <include layout = "@layout/survey_questions_layout"/>
+
+
+    <!-- theme   -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/type_rating_1_5_theme"
+        android:text="@string/question_wellbeing"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Question text   -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/question_text"
+        android:layout_below="@id/type_rating_1_5_theme"
+        android:text="@string/type_rating_1_5_question_text_sample"
+        android:padding="20dp"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_regular"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"/>
+
+
+    <RadioGroup
+        android:id="@+id/type_rating_1_5_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/type_rating_1_5_question_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="260dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="6dp"
+            android:text="@string/rating1"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="5dp"
+            android:text="@string/rating2"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="5dp"
+            android:text="@string/rating3"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="5dp"
+            android:text="@string/rating4"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="5dp"
+            android:text="@string/rating5"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/degree_disagree"
+        android:layout_below="@id/type_rating_1_5_answer"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/degree_agree"
+        android:layout_below="@id/type_rating_1_5_answer"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"/>
+
+
+
+
+</RelativeLayout>

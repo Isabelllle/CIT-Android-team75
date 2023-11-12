@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "836444212699",
+    "project_id": "volunteer-d6db4",
+    "storage_bucket": "volunteer-d6db4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836444212699:android:cfa5960ed57d7f5f0debfe",
+        "android_client_info": {
+          "package_name": "com.example.weconnectapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd8JkemJuotM7kMMDizH9T_Vvgb4wB7Bk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SurveyPersonalDetail">
+
+    <include layout="@layout/survey_detail_layout"></include>
+    <!-- Title   -->
+    <TextView
+        android:id="@+id/personal_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/personal_details"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="90dp"
+        android:layout_marginStart="40dp"/>
+
+
+    <!-- Content  -->
+    <!-- Enter first name   -->
+    <TextView
+        android:id="@+id/label_first_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/first_name"
+        android:textColor="@color/black"
+        android:layout_below="@id/personal_detail"
+        android:textSize="16sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_first_name"
+        android:hint="@string/enter_first_name"
+        android:inputType="text"
+        android:layout_below="@id/label_first_name"
+        android:background="@drawable/text_box_template"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:autofillHints="username"
+        />
+
+    <!-- Enter last name   -->
+    <TextView
+        android:id="@+id/label_last_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/last_name"
+        android:textColor="@color/black"
+        android:layout_below="@id/input_first_name"
+        android:textSize="16sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_last_name"
+        android:hint="@string/enter_last_name"
+        android:inputType="text"
+        android:layout_below="@id/label_last_name"
+        android:background="@drawable/text_box_template"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:autofillHints="username"
+        />
+
+    <!-- Enter Email   -->
+    <TextView
+        android:id="@+id/label_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:textColor="@color/black"
+        android:layout_below="@id/input_last_name"
+        android:textSize="16sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_email"
+        android:hint="@string/enter_email"
+        android:inputType="textEmailAddress"
+        android:layout_below="@id/label_email"
+        android:background="@drawable/text_box_template"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:autofillHints="emailAddress"
+        />
+
+    <!-- Enter Postcode  -->
+    <TextView
+        android:id="@+id/label_postcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/postcode"
+        android:textColor="@color/black"
+        android:layout_below="@id/input_email"
+        android:textSize="16sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_postcode"
+        android:hint="@string/enter_postcode"
+        android:inputType="number"
+        android:layout_below="@id/label_postcode"
+        android:background="@drawable/text_box_template"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:autofillHints="postalCode"
+        />
+
+
+
+</RelativeLayout>
