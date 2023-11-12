@@ -30,6 +30,15 @@ Jielong Zeng  1214079
 
 ## Project Background
 
+The product is primarily inspired by the spirit of Volunteering Victoria, embodying the mission to foster the advocacy sector and boost the volunteer community in Victoria. Aligned with this objective, the WeConnect Application for volunteers to take surveys, along with the Admin Management System for administrators to visualize survey results, have been developed.
+ 
+WeConnect Application is designed to collect data about a volunteer’s experience, skills, and changes with three domains involving Volunteer well-being, Volunteer Confidence, and Volunteer to Job potential. To track the changes, two surveys are expected to be completed. The first survey is required to be finished at the beginning of a volunteer placement. Subsequently, there will be another follow-up survey after two months, which will be notified by reminders.
+ 
+Admin Management System is a website to visualize and analyze survey results for administrators and managers. Different access permissions are developed to show the trends and insights of volunteers’ personal development as well as the changes across the three domains mentioned above. Therefore, administrators or managers can reflect on this quantitative data collection and support future improvements in volunteer programs.
+ 
+With user-centric design and strategic functionalities, our product stands ready to inspire volunteer management and engagement in Victoria, inviting administrators and volunteers alike to join us in this innovative leap forward.
+
+
 ## Demo
 
 ## Documentation
