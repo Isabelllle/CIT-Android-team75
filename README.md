@@ -157,9 +157,13 @@ Command for git through Terminal:
 ### WeConnect Application
 | Req.ID   | Requirement Description | Justification  | Test Case ID | Test Result |
 |----------|-------------------------|----------------|--------------|-------------|
-| 1   | Login  | Allow account holders to log in to the system.    | LP-1, LP-2, LP-3, LP-4, LP-5, LP-6, LP-7, LP-8 | Pass |
-| 3   | email varification   | 项目经理   |
-| 3   | email varification   | 项目经理   |
-| 3   | email varification   | 项目经理   |
-| 3   | email varification   | 项目经理   |
+| 1   | Navigation Bar  | Ensure users can quickly navigate to the 'About WeConnect' page/ “Contact Us" page/ "Privacy Policy" page through the navigation bar.  | NB-1<br>NB-2<br>NB-3<br>NB-4 | Pass |
+| 2   | Fill in personal information  | User can identity themeselves in the database and receive email notifications  | PI-1<br>PI-2<br>PI-3 | Pass |
+| 3   | Fill in organization detail   | User can the organization manager can view my data.   | PI-4<br>PI-5<br>PI-6 | Pass |
+| 4   | Take Survey- enter the first survey  |  User can provide insights to improve the program and enhance the experience for both participants and future volunteers.  | TS-1 | Pass |
+| 5   | Take Survey- enter the second survey   | User can provide insights to improve the program and enhance the experience for both participants and future volunteers.  | TS-2 | Pass
+| 6   | Take survey page   | Ensure that all survey questions are displayed correctly. | TS-3<br>TS-4<br>TS-5<br>TS-6<br>TS-7<br>TS-8 | Pass |
+| 7   | Find a Thank you/Congratulations page after completing the survey  |  User receive acknowledgement for my participation and know that the survey has been successfully submitted  | TS-9 | Pass |
+| 8   | Reminder and notification system  | A reminder for volunteers to complete the second questionnaire.  | RN-1 | Pass |
+
 
