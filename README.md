@@ -140,7 +140,7 @@ Command for git through Terminal:
 ### Admin Management System - Website
 | Req.ID   | Requirement Description | Justification  | Test Case ID | Test Result |
 |----------|-------------------------|----------------|--------------|-------------|
-| 1   | Login  | Allow account holders to log in to the system.    | LP-1, LP-2, LP-3, LP-4, LP-5, LP-6, LP-7, LP-8 | Pass |
+| 1   | Login  | Allow account holders to log in to the system.    | LP-1  LP-2  LP-3  LP-4  LP-5  LP-6  LP-7  LP-8 | Pass |
 | 2   | Edit  personal information  | Allow admin/manager to reset passwords and modify profile details    | RP-1, RP-2, RP-3，WS-1, WS-2, WS-4 | Pass |
 | 3   | Sign up   | Allow manager to register an account and choose their affiliated organization.   | SU-1, SU-2, SU-3, SU-4, SU-5| Pass |
 | 4   | Email varification   | Incorporate email verification during password change to ensure the uniqueness of the account.   | SU-6 | Pass |
