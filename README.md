@@ -140,18 +140,18 @@ Command for git through Terminal:
 ### Admin Management System - Website
 | Req.ID   | Requirement Description | Justification  | Test Case ID | Test Result |
 |----------|-------------------------|----------------|--------------|-------------|
-| 1   | Login  | Allow account holders to log in to the system.    | LP-1   LP-2   LP-3   LP-4   LP-5   LP-6   LP-7   LP-8 | Pass |
-| 2   | Edit  personal information  | Allow admin/manager to reset passwords and modify profile details    | RP-1<br> RP-2, RP-3，WS-1, WS-2, WS-4 | Pass |
-| 3   | Sign up   | Allow manager to register an account and choose their affiliated organization.   | SU-1, SU-2, SU-3, SU-4, SU-5| Pass |
+| 1   | Login  | Allow account holders to log in to the system.    | LP-1<br>LP-2<br>LP-3<br>LP-4<br>LP-5<br>LP-6<br>LP-7<br>LP-8 | Pass |
+| 2   | Edit  personal information  | Allow admin/manager to reset passwords and modify profile details    | RP-1<br>RP-2<br>RP-3<br>WS-1<br>WS-2<br>WS-4 | Pass |
+| 3   | Sign up   | Allow manager to register an account and choose their affiliated organization.   | SU-1<br>SU-2<br>SU-3<br>SU-4<br>SU-5| Pass |
 | 4   | Email varification   | Incorporate email verification during password change to ensure the uniqueness of the account.   | SU-6 | Pass |
-| 5   | Admin account management   | Allow the admin to manage manager account requests and to add or remove organizations in the system.   | AM-1, AM-2, AM-3, AM-4, AM-5, AM-6, AM-7 | Pass |
+| 5   | Admin account management   | Allow the admin to manage manager account requests and to add or remove organizations in the system.   | AM-1<br>AM-2<br>AM-3<br>AM-4<br>AM-5<br>AM-6<br>AM-7 | Pass |
 | 6   | Add new survey question   | Allow the admin to add new survey questions through the system, including selecting a topic, type, and adding question content.   | MS-1 | Pass |
-| 7   | Delete exist survey question   |  Allow the admin to delete the exist survey questions through the system  | MS-2, MS-3 | Pass |
+| 7   | Delete exist survey question   |  Allow the admin to delete the exist survey questions through the system  | MS-2<br>MS-3 | Pass |
 | 8   | View the indicator data through a summary (graphs)   | User can easily identify trends, patterns, and anomalies within the data, revealing valuable insights   | DRA-1 | Pass |
 | 9   | View the indicator data by question   | User can gain a more comprehensive understanding of the question I am interested in.   | DRA-2 | Pass |
-| 10   | Filter data   | Allow users to filter data by year or organization.   | DRA-3, DRA-4 | Pass |
+| 10   | Filter data   | Allow users to filter data by year or organization.   | DRA-3<br>DRA-4 | Pass |
 | 11   | Delete the survey data   | User can remove the survey has some mistakes or implausible survey.   | DRA-5 | Pass |
-| 12   | See a list of volunteers who need to complete the second surveys.  |  User can know how many people are ready to have the second survey and know their details.  | RN-1, RN-2, RN-3 | Pass |
+| 12   | See a list of volunteers who need to complete the second surveys.  |  User can know how many people are ready to have the second survey and know their details.  | RN-1<br>RN-2<br>RN-3 | Pass |
 | 13   | Search the volunteer by email   | User can quickly find the specific user.   | RN-4 | Pass |
 | 14   | Delete a volunteer from the list   | User can remove the volunteer who do not want further notification.   | RN-5 | Pass |
 ### WeConnect Application
