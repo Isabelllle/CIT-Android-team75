@@ -134,7 +134,9 @@ Command for git through Terminal:
      Open a new terminal window and navigate to the Weconnect/back_app directory.       
      Start the backend server using the following command:     
     `node app.js`
+   
 ## Changelog
+See on tags.   
 
 ## Traceability Matrix
 ### Admin Management System - Website
